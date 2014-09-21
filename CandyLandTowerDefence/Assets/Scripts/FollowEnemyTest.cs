@@ -6,12 +6,12 @@ public class FollowEnemyTest : MonoBehaviour {
     //public Object datEnemy;
     public GameObject datEnemy;
     public int maxDist = 20;
-    public bool hasTarget = false;
+    public bool hasTarget;
     //BasicGunFire BasicGunFire;
 
     // Use this for initialization
 	void Start () {
-        
+        hasTarget = false;
 	}
 
     public GameObject GetClosestEnemy()
@@ -41,9 +41,9 @@ public class FollowEnemyTest : MonoBehaviour {
         datEnemy = GetClosestEnemy();
         //Debug.Log(FindClosestEnemy().name);
         //datEnemy = FindClosestEnemy();
-        Debug.Log(GetClosestEnemy().name);
+        //Debug.Log(GetClosestEnemy().name);
         float enemyDist = Vector3.Distance(this.transform.position, datEnemy.transform.position);
-        Debug.Log(enemyDist);
+        //Debug.Log(enemyDist);
         //BasicGunFire = this.GetComponent<BasicGunFire>();
         if(enemyDist <= maxDist)
         {
