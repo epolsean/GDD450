@@ -3,7 +3,6 @@ using System.Collections;
 
 public class BasicGunFire : MonoBehaviour {
 
-    public GameObject GunTop;
     public Rigidbody datBullet;
     public int bulletSpeed;
     public double shootTimer = 0;
@@ -17,7 +16,7 @@ public class BasicGunFire : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        FollowEnemyTest followEnemyTest = GunTop.GetComponent<FollowEnemyTest>();
+        FollowEnemyTest followEnemyTest = this.GetComponent<FollowEnemyTest>();
         shootTimer += Time.deltaTime;
         if(followEnemyTest.hasTarget)
         {
