@@ -194,10 +194,10 @@ FakesAssemblies/
 *.unityproj
 *.sln
 *.suo
-/*.user
-/*.userprefs
-*.pidb
-*.booproj
+*.user
+*.userprefs
+/*.pidb
+/*.booproj
 
 #Unity3D Generated File On Crash Reports
 sysinfo.txt
