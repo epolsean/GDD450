@@ -8,8 +8,8 @@ public class AI : MonoBehaviour {
     public Seeker seeker;
     public CharacterController controller;
     public Path path;
-    public float speed = 100;
-    public float nextWaypointDistance = 3.0f;
+    public float speed = 1000;
+    public float nextWaypointDistance = 2f;
     int currentWaypoint = 0;
 
     void Start()
