@@ -17,10 +17,14 @@ public class HexGunPlace : MonoBehaviour {
 
     void OnMouseOver()
     {
-        renderer.material.color = Color.blue;
-        if(Input.GetMouseButtonDown(0))
+        if (tag == "SlotOpen" || tag == "SlotWall")
         {
-            Instantiate(BasicGun, this.transform.position, this.transform.rotation);
+            renderer.material.color = Color.blue;
+            if (Input.GetMouseButtonDown(0))
+            {
+                Instantiate(BasicGun, this.transform.position, this.transform.rotation);
+                tag = "SlotClosed";
+            }
         }
     }
 
