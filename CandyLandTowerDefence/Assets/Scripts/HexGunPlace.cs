@@ -26,6 +26,10 @@ public class HexGunPlace : MonoBehaviour {
                 tag = "SlotClosed";
             }
         }
+        else if(tag == "SlotClosed")
+        {
+            renderer.material.color = Color.red;
+        }
     }
 
     void OnMouseExit()
