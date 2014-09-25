@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class WaveSetup : MonoBehaviour {
 
     public Button start;
-    public int wave = 1;
+    public float wave = 1;
     public Transform[] spawnPoints;
     public GameObject[] enemyTypes;
     public Vector2 spawnTime = new Vector2(2, 8);
@@ -60,7 +60,7 @@ public class WaveSetup : MonoBehaviour {
             {
                 spawns = 0;
                 wave++;
-                totalEnemies = 4 * wave;
+                totalEnemies = totalEnemies * 2 - (int)wave;
                 buildMode = true;
                 start.enabled = true;
             }
