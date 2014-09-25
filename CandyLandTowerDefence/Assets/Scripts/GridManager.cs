@@ -62,7 +62,7 @@ public class GridManager : MonoBehaviour
         {
             for (float x = 0; x < gridWidthInHexes; x++)
             {
-                if (y <= 4 || y >= gridHeightInHexes-5)
+                if (y <= 4 || y >= gridHeightInHexes-3)
                 {
                     GameObject node = (GameObject)Instantiate(Node);
                     //Current position in grid
