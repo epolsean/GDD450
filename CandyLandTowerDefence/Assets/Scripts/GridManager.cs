@@ -62,15 +62,26 @@ public class GridManager : MonoBehaviour
         {
             for (float x = 0; x < gridWidthInHexes; x++)
             {
-                //GameObject assigned to Hex public variable is cloned
-                GameObject hex = (GameObject)Instantiate(Hex);
-                GameObject node = (GameObject)Instantiate(Node);
-                //Current position in grid
-                Vector2 gridPos = new Vector2(x, y);
-                hex.transform.position = calcWorldCoord(gridPos);
-                node.transform.position = hex.transform.position;
-                node.transform.parent = A_star.transform;
-                hex.transform.parent = hexGridGO.transform;
+                if (y <= 4 || y >= gridHeightInHexes-5)
+                {
+                    GameObject node = (GameObject)Instantiate(Node);
+                    //Current position in grid
+                    Vector2 gridPos = new Vector2(x, y);
+                    node.transform.position = calcWorldCoord(gridPos);
+                    node.transform.parent = A_star.transform;
+                }
+                else
+                {
+                    //GameObject assigned to Hex public variable is cloned
+                    GameObject hex = (GameObject)Instantiate(Hex);
+                    GameObject node = (GameObject)Instantiate(Node);
+                    //Current position in grid
+                    Vector2 gridPos = new Vector2(x, y);
+                    hex.transform.position = calcWorldCoord(gridPos);
+                    node.transform.position = hex.transform.position;
+                    node.transform.parent = A_star.transform;
+                    hex.transform.parent = hexGridGO.transform;
+                }
             }
         }
     }
