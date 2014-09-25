@@ -20,17 +20,30 @@ public class HexGunPlace : MonoBehaviour {
     {
         if (tag == "SlotOpen")
         {
+            Transform childNode = this.transform.FindChild("Node(Clone)");
             renderer.material.color = Color.green;
             if (Input.GetMouseButtonDown(0))
             {
                 Instantiate(BasicGun, this.transform.position+Vector3.up, this.transform.rotation);
                 Instantiate(BasicHexWall, this.transform.position, this.transform.rotation);
                 tag = "SlotClosed";
+
+                if (childNode)
+                {
+                    childNode.gameObject.SetActive(false);
+                    GridManager.rescan = true;
+                }
             }
             if(Input.GetMouseButtonDown(1))
             {
                 Instantiate(BasicHexWall, this.transform.position, this.transform.rotation);
                 tag = "SlotWall";
+                
+                if (childNode)
+                {
+                    childNode.gameObject.SetActive(false);
+                    GridManager.rescan = true;
+                }
             }
         }
         else if(tag == "SlotWall")

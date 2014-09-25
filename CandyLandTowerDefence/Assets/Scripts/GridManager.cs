@@ -9,6 +9,8 @@ public class GridManager : MonoBehaviour
 
     public AstarPath aStarController;
 
+    public static bool rescan=false;
+
     //next two variables can also be instantiated using unity editor
     public int gridWidthInHexes = 10;
     public int gridHeightInHexes = 10;
@@ -19,7 +21,11 @@ public class GridManager : MonoBehaviour
 
     void Update()
     {
-        //aStarController.Scan();
+        if (rescan == true)
+        {
+            aStarController.Scan();
+            rescan = false;
+        }
     }
 
     //Method to initialise Hexagon width and height
@@ -86,7 +92,7 @@ public class GridManager : MonoBehaviour
                     Vector2 gridPos = new Vector2(x, y);
                     hex.transform.position = calcWorldCoord(gridPos);
                     node.transform.position = hex.transform.position;
-                    node.transform.parent = A_star.transform;
+                    node.transform.parent = hex.transform;
                     hex.transform.parent = hexGridGO.transform;
                 }
             }
@@ -100,4 +106,5 @@ public class GridManager : MonoBehaviour
         createGrid();
         aStarController.Scan();
     }
+
 }
