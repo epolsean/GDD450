@@ -8,7 +8,8 @@ public class AI : MonoBehaviour {
     public Seeker seeker;
     public CharacterController controller;
     public Path path;
-    public float speed = 1000;
+    public float health = 10;
+    public float speed = 300;
     public float nextWaypointDistance = 2f;
     int currentWaypoint = 0;
 
@@ -52,6 +53,19 @@ public class AI : MonoBehaviour {
         if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance)
         {
             currentWaypoint++;
+        }
+
+        if (health <= 0)
+        {
+            Destroy(this);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "DatBullet")
+        {
+            health -= 2;
         }
     }
 }

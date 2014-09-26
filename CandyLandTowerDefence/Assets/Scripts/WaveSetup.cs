@@ -19,7 +19,7 @@ public class WaveSetup : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        start.onClick.AddListener(() => { buildMode = false; });
+        start.onClick.AddListener(() => {buildMode = false;});
 	}
 	
 	// Update is called once per frame
