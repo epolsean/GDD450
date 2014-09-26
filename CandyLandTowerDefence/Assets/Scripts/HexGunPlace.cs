@@ -24,7 +24,7 @@ public class HexGunPlace : MonoBehaviour {
             renderer.material.color = Color.green;
             if (Input.GetMouseButtonDown(0))
             {
-                Instantiate(BasicGun, this.transform.position+Vector3.up, this.transform.rotation);
+                Instantiate(BasicGun, this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0));
                 Instantiate(BasicHexWall, this.transform.position, this.transform.rotation);
                 tag = "SlotClosed";
 
@@ -51,7 +51,7 @@ public class HexGunPlace : MonoBehaviour {
             renderer.material.color = Color.blue;
             if (Input.GetMouseButtonDown(0))
             {
-                Instantiate(BasicGun, this.transform.position + Vector3.up, this.transform.rotation);
+                Instantiate(BasicGun, this.transform.position + Vector3.up*2, Quaternion.Euler(0,30,0));
                 tag = "SlotClosed";
             }
         }
