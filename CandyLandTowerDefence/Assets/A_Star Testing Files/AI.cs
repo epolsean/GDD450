@@ -57,15 +57,16 @@ public class AI : MonoBehaviour {
 
         if (health <= 0)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "DatBullet")
+        if (other.tag == "datBullet")
         {
             health -= 2;
+            Destroy(other.gameObject);
         }
     }
 }
