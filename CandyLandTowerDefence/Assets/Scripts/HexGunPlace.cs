@@ -66,3 +66,7 @@ public class HexGunPlace : MonoBehaviour {
         renderer.material.color = Color.white;
     }
 }
+
+
+
+
