@@ -8,7 +8,14 @@ public class ResourcePlacement : MonoBehaviour {
     public GameObject building1;
     public GameObject building2;
     public GameObject building3;
-    public WaveSetup waveController;
+    GameObject waveController;
+    WaveSetup waveSetup;
+
+    void Start()
+    {
+        waveController = GameObject.FindGameObjectWithTag("WavCon");
+        waveSetup = waveController.GetComponent<WaveSetup>();
+    }
 
     void OnMouseOver()
     {
@@ -17,19 +24,19 @@ public class ResourcePlacement : MonoBehaviour {
             renderer.material = mat2;
             if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.Alpha1))
             {
-                waveController.numBuilding1++;
+                waveSetup.numBuilding1++;
                 Instantiate(building1,transform.position,Quaternion.identity);
                 tag = "SlotClosed";
             }
             if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.Alpha2))
             {
-                waveController.numBuilding2++;
+                waveSetup.numBuilding2++;
                 Instantiate(building2, transform.position, Quaternion.identity);
                 tag = "SlotClosed";
             }
             if (Input.GetMouseButtonDown(0) && Input.GetKey(KeyCode.Alpha3))
             {
-                waveController.numBuilding3++;
+                waveSetup.numBuilding3++;
                 Instantiate(building3, transform.position, Quaternion.identity);
                 tag = "SlotClosed";
             }
