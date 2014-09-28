@@ -8,14 +8,20 @@ public class WaveSetup : MonoBehaviour {
     public float wave = 1;
     public Transform[] spawnPoints;
     public GameObject[] enemyTypes;
-    public Vector2 spawnTime = new Vector2(2, 8);
-    public int totalEnemies = 4;
-    public float spawnNumber;
-    public int selectedEnemy;
-    public int spawns = 0;
-    public float spawnRate = 0;
-    public bool timeSet = false;
-    public bool buildMode = true;
+    Vector2 spawnTime = new Vector2(2, 8);
+    int totalEnemies = 4;
+    float spawnNumber;
+    int selectedEnemy;
+    int spawns = 0;
+    float spawnRate = 0;
+    bool timeSet = false;
+    bool buildMode = true;
+    public float resource1 = 50;
+    public float resource2 = 50;
+    public float resource3 = 50;
+    public float numBuilding1 = 0;
+    public float numBuilding2 = 0;
+    public float numBuilding3 = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -60,6 +66,9 @@ public class WaveSetup : MonoBehaviour {
             {
                 spawns = 0;
                 wave++;
+                resource1 += numBuilding1 * 10;
+                resource2 += numBuilding2 * 10;
+                resource3 += numBuilding3 * 10;
                 totalEnemies = totalEnemies * 2 - (int)wave;
                 buildMode = true;
                 start.enabled = true;
