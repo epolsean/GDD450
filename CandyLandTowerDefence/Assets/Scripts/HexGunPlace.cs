@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HexGunPlace : MonoBehaviour {
 
     public GameObject BasicGun;
     public GameObject BasicHexWall;
+    public GameObject TowerSelectUI;
+    GameObject Canvas;
 
 	// Use this for initialization
 	void Start () {
-
+        Canvas = GameObject.Find("Canvas");
+        
 	}
 	
 	// Update is called once per frame
@@ -24,6 +28,9 @@ public class HexGunPlace : MonoBehaviour {
             renderer.material.color = Color.green;
             if (Input.GetMouseButtonDown(0))
             {
+                GameObject selectTower = (GameObject)Instantiate(TowerSelectUI);
+                selectTower.transform.parent = Canvas.transform;  //Fix to keep coord at zeros
+                //TowerSelectUI.transform.SetParent(Canvas.transform,true);
                 Instantiate(BasicGun, this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0));
                 Instantiate(BasicHexWall, this.transform.position, this.transform.rotation);
                 tag = "SlotClosed";
