@@ -33,7 +33,7 @@ public class HexGunPlaceV2 : MonoBehaviour {
     {
         if (tag == "SlotOpen")
         {
-            Transform childNode = this.transform.FindChild("Node(Clone)");
+            //Transform childNode = this.transform.FindChild("Node(Clone)");
             renderer.material.color = Color.green;
             if (Input.GetMouseButtonDown(0))
             {
@@ -45,11 +45,11 @@ public class HexGunPlaceV2 : MonoBehaviour {
                 //tag = "SlotClosed";
                 SpawnTowerAndGun();
 
-                if (childNode)
+                /*if (childNode)
                 {
                     childNode.gameObject.SetActive(false);
                     GridManager.rescan = true;
-                }
+                }*/
             }
             if(Input.GetMouseButtonDown(1))
             {
@@ -57,11 +57,11 @@ public class HexGunPlaceV2 : MonoBehaviour {
                 //tag = "SlotWall";
                 SpawnTower();
                 
-                if (childNode)
+                /*if (childNode)
                 {
                     childNode.gameObject.SetActive(false);
                     GridManager.rescan = true;
-                }
+                }*/
             }
         }
         else if(tag == "SlotWall")
@@ -69,8 +69,9 @@ public class HexGunPlaceV2 : MonoBehaviour {
             renderer.material.color = Color.blue;
             if (Input.GetMouseButtonDown(0))
             {
-                Instantiate(BasicGun, this.transform.position + Vector3.up*2, Quaternion.Euler(0,30,0));
-                tag = "SlotClosed";
+                //Instantiate(BasicGun, this.transform.position + Vector3.up*2, Quaternion.Euler(0,30,0));
+                //tag = "SlotClosed";
+                SpawnGun();
             }
         }
         else if(tag == "SlotClosed")
@@ -98,16 +99,33 @@ public class HexGunPlaceV2 : MonoBehaviour {
 
     public void SpawnTowerAndGun()
     {
+        Transform childNode = this.transform.FindChild("Node(Clone)"); 
+       
         GunOnTile = Instantiate(BasicGun, this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
         TowerOnTile = Instantiate(BasicHexWall, this.transform.position, this.transform.rotation) as GameObject;
         tag = "SlotClosed";
         GunUpgradable = true;
+
+        if (childNode)
+        {
+            childNode.gameObject.SetActive(false);
+            GridManager.rescan = true;
+        }
     }
 
     public void SpawnTower()
     {
-       TowerOnTile = Instantiate(BasicHexWall, this.transform.position, this.transform.rotation) as GameObject;
+
+        Transform childNode = this.transform.FindChild("Node(Clone)");
+ 
+        TowerOnTile = Instantiate(BasicHexWall, this.transform.position, this.transform.rotation) as GameObject;
         tag = "SlotWall";
+
+        if (childNode)
+        {
+            childNode.gameObject.SetActive(false);
+            GridManager.rescan = true;
+        }
     }
 
     public void SpawnGun()
