@@ -6,7 +6,7 @@ public class FollowEnemyTest : MonoBehaviour {
     //public Object datEnemy;
     public GameObject datEnemy;
     public GameObject EndOfBarrel;
-    public int maxDist = 20;
+    public int maxDist = 10;
     public bool hasTarget;
     //BasicGunFire BasicGunFire;
 
