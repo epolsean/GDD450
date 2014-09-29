@@ -37,31 +37,14 @@ public class HexGunPlaceV2 : MonoBehaviour {
             renderer.material.color = Color.green;
             if (Input.GetMouseButtonDown(0))
             {
-                //GameObject selectTower = (GameObject)Instantiate(TowerSelectUI);
-                //selectTower.transform.parent = Canvas.transform;  //Fix to keep coord at zeros
-                //TowerSelectUI.transform.SetParent(Canvas.transform,true);
-                //GunOnTile = Instantiate(BasicGun, this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
-                //TowerOnTile = Instantiate(BasicHexWall, this.transform.position, this.transform.rotation) as GameObject;
-                //tag = "SlotClosed";
+                GameObject selectTower = (GameObject)Instantiate(TowerSelectUI);
+                selectTower.transform.parent = Canvas.transform;  //Fix to keep coord at zeros
                 SpawnTowerAndGun();
 
-                /*if (childNode)
-                {
-                    childNode.gameObject.SetActive(false);
-                    GridManager.rescan = true;
-                }*/
             }
             if(Input.GetMouseButtonDown(1))
             {
-                //Instantiate(BasicHexWall, this.transform.position, this.transform.rotation);
-                //tag = "SlotWall";
                 SpawnTower();
-                
-                /*if (childNode)
-                {
-                    childNode.gameObject.SetActive(false);
-                    GridManager.rescan = true;
-                }*/
             }
         }
         else if(tag == "SlotWall")
@@ -69,8 +52,6 @@ public class HexGunPlaceV2 : MonoBehaviour {
             renderer.material.color = Color.blue;
             if (Input.GetMouseButtonDown(0))
             {
-                //Instantiate(BasicGun, this.transform.position + Vector3.up*2, Quaternion.Euler(0,30,0));
-                //tag = "SlotClosed";
                 SpawnGun();
             }
         }
