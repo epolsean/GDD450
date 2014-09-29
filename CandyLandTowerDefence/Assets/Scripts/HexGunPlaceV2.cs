@@ -9,6 +9,8 @@ public class HexGunPlaceV2 : MonoBehaviour {
     public GameObject BasicHexWall;
     public GameObject TowerSelectUI;
 
+    GameObject waveController;
+    WaveSetup waveSetup;
     GameObject Canvas;
 
     //these two objects will remain empty until they are filled by player
@@ -21,7 +23,8 @@ public class HexGunPlaceV2 : MonoBehaviour {
 	void Start () {
         Canvas = GameObject.Find("Canvas");
         GunUpgradable = false;
-        
+        waveController = GameObject.FindGameObjectWithTag("WavCon");
+        waveSetup = waveController.GetComponent<WaveSetup>();
 	}
 	
 	// Update is called once per frame
@@ -80,49 +83,69 @@ public class HexGunPlaceV2 : MonoBehaviour {
 
     public void SpawnTowerAndGun()
     {
-        Transform childNode = this.transform.FindChild("Node(Clone)"); 
-       
-        GunOnTile = Instantiate(BasicGun, this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
-        TowerOnTile = Instantiate(BasicHexWall, this.transform.position, this.transform.rotation) as GameObject;
-        tag = "SlotClosed";
-        GunUpgradable = true;
-
-        if (childNode)
+        if (waveSetup.resource1 >= 12 && waveSetup.resource2 >= 8 && waveSetup.resource3 >= 4)
         {
-            childNode.gameObject.SetActive(false);
-            GridManager.rescan = true;
+            Transform childNode = this.transform.FindChild("Node(Clone)");
+
+            GunOnTile = Instantiate(BasicGun, this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
+            TowerOnTile = Instantiate(BasicHexWall, this.transform.position, this.transform.rotation) as GameObject;
+            waveSetup.resource1 -= 12;
+            waveSetup.resource2 -= 8;
+            waveSetup.resource3 -= 4;
+            tag = "SlotClosed";
+            GunUpgradable = true;
+
+            if (childNode)
+            {
+                childNode.gameObject.SetActive(false);
+                GridManager.rescan = true;
+            }
         }
     }
 
     public void SpawnTower()
     {
-
-        Transform childNode = this.transform.FindChild("Node(Clone)");
- 
-        TowerOnTile = Instantiate(BasicHexWall, this.transform.position, this.transform.rotation) as GameObject;
-        tag = "SlotWall";
-
-        if (childNode)
+        if (waveSetup.resource1 >= 2)
         {
-            childNode.gameObject.SetActive(false);
-            GridManager.rescan = true;
+            Transform childNode = this.transform.FindChild("Node(Clone)");
+
+            TowerOnTile = Instantiate(BasicHexWall, this.transform.position, this.transform.rotation) as GameObject;
+            waveSetup.resource1 -= 2;
+            tag = "SlotWall";
+
+            if (childNode)
+            {
+                childNode.gameObject.SetActive(false);
+                GridManager.rescan = true;
+            }
         }
     }
 
     public void SpawnGun()
     {
-        GunOnTile = Instantiate(BasicGun, this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
-        tag = "SlotClosed";
-        GunUpgradable = true; 
+        if (waveSetup.resource1 >= 10 && waveSetup.resource2 >= 8 && waveSetup.resource3 >= 4)
+        {
+            GunOnTile = Instantiate(BasicGun, this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
+            waveSetup.resource1 -= 10;
+            waveSetup.resource2 -= 8;
+            waveSetup.resource3 -= 4;
+            tag = "SlotClosed";
+            GunUpgradable = true;
+        }
     }
 
     public void UpgradeGun()
     {
-        Debug.Log("entered UpgradeGun");
-        //Destroy(GunOnTile.gameObject); //This removes the gun currently on the tile
-        GunUpgradable = false;
-        GunOnTile.GetComponentInChildren<BasicGunFire>().bulletSpeed += 10;
-        Debug.Log("Update BulletSpeed");
+        if (waveSetup.resource2 >= 8 && waveSetup.resource3 >= 4)
+        {
+            Debug.Log("entered UpgradeGun");
+            //Destroy(GunOnTile.gameObject); //This removes the gun currently on the tile
+            GunUpgradable = false;
+            GunOnTile.GetComponentInChildren<BasicGunFire>().bulletSpeed += 10;
+            waveSetup.resource2 -= 8;
+            waveSetup.resource3 -= 4;
+            Debug.Log("Update BulletSpeed");
+        }
     }
 }
 

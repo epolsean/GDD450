@@ -8,7 +8,7 @@ public class WaveSetup : MonoBehaviour {
     public float wave = 1;
     public Transform[] spawnPoints;
     public GameObject[] enemyTypes;
-    Vector2 spawnTime = new Vector2(2, 8);
+    Vector2 spawnTime = new Vector2(.5f, 2f);
     int totalEnemies = 4;
     float spawnNumber;
     int selectedEnemy;
