@@ -7,7 +7,7 @@ public class RandGunBall : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        RanGunBallColor = Random.Range(0, 3);
+        RanGunBallColor = Random.Range(0, 4);
 	}
 	
 	// Update is called once per frame
