@@ -9,6 +9,8 @@ public class HexGunPlaceV2 : MonoBehaviour {
     public GameObject BasicHexWall;
     public GameObject TowerSelectUI;
 
+    GameObject CameraViewController;
+
     GameObject waveController;
     WaveSetup waveSetup;
     GameObject Canvas;
@@ -25,6 +27,7 @@ public class HexGunPlaceV2 : MonoBehaviour {
         GunUpgradable = false;
         waveController = GameObject.FindGameObjectWithTag("WavCon");
         waveSetup = waveController.GetComponent<WaveSetup>();
+        CameraViewController = GameObject.Find("FirstPersonCannonControl");
 	}
 	
 	// Update is called once per frame
@@ -34,45 +37,50 @@ public class HexGunPlaceV2 : MonoBehaviour {
 
     void OnMouseOver()
     {
-        if (tag == "SlotOpen")
+        if (CameraViewController.GetComponent<CannonCameraSwitch>().isFPSCannon == false)
         {
-            //Transform childNode = this.transform.FindChild("Node(Clone)");
-            renderer.material.color = Color.green;
-            if (Input.GetMouseButtonDown(0))
+            CameraViewController.GetComponent<CannonCameraSwitch>().Gun = null;
+            if (tag == "SlotOpen")
             {
-                GameObject selectTower = (GameObject)Instantiate(TowerSelectUI);
-                selectTower.transform.parent = Canvas.transform;  //Fix to keep coord at zeros
-                SpawnTowerAndGun();
-
-            }
-            if(Input.GetMouseButtonDown(1))
-            {
-                SpawnTower();
-            }
-        }
-        else if(tag == "SlotWall")
-        {
-            renderer.material.color = Color.blue;
-            if (Input.GetMouseButtonDown(0))
-            {
-                SpawnGun();
-            }
-        }
-        else if(tag == "SlotClosed")
-        {
-            if(GunUpgradable == true)
-            {
-                renderer.material.color = Color.yellow;
+                //Transform childNode = this.transform.FindChild("Node(Clone)");
+                renderer.material.color = Color.green;
                 if (Input.GetMouseButtonDown(0))
                 {
-                    UpgradeGun();
+                    GameObject selectTower = (GameObject)Instantiate(TowerSelectUI);
+                    selectTower.transform.parent = Canvas.transform;  //Fix to keep coord at zeros
+                    SpawnTowerAndGun();
+
+                }
+                if (Input.GetMouseButtonDown(1))
+                {
+                    SpawnTower();
                 }
             }
-            else if(GunUpgradable == false)
+            else if (tag == "SlotWall")
             {
-                renderer.material.color = Color.red;
+                renderer.material.color = Color.blue;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    SpawnGun();
+                }
             }
-            
+            else if (tag == "SlotClosed")
+            {
+                CameraViewController.GetComponent<CannonCameraSwitch>().Gun = GunOnTile;
+                if (GunUpgradable == true)
+                {
+                    renderer.material.color = Color.yellow;
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        UpgradeGun();
+                    }
+                }
+                else if (GunUpgradable == false)
+                {
+                    renderer.material.color = Color.red;
+                }
+
+            }
         }
     }
 

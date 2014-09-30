@@ -24,8 +24,9 @@ public class CannonCameraSwitch : MonoBehaviour {
         {
             SwitchCameraViewBack();
         }
-        if (isFPSCannon && Input.GetMouseButtonDown(0))
+        if (isFPSCannon && Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("Fire!");
             Gun.GetComponentInChildren<BasicGunFire>().FireGun();
         }
 	}
