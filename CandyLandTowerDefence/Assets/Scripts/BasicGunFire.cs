@@ -7,7 +7,7 @@ public class BasicGunFire : MonoBehaviour {
     public Rigidbody datBullet;
     public int bulletSpeed;
     public double shootTimer = 0;
-    public double time2Shoot = 2;
+    public double time2Shoot = 0.5;
     //public bool hasTarget = false; 
 
 	// Use this for initialization

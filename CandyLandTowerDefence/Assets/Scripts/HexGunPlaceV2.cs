@@ -147,7 +147,8 @@ public class HexGunPlaceV2 : MonoBehaviour {
         if (waveSetup.resource2 >= 8 && waveSetup.resource3 >= 4)
         {
             Debug.Log("entered UpgradeGun");
-            //Destroy(GunOnTile.gameObject); //This removes the gun currently on the tile
+            Destroy(GunOnTile.gameObject); //This removes the gun currently on the tile
+            GunOnTile = Instantiate(UpgradedGun, this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
             GunUpgradable = false;
             GunOnTile.GetComponentInChildren<BasicGunFire>().bulletSpeed += 10;
             waveSetup.resource2 -= 8;

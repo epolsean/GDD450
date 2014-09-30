@@ -6,6 +6,7 @@ public class FollowEnemyTest : MonoBehaviour {
     //public Object datEnemy;
     public GameObject datEnemy;
     public GameObject EndOfBarrel;
+    public GameObject EndOfBarrel2;
     public int maxDist = 10;
     public bool hasTarget;
     public bool isFPS;
@@ -41,6 +42,10 @@ public class FollowEnemyTest : MonoBehaviour {
 	void Update () {
         GameObject thisGun = GameObject.Find("BasicTestGun");
         BasicGunFire basicGunFire = EndOfBarrel.GetComponent<BasicGunFire>();
+        if(EndOfBarrel2 != null)
+        {
+            BasicGunFire basicGunFire2 = EndOfBarrel2.GetComponent<BasicGunFire>();
+        }
         datEnemy = GetClosestEnemy();
         //Debug.Log(FindClosestEnemy().name);
         //datEnemy = FindClosestEnemy();

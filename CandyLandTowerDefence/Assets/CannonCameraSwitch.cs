@@ -15,7 +15,7 @@ public class CannonCameraSwitch : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-        if(Input.GetKeyDown(KeyCode.F)&& isFPSCannon == false)
+        if(Input.GetKeyDown(KeyCode.F)&& isFPSCannon == false && Gun != null)
         {
             Debug.Log("Switching To Cannon!");
             SwitchToCannonView();
@@ -28,6 +28,10 @@ public class CannonCameraSwitch : MonoBehaviour {
         {
             Debug.Log("Fire!");
             Gun.GetComponentInChildren<BasicGunFire>().FireGun();
+            if(Gun.GetComponentInChildren<FollowEnemyTest>().EndOfBarrel2 != null)
+            {
+                Gun.GetComponentInChildren<FollowEnemyTest>().EndOfBarrel2.GetComponent<BasicGunFire>().FireGun();
+            }
         }
 	}
 
