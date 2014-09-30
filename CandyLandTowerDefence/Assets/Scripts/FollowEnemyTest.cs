@@ -8,11 +8,13 @@ public class FollowEnemyTest : MonoBehaviour {
     public GameObject EndOfBarrel;
     public int maxDist = 10;
     public bool hasTarget;
+    public bool isFPS;
     //BasicGunFire BasicGunFire;
 
     // Use this for initialization
 	void Start () {
         hasTarget = false;
+        isFPS = false; 
 	}
 
     public GameObject GetClosestEnemy()
@@ -46,22 +48,25 @@ public class FollowEnemyTest : MonoBehaviour {
         float enemyDist = Vector3.Distance(this.transform.position, datEnemy.transform.position);
         Debug.Log(enemyDist);
         //BasicGunFire = this.GetComponent<BasicGunFire>();
-        if(enemyDist <= maxDist)
+        if(isFPS == false)
         {
-            //this.gameObject.GetComponent<BasicGunFire>().setHasTarget(true);
-            //basicGunFire.hasTarget = true; 
-            //this.GetComponent<BasicGunFire>().hasTarget = true; 
-            //basicGunFire.setHasTarget(true);
-            hasTarget = true;
-            this.transform.LookAt(datEnemy.transform);
-        }
-        if(enemyDist >= maxDist)
-        {
-            //BasicGunFire.setHasTarget(false);
-            //this.GetComponent<BasicGunFire>().hasTarget = false; 
-            //basicGunFire.hasTarget = false; 
-            //basicGunFire.setHasTarget(false);
-            hasTarget = false; 
+            if(enemyDist <= maxDist)
+            {
+                //this.gameObject.GetComponent<BasicGunFire>().setHasTarget(true);
+                //basicGunFire.hasTarget = true; 
+                //this.GetComponent<BasicGunFire>().hasTarget = true; 
+                //basicGunFire.setHasTarget(true);
+                hasTarget = true;
+                this.transform.LookAt(datEnemy.transform);
+            }
+            if(enemyDist >= maxDist)
+            {
+                //BasicGunFire.setHasTarget(false);
+                //this.GetComponent<BasicGunFire>().hasTarget = false; 
+                //basicGunFire.hasTarget = false; 
+                //basicGunFire.setHasTarget(false);
+                hasTarget = false; 
+            }
         }
 	}
 

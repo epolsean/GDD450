@@ -33,6 +33,8 @@ public class CannonCameraSwitch : MonoBehaviour {
 
     public void SwitchToCannonView()
     {
+        Gun.GetComponentInChildren<FollowEnemyTest>().isFPS = true;
+        Gun.GetComponentInChildren<FollowEnemyTest>().hasTarget = false;
         isFPSCannon = true; 
         Gun.GetComponentInChildren<MouseLook>().enabled = true;
         Gun.GetComponentInChildren<Camera>().depth = 1;
@@ -40,6 +42,7 @@ public class CannonCameraSwitch : MonoBehaviour {
 
     public void SwitchCameraViewBack()
     {
+        Gun.GetComponentInChildren<FollowEnemyTest>().isFPS = false;
         isFPSCannon = false;
         Gun.GetComponentInChildren<MouseLook>().enabled = false;
         Gun.GetComponentInChildren<Camera>().depth = -1;
