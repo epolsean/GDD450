@@ -9,6 +9,8 @@ public class HexGunPlaceV2 : MonoBehaviour {
     public GameObject BasicHexWall;
     public GameObject TowerSelectUI;
 
+    public DestroyTowerSelect DTS;
+
     GameObject CameraViewController;
 
     GameObject waveController;
@@ -19,7 +21,9 @@ public class HexGunPlaceV2 : MonoBehaviour {
     public GameObject GunOnTile;
     public GameObject TowerOnTile;
 
-    public bool GunUpgradable; 
+    public bool GunUpgradable;
+    public static bool anyTileSelected = false;
+    public bool thisTileSelected = false;
 
 	// Use this for initialization
 	void Start () {
@@ -32,54 +36,75 @@ public class HexGunPlaceV2 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+        if (thisTileSelected)
+        {
+            renderer.material.color = Color.green;
+        }
 	}
 
     void OnMouseOver()
     {
-        if (CameraViewController.GetComponent<CannonCameraSwitch>().isFPSCannon == false)
+        if (!anyTileSelected)
         {
-            CameraViewController.GetComponent<CannonCameraSwitch>().Gun = null;
-            if (tag == "SlotOpen")
+            if (CameraViewController.GetComponent<CannonCameraSwitch>().isFPSCannon == false)
             {
-                //Transform childNode = this.transform.FindChild("Node(Clone)");
-                renderer.material.color = Color.green;
-                if (Input.GetMouseButtonDown(0))
+                CameraViewController.GetComponent<CannonCameraSwitch>().Gun = null;
+                if (tag == "SlotOpen")
                 {
-                    GameObject selectTower = (GameObject)Instantiate(TowerSelectUI);
-                    selectTower.transform.parent = Canvas.transform;  //Fix to keep coord at zeros
-                    SpawnTowerAndGun();
-
-                }
-                if (Input.GetMouseButtonDown(1))
-                {
-                    SpawnTower();
-                }
-            }
-            else if (tag == "SlotWall")
-            {
-                renderer.material.color = Color.blue;
-                if (Input.GetMouseButtonDown(0))
-                {
-                    SpawnGun();
-                }
-            }
-            else if (tag == "SlotClosed")
-            {
-                CameraViewController.GetComponent<CannonCameraSwitch>().Gun = GunOnTile;
-                if (GunUpgradable == true)
-                {
-                    renderer.material.color = Color.yellow;
+                    //Transform childNode = this.transform.FindChild("Node(Clone)");
+                    renderer.material.color = Color.green;
                     if (Input.GetMouseButtonDown(0))
                     {
-                        UpgradeGun();
+                        CameraViewController.GetComponent<CannonCameraSwitch>().TileSelected = this.gameObject;
+                        GameObject selectTower = (GameObject)Instantiate(TowerSelectUI);
+                        selectTower.transform.parent = Canvas.transform;  //Fix to keep coord at zeros
+                        selectTower.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
+                        selectTower.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+                        //SpawnTowerAndGun();
+                        thisTileSelected = true;
+                        anyTileSelected = true;
+
+                    }
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        CameraViewController.GetComponent<CannonCameraSwitch>().TileSelected = this.gameObject;
+                        SpawnTower();
+                        //thisTileSelected = true;
+                        //anyTileSelected = true;
                     }
                 }
-                else if (GunUpgradable == false)
+                else if (tag == "SlotWall")
                 {
-                    renderer.material.color = Color.red;
+                    renderer.material.color = Color.blue;
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        CameraViewController.GetComponent<CannonCameraSwitch>().TileSelected = this.gameObject;
+                        SpawnGun();
+                        //thisTileSelected = true;
+                        //anyTileSelected = true;
+                    }
                 }
+                else if (tag == "SlotClosed")
+                {
+                    CameraViewController.GetComponent<CannonCameraSwitch>().Gun = GunOnTile;
+                    if (GunUpgradable == true)
+                    {
+                        renderer.material.color = Color.yellow;
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            CameraViewController.GetComponent<CannonCameraSwitch>().TileSelected = this.gameObject;
+                            UpgradeGun();
+                            //thisTileSelected = true;
+                            //anyTileSelected = true;
+                        }
+                    }
+                    else if (GunUpgradable == false)
+                    {
+                        renderer.material.color = Color.red;
+                    }
 
+                }
             }
         }
     }

@@ -7,6 +7,8 @@ public class CannonCameraSwitch : MonoBehaviour {
 
     public GameObject Gun;
 
+    public GameObject TileSelected;
+
 	// Use this for initialization
 	void Start () {
         isFPSCannon = false; 
