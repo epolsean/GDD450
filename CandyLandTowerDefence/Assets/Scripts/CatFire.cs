@@ -6,7 +6,7 @@ public class CatFire : MonoBehaviour {
     public GameObject CatBase;
     public GameObject CatPivot;
     public Rigidbody datProj;
-    public int projSpeed = 9;
+    public int projSpeed = 3;
     public double shootTimer = 0;
     public double time2Shoot = 2;
     //public bool hasTarget = false; 
@@ -39,7 +39,9 @@ public class CatFire : MonoBehaviour {
     {
         Rigidbody bulletClone = Instantiate(datProj, transform.position, transform.rotation) as Rigidbody;
         //bulletClone.rigidbody.useGravity = false; 
-        bulletClone.velocity = transform.TransformDirection(Vector3.forward*projSpeed);
+        bulletClone.GetComponent<CatHitEnemy>().datCat = CatBase.gameObject;
+        //bulletClone.GetComponent<CatHitEnemy>().enemyTrans = CatBase.GetComponent<;
+        bulletClone.velocity = transform.TransformDirection(Vector3.forward*projSpeed*CatBase.GetComponent<FollowEnemyTestCatapult>().projMult);
         Destroy(bulletClone.gameObject, 2);
     }
 

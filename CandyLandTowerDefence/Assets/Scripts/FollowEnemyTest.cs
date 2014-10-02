@@ -51,7 +51,7 @@ public class FollowEnemyTest : MonoBehaviour {
         //datEnemy = FindClosestEnemy();
         //Debug.Log(GetClosestEnemy().name);
         float enemyDist = Vector3.Distance(this.transform.position, datEnemy.transform.position);
-        Debug.Log(enemyDist);
+        ///Debug.Log(enemyDist);
         //BasicGunFire = this.GetComponent<BasicGunFire>();
         if(isFPS == false)
         {

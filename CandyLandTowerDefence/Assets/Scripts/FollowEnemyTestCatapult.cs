@@ -9,6 +9,7 @@ public class FollowEnemyTestCatapult : MonoBehaviour {
     public int maxDist = 10;
     public bool hasTarget;
     public bool isFPS;
+    public int projMult = 1;
 
     public int damp = 1;
     //BasicGunFire BasicGunFire;
@@ -45,6 +46,26 @@ public class FollowEnemyTestCatapult : MonoBehaviour {
         //BasicGunFire basicGunFire = EndOfBarrel.GetComponent<BasicGunFire>();
         datEnemy = GetClosestEnemy();
         float enemyDist = Vector3.Distance(this.transform.position, datEnemy.transform.position);
+        if (enemyDist >= 17)
+        {
+            projMult = 5;
+        }
+        else if(enemyDist >= 13)
+        {
+            projMult = 4;
+        }
+        else if(enemyDist >= 10)
+        {
+            projMult = 3;
+        }
+        else if(enemyDist >= 7)
+        {
+            projMult = 2;
+        }
+        else
+        {
+            projMult = 1;
+        }
         Debug.Log(enemyDist);
 
         if(isFPS == false)
