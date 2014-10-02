@@ -6,6 +6,7 @@ public class FollowEnemyTestCatapult : MonoBehaviour {
     //public Object datEnemy;
     public GameObject datEnemy;
     public GameObject EndOfBarrel;
+    public GameObject datTarget;
     public int maxDist = 10;
     public bool hasTarget;
     public bool isFPS;
@@ -44,7 +45,15 @@ public class FollowEnemyTestCatapult : MonoBehaviour {
 	void Update () {
         //GameObject thisGun = GameObject.Find("BasicTestGun");
         //BasicGunFire basicGunFire = EndOfBarrel.GetComponent<BasicGunFire>();
-        datEnemy = GetClosestEnemy();
+        if (isFPS == false)
+        {
+            datEnemy = GetClosestEnemy();
+        }
+        else if(isFPS == true)
+        {
+            datEnemy = datTarget;
+        }
+
         float enemyDist = Vector3.Distance(this.transform.position, datEnemy.transform.position);
         if (enemyDist >= 17)
         {

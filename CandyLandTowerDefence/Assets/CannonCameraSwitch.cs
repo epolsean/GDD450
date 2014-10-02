@@ -19,20 +19,43 @@ public class CannonCameraSwitch : MonoBehaviour {
         
         if(Input.GetKeyDown(KeyCode.F)&& isFPSCannon == false && Gun != null)
         {
-            Debug.Log("Switching To Cannon!");
-            SwitchToCannonView();
+            if (Gun.tag == "GunBall")
+            {
+                Debug.Log("Switching To Cannon!");
+                SwitchToCannonView();
+            }
+            else if(Gun.tag == "Catapult")
+            {
+                Debug.Log("Switching to Catapult");
+                SwitchToCatView();
+            }
+            
         }
         else if(Input.GetKeyDown(KeyCode.F)&& isFPSCannon)
         {
-            SwitchCameraViewBack();
+            if (Gun.tag == "GunBall")
+            {
+                SwitchCameraViewBack();
+            }
+            else if(Gun.tag == "Catapult")
+            {
+                SwitchCatViewBack();
+            }
         }
         if (isFPSCannon && Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Fire!");
-            Gun.GetComponentInChildren<BasicGunFire>().FireGun();
-            if(Gun.GetComponentInChildren<FollowEnemyTest>().EndOfBarrel2 != null)
+            if (Gun.tag == "GunBall")
             {
-                Gun.GetComponentInChildren<FollowEnemyTest>().EndOfBarrel2.GetComponent<BasicGunFire>().FireGun();
+                Gun.GetComponentInChildren<BasicGunFire>().FireGun();
+                if (Gun.GetComponentInChildren<FollowEnemyTest>().EndOfBarrel2 != null)
+                {
+                    Gun.GetComponentInChildren<FollowEnemyTest>().EndOfBarrel2.GetComponent<BasicGunFire>().FireGun();
+                }
+            }
+            else if(Gun.tag == "Catapult")
+            {
+                Gun.GetComponentInChildren<CatFire>().FireGun();
             }
         }
 	}
@@ -51,6 +74,26 @@ public class CannonCameraSwitch : MonoBehaviour {
         Gun.GetComponentInChildren<FollowEnemyTest>().isFPS = false;
         isFPSCannon = false;
         Gun.GetComponentInChildren<MouseLook>().enabled = false;
+        Gun.GetComponentInChildren<Camera>().depth = -1;
+    }
+
+    public void SwitchToCatView()
+    {
+        Gun.GetComponent<FollowEnemyTestCatapult>().isFPS = true;
+        Gun.GetComponent<FollowEnemyTestCatapult>().hasTarget = false;
+        isFPSCannon = true;
+        Gun.GetComponent<MouseLook>().enabled = true;
+        Gun.GetComponent<MoveTarget>().enabled = true;
+        Gun.GetComponentInChildren<Camera>().depth = 1;
+    }
+
+    public void SwitchCatViewBack()
+    {
+        Gun.GetComponent<FollowEnemyTestCatapult>().isFPS = false;
+        Gun.GetComponent<FollowEnemyTestCatapult>().hasTarget = true;
+        isFPSCannon = false;
+        Gun.GetComponent<MouseLook>().enabled = false;
+        Gun.GetComponent<MoveTarget>().enabled = false;
         Gun.GetComponentInChildren<Camera>().depth = -1;
     }
 }
