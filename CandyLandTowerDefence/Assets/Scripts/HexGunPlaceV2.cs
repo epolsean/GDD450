@@ -50,7 +50,7 @@ public class HexGunPlaceV2 : MonoBehaviour {
             if (CameraViewController.GetComponent<CannonCameraSwitch>().isFPSCannon == false)
             {
                 CameraViewController.GetComponent<CannonCameraSwitch>().Gun = null;
-                if (tag == "SlotOpen")
+                if (tag == "SlotOpen" || tag == "SlotWall")
                 {
                     //Transform childNode = this.transform.FindChild("Node(Clone)");
                     renderer.material.color = Color.green;
@@ -66,15 +66,15 @@ public class HexGunPlaceV2 : MonoBehaviour {
                         anyTileSelected = true;
 
                     }
-                    if (Input.GetMouseButtonDown(1))
+                    /*if (Input.GetMouseButtonDown(1))
                     {
                         CameraViewController.GetComponent<CannonCameraSwitch>().TileSelected = this.gameObject;
                         SpawnTower();
                         //thisTileSelected = true;
                         //anyTileSelected = true;
-                    }
+                    }*/
                 }
-                else if (tag == "SlotWall")
+                /*else if (tag == "SlotWall")
                 {
                     renderer.material.color = Color.blue;
                     if (Input.GetMouseButtonDown(0))
@@ -84,7 +84,7 @@ public class HexGunPlaceV2 : MonoBehaviour {
                         //thisTileSelected = true;
                         //anyTileSelected = true;
                     }
-                }
+                }*/
                 else if (tag == "SlotClosed")
                 {
                     CameraViewController.GetComponent<CannonCameraSwitch>().Gun = GunOnTile;
@@ -114,25 +114,53 @@ public class HexGunPlaceV2 : MonoBehaviour {
         renderer.material.color = Color.white;
     }
 
-    public void SpawnTowerAndGun()
+    public void SpawnTowerAndGun(string nameOfTower)
     {
-        if (waveSetup.resource1 >= 12 && waveSetup.resource2 >= 8 && waveSetup.resource3 >= 4)
+        if (nameOfTower == "GumballTower")
         {
-            Transform childNode = this.transform.FindChild("Node(Clone)");
-
-            GunOnTile = Instantiate(BasicGun, this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
-            TowerOnTile = Instantiate(BasicHexWall, this.transform.position, this.transform.rotation) as GameObject;
-            waveSetup.resource1 -= 12;
-            waveSetup.resource2 -= 8;
-            waveSetup.resource3 -= 4;
-            tag = "SlotClosed";
-            GunUpgradable = true;
-
-            if (childNode)
+            if (waveSetup.resource1 >= 12 && waveSetup.resource2 >= 8 && waveSetup.resource3 >= 4)
             {
-                childNode.gameObject.SetActive(false);
-                GridManager.rescan = true;
+                Transform childNode = this.transform.FindChild("Node(Clone)");
+
+                GunOnTile = Instantiate((GameObject)Resources.Load(nameOfTower), this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
+                TowerOnTile = Instantiate(BasicHexWall, this.transform.position, this.transform.rotation) as GameObject;
+                waveSetup.resource1 -= 12;
+                waveSetup.resource2 -= 8;
+                waveSetup.resource3 -= 4;
+                tag = "SlotClosed";
+                GunUpgradable = true;
+
+                if (childNode)
+                {
+                    childNode.gameObject.SetActive(false);
+                    GridManager.rescan = true;
+                }
             }
+        }
+        else if (nameOfTower == "Tower3")
+        {
+            if (waveSetup.resource1 >= 4 && waveSetup.resource2 >= 10 && waveSetup.resource3 >= 10)
+            {
+                Transform childNode = this.transform.FindChild("Node(Clone)");
+
+                GunOnTile = Instantiate(BasicGun, this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
+                TowerOnTile = Instantiate(BasicHexWall, this.transform.position, this.transform.rotation) as GameObject;
+                waveSetup.resource1 -= 4;
+                waveSetup.resource2 -= 10;
+                waveSetup.resource3 -= 10;
+                tag = "SlotClosed";
+                GunUpgradable = true;
+
+                if (childNode)
+                {
+                    childNode.gameObject.SetActive(false);
+                    GridManager.rescan = true;
+                }
+            }
+        }
+        else if (nameOfTower == "Wall" && tag != "SlotWall")
+        {
+            SpawnTower();
         }
     }
 
@@ -154,16 +182,31 @@ public class HexGunPlaceV2 : MonoBehaviour {
         }
     }
 
-    public void SpawnGun()
+    public void SpawnGun(string nameOfTower)
     {
-        if (waveSetup.resource1 >= 10 && waveSetup.resource2 >= 8 && waveSetup.resource3 >= 4)
+        if (nameOfTower == "GumballTower")
         {
-            GunOnTile = Instantiate(BasicGun, this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
-            waveSetup.resource1 -= 10;
-            waveSetup.resource2 -= 8;
-            waveSetup.resource3 -= 4;
-            tag = "SlotClosed";
-            GunUpgradable = true;
+            if (waveSetup.resource1 >= 10 && waveSetup.resource2 >= 8 && waveSetup.resource3 >= 4)
+            {
+                GunOnTile = Instantiate((GameObject)Resources.Load(nameOfTower), this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
+                waveSetup.resource1 -= 10;
+                waveSetup.resource2 -= 8;
+                waveSetup.resource3 -= 4;
+                tag = "SlotClosed";
+                GunUpgradable = true;
+            }
+        }
+        else if (nameOfTower == "Tower3")
+        {
+            if (waveSetup.resource1 >= 4 && waveSetup.resource2 >= 10 && waveSetup.resource3 >= 10)
+            {
+                GunOnTile = Instantiate(BasicGun, this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
+                waveSetup.resource1 -= 4;
+                waveSetup.resource2 -= 10;
+                waveSetup.resource3 -= 10;
+                tag = "SlotClosed";
+                GunUpgradable = true;
+            }
         }
     }
 

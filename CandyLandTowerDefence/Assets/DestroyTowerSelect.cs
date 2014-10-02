@@ -12,7 +12,14 @@ public class DestroyTowerSelect : MonoBehaviour {
 
         CCS = GameObject.Find("FirstPersonCannonControl");
         HexSelected = CCS.GetComponent<CannonCameraSwitch>().TileSelected;
-        HexSelected.GetComponent<HexGunPlaceV2>().SpawnTowerAndGun();
+        if (HexSelected.tag == "SlotWall")
+        {
+            HexSelected.GetComponent<HexGunPlaceV2>().SpawnTowerAndGun(this.gameObject.name);
+        }
+        else if (HexSelected.tag == "SlotOpen")
+        {
+            HexSelected.GetComponent<HexGunPlaceV2>().SpawnTowerAndGun(this.gameObject.name);
+        }
         HexGunPlaceV2.anyTileSelected = false;
         HexSelected.GetComponent<HexGunPlaceV2>().thisTileSelected = false;
         HexSelected.transform.renderer.material.color = Color.white;
