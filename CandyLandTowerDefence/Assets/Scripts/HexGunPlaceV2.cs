@@ -97,10 +97,14 @@ public class HexGunPlaceV2 : MonoBehaviour {
                         renderer.material.color = Color.yellow;
                         if (Input.GetMouseButtonDown(0))
                         {
-                            CameraViewController.GetComponent<CannonCameraSwitch>().TileSelected = this.gameObject;
-                            UpgradeGun(this.gameObject.name);
-                            //thisTileSelected = true;
-                            //anyTileSelected = true;
+                            /*CameraViewController.GetComponent<CannonCameraSwitch>().TileSelected = this.gameObject;
+                            GameObject selectTower = (GameObject)Instantiate(TowerSelectUI);
+                            selectTower.transform.parent = Canvas.transform;
+                            selectTower.GetComponent<DestroyTowerSelect>().enabled = true;
+                            thisTileSelected = true;
+                            anyTileSelected = true;*/
+
+                            UpgradeGun();
                         }
                     }
                     else if (GunUpgradable == false)
@@ -214,9 +218,9 @@ public class HexGunPlaceV2 : MonoBehaviour {
         }
     }
 
-    public void UpgradeGun(string nameOfGun)
+    public void UpgradeGun()
     {
-        if (waveSetup.resource2 >= 8 && waveSetup.resource3 >= 4 && nameOfGun == "GumballTower")
+        if (waveSetup.resource2 >= 8 && waveSetup.resource3 >= 4 && CameraViewController.GetComponent<CannonCameraSwitch>().Gun.tag == "GunBall")
         {
             Debug.Log("entered UpgradeGun");
             Destroy(GunOnTile.gameObject); //This removes the gun currently on the tile
