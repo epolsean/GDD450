@@ -94,7 +94,7 @@ public class HexGunPlaceV2 : MonoBehaviour {
                         if (Input.GetMouseButtonDown(0))
                         {
                             CameraViewController.GetComponent<CannonCameraSwitch>().TileSelected = this.gameObject;
-                            UpgradeGun();
+                            UpgradeGun(this.gameObject.name);
                             //thisTileSelected = true;
                             //anyTileSelected = true;
                         }
@@ -137,13 +137,13 @@ public class HexGunPlaceV2 : MonoBehaviour {
                 }
             }
         }
-        else if (nameOfTower == "Tower3")
+        else if (nameOfTower == "Catapault")
         {
             if (waveSetup.resource1 >= 4 && waveSetup.resource2 >= 10 && waveSetup.resource3 >= 10)
             {
                 Transform childNode = this.transform.FindChild("Node(Clone)");
 
-                GunOnTile = Instantiate(BasicGun, this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
+                GunOnTile = Instantiate((GameObject)Resources.Load(nameOfTower), this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
                 TowerOnTile = Instantiate(BasicHexWall, this.transform.position, this.transform.rotation) as GameObject;
                 waveSetup.resource1 -= 4;
                 waveSetup.resource2 -= 10;
@@ -196,11 +196,11 @@ public class HexGunPlaceV2 : MonoBehaviour {
                 GunUpgradable = true;
             }
         }
-        else if (nameOfTower == "Tower3")
+        else if (nameOfTower == "Catapault")
         {
             if (waveSetup.resource1 >= 4 && waveSetup.resource2 >= 10 && waveSetup.resource3 >= 10)
             {
-                GunOnTile = Instantiate(BasicGun, this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
+                GunOnTile = Instantiate((GameObject)Resources.Load(nameOfTower), this.transform.position + Vector3.up * 2, Quaternion.Euler(0, 30, 0)) as GameObject;
                 waveSetup.resource1 -= 4;
                 waveSetup.resource2 -= 10;
                 waveSetup.resource3 -= 10;
@@ -210,9 +210,9 @@ public class HexGunPlaceV2 : MonoBehaviour {
         }
     }
 
-    public void UpgradeGun()
+    public void UpgradeGun(string nameOfGun)
     {
-        if (waveSetup.resource2 >= 8 && waveSetup.resource3 >= 4)
+        if (waveSetup.resource2 >= 8 && waveSetup.resource3 >= 4 && nameOfGun == "GumballTower")
         {
             Debug.Log("entered UpgradeGun");
             Destroy(GunOnTile.gameObject); //This removes the gun currently on the tile

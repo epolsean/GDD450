@@ -12,6 +12,10 @@ public class DestroyTowerSelect : MonoBehaviour {
 
         CCS = GameObject.Find("FirstPersonCannonControl");
         HexSelected = CCS.GetComponent<CannonCameraSwitch>().TileSelected;
+        if (this.gameObject.name == "Cancel")
+        {
+            this.enabled = false;
+        }
         if (HexSelected.tag == "SlotWall")
         {
             HexSelected.GetComponent<HexGunPlaceV2>().SpawnTowerAndGun(this.gameObject.name);
