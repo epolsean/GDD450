@@ -15,6 +15,14 @@ public class DestroyEnemiesKillZone : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject);
+        if (other.tag == "Enemy")
+        {
+            Destroy(other.gameObject);
+            UIController.livesRemaining--;
+            if (UIController.livesRemaining == 0)
+            {
+                Application.LoadLevel("StartScreen");
+            }
+        }
     }
 }
