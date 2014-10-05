@@ -14,7 +14,7 @@ public class CatHitEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.LookAt(enemyTrans);
-        this.transform.position += transform.forward * Time.deltaTime*2;
+        //transform.LookAt(enemyTrans);
+        //this.transform.position += transform.forward * Time.deltaTime*2;
 	}
 }
