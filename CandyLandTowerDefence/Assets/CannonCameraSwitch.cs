@@ -9,6 +9,8 @@ public class CannonCameraSwitch : MonoBehaviour {
 
     public GameObject TileSelected;
 
+    public double shootTimer = 0.1;
+
 	// Use this for initialization
 	void Start () {
         isFPSCannon = false; 
@@ -16,10 +18,12 @@ public class CannonCameraSwitch : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        shootTimer -= Time.deltaTime;
         
         if(Input.GetKeyDown(KeyCode.F)&& isFPSCannon == false && Gun != null)
         {
-            if (Gun.tag == "GunBall")
+            if (Gun.tag == "GunBall" || Gun.tag == "PumpSeed")
             {
                 Debug.Log("Switching To Cannon!");
                 SwitchToCannonView();
@@ -33,7 +37,7 @@ public class CannonCameraSwitch : MonoBehaviour {
         }
         else if(Input.GetKeyDown(KeyCode.F)&& isFPSCannon)
         {
-            if (Gun.tag == "GunBall")
+            if (Gun.tag == "GunBall" || Gun.tag == "PumpSeed")
             {
                 SwitchCameraViewBack();
             }
@@ -53,10 +57,24 @@ public class CannonCameraSwitch : MonoBehaviour {
                     Gun.GetComponentInChildren<FollowEnemyTest>().EndOfBarrel2.GetComponent<BasicGunFire>().FireGun();
                 }
             }
-            else if(Gun.tag == "Catapult")
+            else if (Gun.tag == "Catapult")
             {
                 Gun.GetComponentInChildren<CatFire>().FireGun();
             }
+        }
+        else if (isFPSCannon && Gun.tag == "PumpSeed" && Input.GetKey(KeyCode.Space))
+        {
+            if (shootTimer <= 0)
+            {
+                Debug.Log("RailGun!!!");
+                Gun.GetComponentInChildren<RollPumpSeedUpBarrel>().isFire = true;
+                Gun.GetComponentInChildren<BasicGunFire>().FireGun();
+                shootTimer = 0.1;
+            }
+        }
+        if(Input.GetKeyUp(KeyCode.Space) && Gun.tag == "PumpSeed")
+        {
+            Gun.GetComponentInChildren<RollPumpSeedUpBarrel>().isFire = false; 
         }
 	}
 
