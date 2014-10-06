@@ -4,9 +4,10 @@ using System.Collections;
 public class RollPumpSeedUpBarrel : MonoBehaviour {
 
     public bool isFire = false; 
+    public bool thisGun;
 	// Use this for initialization
 	void Start () {
-	
+	    
 	}
 	
 	// Update is called once per frame
