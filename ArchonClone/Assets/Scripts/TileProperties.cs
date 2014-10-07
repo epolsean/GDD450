@@ -4,15 +4,16 @@ using System.Collections;
 public class TileProperties : MonoBehaviour {
 
     public GameObject UnitOnTile = null;
-
+    public GameObject UnitMoveController;
 	// Use this for initialization
 	void Start () {
-	
+        //UnitOnTile = null;
+        UnitMoveController = GameObject.Find("MovementController");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    
 	}
 
     void OnMouseOver()
@@ -30,5 +31,10 @@ public class TileProperties : MonoBehaviour {
         {
             renderer.material.color = Color.black;
         }
+    }
+
+    void OnMouseDown()
+    {
+        UnitMoveController.GetComponent<WhitePawnMove>().SelectedPiece = UnitOnTile;
     }
 }
