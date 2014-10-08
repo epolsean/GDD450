@@ -15,7 +15,7 @@ public var landAnimationSpeed : float = 1.0;
 
 private var _animation : Animation;
 
-enum CharacterState {
+enum CharacterState1 {
 	Idle = 0,
 	Walking = 1,
 	Trotting = 2,
@@ -23,7 +23,7 @@ enum CharacterState {
 	Jumping = 4,
 }
 
-private var _characterState : CharacterState;
+private var _characterState1 : CharacterState1;
 
 // The speed when walking
 var walkSpeed = 2.0;
@@ -126,7 +126,7 @@ public var jumpPoseAnimation : AnimationClip;
 
 function UpdateSmoothedMovementDirection ()
 {
-	var cameraTransform = GameObject.Find("Player 1 Camera").transform;
+	var cameraTransform = GameObject.Find("Player 2 Camera").transform;
 	var grounded = IsGrounded();
 	
 	// Forward vector relative to the camera along the x-z plane	
@@ -138,8 +138,8 @@ function UpdateSmoothedMovementDirection ()
 	// Always orthogonal to the forward vector
 	var right = Vector3(forward.z, 0, -forward.x);
 
-	var v = Input.GetAxisRaw("Vertical");
-	var h = Input.GetAxisRaw("Horizontal");
+	var v = Input.GetAxisRaw("Vertical2");
+	var h = Input.GetAxisRaw("Horizontal2");
 
 	// Are we moving backwards or looking backwards
 	if (v < -0.2)
@@ -187,23 +187,23 @@ function UpdateSmoothedMovementDirection ()
 		//* We want to support analog input but make sure you cant walk faster diagonally than just forward or sideways
 		var targetSpeed = Mathf.Min(targetDirection.magnitude, 1.0);
 	
-		_characterState = CharacterState.Idle;
+		_characterState1 = CharacterState1.Idle;
 		
 		// Pick speed modifier
 		if (Input.GetKey (KeyCode.LeftShift) || Input.GetKey (KeyCode.RightShift))
 		{
 			targetSpeed *= runSpeed;
-			_characterState = CharacterState.Running;
+			_characterState1 = CharacterState1.Running;
 		}
 		else if (Time.time - trotAfterSeconds > walkTimeStart)
 		{
 			targetSpeed *= trotSpeed;
-			_characterState = CharacterState.Trotting;
+			_characterState1 = CharacterState1.Trotting;
 		}
 		else
 		{
 			targetSpeed *= walkSpeed;
-			_characterState = CharacterState.Walking;
+			_characterState1 = CharacterState1.Walking;
 		}
 		
 		moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, curSmooth);
@@ -283,7 +283,7 @@ function DidJump ()
 	lastJumpStartHeight = transform.position.y;
 	lastJumpButtonTime = -10;
 	
-	_characterState = CharacterState.Jumping;
+	_characterState1 = CharacterState1.Jumping;
 }
 
 function Update() {
@@ -319,7 +319,7 @@ function Update() {
 	
 	// ANIMATION sector
 	if(_animation) {
-		if(_characterState == CharacterState.Jumping) 
+		if(_characterState1 == CharacterState1.Jumping) 
 		{
 			if(!jumpingReachedApex) {
 				_animation[jumpPoseAnimation.name].speed = jumpAnimationSpeed;
@@ -338,15 +338,15 @@ function Update() {
 			}
 			else 
 			{
-				if(_characterState == CharacterState.Running) {
+				if(_characterState1 == CharacterState1.Running) {
 					_animation[runAnimation.name].speed = Mathf.Clamp(controller.velocity.magnitude, 0.0, runMaxAnimationSpeed);
 					_animation.CrossFade(runAnimation.name);	
 				}
-				else if(_characterState == CharacterState.Trotting) {
+				else if(_characterState1 == CharacterState1.Trotting) {
 					_animation[walkAnimation.name].speed = Mathf.Clamp(controller.velocity.magnitude, 0.0, trotMaxAnimationSpeed);
 					_animation.CrossFade(walkAnimation.name);	
 				}
-				else if(_characterState == CharacterState.Walking) {
+				else if(_characterState1 == CharacterState1.Walking) {
 					_animation[walkAnimation.name].speed = Mathf.Clamp(controller.velocity.magnitude, 0.0, walkMaxAnimationSpeed);
 					_animation.CrossFade(walkAnimation.name);	
 				}
