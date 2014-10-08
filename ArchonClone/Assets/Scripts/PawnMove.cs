@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WhitePawnMove : MonoBehaviour {
+public class PawnMove : MonoBehaviour {
 
     public GameObject SelectedPiece;
     public bool isMoving = false;

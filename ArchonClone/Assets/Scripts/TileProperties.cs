@@ -35,6 +35,6 @@ public class TileProperties : MonoBehaviour {
 
     void OnMouseDown()
     {
-        UnitMoveController.GetComponent<WhitePawnMove>().SelectedPiece = UnitOnTile;
+        UnitMoveController.GetComponent<PawnMove>().SelectedPiece = UnitOnTile;
     }
 }
