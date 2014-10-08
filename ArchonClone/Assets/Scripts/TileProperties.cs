@@ -18,7 +18,10 @@ public class TileProperties : MonoBehaviour {
 
     void OnMouseOver()
     {
-        renderer.material.color = Color.green;
+        if (UnitMoveController.GetComponent<PawnMove>().isMoving == false)
+        {
+            renderer.material.color = Color.green;
+        }
     }
 
     void OnMouseExit()
@@ -36,5 +39,6 @@ public class TileProperties : MonoBehaviour {
     void OnMouseDown()
     {
         UnitMoveController.GetComponent<PawnMove>().SelectedPiece = UnitOnTile;
+        UnitMoveController.GetComponent<PawnMove>().isMoving = true;
     }
 }
