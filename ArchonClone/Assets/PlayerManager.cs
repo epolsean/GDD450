@@ -5,7 +5,7 @@ using System.Collections;
 public class PlayerManager : MonoBehaviour {
 
     public Rigidbody Bullet;
-    public int bulletSpeed = 4;
+    public int bulletSpeed = 10;
 
     public GameObject playerWin;
     public GameObject HealthBar;
@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour {
 
     bool win = false;
     bool reloading = false;
-    float reloadTime = 1.0f;
+    float reloadTime = 0.5f;
 
     Behaviour halo;
 
@@ -40,21 +40,22 @@ public class PlayerManager : MonoBehaviour {
             reloadTime -= Time.deltaTime;
             if (reloadTime < 0)
             {
-                reloadTime = 1.0f;
+                reloadTime = 0.5f;
                 reloading = false;
             }
         }
 
-        if (Input.GetAxis("Fire2")==1 && name == "Player 1 Controller" && bulletSize==1 && reloading == false)
+        if ((Input.GetAxis("Fire2") == 1 || Input.GetAxis("360_RBButton1") == 1) && name == "Player 1 Controller" && bulletSize == 1 && reloading == false)
         {
             chargeTime -= Time.deltaTime;
             if (chargeTime < 0)
             {
                 halo.enabled = true;
                 bulletSize = 2;
+                bulletSpeed -= 4;
             }
         }
-        else if (Input.GetAxis("Fire3")==1 && name == "Player 2 Controller" && bulletSize==1 && reloading == false)
+        else if ((Input.GetAxis("Fire3") == 1 || Input.GetAxis("360_RBButton2") == 1) && name == "Player 2 Controller" && bulletSize == 1 && reloading == false)
         {
             Debug.Log(chargeTime);
             chargeTime -= Time.deltaTime;
@@ -62,14 +63,15 @@ public class PlayerManager : MonoBehaviour {
             {
                 halo.enabled = true;
                 bulletSize = 2;
+                bulletSpeed -= 4;
             }
         }
 
         CharacterController controller = GetComponent<CharacterController>();
         
-        if (controller.isGrounded && win == false)
+        if (win == false)
         {
-            if (Input.GetButtonUp("Fire2") && name == "Player 1 Controller" && reloading == false)
+            if ((Input.GetButtonUp("Fire2") || Input.GetButtonUp("360_RBButton1")) && name == "Player 1 Controller" && reloading == false)
             {
                 Rigidbody bulletClone = Instantiate(Bullet, transform.position + bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
                 bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
@@ -77,19 +79,21 @@ public class PlayerManager : MonoBehaviour {
                 bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
                 Destroy(bulletClone.gameObject, 3);
                 bulletSize = 1;
-                chargeTime = 2.0f;
+                bulletSpeed = 10;
+                chargeTime = 0.5f;
                 halo.enabled = false;
                 reloading = true;
             }
-            else if (Input.GetButtonUp("Fire3")&& name == "Player 2 Controller" && reloading == false)
+            else if ((Input.GetButtonUp("Fire3") || Input.GetButtonUp("360_RBButton2")) && name == "Player 2 Controller" && reloading == false)
             {
-                Rigidbody bulletClone = Instantiate(Bullet, transform.position + 2 * this.transform.forward, transform.rotation) as Rigidbody;
+                Rigidbody bulletClone = Instantiate(Bullet, transform.position + bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
                 bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
                 bulletClone.rigidbody.useGravity = false;
                 bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
                 Destroy(bulletClone.gameObject, 3);
                 bulletSize = 1;
-                chargeTime = 2.0f;
+                bulletSpeed = 10;
+                chargeTime = 0.5f;
                 halo.enabled = false;
                 reloading = true; 
             }
@@ -104,13 +108,21 @@ public class PlayerManager : MonoBehaviour {
         }
         if (win == true)
         {
+            if (tag == "Player1")
+            {
+                BattleStats.winner = tag;
+            }
+            else
+            {
+                BattleStats.winner = "Player2";
+            }
             Destroy(HealthBar);
             Destroy(GameObject.Find("P1 Health Text"));
             Destroy(GameObject.Find("P2 Health Text"));
             Instantiate(playerWin, transform.position, transform.rotation);
             Destroy(this.gameObject);
         }
-        if (health == 0 && win == false)
+        if (health <= 0 && win == false)
         {
             enemy.win = true;
             Destroy(this.gameObject);
@@ -130,7 +142,7 @@ public class PlayerManager : MonoBehaviour {
             }
             else if (other.transform.localScale.x == 2)
             {
-                health -= 20;
+                health -= 15;
             }
         }
     }
