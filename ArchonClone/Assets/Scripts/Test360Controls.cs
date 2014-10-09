@@ -11,8 +11,8 @@ public class Test360Controls : MonoBehaviour
 	// I seperated Movement and Button inputs into seperate functions, it makes for easier debugging
 	void Update ()
 	{
-		Movement1();
-        Movement2();
+		//Movement1();
+        //Movement2();
 		UserInputs1();
         UserInputs2();
 	}
@@ -229,7 +229,7 @@ public class Test360Controls : MonoBehaviour
             Debug.Log("Right Trigger2!");
         }
 
-        // Right Trigger is activated when pressure is under 0, or the dead zone.
+        // Left Trigger is activated when pressure is under 0, or the dead zone.
         if (Input.GetAxis("360_Triggers2") < 0)
         {
             Debug.Log("Left Trigger2!");
