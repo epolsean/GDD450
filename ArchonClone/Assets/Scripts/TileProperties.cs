@@ -5,6 +5,9 @@ public class TileProperties : MonoBehaviour {
 
     public GameObject UnitOnTile = null;
     public GameObject UnitMoveController;
+
+    public bool Occupied = false;
+    public bool canPlace;
 	// Use this for initialization
 	void Start () {
         //UnitOnTile = null;
@@ -20,8 +23,23 @@ public class TileProperties : MonoBehaviour {
     {
         if (UnitMoveController.GetComponent<PawnMove>().isMoving == false)
         {
-            renderer.material.color = Color.green;
+            renderer.material.color = Color.yellow;
         }
+        else if (UnitMoveController.GetComponent<PawnMove>().isMoving == true)
+        {
+            UnitMoveController.GetComponent<PawnMove>().MoveToTile = this.gameObject;
+            if(Vector3.Distance(UnitMoveController.GetComponent<PawnMove>().SelectedPiece.transform.position, this.transform.position) <= UnitMoveController.GetComponent<PawnMove>().MaxMove)
+            {
+                renderer.material.color = Color.green;
+                canPlace = true;
+            }
+            else
+            {
+                renderer.material.color = Color.red;
+                canPlace = false; 
+            }
+        }
+
     }
 
     void OnMouseExit()
@@ -34,11 +52,39 @@ public class TileProperties : MonoBehaviour {
         {
             renderer.material.color = Color.black;
         }
+        canPlace = false;
     }
 
     void OnMouseDown()
     {
-        UnitMoveController.GetComponent<PawnMove>().SelectedPiece = UnitOnTile;
-        UnitMoveController.GetComponent<PawnMove>().isMoving = true;
+        if (canPlace == false)
+        {
+            UnitMoveController.GetComponent<PawnMove>().SelectedPiece = UnitOnTile;
+            UnitMoveController.GetComponent<PawnMove>().isMoving = true;
+        }
+        else
+        {
+            if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag == "BlackPawn" || UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag == "Black02")
+            {
+                ReplaceBlackPiece(UnitMoveController.GetComponent<PawnMove>().SelectedPiece);
+            }
+            else
+            {
+                ReplaceWhitePiece(UnitMoveController.GetComponent<PawnMove>().SelectedPiece);
+            }
+            UnitMoveController.GetComponent<PawnMove>().isMoving = false;
+        }
+    }
+
+    void ReplaceWhitePiece(GameObject selectedPiece)
+    {
+        Destroy(selectedPiece.gameObject);
+        this.UnitOnTile = Instantiate(selectedPiece, this.transform.position, this.transform.rotation) as GameObject;
+    }
+    void ReplaceBlackPiece(GameObject selectedPiece)
+    {
+        Destroy(selectedPiece.gameObject);
+        this.UnitOnTile = Instantiate(selectedPiece, this.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;
     }
 }
+

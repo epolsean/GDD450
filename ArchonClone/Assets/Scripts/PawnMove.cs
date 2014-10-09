@@ -5,15 +5,18 @@ public class PawnMove : MonoBehaviour {
 
     public GameObject SelectedPiece;
     public bool isMoving = false;
-    
+    public GameObject MoveToTile;
+
+    public double MaxMove;
+
     // Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (SelectedPiece != null && SelectedPiece.tag == "White")
+        /*if (SelectedPiece != null && SelectedPiece.tag == "White")
         {
             if (Input.GetKeyDown(KeyCode.D) && isMoving)
             {
@@ -50,11 +53,23 @@ public class PawnMove : MonoBehaviour {
             {
                 MoveDown();
             }
-        }
+        }*/
         if (Input.GetKeyDown(KeyCode.Return))
         {
             isMoving = false;
             SelectedPiece = null;
+        }
+        if(isMoving && MoveToTile != null)
+        {
+            if (SelectedPiece.tag == "WhitePawn" || SelectedPiece.tag == "BlackPawn")
+            {
+                MaxMove = 5 * 2;
+            }
+            else if(SelectedPiece.tag == "White02"|| SelectedPiece.tag == "Black02")
+            {
+                MaxMove = 5 * 3;
+            }
+                
         }
 	}
 
