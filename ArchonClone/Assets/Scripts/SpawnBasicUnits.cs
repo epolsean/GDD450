@@ -29,7 +29,7 @@ public class SpawnBasicUnits : MonoBehaviour {
     void SpawnWhitePiece(GameObject piece, GameObject tile)
     {
         tile.GetComponent<TileProperties>().UnitOnTile = Instantiate(piece, tile.transform.position, tile.transform.rotation) as GameObject;
-        tile.GetComponent<TileProperties>().Occupied = true;
+        //tile.GetComponent<TileProperties>().Occupied = true;
 
         
     }
@@ -37,6 +37,6 @@ public class SpawnBasicUnits : MonoBehaviour {
     void SpawnBlackPiece(GameObject piece, GameObject tile)
     {
         tile.GetComponent<TileProperties>().UnitOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;
-        tile.GetComponent<TileProperties>().Occupied = true;
+        //tile.GetComponent<TileProperties>().Occupied = true;
     }
 }
