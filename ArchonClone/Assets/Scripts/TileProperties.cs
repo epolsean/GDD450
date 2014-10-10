@@ -57,20 +57,23 @@ public class TileProperties : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if (canPlace == false)
+        if (canPlace == false && UnitOnTile != null)
         {
             UnitMoveController.GetComponent<PawnMove>().SelectedPiece = UnitOnTile;
             UnitMoveController.GetComponent<PawnMove>().isMoving = true;
         }
         else
         {
-            if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag == "BlackPawn" || UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag == "Black02")
+            if (UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().Occupied == false && canPlace == true)
             {
-                ReplaceBlackPiece(UnitMoveController.GetComponent<PawnMove>().SelectedPiece);
-            }
-            else
-            {
-                ReplaceWhitePiece(UnitMoveController.GetComponent<PawnMove>().SelectedPiece);
+                if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag == "BlackPawn" || UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag == "Black02")
+                {
+                    ReplaceBlackPiece(UnitMoveController.GetComponent<PawnMove>().SelectedPiece);
+                }
+                else
+                {
+                    ReplaceWhitePiece(UnitMoveController.GetComponent<PawnMove>().SelectedPiece);
+                }
             }
             UnitMoveController.GetComponent<PawnMove>().isMoving = false;
         }
@@ -80,11 +83,15 @@ public class TileProperties : MonoBehaviour {
     {
         Destroy(selectedPiece.gameObject);
         this.UnitOnTile = Instantiate(selectedPiece, this.transform.position, this.transform.rotation) as GameObject;
+        UnitMoveController.GetComponent<PawnMove>().isMoving = false;
+        canPlace = false; 
     }
     void ReplaceBlackPiece(GameObject selectedPiece)
     {
         Destroy(selectedPiece.gameObject);
         this.UnitOnTile = Instantiate(selectedPiece, this.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;
+        UnitMoveController.GetComponent<PawnMove>().isMoving = false;
+        canPlace = false; 
     }
 }
 

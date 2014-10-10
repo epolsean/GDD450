@@ -15,45 +15,8 @@ public class PawnMove : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        /*if (SelectedPiece != null && SelectedPiece.tag == "White")
-        {
-            if (Input.GetKeyDown(KeyCode.D) && isMoving)
-            {
-                MoveRight();
-            }
-            if (Input.GetKeyDown(KeyCode.A) && isMoving)
-            {
-                MoveLeft();
-            }
-            if (Input.GetKeyDown(KeyCode.W) && isMoving)
-            {
-                MoveUp();
-            }
-            if (Input.GetKeyDown(KeyCode.S) && isMoving)
-            {
-                MoveDown();
-            }
-        }
-        if (SelectedPiece != null && SelectedPiece.tag == "Black")
-        {
-            if (Input.GetKeyDown(KeyCode.D) && isMoving)
-            {
-                MoveRight();
-            }
-            if (Input.GetKeyDown(KeyCode.A) && isMoving)
-            {
-                MoveLeft();
-            }
-            if (Input.GetKeyDown(KeyCode.W) && isMoving)
-            {
-                MoveUp();
-            }
-            if (Input.GetKeyDown(KeyCode.S) && isMoving)
-            {
-                MoveDown();
-            }
-        }*/
+	void Update () 
+    {
         if (Input.GetKeyDown(KeyCode.Return))
         {
             isMoving = false;
