@@ -126,7 +126,7 @@ public var jumpPoseAnimation : AnimationClip;
 
 function UpdateSmoothedMovementDirection ()
 {
-	var cameraTransform = GameObject.Find("Player 2 Camera").transform;
+	var cameraTransform = GameObject.Find("Player 2 3rd Person Camera").transform;
 	var grounded = IsGrounded();
 	
 	// Forward vector relative to the camera along the x-z plane	
