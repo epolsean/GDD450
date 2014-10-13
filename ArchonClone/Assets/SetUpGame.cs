@@ -22,27 +22,24 @@ public class SetUpGame : MonoBehaviour {
             {
                 p1ThirdCamera.GetComponent<Camera>().rect = new Rect(0,0,1,1);
                 p1TopDownCamera.SetActive(false);
-                player1.GetComponent<Player1MovementController>().enabled = false;
-                
+                player1.GetComponent<Player1MovementController>().topDownView = false;
             }
             else
             {
                 p1ThirdCamera.SetActive(false);
-                player1.GetComponent<ThirdPersonCamera>().enabled = false;
-                player1.GetComponent<ThirdPersonController>().enabled = false;
+                player1.GetComponent<Player1MovementController>().topDownView = true;
             }
 
             if (BattleStats.player2Pref == "third")
             {
                 p1ThirdCamera.GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
                 p1TopDownCamera.SetActive(false);
-                player2.GetComponent<Player2MovementController>().enabled = false;
+                player2.GetComponent<Player2MovementController>().topDownView = false;
             }
             else
             {
                 p2ThirdCamera.SetActive(false);
-                player2.GetComponent<ThirdPersonCamera1>().enabled = false;
-                player2.GetComponent<ThirdPersonController1>().enabled = false;
+                player2.GetComponent<Player2MovementController>().topDownView = true;
             }
         }
         else
@@ -52,8 +49,8 @@ public class SetUpGame : MonoBehaviour {
                 hotSeatCamera.SetActive(false);
                 p1TopDownCamera.SetActive(false);
                 p2TopDownCamera.SetActive(false);
-                player1.GetComponent<Player1MovementController>().enabled = false;
-                player2.GetComponent<Player2MovementController>().enabled = false;
+                player1.GetComponent<Player1MovementController>().topDownView = false;
+                player2.GetComponent<Player2MovementController>().topDownView = false;
             }
             else
             {
@@ -61,10 +58,8 @@ public class SetUpGame : MonoBehaviour {
                 p2TopDownCamera.SetActive(false);
                 p2ThirdCamera.SetActive(false);
                 p1ThirdCamera.SetActive(false);
-                player1.GetComponent<ThirdPersonCamera>().enabled = false;
-                player1.GetComponent<ThirdPersonController>().enabled = false;
-                player2.GetComponent<ThirdPersonCamera1>().enabled = false;
-                player2.GetComponent<ThirdPersonController1>().enabled = false;
+                player1.GetComponent<Player1MovementController>().topDownView = true;
+                player2.GetComponent<Player2MovementController>().topDownView = true;
             }
         }
 	

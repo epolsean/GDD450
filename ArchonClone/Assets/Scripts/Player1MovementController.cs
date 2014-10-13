@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Player1MovementController : MonoBehaviour {
 
-    public int xSensitivity = 5;
-    public int ySensitivity = 5;
+    public static int xSensitivity = 3;
+    public static int ySensitivity = 3;
 
     public float speed = 6.0F;
     public float gravity = 20.0F;
