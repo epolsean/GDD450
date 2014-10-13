@@ -82,7 +82,7 @@ public class TileProperties : MonoBehaviour {
     void ReplaceWhitePiece(GameObject selectedPiece)
     {
         Destroy(selectedPiece.gameObject);
-        this.UnitOnTile = Instantiate(selectedPiece, this.transform.position, this.transform.rotation) as GameObject;
+        this.UnitOnTile = Instantiate(selectedPiece, this.transform.position, Quaternion.Euler(0, -90, 0)) as GameObject;
         this.Occupied = false;
         UnitMoveController.GetComponent<PawnMove>().isMoving = false;
         canPlace = false; 
@@ -90,7 +90,7 @@ public class TileProperties : MonoBehaviour {
     void ReplaceBlackPiece(GameObject selectedPiece)
     {
         Destroy(selectedPiece.gameObject);
-        this.UnitOnTile = Instantiate(selectedPiece, this.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;
+        this.UnitOnTile = Instantiate(selectedPiece, this.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;
         this.Occupied = false; 
         UnitMoveController.GetComponent<PawnMove>().isMoving = false;
         canPlace = false; 
