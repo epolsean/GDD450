@@ -52,7 +52,7 @@ public class PlayerManager : MonoBehaviour {
                 }
             }
 
-            if ((Input.GetAxis("Fire2") == 1 || Input.GetAxis("360_RBButton1") == 1) && name == "Player 1 Controller" && bulletSize == 1 && reloading == false)
+            if (Input.GetAxis("360_RBButton1") == 1 && name == "Player 1 Controller" && bulletSize == 1 && reloading == false)
             {
                 chargeTime -= Time.deltaTime;
                 if (chargeTime < 0)
@@ -62,7 +62,7 @@ public class PlayerManager : MonoBehaviour {
                     bulletSpeed -= 4;
                 }
             }
-            else if ((Input.GetAxis("Fire3") == 1 || Input.GetAxis("360_RBButton2") == 1) && name == "Player 2 Controller" && bulletSize == 1 && reloading == false)
+            else if (Input.GetAxis("360_RBButton2") == 1 && name == "Player 2 Controller" && bulletSize == 1 && reloading == false)
             {
                 Debug.Log(chargeTime);
                 chargeTime -= Time.deltaTime;
@@ -76,26 +76,26 @@ public class PlayerManager : MonoBehaviour {
 
             if (win == false)
             {
-                if ((Input.GetButtonUp("Fire2") || Input.GetButtonUp("360_RBButton1")) && name == "Player 1 Controller" && reloading == false)
+                if (Input.GetButtonUp("360_RBButton1") && name == "Player 1 Controller" && reloading == false)
                 {
-                    Rigidbody bulletClone = Instantiate(Bullet, transform.position + 0.8f*bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                    Rigidbody bulletClone = Instantiate(Bullet, transform.position + 0.9f*bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
                     bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
                     bulletClone.rigidbody.useGravity = false;
                     bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                    Destroy(bulletClone.gameObject, 2);
+                    Destroy(bulletClone.gameObject, 3);
                     bulletSize = 1;
                     bulletSpeed = 10;
                     chargeTime = 0.5f;
                     halo.enabled = false;
                     reloading = true;
                 }
-                else if ((Input.GetButtonUp("Fire3") || Input.GetButtonUp("360_RBButton2")) && name == "Player 2 Controller" && reloading == false)
+                else if (Input.GetButtonUp("360_RBButton2") && name == "Player 2 Controller" && reloading == false)
                 {
-                    Rigidbody bulletClone = Instantiate(Bullet, transform.position + 0.8f*bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                    Rigidbody bulletClone = Instantiate(Bullet, transform.position + 0.9f*bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
                     bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
                     bulletClone.rigidbody.useGravity = false;
                     bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                    Destroy(bulletClone.gameObject, 2);
+                    Destroy(bulletClone.gameObject, 3);
                     bulletSize = 1;
                     bulletSpeed = 10;
                     chargeTime = 0.5f;
@@ -119,14 +119,14 @@ public class PlayerManager : MonoBehaviour {
 
             if (win == false)
             {
-                if ((Input.GetButtonUp("Fire2") || Input.GetButtonUp("360_RBButton1")) && name == "Player 1 Controller" && swinging == false)
+                if (Input.GetButtonUp("360_RBButton1") && name == "Player 1 Controller" && swinging == false)
                 {
                     GameObject sword = Instantiate(Sword, transform.position + this.transform.forward, transform.rotation) as GameObject;
                     sword.tag = tag;
                     swinging = true;
                     Destroy(sword.gameObject, 0.3f);
                 }
-                if ((Input.GetButtonUp("Fire3") || Input.GetButtonUp("360_RBButton2")) && name == "Player 2 Controller" && swinging == false)
+                if (Input.GetButtonUp("360_RBButton2") && name == "Player 2 Controller" && swinging == false)
                 {
                     GameObject sword = Instantiate(Sword, transform.position + this.transform.forward, transform.rotation) as GameObject;
                     sword.tag = tag;
