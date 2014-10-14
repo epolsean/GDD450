@@ -157,13 +157,13 @@ public class PlayerManager : MonoBehaviour {
             Destroy(HealthBar);
             Destroy(GameObject.Find("P1 Health Text"));
             Destroy(GameObject.Find("P2 Health Text"));
-            Instantiate(playerWin, transform.position, transform.rotation);
-            Destroy(this.gameObject);
+            //Instantiate(playerWin, transform.position, transform.rotation);
+            //Destroy(this.gameObject);
         }
         if (health <= 0 && win == false)
         {
             enemy.win = true;
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
             Destroy(HealthBar);
         }
 	

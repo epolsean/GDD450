@@ -20,7 +20,7 @@ public class SetUpGame : MonoBehaviour {
             hotSeatCamera.SetActive(false);
             if (BattleStats.player1Pref == "third")
             {
-                p1ThirdCamera.GetComponent<Camera>().rect = new Rect(0,0,1,1);
+                //p1ThirdCamera.GetComponent<Camera>().rect = new Rect(0,0,1,1);
                 p1TopDownCamera.SetActive(false);
                 player1.GetComponent<Player1MovementController>().topDownView = false;
             }
@@ -32,8 +32,8 @@ public class SetUpGame : MonoBehaviour {
 
             if (BattleStats.player2Pref == "third")
             {
-                p1ThirdCamera.GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
-                p1TopDownCamera.SetActive(false);
+                //p2ThirdCamera.GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
+                p2TopDownCamera.SetActive(false);
                 player2.GetComponent<Player2MovementController>().topDownView = false;
             }
             else
