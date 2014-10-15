@@ -66,6 +66,10 @@ public class pieceMove : MonoBehaviour {
         {
             currentWaypoint++;
         }
+        //else if(path.vectorPath[currentWaypoint] == targetPosition)
+        //{
+
+        //}
     }
 
     void Update()
