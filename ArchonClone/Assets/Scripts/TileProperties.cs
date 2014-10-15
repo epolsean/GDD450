@@ -69,7 +69,11 @@ public class TileProperties : MonoBehaviour {
             UnitMoveController.GetComponent<PawnMove>().isMoving = true;
             UnitMoveController.GetComponent<PawnMove>().currentTile = this.gameObject;
             UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
-            //GridManager.rescan = true;
+            datNode.gameObject.SetActive(true);
+            if (UnitMoveController.GetComponent<PawnMove>().isMoving)
+            {
+                GridManager.rescan = true;
+            }
         }
         else if(canPlace == true && UnitOnTile == null)
         {

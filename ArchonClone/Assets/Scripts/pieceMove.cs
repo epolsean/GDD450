@@ -44,14 +44,17 @@ public class pieceMove : MonoBehaviour {
         }
         if (currentWaypoint >= path.vectorPath.Count)
         {
-            Debug.Log("DA END");
             if(isMoving)
             {
+                Debug.Log("DA END");
                 GridManager.rescan = true;
+                MoveController.GetComponent<PawnMove>().SelectedPiece.transform.position = targetPosition;//MoveController.GetComponent<PawnMove>().MoveToTile.transform.position;
             }
             isMoving = false;
             //MoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
             //MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(false);
+            
+            Debug.Log("moved Piece");
             
             return;
         }
@@ -62,14 +65,14 @@ public class pieceMove : MonoBehaviour {
 
         controller.SimpleMove(dir);
 
-        if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance)
+        if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance - 1)
         {
             currentWaypoint++;
         }
-        //else if(path.vectorPath[currentWaypoint] == targetPosition)
-        //{
-
-        //}
+        else if(path.vectorPath[currentWaypoint] == targetPosition)
+        {
+            Debug.Log("I'm Here");
+        }
     }
 
     void Update()
