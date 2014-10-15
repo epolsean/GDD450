@@ -19,7 +19,7 @@ public class TileProperties : MonoBehaviour {
 	    
 	}
 
-    void OnMouseOver()
+    public void OnMouseOver()
     {
         if (UnitMoveController.GetComponent<PawnMove>().isMoving == false)
         {
