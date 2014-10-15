@@ -4,6 +4,7 @@ using System.Collections;
 public class PawnMove : MonoBehaviour {
 
     public GameObject SelectedPiece;
+    public GameObject currentTile;
     public bool isMoving = false;
     public GameObject MoveToTile;
 
