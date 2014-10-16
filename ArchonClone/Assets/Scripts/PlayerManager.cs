@@ -83,6 +83,7 @@ public class PlayerManager : MonoBehaviour {
                     bulletClone.rigidbody.useGravity = false;
                     bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
                     Destroy(bulletClone.gameObject, 3);
+                    audio.Play();
                     bulletSize = 1;
                     bulletSpeed = 10;
                     chargeTime = 0.5f;
@@ -96,6 +97,7 @@ public class PlayerManager : MonoBehaviour {
                     bulletClone.rigidbody.useGravity = false;
                     bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
                     Destroy(bulletClone.gameObject, 3);
+                    audio.Play();
                     bulletSize = 1;
                     bulletSpeed = 10;
                     chargeTime = 0.5f;

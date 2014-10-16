@@ -21,7 +21,7 @@ public class TileProperties : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    
+
 	}
 
     public void OnMouseOver()
@@ -47,7 +47,7 @@ public class TileProperties : MonoBehaviour {
 
     }
 
-    void OnMouseExit()
+    public void OnMouseExit()
     {
         if(this.tag == "WhiteTile")
         {
