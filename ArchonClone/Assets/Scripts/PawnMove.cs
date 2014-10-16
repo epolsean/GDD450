@@ -25,11 +25,11 @@ public class PawnMove : MonoBehaviour {
         }
         if(isMoving && MoveToTile != null)
         {
-            if (SelectedPiece.tag == "WhitePawn" || SelectedPiece.tag == "BlackPawn")
+            if (SelectedPiece.name == "WhitePawn(Clone)" || SelectedPiece.name == "BlackPawn(Clone)")
             {
                 MaxMove = 5 * 2;
             }
-            else if(SelectedPiece.tag == "White02"|| SelectedPiece.tag == "Black02")
+            else if(SelectedPiece.name == "White02(Clone)"|| SelectedPiece.name == "Black02(Clone)")
             {
                 MaxMove = 5 * 3;
             }

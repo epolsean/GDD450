@@ -8,7 +8,8 @@ public class TileProperties : MonoBehaviour {
     public GameObject datTarget;
     public GameObject datNode;
     public GameObject AStarController;
-
+    public bool fighting = false;
+    public double fightTimer;
     public bool Occupied = false;
     public bool canPlace;
 	// Use this for initialization
@@ -21,7 +22,20 @@ public class TileProperties : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if(fighting)
+        {
+            if(fightTimer <= 3)
+            {
+                fightTimer += Time.deltaTime;
+            }
+            else
+            {
+                Debug.Log("GOTO fight Scene!!!");
+                fighting = false; 
+                fightTimer = 0;
+                Application.LoadLevel(6);
+            }
+        }
 	}
 
     public void OnMouseOver()
@@ -75,7 +89,7 @@ public class TileProperties : MonoBehaviour {
                 GridManager.rescan = true;
             }
         }
-        else if(canPlace == true && UnitOnTile == null)
+        else if(canPlace == true && UnitOnTile == null)//these checks result in a piece moving to an empty hex tile
         {
             if (UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().Occupied == false && canPlace == true)
             {
@@ -91,6 +105,27 @@ public class TileProperties : MonoBehaviour {
                 }
             }
             UnitMoveController.GetComponent<PawnMove>().isMoving = false;
+        }
+        else if(canPlace == true && UnitOnTile != null)
+        {
+            if(UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag == "White")
+            {
+                if(UnitOnTile.tag == "Black" && canPlace)
+                {
+                    Debug.Log("Fight");
+                    fighting = true;
+                    SetTarget();
+                }
+            }
+            else//if selectedPiece tag is black
+            {
+                if (UnitOnTile.tag == "White" && canPlace)
+                {
+                    Debug.Log("Fight");
+                    fighting = true; 
+                    SetTarget();
+                }
+            }
         }
     }
 
