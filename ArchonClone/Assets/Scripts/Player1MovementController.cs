@@ -18,25 +18,47 @@ public class Player1MovementController : MonoBehaviour {
     }
     void Update()
     {
+        
         CharacterController controller = GetComponent<CharacterController>();
         if (topDownView)
         {
             if (controller.isGrounded)
             {
-                if (Input.GetAxis("360_HorizontalRightStick1") == 0 && Input.GetAxis("360_VerticalRightStick1") == 0)
+                if (Input.GetJoystickNames().Length != 0)
                 {
-                    transform.forward = lastLooking;
+                    if (Input.GetAxis("360_HorizontalRightStick1") == 0 && Input.GetAxis("360_VerticalRightStick1") == 0)
+                    {
+                        transform.forward = lastLooking;
+                    }
+                    else
+                    {
+                        transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick1"), 0, Input.GetAxis("360_VerticalRightStick1"));
+                    }
+                    //transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick1"), 0, Input.GetAxis("360_VerticalRightStick1"));
+                    moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
+                    //moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+                    //moveDirection = transform.TransformDirection(moveDirection);
+                    moveDirection *= speed;
                 }
                 else
                 {
-                    transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick1"), 0, Input.GetAxis("360_VerticalRightStick1"));
-                }
-                //transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick1"), 0, Input.GetAxis("360_VerticalRightStick1"));
-                moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
-                //moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                    Debug.Log("no controller");
+                    if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+                    {
+                        transform.forward = lastLooking;
+                    }
+                    else
+                    {
+                        transform.forward = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                    }
+                    //transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick1"), 0, Input.GetAxis("360_VerticalRightStick1"));
+                    moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                    //moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-                //moveDirection = transform.TransformDirection(moveDirection);
-                moveDirection *= speed;
+                    //moveDirection = transform.TransformDirection(moveDirection);
+                    moveDirection *= speed;
+                }
 
             }
             lastLooking = transform.forward;
@@ -47,11 +69,22 @@ public class Player1MovementController : MonoBehaviour {
         {
             if (controller.isGrounded)
             {
-                transform.Rotate(Vector3.up,xSensitivity*Input.GetAxis("360_HorizontalRightStick1"));
+                if (Input.GetJoystickNames().Length != 0)
+                {
+                    transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("360_HorizontalRightStick1"));
 
-                moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
-                moveDirection = transform.TransformDirection(moveDirection);
-                moveDirection *= speed;
+                    moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
+                    moveDirection = transform.TransformDirection(moveDirection);
+                    moveDirection *= speed;
+                }
+                else
+                {
+                    transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("Horizontal"));
+
+                    moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                    moveDirection = transform.TransformDirection(moveDirection);
+                    moveDirection *= speed;
+                }
             }
             moveDirection.y -= gravity * Time.deltaTime;
             controller.Move(moveDirection * Time.deltaTime);

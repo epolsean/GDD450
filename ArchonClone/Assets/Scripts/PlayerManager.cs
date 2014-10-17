@@ -52,7 +52,7 @@ public class PlayerManager : MonoBehaviour {
                 }
             }
 
-            if (Input.GetAxis("360_RBButton1") == 1 && name == "Player 1 Controller" && bulletSize == 1 && reloading == false)
+            if ((Input.GetAxis("360_RBButton1") == 1 || Input.GetAxis("Fire1") == 1) && name == "Player 1 Controller" && bulletSize == 1 && reloading == false)
             {
                 chargeTime -= Time.deltaTime;
                 if (chargeTime < 0)
@@ -62,7 +62,7 @@ public class PlayerManager : MonoBehaviour {
                     bulletSpeed -= 4;
                 }
             }
-            else if (Input.GetAxis("360_RBButton2") == 1 && name == "Player 2 Controller" && bulletSize == 1 && reloading == false)
+            else if ((Input.GetAxis("360_RBButton2") == 1 || Input.GetAxis("Fire2") == 1)  && name == "Player 2 Controller" && bulletSize == 1 && reloading == false)
             {
                 Debug.Log(chargeTime);
                 chargeTime -= Time.deltaTime;
@@ -76,7 +76,7 @@ public class PlayerManager : MonoBehaviour {
 
             if (win == false)
             {
-                if (Input.GetButtonUp("360_RBButton1") && name == "Player 1 Controller" && reloading == false)
+                if ((Input.GetButtonUp("360_RBButton1")|| Input.GetButtonUp("Fire1")) && name == "Player 1 Controller" && reloading == false)
                 {
                     Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.8f*bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
                     bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
@@ -90,7 +90,7 @@ public class PlayerManager : MonoBehaviour {
                     halo.enabled = false;
                     reloading = true;
                 }
-                else if (Input.GetButtonUp("360_RBButton2") && name == "Player 2 Controller" && reloading == false)
+                else if ((Input.GetButtonUp("360_RBButton2") || Input.GetButtonUp("Fire2")) && name == "Player 2 Controller" && reloading == false)
                 {
                     Rigidbody bulletClone = Instantiate(Bullet, transform.position + 2.3f*bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
                     bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
