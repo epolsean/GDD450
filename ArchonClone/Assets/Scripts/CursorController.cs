@@ -12,7 +12,7 @@ public class CursorController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Screen.showCursor = false;
-        cursor.transform.position = new Vector3(1, 1, 0);
+        cursor.transform.position = new Vector3(20, 20, 0);
 	}
 	
  
@@ -21,12 +21,10 @@ public class CursorController : MonoBehaviour {
         if (Input.GetAxis("360_AButton1")==1)
         {
             speed = 12.0f;
-            Debug.Log("A Button down");
         }
         else
         {
            speed = 5.0f;
-           Debug.Log("A Button up");
         }
         moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), Input.GetAxis("360_VerticalLeftStick1"), 0);
         Vector3.Normalize(moveDirection);

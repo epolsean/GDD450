@@ -7,6 +7,8 @@ public class RaycastCursor : MonoBehaviour {
     GameObject cursor;
     GameObject currentHex;
     GameObject lastHex;
+
+    public LayerMask mask;
 	// Use this for initialization
 	void Start () {
         cursor = GameObject.Find("Cursor");
@@ -18,7 +20,7 @@ public class RaycastCursor : MonoBehaviour {
         RaycastHit hit;
         Ray rayPos = Camera.main.ScreenPointToRay(cursor.transform.position);
 
-        if (Physics.Raycast(rayPos, out hit, Mathf.Infinity))
+        if (Physics.Raycast(rayPos, out hit, Mathf.Infinity,mask))
         {
             Debug.DrawLine(Camera.main.transform.position, hit.point, Color.red);
             rayHitPoint = hit.point;
@@ -28,14 +30,21 @@ public class RaycastCursor : MonoBehaviour {
                 lastHex.GetComponent<TileProperties>().OnMouseExit();
                 currentHex = hit.transform.gameObject;
                 currentHex.GetComponent<TileProperties>().OnMouseOver();
-                Debug.Log("if");
             }
             else if (currentHex != hit.transform.gameObject && lastHex == null)
             {
                 currentHex = hit.transform.gameObject;
                 currentHex.GetComponent<TileProperties>().OnMouseOver();
                 lastHex = currentHex;
-                Debug.Log("else if");
+                
+            }
+            else if (currentHex == hit.transform.gameObject)
+            {
+                if (Input.GetButtonUp("360_AButton1"))
+                {
+                    Debug.Log("A button pressed");
+                    currentHex.GetComponent<TileProperties>().OnMouseDown();
+                }
             }
         }
 	

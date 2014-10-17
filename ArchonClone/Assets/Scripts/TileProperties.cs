@@ -75,8 +75,9 @@ public class TileProperties : MonoBehaviour {
         UnitMoveController.GetComponent<PawnMove>().MoveToTile = null;
     }
 
-    void OnMouseDown()
+    public void OnMouseDown()
     {
+        Debug.Log("on mouse down called");
         if (canPlace == false && UnitOnTile != null)
         {
             UnitMoveController.GetComponent<PawnMove>().SelectedPiece = UnitOnTile;
