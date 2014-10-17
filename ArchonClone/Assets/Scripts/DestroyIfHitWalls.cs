@@ -15,9 +15,9 @@ public class DestroyIfHitWalls : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Bullet(Clone)")
+        if (other.tag == "wall")
         {
-            Destroy(other.gameObject);
+            Destroy(gameObject);
         }
     }
 }

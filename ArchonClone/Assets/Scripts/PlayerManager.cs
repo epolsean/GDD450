@@ -78,7 +78,7 @@ public class PlayerManager : MonoBehaviour {
             {
                 if (Input.GetButtonUp("360_RBButton1") && name == "Player 1 Controller" && reloading == false)
                 {
-                    Rigidbody bulletClone = Instantiate(Bullet, transform.position + 0.9f*bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                    Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.8f*bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
                     bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
                     bulletClone.rigidbody.useGravity = false;
                     bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
@@ -92,7 +92,7 @@ public class PlayerManager : MonoBehaviour {
                 }
                 else if (Input.GetButtonUp("360_RBButton2") && name == "Player 2 Controller" && reloading == false)
                 {
-                    Rigidbody bulletClone = Instantiate(Bullet, transform.position + 0.9f*bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                    Rigidbody bulletClone = Instantiate(Bullet, transform.position + 2.3f*bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
                     bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
                     bulletClone.rigidbody.useGravity = false;
                     bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
@@ -159,7 +159,7 @@ public class PlayerManager : MonoBehaviour {
             Destroy(HealthBar);
             Destroy(GameObject.Find("P1 Health Text"));
             Destroy(GameObject.Find("P2 Health Text"));
-            //Instantiate(playerWin, transform.position, transform.rotation);
+            Application.LoadLevel("TestingHexTiles");
             //Destroy(this.gameObject);
         }
         if (health <= 0 && win == false)
