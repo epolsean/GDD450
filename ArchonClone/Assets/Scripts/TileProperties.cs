@@ -42,6 +42,7 @@ public class TileProperties : MonoBehaviour {
     {
         if (UnitMoveController.GetComponent<PawnMove>().isMoving == false)
         {
+            TurnStateMachine.OnHoverPiece = this.UnitOnTile;
             renderer.material.color = Color.yellow;
         }
         else if (UnitMoveController.GetComponent<PawnMove>().isMoving == true)
@@ -80,29 +81,30 @@ public class TileProperties : MonoBehaviour {
         Debug.Log("on mouse down called");
         if (canPlace == false && UnitOnTile != null)
         {
-            UnitMoveController.GetComponent<PawnMove>().SelectedPiece = UnitOnTile;
-            UnitMoveController.GetComponent<PawnMove>().isMoving = true;
-            UnitMoveController.GetComponent<PawnMove>().currentTile = this.gameObject;
-            UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
-            datNode.gameObject.SetActive(true);
-            if (UnitMoveController.GetComponent<PawnMove>().isMoving)
+            if(TurnStateMachine.state == TurnStateMachine.State.playerTurn && TurnStateMachine.OnHoverPiece.tag == "White")
             {
-                GridManager.rescan = true;
+                SelectPiece();
+            }
+            else if (TurnStateMachine.state == TurnStateMachine.State.otherTurn && TurnStateMachine.OnHoverPiece.tag == "Black")
+            {
+                SelectPiece();
             }
         }
         else if(canPlace == true && UnitOnTile == null)//these checks result in a piece moving to an empty hex tile
         {
             if (UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().Occupied == false && canPlace == true)
             {
-                if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag == "BlackPawn" || UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag == "Black02")
+                if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag == "Black")
                 {
                     //ReplaceBlackPiece(UnitMoveController.GetComponent<PawnMove>().SelectedPiece);
                     SetTarget();
+                    TurnStateMachine.state = TurnStateMachine.State.playerTurn;
                 }
                 else
                 {
                     //ReplaceWhitePiece(UnitMoveController.GetComponent<PawnMove>().SelectedPiece);
                     SetTarget();
+                    TurnStateMachine.state = TurnStateMachine.State.otherTurn;
                 }
             }
             UnitMoveController.GetComponent<PawnMove>().isMoving = false;
@@ -162,6 +164,19 @@ public class TileProperties : MonoBehaviour {
         UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().Occupied = false;
         UnitMoveController.GetComponent<PawnMove>().isMoving = false;
         canPlace = false; 
+    }
+
+    void SelectPiece()
+    {
+        UnitMoveController.GetComponent<PawnMove>().SelectedPiece = UnitOnTile;
+        UnitMoveController.GetComponent<PawnMove>().isMoving = true;
+        UnitMoveController.GetComponent<PawnMove>().currentTile = this.gameObject;
+        UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
+        datNode.gameObject.SetActive(true);
+        if (UnitMoveController.GetComponent<PawnMove>().isMoving)
+        {
+            GridManager.rescan = true;
+        }
     }
 }
 
