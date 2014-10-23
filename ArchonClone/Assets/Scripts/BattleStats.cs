@@ -9,8 +9,6 @@ public class BattleStats : MonoBehaviour {
     public static int player1Speed=0;
     public static int player2Speed=0;
 
-    public static bool player1sTurn = true;
-
     public static string winner = null;
     public static string player1Pref = "third";
     public static string player2Pref = "third";
@@ -23,6 +21,7 @@ public class BattleStats : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
 	
 	}
 }

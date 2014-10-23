@@ -12,7 +12,10 @@ public class CursorController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Screen.showCursor = false;
+        if (Input.GetJoystickNames().Length != 0)
+        {
+            Screen.showCursor = false;
+        }
         cursor.transform.position = new Vector3(20, 20, 0);
         if (Input.GetJoystickNames().Length == 0)
         {
@@ -21,37 +24,45 @@ public class CursorController : MonoBehaviour {
 	}
 	
  
-    void Update() 
+    void Update()
     {
-        if (BattleStats.player1sTurn)
+        if (Input.GetJoystickNames().Length != 0)
         {
-            if (Input.GetAxis("360_AButton1") == 1)
+            if (TurnStateMachine.state == TurnStateMachine.State.playerTurn)
             {
-                speed = 12.0f;
+                if (Input.GetAxis("360_AButton1") == 1)
+                {
+                    speed = 12.0f;
+                }
+                else
+                {
+                    speed = 5.0f;
+                }
+                moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), Input.GetAxis("360_VerticalLeftStick1"), 0);
+                Vector3.Normalize(moveDirection);
+                cursor.transform.position += speed * moveDirection;
+                Input.mousePosition.Set(cursor.transform.position.x, cursor.transform.position.y, cursor.transform.position.z);
             }
             else
             {
-                speed = 5.0f;
+                if (Input.GetAxis("360_AButton2") == 1)
+                {
+                    speed = 12.0f;
+                }
+                else
+                {
+                    speed = 5.0f;
+                }
+                moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick2"), Input.GetAxis("360_VerticalLeftStick2"), 0);
+                Vector3.Normalize(moveDirection);
+                cursor.transform.position += speed * moveDirection;
+                Input.mousePosition.Set(cursor.transform.position.x, cursor.transform.position.y, cursor.transform.position.z);
             }
-            moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), Input.GetAxis("360_VerticalLeftStick1"), 0);
-            Vector3.Normalize(moveDirection);
-            cursor.transform.position += speed * moveDirection;
-            Input.mousePosition.Set(cursor.transform.position.x, cursor.transform.position.y, cursor.transform.position.z);
         }
         else
         {
-            if (Input.GetAxis("360_AButton2") == 1)
-            {
-                speed = 12.0f;
-            }
-            else
-            {
-                speed = 5.0f;
-            }
-            moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick2"), Input.GetAxis("360_VerticalLeftStick2"), 0);
-            Vector3.Normalize(moveDirection);
-            cursor.transform.position += speed * moveDirection;
-            Input.mousePosition.Set(cursor.transform.position.x, cursor.transform.position.y, cursor.transform.position.z);
+            cursor.transform.position = Input.mousePosition;
+            
         }
  
     }
