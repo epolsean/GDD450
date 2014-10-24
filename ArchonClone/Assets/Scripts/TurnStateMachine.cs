@@ -6,7 +6,7 @@ public class TurnStateMachine : MonoBehaviour {
 
     public enum State { playerTurn, DaSwitch, otherTurn }
     public static State state;
-    public static GameObject OnHoverPiece;
+    public static GameObject OnHoverPiece;//variable is set in TileProperties when your mouse is over a tile
     public GameObject stateText;
 
     IEnumerator playerTurnState()
