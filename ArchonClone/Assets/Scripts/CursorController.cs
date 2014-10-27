@@ -3,29 +3,25 @@ using UnityEngine.UI;
 using System.Collections;
 
 
-public class CursorController : MonoBehaviour {
-
+public class CursorController : MonoBehaviour 
+{
     Vector3 moveDirection = Vector3.zero;
     float speed = 5.0F;
 
     public GameObject cursor;
 
 	// Use this for initialization
-	void Start () {
-        if (Input.GetJoystickNames().Length != 0)
-        {
-            Screen.showCursor = false;
-        }
+	void Start () 
+    {
+        Screen.showCursor = false;
+        
         cursor.transform.position = new Vector3(20, 20, 0);
-        if (Input.GetJoystickNames().Length == 0)
-        {
-            GetComponent<Image>().enabled = false;
-        }
 	}
 	
  
     void Update()
     {
+        Screen.showCursor = false;
         if (Input.GetJoystickNames().Length != 0)
         {
             if (TurnStateMachine.state == TurnStateMachine.State.playerTurn)
@@ -62,12 +58,8 @@ public class CursorController : MonoBehaviour {
         else
         {
             cursor.transform.position = Input.mousePosition;
-            
         }
- 
     }
-
-
 }
 
 
