@@ -57,7 +57,7 @@ public class CursorController : MonoBehaviour
         }
         else
         {
-            cursor.transform.position = Input.mousePosition;
+            cursor.transform.position = new Vector3(Input.mousePosition.x+6,Input.mousePosition.y-6,Input.mousePosition.z);
         }
     }
 }
