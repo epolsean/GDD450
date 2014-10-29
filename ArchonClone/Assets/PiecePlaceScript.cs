@@ -8,16 +8,28 @@ public class PiecePlaceScript : MonoBehaviour {
     public static GameObject Black01Tile;
     public static GameObject Black02Tile;
 
+    public static bool setPieces = false;
+    public static bool isStart = true;
+
     public GameObject SpawnController;
 
     // Use this for initialization
 	void Start () {
         SpawnController = GameObject.Find("PieceSpwnController");
+        //setPieces = true; 
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	    
+	    if(setPieces)
+        {
+            setPieces = false;
+            SpawnPieces();
+        }
+        if (White01Tile != null)
+        {
+            Debug.Log("There's Something in There");
+        }
 	}
 
     public void SpawnPieces()

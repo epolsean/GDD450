@@ -105,6 +105,7 @@ public class TileProperties : MonoBehaviour {
                     if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.name == "BlackPawn(Clone)")
                     {
                         PiecePlaceScript.Black01Tile = UnitMoveController.GetComponent<PawnMove>().MoveToTile;
+                        Debug.Log("SetBlackPawnTile");
                     }
                     else
                     {

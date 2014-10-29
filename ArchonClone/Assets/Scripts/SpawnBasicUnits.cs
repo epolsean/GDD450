@@ -15,20 +15,33 @@ public class SpawnBasicUnits : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        SpawnWhitePiece(WhitePawn, WPawnStartTile);
-        PiecePlaceScript.White01Tile = WPawnStartTile;
-        SpawnWhitePiece(White02, W2StartTile);
-        PiecePlaceScript.White02Tile = W2StartTile;
-        SpawnBlackPiece(BlackPawn, BPawnStartTile);
-        PiecePlaceScript.Black01Tile = BPawnStartTile;
-        SpawnBlackPiece(Black02, B2StartTile);
-        PiecePlaceScript.White02Tile = B2StartTile;
+        if(PiecePlaceScript.isStart)
+        {
+            StartSpawn();
+            PiecePlaceScript.setPieces = true; 
+        }
+        else
+        {
+            PiecePlaceScript.setPieces = true; 
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+    void StartSpawn()
+    {
+        //SpawnWhitePiece(WhitePawn, WPawnStartTile);
+        PiecePlaceScript.White01Tile = WPawnStartTile;
+        //SpawnWhitePiece(White02, W2StartTile);
+        PiecePlaceScript.White02Tile = W2StartTile;
+        //SpawnBlackPiece(BlackPawn, BPawnStartTile);
+        PiecePlaceScript.Black01Tile = BPawnStartTile;
+        //SpawnBlackPiece(Black02, B2StartTile);
+        PiecePlaceScript.Black02Tile = B2StartTile;
+    }
 
     public void SpawnWhitePiece(GameObject piece, GameObject tile)
     {
