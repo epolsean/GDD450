@@ -13,7 +13,8 @@ public class TileProperties : MonoBehaviour {
     public double fightTimer;
     public bool Occupied = false;
     public bool canPlace;
-	// Use this for initialization
+    
+    // Use this for initialization
 	void Start () {
         //UnitOnTile = null;
         UnitMoveController = GameObject.Find("MovementController");

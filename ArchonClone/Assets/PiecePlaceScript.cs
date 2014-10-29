@@ -8,11 +8,18 @@ public class PiecePlaceScript : MonoBehaviour {
     public static GameObject Black01Tile;
     public static GameObject Black02Tile;
 
+    public GameObject TestWhite01Tile; 
+
     public static bool setPieces = false;
     public static bool isStart = true;
 
     public GameObject SpawnController;
 
+    void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+    
     // Use this for initialization
 	void Start () {
         SpawnController = GameObject.Find("PieceSpwnController");
@@ -30,6 +37,7 @@ public class PiecePlaceScript : MonoBehaviour {
         {
             Debug.Log("There's Something in There");
         }
+        TestWhite01Tile = White01Tile;
 	}
 
     public void SpawnPieces()

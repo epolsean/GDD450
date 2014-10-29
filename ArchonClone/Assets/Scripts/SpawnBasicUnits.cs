@@ -17,12 +17,13 @@ public class SpawnBasicUnits : MonoBehaviour {
 	void Start () {
         if(PiecePlaceScript.isStart)
         {
+            PiecePlaceScript.isStart = false; 
             StartSpawn();
             PiecePlaceScript.setPieces = true; 
         }
         else
         {
-            PiecePlaceScript.setPieces = true; 
+            //PiecePlaceScript.setPieces = true; 
         }
 	}
 	
