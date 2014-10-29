@@ -8,6 +8,9 @@ public class RaycastCursor : MonoBehaviour {
     GameObject currentHex;
     GameObject lastHex;
 
+    public GameObject alienCursor;
+    public GameObject robotCursor;
+
     public LayerMask mask;
 	// Use this for initialization
 	void Start () {
@@ -16,6 +19,17 @@ public class RaycastCursor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (TurnStateMachine.state == TurnStateMachine.State.playerTurn)
+        {
+            robotCursor.SetActive(true);
+            alienCursor.SetActive(false);
+        }
+        else if(TurnStateMachine.state == TurnStateMachine.State.otherTurn)
+        {
+            robotCursor.SetActive(false);
+            alienCursor.SetActive(true);
+        }
 
         RaycastHit hit;
         Ray rayPos = Camera.main.ScreenPointToRay(cursor.transform.position);

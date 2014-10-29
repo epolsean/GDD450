@@ -29,6 +29,9 @@ public class TutorialEnemyAI : MonoBehaviour
     public GameObject HealthBar;
     public GameObject HealthBarFill;
 
+    public GameObject healthPiece1;
+    public GameObject healthPiece2;
+
     public bool swinging = false;
 
     public PlayerControllerTutorial enemy;
@@ -46,21 +49,32 @@ public class TutorialEnemyAI : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        Vector3 moveDirection = Vector3.Normalize(currentTarget - transform.position); // Get direction of current target
-        GetComponent<CharacterController>().Move(moveDirection*speed*Time.deltaTime); //move towards target
-        HealthBar.GetComponent<Slider>().value = health;
-
-        if (health <= 30)
+        if (TutorialTextHints.curTutorialStep >= 3 && TutorialTextHints.curTutorialStep != 4)
         {
-            HealthBarFill.GetComponent<Image>().color = Color.red;
-        }
-        if (health <= 0 && win == false)
-        {
-            enemy.win = true;
-            Destroy(HealthBar);
+            Vector3 moveDirection = Vector3.Normalize(currentTarget - transform.position); // Get direction of current target
+            GetComponent<CharacterController>().Move(moveDirection * speed * Time.deltaTime); //move towards target
+
+            HealthBar.GetComponent<Slider>().value = health;
+            healthPiece1.GetComponent<Image>().fillAmount = (float)((float)health / 200);
+            healthPiece2.GetComponent<Image>().fillAmount = (float)((float)health / 200);
+
+            if (health <= 55 && TutorialTextHints.curTutorialStep == 3)
+            {
+                TutorialTextHints.curTutorialStep++;
+            }
+            if (health <= 30)
+            {
+                HealthBarFill.GetComponent<Image>().color = Color.red;
+                healthPiece1.GetComponent<Image>().color = Color.red;
+                healthPiece2.GetComponent<Image>().color = Color.red;
+            }
+            if (health <= 0 && win == false)
+            {
+                enemy.win = true;
+                Destroy(HealthBar);
+            }
         }
 
-        
 	}
 
     void OnTriggerEnter(Collider other)

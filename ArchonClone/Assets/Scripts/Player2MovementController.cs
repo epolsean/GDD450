@@ -22,9 +22,11 @@ public class Player2MovementController : MonoBehaviour
     public bool isMelee = false;
     public int bulletSpeed = 10;
 
-    public GameObject playerWin;
     public GameObject HealthBar;
     public GameObject HealthBarFill;
+
+    public GameObject healthPiece1;
+    public GameObject healthPiece2;
 
     public bool swinging = false;
     float swingTimer = 0.3f;
@@ -198,10 +200,14 @@ public class Player2MovementController : MonoBehaviour
 
 
         HealthBar.GetComponent<Slider>().value = health;
+        healthPiece1.GetComponent<Image>().fillAmount = (float)((float)health / 200);
+        healthPiece2.GetComponent<Image>().fillAmount = (float)((float)health / 200);
 
         if (health <= 30)
         {
             HealthBarFill.GetComponent<Image>().color = Color.red;
+            healthPiece1.GetComponent<Image>().color = Color.red;
+            healthPiece2.GetComponent<Image>().color = Color.red;
         }
         if (win == true)
         {

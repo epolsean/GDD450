@@ -4,7 +4,12 @@ using System.Collections;
 
 public class TutorialTextHints : MonoBehaviour 
 {
-    int curTutorialStep = 0;
+    public static int curTutorialStep = 0;
+
+    public GameObject forcefield1;
+    public GameObject forcefield2;
+
+    public GameObject continueText;
 
 	// Use this for initialization
 	void Start () 
@@ -15,13 +20,35 @@ public class TutorialTextHints : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
+        if (Input.GetJoystickNames().Length != 0)
+        {
+            continueText.GetComponent<Text>().text = "Press the A button to continue";
+        }
+        else
+        {
+            continueText.GetComponent<Text>().text = "Press the Space Bar to continue";
+        }
         if (curTutorialStep == 0)
         {
-            GetComponent<Text>().text = "Use the WASD keys to move and look around";
+            if (Input.GetJoystickNames().Length != 0)
+            {
+                GetComponent<Text>().text = "Use the right joystick to move and left joystick to look around";
+            }
+            else
+            {
+                GetComponent<Text>().text = "Use the WASD keys to move and look around";
+            }
         }
         else if (curTutorialStep == 1)
         {
-            GetComponent<Text>().text = "Press the E key to fire a bullet";
+            if (Input.GetJoystickNames().Length != 0)
+            {
+                GetComponent<Text>().text = "Press the right trigger to fire a bullet";
+            }
+            else
+            {
+                GetComponent<Text>().text = "Press the E key to fire a bullet";
+            }
         }
         else if (curTutorialStep == 2)
         {
@@ -30,16 +57,19 @@ public class TutorialTextHints : MonoBehaviour
         else if (curTutorialStep == 3)
         {
             GetComponent<Text>().text = "";
+            Destroy(forcefield1);
+            Destroy(forcefield2);
+            transform.parent.gameObject.SetActive(false);
         }
         else if (curTutorialStep == 4)
         {
-            GetComponent<Text>().text = "";
+            GetComponent<Text>().text = "In the settings you can change your preference of camera to either fight battles in top down or third person";
         }
-
-        if (Input.GetKeyUp(KeyCode.Space))
+        else if (curTutorialStep == 5)
         {
-            curTutorialStep++;
+            transform.parent.gameObject.SetActive(false);
         }
 
+        
 	}
 }
