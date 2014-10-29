@@ -12,7 +12,7 @@ public class TurnStateMachine : MonoBehaviour {
     IEnumerator playerTurnState()
     {
         Debug.Log("PlayerTurn: Enter");
-        
+        //PiecePlaceScript.Black01Tile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
         while (state == State.playerTurn)
         {
             SetText();

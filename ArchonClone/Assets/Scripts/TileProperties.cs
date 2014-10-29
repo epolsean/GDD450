@@ -8,6 +8,7 @@ public class TileProperties : MonoBehaviour {
     public GameObject datTarget;
     public GameObject datNode;
     public GameObject AStarController;
+    public GameObject SoundController;
     public bool fighting = false;
     public double fightTimer;
     public bool Occupied = false;
@@ -18,6 +19,7 @@ public class TileProperties : MonoBehaviour {
         UnitMoveController = GameObject.Find("MovementController");
         datNode = transform.FindChild("Node").gameObject;
         AStarController = GameObject.Find("ISOCamera");
+        SoundController = GameObject.Find("UISoundController");
 	}
 	
 	// Update is called once per frame
@@ -81,6 +83,7 @@ public class TileProperties : MonoBehaviour {
         Debug.Log("on mouse down called");
         if (canPlace == false && UnitOnTile != null)
         {
+            SoundController.GetComponent<UISoundsScript>().playSelectPiece();
             if(TurnStateMachine.state == TurnStateMachine.State.playerTurn && TurnStateMachine.OnHoverPiece.tag == "White")
             {
                 SelectPiece();
@@ -92,18 +95,35 @@ public class TileProperties : MonoBehaviour {
         }
         else if(canPlace == true && UnitOnTile == null)//these checks result in a piece moving to an empty hex tile
         {
+            SoundController.GetComponent<UISoundsScript>().playMovePiece();
             if (UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().Occupied == false && canPlace == true)
             {
                 if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag == "Black")
                 {
                     //ReplaceBlackPiece(UnitMoveController.GetComponent<PawnMove>().SelectedPiece);
                     SetTarget();
+                    if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.name == "BlackPawn(Clone)")
+                    {
+                        PiecePlaceScript.Black01Tile = UnitMoveController.GetComponent<PawnMove>().MoveToTile;
+                    }
+                    else
+                    {
+                        PiecePlaceScript.Black02Tile = UnitMoveController.GetComponent<PawnMove>().MoveToTile;
+                    }
                     TurnStateMachine.state = TurnStateMachine.State.playerTurn;
                 }
                 else
                 {
                     //ReplaceWhitePiece(UnitMoveController.GetComponent<PawnMove>().SelectedPiece);
                     SetTarget();
+                    if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.name == "WhitePawn(Clone)")
+                    {
+                        PiecePlaceScript.White01Tile = UnitMoveController.GetComponent<PawnMove>().MoveToTile;
+                    }
+                    else
+                    {
+                        PiecePlaceScript.White02Tile = UnitMoveController.GetComponent<PawnMove>().MoveToTile;
+                    }
                     TurnStateMachine.state = TurnStateMachine.State.otherTurn;
                 }
             }
@@ -111,11 +131,14 @@ public class TileProperties : MonoBehaviour {
         }
         else if(canPlace == true && UnitOnTile != null)
         {
+            SoundController.GetComponent<UISoundsScript>().playFight();
             if(UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag == "White")
             {
                 if(UnitOnTile.tag == "Black" && canPlace)
                 {
                     Debug.Log("Fight");
+                    UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
+                    GridManager.rescan = true;
                     fighting = true;
                     SetTarget();
                 }
@@ -125,10 +148,16 @@ public class TileProperties : MonoBehaviour {
                 if (UnitOnTile.tag == "White" && canPlace)
                 {
                     Debug.Log("Fight");
+                    UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
+                    GridManager.rescan = true;
                     fighting = true; 
                     SetTarget();
                 }
             }
+        }
+        else
+        {
+            SoundController.GetComponent<UISoundsScript>().playError();
         }
     }
 
@@ -163,7 +192,8 @@ public class TileProperties : MonoBehaviour {
         UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().Occupied = false;
         UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().Occupied = false;
         UnitMoveController.GetComponent<PawnMove>().isMoving = false;
-        canPlace = false; 
+        canPlace = false;
+        datNode.gameObject.SetActive(true);
     }
 
     void SelectPiece()

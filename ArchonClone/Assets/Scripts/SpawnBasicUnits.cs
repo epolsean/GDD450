@@ -16,9 +16,13 @@ public class SpawnBasicUnits : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         SpawnWhitePiece(WhitePawn, WPawnStartTile);
+        PiecePlaceScript.White01Tile = WPawnStartTile;
         SpawnWhitePiece(White02, W2StartTile);
+        PiecePlaceScript.White02Tile = W2StartTile;
         SpawnBlackPiece(BlackPawn, BPawnStartTile);
+        PiecePlaceScript.Black01Tile = BPawnStartTile;
         SpawnBlackPiece(Black02, B2StartTile);
+        PiecePlaceScript.White02Tile = B2StartTile;
 	}
 	
 	// Update is called once per frame
@@ -26,7 +30,7 @@ public class SpawnBasicUnits : MonoBehaviour {
 	
 	}
 
-    void SpawnWhitePiece(GameObject piece, GameObject tile)
+    public void SpawnWhitePiece(GameObject piece, GameObject tile)
     {
         tile.GetComponent<TileProperties>().UnitOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         //tile.GetComponent<TileProperties>().Occupied = true;
@@ -34,7 +38,7 @@ public class SpawnBasicUnits : MonoBehaviour {
         
     }
 
-    void SpawnBlackPiece(GameObject piece, GameObject tile)
+    public void SpawnBlackPiece(GameObject piece, GameObject tile)
     {
         tile.GetComponent<TileProperties>().UnitOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;
         //tile.GetComponent<TileProperties>().Occupied = true;
