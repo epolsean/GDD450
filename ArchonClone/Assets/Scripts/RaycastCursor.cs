@@ -30,7 +30,7 @@ public class RaycastCursor : MonoBehaviour {
 
         if (TurnStateMachine.state == TurnStateMachine.State.playerTurn)
         {
-            Ray rayPos = Camera.main.ScreenPointToRay(robotCursor.transform.position);
+            Ray rayPos = Camera.main.ScreenPointToRay(new Vector3(robotCursor.transform.position.x - 6,robotCursor.transform.position.y + 6,robotCursor.transform.position.z));
             RaycastHit hit;
 
             if (Physics.Raycast(rayPos, out hit, Mathf.Infinity, mask))
@@ -73,7 +73,7 @@ public class RaycastCursor : MonoBehaviour {
         }
         else if (TurnStateMachine.state == TurnStateMachine.State.otherTurn)
         {
-            Ray rayPos = Camera.main.ScreenPointToRay(alienCursor.transform.position);
+            Ray rayPos = Camera.main.ScreenPointToRay(new Vector3(alienCursor.transform.position.x - 6, alienCursor.transform.position.y + 6, alienCursor.transform.position.z));
             RaycastHit hit;
 
             if (Physics.Raycast(rayPos, out hit, Mathf.Infinity, mask))
@@ -95,7 +95,7 @@ public class RaycastCursor : MonoBehaviour {
                 }
                 else if (currentHex == hit.transform.gameObject)
                 {
-                    if (Input.GetJoystickNames().Length >= 1)
+                    if (Input.GetJoystickNames().Length > 1)
                     {
                         if (Input.GetButtonUp("360_AButton2"))
                         {

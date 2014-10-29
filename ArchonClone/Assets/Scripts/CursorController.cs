@@ -37,7 +37,7 @@ public class CursorController : MonoBehaviour
                 moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), Input.GetAxis("360_VerticalLeftStick1"), 0);
                 Vector3.Normalize(moveDirection);
                 cursor.transform.position += speed * moveDirection;
-                Input.mousePosition.Set(cursor.transform.position.x + 6, cursor.transform.position.y - 6, cursor.transform.position.z);
+                Input.mousePosition.Set(cursor.transform.position.x - 6, cursor.transform.position.y + 6, cursor.transform.position.z);
             }
             else
             {
@@ -46,7 +46,7 @@ public class CursorController : MonoBehaviour
         }
         else
         {
-            if (Input.GetJoystickNames().Length >= 1)
+            if (Input.GetJoystickNames().Length > 1)
             {
                 if (Input.GetAxis("360_XButton2") == 1)
                 {
@@ -59,7 +59,7 @@ public class CursorController : MonoBehaviour
                 moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick2"), Input.GetAxis("360_VerticalLeftStick2"), 0);
                 Vector3.Normalize(moveDirection);
                 cursor.transform.position += speed * moveDirection;
-                Input.mousePosition.Set(cursor.transform.position.x + 6, cursor.transform.position.y - 6, cursor.transform.position.z);
+                Input.mousePosition.Set(cursor.transform.position.x - 6, cursor.transform.position.y + 6, cursor.transform.position.z);
             }
             else
             {
