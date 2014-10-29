@@ -32,7 +32,7 @@ public class TutorialTextHints : MonoBehaviour
         {
             if (Input.GetJoystickNames().Length != 0)
             {
-                GetComponent<Text>().text = "Use the right joystick to move and left joystick to look around";
+                GetComponent<Text>().text = "Use the left joystick to move and right joystick to look around";
             }
             else
             {

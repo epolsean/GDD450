@@ -12,7 +12,6 @@ public class TutorialEnemyAI : MonoBehaviour
     public Transform target6;
     public Transform target7;
 
-    int randNum = 0;
     Vector3 currentTarget;
     Vector3 nextTarget;
     Vector3 prevTarget;
