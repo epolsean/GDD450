@@ -19,7 +19,10 @@ public class TurnStateMachine : MonoBehaviour {
             yield return 0;
         }
         Debug.Log("PlayerTurn: Exit");
-        NextState();
+        if (Network.isClient || Network.isServer)
+            networkView.RPC("NextState", RPCMode.AllBuffered);
+        else
+            NextState();
     }
 
     IEnumerator DaSwitchState()
@@ -31,7 +34,10 @@ public class TurnStateMachine : MonoBehaviour {
             yield return 0;
         }
         Debug.Log("DaSwitch: Exit");
-        NextState();
+        if (Network.isClient || Network.isServer)
+            networkView.RPC("NextState", RPCMode.AllBuffered);
+        else
+            NextState();
     }
 
     IEnumerator otherTurnState()
@@ -43,12 +49,18 @@ public class TurnStateMachine : MonoBehaviour {
             yield return 0;
         }
         Debug.Log("OtherTurn: Exit");
-        NextState();
+        if (Network.isClient || Network.isServer)
+            networkView.RPC("NextState", RPCMode.AllBuffered);
+        else
+            NextState();
     }
     
     // Use this for initialization
 	void Start () {
-        NextState();
+        if(Network.isClient || Network.isServer)
+            networkView.RPC("NextState", RPCMode.AllBuffered);
+        else
+            NextState();
 	}
 	
 	// Update is called once per frame
@@ -59,6 +71,7 @@ public class TurnStateMachine : MonoBehaviour {
         }*/
 	}
 
+    [RPC]
     void NextState()
     {
         string methodName = state.ToString() + "State";

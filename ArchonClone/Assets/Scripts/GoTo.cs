@@ -1,0 +1,42 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class GoTo : MonoBehaviour {
+
+	public void Local () 
+    {
+        Application.LoadLevel("TestingHexTiles");
+	}
+
+    public void LAN()
+    {
+        Application.LoadLevel("LANLobby");
+    }
+
+    public void StartScreen()
+    {
+        Application.LoadLevel("StartScreen");
+    }
+
+    public void Credits()
+    {
+        Application.LoadLevel("CreditsScene");
+    }
+
+    public void Settings()
+    {
+        Application.LoadLevel("SettingsScene");
+    }
+
+    public void MultiplayerMode()
+    {
+        Application.LoadLevel("SelectMultiplayerMode");
+    }
+
+    public void Battle()
+    {
+        Application.LoadLevelAdditive("BattleTest");
+        BattleStats.player1Pref = "third";
+        Destroy(GameObject.Find("CameraAddative"));
+    }
+}

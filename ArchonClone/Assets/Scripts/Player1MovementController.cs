@@ -27,6 +27,9 @@ public class Player1MovementController : MonoBehaviour {
     public GameObject healthPiece1;
     public GameObject healthPiece2;
 
+    public Camera camMine;
+    public Camera camEnemy;
+
     public bool swinging = false;
     float swingTimer = 0.3f;
 
@@ -70,6 +73,19 @@ public class Player1MovementController : MonoBehaviour {
         lastLooking = transform.forward;
     }
     void Update()
+    {
+        if (!Network.isServer && !Network.isClient)
+            calledFromUpdatePlayer1();
+        else if (Network.isServer)
+        {
+            networkView.RPC("calledFromUpdatePlayer1", RPCMode.AllBuffered);
+            camMine.camera.rect = new Rect(0,0,1,1);
+            camEnemy.gameObject.SetActive(false);
+        }
+    }
+
+    [RPC]
+    void calledFromUpdatePlayer1()
     {
         CharacterController controller = GetComponent<CharacterController>();
         if (topDownView)
@@ -187,7 +203,7 @@ public class Player1MovementController : MonoBehaviour {
 
             if (win == false)
             {
-                if (Input.GetAxis("360_RightTrigger1")==1 && swinging == false)
+                if (Input.GetAxis("360_RightTrigger1") == 1 && swinging == false)
                 {
                     GameObject sword = Instantiate(Sword, transform.position + this.transform.forward, transform.rotation) as GameObject;
                     sword.tag = tag;

@@ -28,6 +28,9 @@ public class Player2MovementController : MonoBehaviour
     public GameObject healthPiece1;
     public GameObject healthPiece2;
 
+    public Camera camMine;
+    public Camera camEnemy;
+
     public bool swinging = false;
     float swingTimer = 0.3f;
 
@@ -71,6 +74,19 @@ public class Player2MovementController : MonoBehaviour
         lastLooking = transform.forward;
     }
     void Update()
+    {
+        if (!Network.isServer && !Network.isClient)
+            calledFromUpdatePlayer2();
+        else if (Network.isClient)
+        {
+            networkView.RPC("calledFromUpdatePlayer2", RPCMode.AllBuffered);
+            camMine.camera.rect = new Rect(0,0,1,1);
+            camEnemy.gameObject.SetActive(false);
+        }
+    }
+
+    [RPC]
+    void calledFromUpdatePlayer2()
     {
         CharacterController controller = GetComponent<CharacterController>();
         if (topDownView)
@@ -144,7 +160,7 @@ public class Player2MovementController : MonoBehaviour
                     reloading = false;
                 }
             }
-            
+
             if ((Input.GetAxis("360_RBButton2") == 1 || Input.GetAxis("Fire2") == 1) && name == "Player 2 Controller" && bulletSize == 1 && reloading == false)
             {
                 Debug.Log(chargeTime);
