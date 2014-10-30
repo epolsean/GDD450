@@ -41,10 +41,13 @@ public class Player2MovementController : MonoBehaviour
     bool reloading = false;
     float reloadTime = 0.5f;
 
+    public GameObject MoveController;
+
     Behaviour halo;
 
     void Start()
     {
+        MoveController = GameObject.Find("MovementController");
         //Determine Character and set up stats
         if (myCharacter == Character.Grunt)
         {
@@ -215,11 +218,14 @@ public class Player2MovementController : MonoBehaviour
             Destroy(HealthBar);
             Destroy(GameObject.Find("P1 Health Text"));
             Destroy(GameObject.Find("P2 Health Text"));
-            Application.LoadLevel("TestingHexTiles");
+            Destroy(GameObject.Find("BattleTestAdditive"));
+            Destroy(MoveController.GetComponent<PawnMove>().Player01);
+            //Application.LoadLevel("TestingHexTiles");
             //Destroy(this.gameObject);
         }
         if (health <= 0 && win == false)
         {
+            Destroy(MoveController.GetComponent<PawnMove>().Player02);
             enemy.win = true;
             //Destroy(this.gameObject);
             Destroy(HealthBar);

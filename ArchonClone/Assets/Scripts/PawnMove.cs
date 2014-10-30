@@ -7,7 +7,8 @@ public class PawnMove : MonoBehaviour {
     public GameObject currentTile;
     public bool isMoving = false;
     public GameObject MoveToTile;
-
+    public GameObject Player01;
+    public GameObject Player02;
     public double MaxMove;
 
     // Use this for initialization

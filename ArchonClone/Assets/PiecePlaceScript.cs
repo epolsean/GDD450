@@ -8,7 +8,8 @@ public class PiecePlaceScript : MonoBehaviour {
     public static GameObject Black01Tile;
     public static GameObject Black02Tile;
 
-    public GameObject TestWhite01Tile; 
+    public GameObject TestWhite01Tile;
+    
 
     public static bool setPieces = false;
     public static bool isStart = true;

@@ -36,7 +36,8 @@ public class TileProperties : MonoBehaviour {
                 Debug.Log("GOTO fight Scene!!!");
                 fighting = false; 
                 fightTimer = 0;
-                Application.LoadLevel(6);
+                //Application.LoadLevel(6);
+                Application.LoadLevelAdditive("BattleTest");
             }
         }
 	}
@@ -141,6 +142,8 @@ public class TileProperties : MonoBehaviour {
                     Debug.Log("Fight");
                     UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
                     GridManager.rescan = true;
+                    UnitMoveController.GetComponent<PawnMove>().Player01 = UnitMoveController.GetComponent<PawnMove>().SelectedPiece;
+                    UnitMoveController.GetComponent<PawnMove>().Player02 = UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile;
                     fighting = true;
                     SetTarget();
                 }
@@ -152,6 +155,8 @@ public class TileProperties : MonoBehaviour {
                     Debug.Log("Fight");
                     UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
                     GridManager.rescan = true;
+                    UnitMoveController.GetComponent<PawnMove>().Player01 = UnitMoveController.GetComponent<PawnMove>().SelectedPiece;
+                    UnitMoveController.GetComponent<PawnMove>().Player02 = UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile;
                     fighting = true; 
                     SetTarget();
                 }
