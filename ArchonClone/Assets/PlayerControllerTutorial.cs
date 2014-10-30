@@ -21,11 +21,11 @@ public class PlayerControllerTutorial : MonoBehaviour
     public bool isMelee = false;
     public int bulletSpeed = 10;
 
-    public GameObject HealthBar;
-    public GameObject HealthBarFill;
-
     public GameObject healthPiece1;
     public GameObject healthPiece2;
+
+    public GameObject healthPiece3;
+    public GameObject healthPiece4;
 
     public bool swinging = false;
     float swingTimer = 0.3f;
@@ -141,7 +141,7 @@ public class PlayerControllerTutorial : MonoBehaviour
                     }
                 }
 
-                if ((Input.GetAxis("360_RightTrigger1") == 1 || Input.GetAxis("Fire1") == 1) && bulletSize == 1 && reloading == false)
+                if ((Input.GetAxis("Fire1") == 1) && bulletSize == 1 && reloading == false)
                 {
                     chargeTime -= Time.deltaTime;
                     if (chargeTime < 0)
@@ -154,7 +154,7 @@ public class PlayerControllerTutorial : MonoBehaviour
 
                 if (win == false)
                 {
-                    if ((Input.GetAxis("360_RightTrigger1") == 1 || Input.GetButtonUp("Fire1")) && reloading == false)
+                    if ((Input.GetButtonUp("Fire1")) && reloading == false)
                     {
                         Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
                         bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
@@ -194,25 +194,24 @@ public class PlayerControllerTutorial : MonoBehaviour
                 }
             }
 
-
-
-            HealthBar.GetComponent<Slider>().value = health;
             healthPiece1.GetComponent<Image>().fillAmount = (float)((float)health / 200);
             healthPiece2.GetComponent<Image>().fillAmount = (float)((float)health / 200);
+            healthPiece3.GetComponent<Image>().fillAmount = (float)((float)health / 200);
+            healthPiece4.GetComponent<Image>().fillAmount = (float)((float)health / 200);
 
             if (health <= 30)
             {
-                HealthBarFill.GetComponent<Image>().color = Color.red;
                 healthPiece1.GetComponent<Image>().color = Color.red;
                 healthPiece2.GetComponent<Image>().color = Color.red;
+                healthPiece3.GetComponent<Image>().color = Color.red;
+                healthPiece4.GetComponent<Image>().color = Color.red;
             }
             if (win == true)
             {
                 BattleStats.winner = tag;
-                Destroy(HealthBar);
                 Destroy(GameObject.Find("P1 Health Text"));
                 Destroy(GameObject.Find("P2 Health Text"));
-                Application.LoadLevel("TestingHexTiles");
+                Application.LoadLevel("TutorialTestGrid");
                 //Destroy(this.gameObject);
             }
         }

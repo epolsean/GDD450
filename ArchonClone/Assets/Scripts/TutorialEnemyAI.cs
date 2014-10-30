@@ -25,11 +25,11 @@ public class TutorialEnemyAI : MonoBehaviour
     public bool isMelee = false;
     public int bulletSpeed = 10;
 
-    public GameObject HealthBar;
-    public GameObject HealthBarFill;
-
     public GameObject healthPiece1;
     public GameObject healthPiece2;
+
+    public GameObject healthPiece3;
+    public GameObject healthPiece4;
 
     public bool swinging = false;
 
@@ -53,24 +53,26 @@ public class TutorialEnemyAI : MonoBehaviour
             Vector3 moveDirection = Vector3.Normalize(currentTarget - transform.position); // Get direction of current target
             GetComponent<CharacterController>().Move(moveDirection * speed * Time.deltaTime); //move towards target
 
-            HealthBar.GetComponent<Slider>().value = health;
             healthPiece1.GetComponent<Image>().fillAmount = (float)((float)health / 200);
             healthPiece2.GetComponent<Image>().fillAmount = (float)((float)health / 200);
+            healthPiece3.GetComponent<Image>().fillAmount = (float)((float)health / 200);
+            healthPiece4.GetComponent<Image>().fillAmount = (float)((float)health / 200);
 
             if (health <= 55 && TutorialTextHints.curTutorialStep == 3)
             {
                 TutorialTextHints.curTutorialStep++;
             }
+
             if (health <= 30)
             {
-                HealthBarFill.GetComponent<Image>().color = Color.red;
                 healthPiece1.GetComponent<Image>().color = Color.red;
                 healthPiece2.GetComponent<Image>().color = Color.red;
+                healthPiece3.GetComponent<Image>().color = Color.red;
+                healthPiece4.GetComponent<Image>().color = Color.red;
             }
             if (health <= 0 && win == false)
             {
                 enemy.win = true;
-                Destroy(HealthBar);
             }
         }
 
