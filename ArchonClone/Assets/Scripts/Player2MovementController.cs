@@ -245,6 +245,14 @@ public class Player2MovementController : MonoBehaviour
             Destroy(HealthBar);
             Destroy(GameObject.Find("P1 Health Text"));
             Destroy(GameObject.Find("P2 Health Text"));
+            if (TurnStateMachine.state == TurnStateMachine.State.playerTurn)
+            {
+                TurnStateMachine.state = TurnStateMachine.State.otherTurn;
+            }
+            else
+            {
+                TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+            }
             Destroy(GameObject.Find("BattleTestAdditive"));
             Destroy(MoveController.GetComponent<PawnMove>().Player01);
             //Application.LoadLevel("TestingHexTiles");
