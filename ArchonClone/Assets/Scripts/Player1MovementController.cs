@@ -232,12 +232,7 @@ public class Player1MovementController : MonoBehaviour {
             Destroy(GameObject.Find("P1 Health Text"));
             Destroy(GameObject.Find("P2 Health Text"));
             Destroy(MoveController.GetComponent<PawnMove>().Player02);
-            if(GameObject.Find("EnemyTurnController") != null)
-            {
-                Debug.Log("EnemyTurnController Found");
-                GameObject TutorialEnemyController = GameObject.Find("EnemyTurnController");
-                TutorialEnemyController.GetComponent<TutorialEnemyBoardScript>().enemyTurn = 4.5;
-            }
+            
             Destroy(GameObject.Find("BattleTestAdditive"));
             //Application.LoadLevel("TestingHexTiles");
             //Destroy(this.gameObject);

@@ -249,5 +249,8 @@ public class PlayerControllerTutorial : MonoBehaviour
     void HasWon()
     {
         //Application.LoadLevel("TutorialTestGrid");
+        GameObject TutorialEnemyController = GameObject.Find("EnemyTurnController");
+        TutorialEnemyController.GetComponent<TutorialEnemyBoardScript>().enemyTurn = 4.5;
+        Destroy(GameObject.Find("TutorialTestBattle"));
     }
 }

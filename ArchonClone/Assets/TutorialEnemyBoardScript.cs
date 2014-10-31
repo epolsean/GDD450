@@ -88,6 +88,10 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
             enemyTurn += 0.5;
             TurnStateMachine.state = TurnStateMachine.State.playerTurn;
         }*/
+        else if(enemyTurn == 4.5)
+        {
+            StepButton.active = true;
+        }
         else if(enemyTurn == 6)
         {
             Application.LoadLevel("StartScreen");
