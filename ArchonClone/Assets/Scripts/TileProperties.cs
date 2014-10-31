@@ -126,17 +126,24 @@ public class TileProperties : MonoBehaviour {
                 }
                 else
                 {
-                    //ReplaceWhitePiece(UnitMoveController.GetComponent<PawnMove>().SelectedPiece);
-                    SetTarget();
-                    if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.name == "WhitePawn(Clone)")
+                    if(GameObject.Find("EnemyTurnController") != null)
                     {
-                        PiecePlaceScript.White01Tile = UnitMoveController.GetComponent<PawnMove>().MoveToTile;
+                        SoundController.GetComponent<UISoundsScript>().playError();
                     }
                     else
                     {
-                        PiecePlaceScript.White02Tile = UnitMoveController.GetComponent<PawnMove>().MoveToTile;
+                        //ReplaceWhitePiece(UnitMoveController.GetComponent<PawnMove>().SelectedPiece);
+                        SetTarget();
+                        if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.name == "WhitePawn(Clone)")
+                        {
+                            PiecePlaceScript.White01Tile = UnitMoveController.GetComponent<PawnMove>().MoveToTile;
+                        }
+                        else
+                        {
+                            PiecePlaceScript.White02Tile = UnitMoveController.GetComponent<PawnMove>().MoveToTile;
+                        }
+                        TurnStateMachine.state = TurnStateMachine.State.otherTurn;
                     }
-                    TurnStateMachine.state = TurnStateMachine.State.otherTurn;
                 }
             }
             UnitMoveController.GetComponent<PawnMove>().isMoving = false;
@@ -148,13 +155,33 @@ public class TileProperties : MonoBehaviour {
             {
                 if(UnitOnTile.tag == "Black" && canPlace)
                 {
-                    Debug.Log("Fight");
-                    UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
-                    GridManager.rescan = true;
-                    UnitMoveController.GetComponent<PawnMove>().Player01 = UnitMoveController.GetComponent<PawnMove>().SelectedPiece;
-                    UnitMoveController.GetComponent<PawnMove>().Player02 = UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile;
-                    fighting = true;
-                    SetTarget();
+                    if(GameObject.Find("EnemyTurnConroller") != null)
+                    {
+                        if (UnitOnTile.name == "Black02(Clone)")
+                        {
+                        Debug.Log("Fight");
+                        UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
+                        GridManager.rescan = true;
+                        UnitMoveController.GetComponent<PawnMove>().Player01 = UnitMoveController.GetComponent<PawnMove>().SelectedPiece;
+                        UnitMoveController.GetComponent<PawnMove>().Player02 = UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile;
+                        fighting = true;
+                        SetTarget();
+                        }
+                        else
+                        {
+                            SoundController.GetComponent<UISoundsScript>().playError();
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("Fight");
+                        UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
+                        GridManager.rescan = true;
+                        UnitMoveController.GetComponent<PawnMove>().Player01 = UnitMoveController.GetComponent<PawnMove>().SelectedPiece;
+                        UnitMoveController.GetComponent<PawnMove>().Player02 = UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile;
+                        fighting = true;
+                        SetTarget();
+                    }
                 }
             }
             else//if selectedPiece tag is black
@@ -214,14 +241,36 @@ public class TileProperties : MonoBehaviour {
 
     void SelectPiece()
     {
-        UnitMoveController.GetComponent<PawnMove>().SelectedPiece = UnitOnTile;
-        UnitMoveController.GetComponent<PawnMove>().isMoving = true;
-        UnitMoveController.GetComponent<PawnMove>().currentTile = this.gameObject;
-        UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
-        datNode.gameObject.SetActive(true);
-        if (UnitMoveController.GetComponent<PawnMove>().isMoving)
+        if (GameObject.Find("EnemyTurnController") != null)
         {
-            GridManager.rescan = true;
+            if(TurnStateMachine.OnHoverPiece.name == "WhitePawn(Clone)")
+            {
+                UnitMoveController.GetComponent<PawnMove>().SelectedPiece = UnitOnTile;
+                UnitMoveController.GetComponent<PawnMove>().isMoving = true;
+                UnitMoveController.GetComponent<PawnMove>().currentTile = this.gameObject;
+                UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
+                datNode.gameObject.SetActive(true);
+                if (UnitMoveController.GetComponent<PawnMove>().isMoving)
+                {
+                    GridManager.rescan = true;
+                }
+            }
+            else
+            {
+                SoundController.GetComponent<UISoundsScript>().playError();
+            }
+        }
+        else
+        {
+            UnitMoveController.GetComponent<PawnMove>().SelectedPiece = UnitOnTile;
+            UnitMoveController.GetComponent<PawnMove>().isMoving = true;
+            UnitMoveController.GetComponent<PawnMove>().currentTile = this.gameObject;
+            UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
+            datNode.gameObject.SetActive(true);
+            if (UnitMoveController.GetComponent<PawnMove>().isMoving)
+            {
+                GridManager.rescan = true;
+            }
         }
     }
 }

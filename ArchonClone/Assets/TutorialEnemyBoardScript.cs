@@ -61,6 +61,10 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
             StepText.GetComponent<Text>().text = "The Enemy is in a perfect place for you to attack! Select Your Tank piece with the mouse then select the enemies piece!";
             
         }
+        else if(enemyTurn == 2)
+        {
+            StepButton.active = false;
+        }
         else if(enemyTurn == 3)
         {
             StepButton.active = false; 
@@ -90,9 +94,10 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
         }*/
         else if(enemyTurn == 4.5)
         {
+            StepText.GetComponent<Text>().text = "Congratulations! You Have successfully Destroyed the enemies piece! Now you have the required Knowledge to continue your conquest of this planet!";
             StepButton.active = true;
         }
-        else if(enemyTurn == 6)
+        else if(enemyTurn == 5)
         {
             Application.LoadLevel("StartScreen");
         }
