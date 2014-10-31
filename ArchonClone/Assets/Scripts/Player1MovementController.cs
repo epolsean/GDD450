@@ -14,7 +14,7 @@ public class Player1MovementController : MonoBehaviour {
     public float gravity = 20.0F;
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 lastLooking;
-    public bool topDownView = true;
+    public bool topDownView = false;
 
     public Rigidbody Bullet;
     public GameObject Sword;

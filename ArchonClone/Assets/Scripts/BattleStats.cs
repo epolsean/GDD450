@@ -10,8 +10,8 @@ public class BattleStats : MonoBehaviour {
     public static int player2Speed=0;
 
     public static string winner = null;
-    public static string player1Pref = "third";
-    public static string player2Pref = "third";
+    public static string player1Pref = "top";
+    public static string player2Pref = "top";
     public static bool hotSeat = true;
 
 	// Use this for initialization

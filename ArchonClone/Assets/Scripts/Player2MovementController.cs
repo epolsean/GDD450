@@ -15,7 +15,7 @@ public class Player2MovementController : MonoBehaviour
     public float gravity = 20.0F;
     private Vector3 moveDirection = Vector3.zero;
     private Vector3 lastLooking;
-    public bool topDownView = true;
+    public bool topDownView = false;
 
     public Rigidbody Bullet;
     public GameObject Sword;
@@ -101,7 +101,13 @@ public class Player2MovementController : MonoBehaviour
                     }
                     else
                     {
-                        transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick2"), 0, Input.GetAxis("360_VerticalRightStick2"));
+                        if (!Network.isClient)
+                        {
+                            transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick2"), 0, Input.GetAxis("360_VerticalRightStick2"));
+                            lastLooking = transform.forward;
+                        }
+                        else
+                            networkView.RPC("updateRotation", RPCMode.AllBuffered, 0);
                     }
                     moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick2"), 0, Input.GetAxis("360_VerticalLeftStick2"));
                     moveDirection *= speed;
@@ -114,14 +120,19 @@ public class Player2MovementController : MonoBehaviour
                     }
                     else
                     {
-                        transform.forward = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2"));
+                        if (!Network.isClient)
+                        {
+                            transform.forward = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2"));
+                            lastLooking = transform.forward;
+                        }
+                        else
+                            networkView.RPC("updateRotation", RPCMode.AllBuffered, 1);
                     }
                     moveDirection = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2"));
                     moveDirection *= speed;
                 }
 
             }
-            lastLooking = transform.forward;
             moveDirection.y -= gravity * Time.deltaTime;
             controller.Move(moveDirection * Time.deltaTime);
         }
@@ -245,6 +256,21 @@ public class Player2MovementController : MonoBehaviour
             enemy.win = true;
             //Destroy(this.gameObject);
             Destroy(HealthBar);
+        }
+    }
+
+    [RPC]
+    void updateRotation(int mode)
+    {
+        if (mode == 0)
+        {
+            transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick2"), 0, Input.GetAxis("360_VerticalRightStick2"));
+            lastLooking = transform.forward;
+        }
+        else
+        {
+            transform.forward = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2"));
+            lastLooking = transform.forward;
         }
     }
 
