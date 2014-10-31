@@ -37,7 +37,16 @@ public class TileProperties : MonoBehaviour {
                 fighting = false; 
                 fightTimer = 0;
                 //Application.LoadLevel(6);
-                Application.LoadLevelAdditive("BattleTest");
+                
+                if (GameObject.Find("EnemyTurnController") != null)
+                {
+                    Debug.Log("EnemyTurnController Found");
+                    Application.LoadLevelAdditive("TutorialTestBattle");
+                }
+                else
+                {
+                    Application.LoadLevelAdditive("BattleTest");
+                }
             }
         }
 	}
