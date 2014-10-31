@@ -8,6 +8,11 @@ public class GoTo : MonoBehaviour {
         Application.LoadLevel("TestingHexTiles");
 	}
 
+    public void Tutorial()
+    {
+        Application.LoadLevel("TutorialTestBattle");
+    }
+
     public void LAN()
     {
         Application.LoadLevel("LANLobby");
