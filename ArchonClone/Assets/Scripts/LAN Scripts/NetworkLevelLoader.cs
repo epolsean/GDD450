@@ -14,12 +14,32 @@ public class NetworkLevelLoader : MonoBehaviour {
     static bool player1Connected = false;
     static bool player2Connected = false;
     bool bothConnected = false;
+    bool onLine = false;
 
-    void Update () {
-        if (bothConnected != true)
-            networkView.RPC("checkClientLevels", RPCMode.AllBuffered);
+    void Start()
+    {
+        if (!Network.isClient && !Network.isServer)
+        {
+            GameObject p1 = (GameObject)Instantiate(player1, spawn1.transform.position, spawn1.transform.rotation);
+            GameObject p2 = (GameObject)Instantiate(player2, spawn2.transform.position, spawn2.transform.rotation);
+            p1.transform.parent = GameObject.Find("BattleTestAdditive").transform;
+            p2.transform.parent = GameObject.Find("BattleTestAdditive").transform;
+        }
         else
-            networkView.RPC("loadPlayers", RPCMode.AllBuffered);
+        {
+            onLine = true;
+        }
+    }
+
+    void Update () 
+    {
+        if (onLine)
+        {
+            if (bothConnected != true)
+                networkView.RPC("checkClientLevels", RPCMode.AllBuffered);
+            else
+                networkView.RPC("loadPlayers", RPCMode.AllBuffered);
+        }
     }
 
     [RPC]

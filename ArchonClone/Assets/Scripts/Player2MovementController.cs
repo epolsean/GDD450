@@ -22,9 +22,6 @@ public class Player2MovementController : MonoBehaviour
     public bool isMelee = false;
     public int bulletSpeed = 10;
 
-    public GameObject HealthBar;
-    public GameObject HealthBarFill;
-
     public GameObject healthPiece1;
     public GameObject healthPiece2;
 
@@ -34,7 +31,7 @@ public class Player2MovementController : MonoBehaviour
     public bool swinging = false;
     float swingTimer = 0.3f;
 
-    public Player1MovementController enemy;
+    Player1MovementController enemy;
 
     int health;
     int bulletSize;
@@ -50,6 +47,7 @@ public class Player2MovementController : MonoBehaviour
 
     void Start()
     {
+        enemy = GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>();
         MoveController = GameObject.Find("MovementController");
         //Determine Character and set up stats
         if (myCharacter == Character.Grunt)
@@ -227,24 +225,17 @@ public class Player2MovementController : MonoBehaviour
             }
         }
 
-
-
-        HealthBar.GetComponent<Slider>().value = health;
         healthPiece1.GetComponent<Image>().fillAmount = (float)((float)health / 200);
         healthPiece2.GetComponent<Image>().fillAmount = (float)((float)health / 200);
 
         if (health <= 30)
         {
-            HealthBarFill.GetComponent<Image>().color = Color.red;
             healthPiece1.GetComponent<Image>().color = Color.red;
             healthPiece2.GetComponent<Image>().color = Color.red;
         }
         if (win == true)
         {
             BattleStats.winner = tag;
-            Destroy(HealthBar);
-            Destroy(GameObject.Find("P1 Health Text"));
-            Destroy(GameObject.Find("P2 Health Text"));
             if (TurnStateMachine.state == TurnStateMachine.State.playerTurn)
             {
                 TurnStateMachine.state = TurnStateMachine.State.otherTurn;
@@ -260,10 +251,11 @@ public class Player2MovementController : MonoBehaviour
         }
         if (health <= 0 && win == false)
         {
+            Debug.Log("win b4 : " + enemy.win);
             Destroy(MoveController.GetComponent<PawnMove>().Player02);
             enemy.win = true;
+            Debug.Log("win after : " + enemy.win);
             //Destroy(this.gameObject);
-            Destroy(HealthBar);
         }
     }
 

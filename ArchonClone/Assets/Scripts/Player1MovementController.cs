@@ -21,9 +21,6 @@ public class Player1MovementController : MonoBehaviour {
     public bool isMelee = false;
     public int bulletSpeed = 10;
 
-    public GameObject HealthBar;
-    public GameObject HealthBarFill;
-
     public GameObject healthPiece1;
     public GameObject healthPiece2;
 
@@ -33,7 +30,7 @@ public class Player1MovementController : MonoBehaviour {
     public bool swinging = false;
     float swingTimer = 0.3f;
 
-    public Player2MovementController enemy;
+    Player2MovementController enemy;
 
     int health;
     int bulletSize;
@@ -49,6 +46,7 @@ public class Player1MovementController : MonoBehaviour {
 
     void Start()
     {
+        enemy = GameObject.Find("Player2(Clone)").GetComponent<Player2MovementController>();
          MoveController = GameObject.Find("MovementController");
         //Determine character and set up stats
         if (myCharacter == Character.Grunt)
@@ -213,24 +211,17 @@ public class Player1MovementController : MonoBehaviour {
             }
         }
 
-
-
-        HealthBar.GetComponent<Slider>().value = health;
         healthPiece1.GetComponent<Image>().fillAmount = (float)((float)health / 200);
         healthPiece2.GetComponent<Image>().fillAmount = (float)((float)health / 200);
 
         if (health <= 30)
         {
-            HealthBarFill.GetComponent<Image>().color = Color.red;
             healthPiece1.GetComponent<Image>().color = Color.red;
             healthPiece2.GetComponent<Image>().color = Color.red;
         }
         if (win == true)
         {
             BattleStats.winner = tag;
-            Destroy(HealthBar);
-            Destroy(GameObject.Find("P1 Health Text"));
-            Destroy(GameObject.Find("P2 Health Text"));
             Destroy(MoveController.GetComponent<PawnMove>().Player02);
             if(TurnStateMachine.state == TurnStateMachine.State.playerTurn)
             {
@@ -240,16 +231,18 @@ public class Player1MovementController : MonoBehaviour {
             {
                 TurnStateMachine.state = TurnStateMachine.State.playerTurn;
             }
+            Debug.Log("Should destroy ");
             Destroy(GameObject.Find("BattleTestAdditive"));
+            Debug.Log("Should destroy again");
             //Application.LoadLevel("TestingHexTiles");
             //Destroy(this.gameObject);
         }
+        Debug.Log("player win  : " + win);
         if (health <= 0 && win == false)
         {
             Destroy(MoveController.GetComponent<PawnMove>().Player01);
             enemy.win = true;
             //Destroy(this.gameObject);
-            Destroy(HealthBar);
         }
     }
 
