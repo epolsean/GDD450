@@ -1,0 +1,178 @@
+fileFormatVersion: 2
+guid: d2182c1cf07cb5a40b3608c987d5ecce
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: arm
+    100002: arm 1
+    100004: armLeft
+    100006: armRight
+    100008: ballJoint
+    100010: base
+    100012: body
+    100014: extendingBarrel
+    100016: eyeMain
+    100018: eyeSecondary
+    100020: head
+    100022: head 1
+    100024: hover
+    100026: hoverSection
+    100028: neck
+    100030: neckAndHead
+    100032: neckBase
+    100034: neckJoint
+    100036: nurbsToSubd1
+    100038: nurbsToSubd2
+    100040: nurbsToSubd3
+    100042: nurbsToSubd4
+    100044: rifle
+    100046: rifle 1
+    100048: shoulderJoint
+    100050: shoulderJoint 1
+    100052: //RootNode
+    100054: torso
+    100056: tubes1
+    400000: arm
+    400002: arm 1
+    400004: armLeft
+    400006: armRight
+    400008: ballJoint
+    400010: base
+    400012: body
+    400014: extendingBarrel
+    400016: eyeMain
+    400018: eyeSecondary
+    400020: head
+    400022: head 1
+    400024: hover
+    400026: hoverSection
+    400028: neck
+    400030: neckAndHead
+    400032: neckBase
+    400034: neckJoint
+    400036: nurbsToSubd1
+    400038: nurbsToSubd2
+    400040: nurbsToSubd3
+    400042: nurbsToSubd4
+    400044: rifle
+    400046: rifle 1
+    400048: shoulderJoint
+    400050: shoulderJoint 1
+    400052: //RootNode
+    400054: torso
+    400056: tubes1
+    2300000: arm
+    2300002: arm 1
+    2300004: ballJoint
+    2300006: base
+    2300008: body
+    2300010: extendingBarrel
+    2300012: eyeMain
+    2300014: eyeSecondary
+    2300016: head 1
+    2300018: hoverSection
+    2300020: neck
+    2300022: neckBase
+    2300024: neckJoint
+    2300026: nurbsToSubd1
+    2300028: nurbsToSubd2
+    2300030: nurbsToSubd3
+    2300032: nurbsToSubd4
+    2300034: rifle 1
+    2300036: shoulderJoint
+    2300038: shoulderJoint 1
+    3300000: arm
+    3300002: arm 1
+    3300004: ballJoint
+    3300006: base
+    3300008: body
+    3300010: extendingBarrel
+    3300012: eyeMain
+    3300014: eyeSecondary
+    3300016: head 1
+    3300018: hoverSection
+    3300020: neck
+    3300022: neckBase
+    3300024: neckJoint
+    3300026: nurbsToSubd1
+    3300028: nurbsToSubd2
+    3300030: nurbsToSubd3
+    3300032: nurbsToSubd4
+    3300034: rifle 1
+    3300036: shoulderJoint
+    3300038: shoulderJoint 1
+    4300000: body
+    4300002: neckJoint
+    4300004: neck
+    4300006: neckBase
+    4300008: eyeMain
+    4300010: head
+    4300012: eyeSecondary
+    4300014: hoverSection
+    4300016: ballJoint
+    4300018: base
+    4300020: arm
+    4300022: shoulderJoint
+    4300024: arm
+    4300026: shoulderJoint
+    4300028: rifle
+    4300030: extendingBarrel
+    4300032: nurbsToSubd4
+    4300034: nurbsToSubd3
+    4300036: nurbsToSubd2
+    4300038: nurbsToSubd1
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1.5
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

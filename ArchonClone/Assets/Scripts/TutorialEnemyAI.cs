@@ -35,6 +35,8 @@ public class TutorialEnemyAI : MonoBehaviour
 
     public PlayerControllerTutorial enemy;
 
+    public GameObject death;
+
     int health;
 
     public bool win = false;
@@ -72,18 +74,26 @@ public class TutorialEnemyAI : MonoBehaviour
             }
             if (health <= 0 && win == false)
             {
+                death.SetActive(true);
+                Invoke("OnDeath", 0.3f);
                 enemy.win = true;
+                
             }
         }
-
 	}
+
+    void OnDeath()
+    {
+        Destroy(GameObject.Find("alienGrunt"));
+        enabled = false;
+    }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.name == "target1")
         {
             int option = Random.Range(1, 2);
-            Invoke("ChooseNextTarget", 2.2f);
+            Invoke("ChooseNextTarget", 1.8f);
             if (option == 1)
             {
                 nextTarget = target2.position;
@@ -96,7 +106,7 @@ public class TutorialEnemyAI : MonoBehaviour
         else if (other.name == "target2")
         {
             int option = Random.Range(1, 2);
-            Invoke("ChooseNextTarget", 2.2f);
+            Invoke("ChooseNextTarget", 1.8f);
             if (option == 1)
             {
                 nextTarget = target3.position;
@@ -109,7 +119,7 @@ public class TutorialEnemyAI : MonoBehaviour
         else if (other.name == "target3")
         {
             int option = Random.Range(1, 3);
-            Invoke("ChooseNextTarget", 2.2f);
+            Invoke("ChooseNextTarget", 1.8f);
             if (option == 1)
             {
                 nextTarget = target4.position;
@@ -126,7 +136,7 @@ public class TutorialEnemyAI : MonoBehaviour
         else if (other.name == "target4")
         {
             int option = Random.Range(1, 2);
-            Invoke("ChooseNextTarget", 2.2f);
+            Invoke("ChooseNextTarget", 1.8f);
             if (option == 1)
             {
                 nextTarget = target5.position;
@@ -139,7 +149,7 @@ public class TutorialEnemyAI : MonoBehaviour
         else if (other.name == "target5")
         {
             int option = Random.Range(1, 2);
-            Invoke("ChooseNextTarget", 2.2f);
+            Invoke("ChooseNextTarget", 1.8f);
             if (option == 1)
             {
                 nextTarget = target6.position;
@@ -152,7 +162,7 @@ public class TutorialEnemyAI : MonoBehaviour
         else if (other.name == "target6")
         {
             int option = Random.Range(1, 3);
-            Invoke("ChooseNextTarget", 2.2f);
+            Invoke("ChooseNextTarget", 1.8f);
             if (option == 1)
             {
                 nextTarget = target1.position;
@@ -169,7 +179,7 @@ public class TutorialEnemyAI : MonoBehaviour
         else if (other.name == "target7")
         {
             int option = Random.Range(1, 2);
-            Invoke("ChooseNextTarget", 2.2f);
+            Invoke("ChooseNextTarget", 1.8f);
             if (option == 1)
             {
                 nextTarget = target6.position;
@@ -180,17 +190,10 @@ public class TutorialEnemyAI : MonoBehaviour
             }
         }
         //If the player gets shot
-        if (other.name == "Bullet(Clone)")
+        if (other.tag == "robotBullet")
         {
             Destroy(other.gameObject);
-            if (other.transform.localScale.x == 1)
-            {
-                health -= 5;
-            }
-            else if (other.transform.localScale.x == 2)
-            {
-                health -= 15;
-            }
+            health -= 5;
         }
         //If the player gets hit with melee
         if (other.name == "Sword(Clone)" && other.tag != tag)
@@ -209,5 +212,7 @@ public class TutorialEnemyAI : MonoBehaviour
     {
         prevTarget = currentTarget;
         currentTarget = nextTarget;
+        Vector3 moveDirection = Vector3.Normalize(currentTarget - transform.position); // Get direction of current target
+        transform.forward = new Vector3(moveDirection.x, 0, moveDirection.z);
     }
 }

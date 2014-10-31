@@ -18,7 +18,8 @@ public class PiecePlaceScript : MonoBehaviour {
 
     void Awake()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
+        isStart = true; 
     }
     
     // Use this for initialization

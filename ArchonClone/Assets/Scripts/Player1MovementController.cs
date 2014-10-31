@@ -232,6 +232,7 @@ public class Player1MovementController : MonoBehaviour {
             Destroy(GameObject.Find("P1 Health Text"));
             Destroy(GameObject.Find("P2 Health Text"));
             Destroy(MoveController.GetComponent<PawnMove>().Player02);
+            
             Destroy(GameObject.Find("BattleTestAdditive"));
             //Application.LoadLevel("TestingHexTiles");
             //Destroy(this.gameObject);
