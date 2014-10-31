@@ -19,7 +19,7 @@ public class PlayerControllerTutorial : MonoBehaviour
     public Rigidbody Bullet;
     public GameObject Sword;
     public bool isMelee = false;
-    public int bulletSpeed = 20;
+    public int bulletSpeed = 25;
 
     public GameObject healthPiece1;
     public GameObject healthPiece2;
@@ -172,7 +172,7 @@ public class PlayerControllerTutorial : MonoBehaviour
                             Destroy(bulletClone.gameObject, 3);
                             audio.Play();
                             bulletSize = 1;
-                            bulletSpeed = 20;
+                            bulletSpeed = 25;
                             chargeTime = 0.5f;
                             halo.enabled = false;
                             reloading = true;
@@ -189,7 +189,7 @@ public class PlayerControllerTutorial : MonoBehaviour
                             Destroy(bulletClone.gameObject, 3);
                             audio.Play();
                             bulletSize = 1;
-                            bulletSpeed = 20;
+                            bulletSpeed = 25;
                             chargeTime = 0.5f;
                             halo.enabled = false;
                             reloading = true;

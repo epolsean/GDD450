@@ -19,7 +19,7 @@ public class Player1MovementController : MonoBehaviour {
     public Rigidbody Bullet;
     public GameObject Sword;
     public bool isMelee = false;
-    public int bulletSpeed = 10;
+    public int bulletSpeed = 25;
 
     public GameObject healthPiece1;
     public GameObject healthPiece2;
@@ -158,7 +158,7 @@ public class Player1MovementController : MonoBehaviour {
                 }
             }
 
-            if ((Input.GetAxis("360_RightTrigger1") == 1 || Input.GetAxis("Fire1") == 1) && bulletSize == 1 && reloading == false)
+            /*if ((Input.GetAxis("360_RightTrigger1") == 1 || Input.GetAxis("Fire1") == 1) && bulletSize == 1 && reloading == false)
             {
                 chargeTime -= Time.deltaTime;
                 if (chargeTime < 0)
@@ -167,23 +167,43 @@ public class Player1MovementController : MonoBehaviour {
                     bulletSize = 2;
                     bulletSpeed -= 4;
                 }
-            }
+            }*/
 
             if (win == false)
             {
-                if ((Input.GetAxis("360_RightTrigger1") == 1 || Input.GetButtonUp("Fire1")) && reloading == false)
+                if (Input.GetJoystickNames().Length != 0)
                 {
-                    Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.8f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                    bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                    bulletClone.rigidbody.useGravity = false;
-                    bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                    Destroy(bulletClone.gameObject, 3);
-                    audio.Play();
-                    bulletSize = 1;
-                    bulletSpeed = 10;
-                    chargeTime = 0.5f;
-                    halo.enabled = false;
-                    reloading = true;
+                    if ((Input.GetAxis("360_RightTrigger1") == 1) && reloading == false)
+                    {
+                        Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                        bulletClone.rigidbody.useGravity = false;
+                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                        Destroy(bulletClone.gameObject, 3);
+                        audio.Play();
+                        bulletSize = 1;
+                        bulletSpeed = 25;
+                        chargeTime = 0.5f;
+                        halo.enabled = false;
+                        reloading = true;
+                    }
+                }
+                else
+                {
+                    if ((Input.GetButtonUp("Fire1")) && reloading == false)
+                    {
+                        Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                        bulletClone.rigidbody.useGravity = false;
+                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                        Destroy(bulletClone.gameObject, 3);
+                        audio.Play();
+                        bulletSize = 1;
+                        bulletSpeed = 25;
+                        chargeTime = 0.5f;
+                        halo.enabled = false;
+                        reloading = true;
+                    }
                 }
             }
         }
@@ -249,17 +269,10 @@ public class Player1MovementController : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         //If the player gets shot
-        if (other.name == "Bullet(Clone)")
+        if (other.tag == "alienBullet")
         {
             Destroy(other.gameObject);
-            if (other.transform.localScale.x == 1)
-            {
-                health -= 5;
-            }
-            else if (other.transform.localScale.x == 2)
-            {
-                health -= 15;
-            }
+            health -= 10;
         }
         //If the player gets hit with melee
         if (other.name == "Sword(Clone)" && other.tag != tag)

@@ -10,7 +10,7 @@ public class GoTo : MonoBehaviour {
 
     public void Tutorial()
     {
-        Application.LoadLevel("TutorialTestBattle");
+        Application.LoadLevel("TutorialTestGrid");
     }
 
     public void LAN()
