@@ -19,7 +19,7 @@ public class PlayerControllerTutorial : MonoBehaviour
     public Rigidbody Bullet;
     public GameObject Sword;
     public bool isMelee = false;
-    public int bulletSpeed = 10;
+    public int bulletSpeed = 20;
 
     public GameObject healthPiece1;
     public GameObject healthPiece2;
@@ -120,12 +120,19 @@ public class PlayerControllerTutorial : MonoBehaviour
                     else
                     {
                         transform.Rotate(transform.up, xSensitivity * Input.GetAxis("Horizontal"));
-
-                        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                        if (Input.GetAxis("Vertical") == 0)
+                        {
+                            moveDirection = new Vector3(0, 0, Input.GetAxis("Vertical"));
+                        }
+                        else
+                        {
+                            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                        }
                         moveDirection = transform.TransformDirection(moveDirection);
                         moveDirection *= speed;
                     }
                 }
+                Debug.Log("Horizontal " + Input.GetAxis("Horizontal"));
                 moveDirection.y -= gravity * Time.deltaTime;
                 controller.Move(moveDirection * Time.deltaTime);
             }
@@ -141,7 +148,7 @@ public class PlayerControllerTutorial : MonoBehaviour
                     }
                 }
 
-                if ((Input.GetAxis("Fire1") == 1) && bulletSize == 1 && reloading == false)
+                /*if ((Input.GetAxis("Fire1") == 1) && bulletSize == 1 && reloading == false)
                 {
                     chargeTime -= Time.deltaTime;
                     if (chargeTime < 0)
@@ -150,23 +157,43 @@ public class PlayerControllerTutorial : MonoBehaviour
                         bulletSize = 2;
                         bulletSpeed -= 4;
                     }
-                }
+                }*/
 
                 if (win == false)
                 {
-                    if ((Input.GetButtonUp("Fire1")) && reloading == false)
+                    if (Input.GetJoystickNames().Length != 0)
                     {
-                        Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                        bulletClone.rigidbody.useGravity = false;
-                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                        Destroy(bulletClone.gameObject, 3);
-                        audio.Play();
-                        bulletSize = 1;
-                        bulletSpeed = 10;
-                        chargeTime = 0.5f;
-                        halo.enabled = false;
-                        reloading = true;
+                        if ((Input.GetAxis("360_RightTrigger1") == 1) && reloading == false)
+                        {
+                            Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                            bulletClone.rigidbody.useGravity = false;
+                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                            Destroy(bulletClone.gameObject, 3);
+                            audio.Play();
+                            bulletSize = 1;
+                            bulletSpeed = 20;
+                            chargeTime = 0.5f;
+                            halo.enabled = false;
+                            reloading = true;
+                        }
+                    }
+                    else
+                    {
+                        if ((Input.GetButtonUp("Fire1")) && reloading == false)
+                        {
+                            Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                            bulletClone.rigidbody.useGravity = false;
+                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                            Destroy(bulletClone.gameObject, 3);
+                            audio.Play();
+                            bulletSize = 1;
+                            bulletSpeed = 20;
+                            chargeTime = 0.5f;
+                            halo.enabled = false;
+                            reloading = true;
+                        }
                     }
                 }
             }
@@ -209,11 +236,18 @@ public class PlayerControllerTutorial : MonoBehaviour
             if (win == true)
             {
                 BattleStats.winner = tag;
-                Destroy(GameObject.Find("P1 Health Text"));
-                Destroy(GameObject.Find("P2 Health Text"));
-                Application.LoadLevel("TutorialTestGrid");
+                //Destroy(GameObject.Find("P1 Health Text"));
+                //Destroy(GameObject.Find("P2 Health Text"));
+                //Application.LoadLevel("TutorialTestGrid");
                 //Destroy(this.gameObject);
+                Invoke("HasWon", 2.4f);
+                enabled = false;
             }
         }
+    }
+
+    void HasWon()
+    {
+        //Application.LoadLevel("TutorialTestGrid");
     }
 }
