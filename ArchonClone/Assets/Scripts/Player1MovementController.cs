@@ -232,7 +232,14 @@ public class Player1MovementController : MonoBehaviour {
             Destroy(GameObject.Find("P1 Health Text"));
             Destroy(GameObject.Find("P2 Health Text"));
             Destroy(MoveController.GetComponent<PawnMove>().Player02);
-            
+            if(TurnStateMachine.state == TurnStateMachine.State.playerTurn)
+            {
+                TurnStateMachine.state = TurnStateMachine.State.otherTurn;
+            }
+            else
+            {
+                TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+            }
             Destroy(GameObject.Find("BattleTestAdditive"));
             //Application.LoadLevel("TestingHexTiles");
             //Destroy(this.gameObject);
