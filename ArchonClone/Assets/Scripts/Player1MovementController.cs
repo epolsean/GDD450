@@ -47,7 +47,8 @@ public class Player1MovementController : MonoBehaviour {
     void Start()
     {
         enemy = GameObject.Find("Player2(Clone)").GetComponent<Player2MovementController>();
-         MoveController = GameObject.Find("MovementController");
+        MoveController = GameObject.Find("MovementController");
+        print("MoveController: "+MoveController);
         //Determine character and set up stats
         if (myCharacter == Character.Grunt)
         {
@@ -189,7 +190,7 @@ public class Player1MovementController : MonoBehaviour {
                             halo.enabled = false;
                             reloading = true;
                         }
-                        else
+                        else if (Network.isServer)
                         {
                             networkView.RPC("createBullet", RPCMode.AllBuffered);
                         }
@@ -197,7 +198,7 @@ public class Player1MovementController : MonoBehaviour {
                 }
                 else
                 {
-                    if ((Input.GetButtonUp("Fire1")) && reloading == false)
+                    if ((Input.GetAxis("Fire1") == 1) && reloading == false)
                     {
                         if (!Network.isClient && !Network.isServer)
                         {
@@ -213,7 +214,7 @@ public class Player1MovementController : MonoBehaviour {
                             halo.enabled = false;
                             reloading = true;
                         }
-                        else
+                        else if (Network.isServer)
                         {
                             networkView.RPC("createBullet", RPCMode.AllBuffered);
                         }
@@ -298,8 +299,8 @@ public class Player1MovementController : MonoBehaviour {
                 Destroy(other.gameObject);
                 health -= 10;
             }
-            else
-                networkView.RPC("destroyBullet", RPCMode.AllBuffered, other.gameObject);
+            else if (Network.isServer)
+                networkView.RPC("destroyBullet", RPCMode.AllBuffered, (GameObject)other.gameObject);
         }
         //If the player gets hit with melee
         if (other.name == "Sword(Clone)" && other.tag != tag)
@@ -317,7 +318,7 @@ public class Player1MovementController : MonoBehaviour {
     [RPC]
     void destroyBullet(GameObject other)
     {
-        Network.Destroy(other.gameObject);
+        Network.Destroy(other);
         health -= 10;
     }
 

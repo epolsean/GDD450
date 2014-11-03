@@ -202,7 +202,7 @@ public class Player2MovementController : MonoBehaviour
                             halo.enabled = false;
                             reloading = true;
                         }
-                        else
+                        else if (Network.isClient)
                         {
                             networkView.RPC("createBullet", RPCMode.AllBuffered);
                         }
@@ -210,7 +210,7 @@ public class Player2MovementController : MonoBehaviour
                 }
                 else
                 {
-                    if ((Input.GetButtonUp("Fire2")) && reloading == false)
+                    if ((Input.GetAxis("Fire2") == 1) && reloading == false)
                     {
                         if (!Network.isClient && !Network.isServer)
                         {
@@ -226,7 +226,7 @@ public class Player2MovementController : MonoBehaviour
                             halo.enabled = false;
                             reloading = true;
                         }
-                        else
+                        else if (Network.isClient)
                         {
                             networkView.RPC("createBullet", RPCMode.AllBuffered);
                         }
@@ -325,8 +325,8 @@ public class Player2MovementController : MonoBehaviour
                 Destroy(other.gameObject);
                 health -= 10;
             }
-            else
-                networkView.RPC("destroyBullet", RPCMode.AllBuffered, other.gameObject);
+            else if (Network.isClient)
+                networkView.RPC("destroyBullet", RPCMode.AllBuffered, (GameObject)other.gameObject);
         }
         //If the player gets hit with melee
         if (other.name == "Sword(Clone)" && other.tag != tag)
@@ -344,7 +344,7 @@ public class Player2MovementController : MonoBehaviour
     [RPC]
     void destroyBullet(GameObject other)
     {
-        Network.Destroy(other.gameObject);
+        Network.Destroy(other);
         health -= 10;
     }
 
