@@ -3,6 +3,9 @@ using System.Collections;
 
 public class SpawnBasicUnits : MonoBehaviour {
 
+    public static int BlackPieceCount;
+    public static int WhitePieceCount;
+    
     public GameObject WhitePawn;
     public GameObject White02;
     public GameObject BlackPawn;
@@ -29,7 +32,12 @@ public class SpawnBasicUnits : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        Debug.Log("BlackCount: " + BlackPieceCount);
+        Debug.Log("WhiteCount: " + WhitePieceCount);
+        if(BlackPieceCount <= 0 || WhitePieceCount <= 0)
+        {
+            EndControllerScript.isEnd = true; 
+        }
 	}
 
     void StartSpawn()
@@ -48,6 +56,7 @@ public class SpawnBasicUnits : MonoBehaviour {
     {
         tile.GetComponent<TileProperties>().UnitOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         //tile.GetComponent<TileProperties>().Occupied = true;
+        WhitePieceCount++;
 
         
     }
@@ -56,5 +65,6 @@ public class SpawnBasicUnits : MonoBehaviour {
     {
         tile.GetComponent<TileProperties>().UnitOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;
         //tile.GetComponent<TileProperties>().Occupied = true;
+        BlackPieceCount++;
     }
 }

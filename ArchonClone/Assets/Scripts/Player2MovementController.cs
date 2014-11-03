@@ -271,6 +271,14 @@ public class Player2MovementController : MonoBehaviour
         if (health <= 0 && win == false)
         {
             Debug.Log("win b4 : " + enemy.win);
+            if (MoveController.GetComponent<PawnMove>().Player02.tag == "White")
+            {
+                SpawnBasicUnits.WhitePieceCount--;
+            }
+            else
+            {
+                SpawnBasicUnits.BlackPieceCount--;
+            }
             Destroy(MoveController.GetComponent<PawnMove>().Player02);
             enemy.win = true;
             Debug.Log("win after : " + enemy.win);
