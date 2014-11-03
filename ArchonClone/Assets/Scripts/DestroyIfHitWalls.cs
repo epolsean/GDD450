@@ -3,21 +3,20 @@ using System.Collections;
 
 public class DestroyIfHitWalls : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    void OnTriggerEnter(Collider other)
+	void OnTriggerEnter(Collider other)
     {
         if (other.tag == "wall")
         {
-            Destroy(gameObject);
+            if (!Network.isClient && !Network.isServer)
+                Destroy(gameObject);
+            else
+                networkView.RPC("destroyBullet", RPCMode.AllBuffered);
         }
+    }
+
+    [RPC]
+    void destroyBullet()
+    {
+        Network.Destroy(gameObject);
     }
 }

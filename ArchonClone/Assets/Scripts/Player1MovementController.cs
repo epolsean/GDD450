@@ -175,34 +175,48 @@ public class Player1MovementController : MonoBehaviour {
                 {
                     if ((Input.GetAxis("360_RightTrigger1") == 1) && reloading == false)
                     {
-                        Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                        bulletClone.rigidbody.useGravity = false;
-                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                        Destroy(bulletClone.gameObject, 3);
-                        audio.Play();
-                        bulletSize = 1;
-                        bulletSpeed = 25;
-                        chargeTime = 0.5f;
-                        halo.enabled = false;
-                        reloading = true;
+                        if (!Network.isClient && !Network.isServer)
+                        {
+                            Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                            bulletClone.rigidbody.useGravity = false;
+                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                            Destroy(bulletClone.gameObject, 3);
+                            audio.Play();
+                            bulletSize = 1;
+                            bulletSpeed = 25;
+                            chargeTime = 0.5f;
+                            halo.enabled = false;
+                            reloading = true;
+                        }
+                        else
+                        {
+                            networkView.RPC("createBullet", RPCMode.AllBuffered);
+                        }
                     }
                 }
                 else
                 {
                     if ((Input.GetButtonUp("Fire1")) && reloading == false)
                     {
-                        Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                        bulletClone.rigidbody.useGravity = false;
-                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                        Destroy(bulletClone.gameObject, 3);
-                        audio.Play();
-                        bulletSize = 1;
-                        bulletSpeed = 25;
-                        chargeTime = 0.5f;
-                        halo.enabled = false;
-                        reloading = true;
+                        if (!Network.isClient && !Network.isServer)
+                        {
+                            Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                            bulletClone.rigidbody.useGravity = false;
+                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                            Destroy(bulletClone.gameObject, 3);
+                            audio.Play();
+                            bulletSize = 1;
+                            bulletSpeed = 25;
+                            chargeTime = 0.5f;
+                            halo.enabled = false;
+                            reloading = true;
+                        }
+                        else
+                        {
+                            networkView.RPC("createBullet", RPCMode.AllBuffered);
+                        }
                     }
                 }
             }
@@ -279,8 +293,13 @@ public class Player1MovementController : MonoBehaviour {
         //If the player gets shot
         if (other.tag == "alienBullet")
         {
-            Destroy(other.gameObject);
-            health -= 10;
+            if (!Network.isClient && !Network.isServer)
+            {
+                Destroy(other.gameObject);
+                health -= 10;
+            }
+            else
+                networkView.RPC("destroyBullet", RPCMode.AllBuffered, other.gameObject);
         }
         //If the player gets hit with melee
         if (other.name == "Sword(Clone)" && other.tag != tag)
@@ -293,5 +312,28 @@ public class Player1MovementController : MonoBehaviour {
             health -= 10;
         }
 
+    }
+
+    [RPC]
+    void destroyBullet(GameObject other)
+    {
+        Network.Destroy(other.gameObject);
+        health -= 10;
+    }
+
+    [RPC]
+    void createBullet()
+    {
+        Rigidbody bulletClone = Network.Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation, 1) as Rigidbody;
+        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+        bulletClone.rigidbody.useGravity = false;
+        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+        Destroy(bulletClone.gameObject, 3);
+        audio.Play();
+        bulletSize = 1;
+        bulletSpeed = 25;
+        chargeTime = 0.5f;
+        halo.enabled = false;
+        reloading = true;
     }
 }
