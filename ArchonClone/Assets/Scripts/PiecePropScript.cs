@@ -12,13 +12,13 @@ public class PiecePropScript : MonoBehaviour {
     
     // Use this for initialization
 	void Start () {
-        if(this.name == "BlackScout(Clone)" || this.name == "WhiteScout(Clone)")//stats for Scout
+        if(this.name == "BlackScout(Clone)" || this.name == "White02(Clone)")//stats for Scout
         {
             Health = 50;
             Movement = 3;
             Damage = 15;
         }
-        else if(this.name == "BlackTank(Clone)" || this.name == "WhiteTank(Clone)")//stats for Tank
+        else if(this.name == "BlackPawn(Clone)" || this.name == "WhitePawn(Clone)")//stats for Tank
         {
             Health = 100;
             Movement = 2;
