@@ -15,6 +15,7 @@ public class TileProperties : MonoBehaviour {
     public bool Occupied = false;
     public bool canPlace;
     
+    
     // Use this for initialization
 	void Start () {
         //UnitOnTile = null;
@@ -54,6 +55,10 @@ public class TileProperties : MonoBehaviour {
 
     public void OnMouseOver()
     {
+        if(this.UnitOnTile != null)
+        {
+            UnitMoveController.GetComponent<PawnMove>().StatPan.SetActive(true);
+        }
         if (UnitMoveController.GetComponent<PawnMove>().isMoving == false)
         {
             TurnStateMachine.OnHoverPiece = this.UnitOnTile;
@@ -83,6 +88,7 @@ public class TileProperties : MonoBehaviour {
 
     public void OnMouseExit()
     {
+        UnitMoveController.GetComponent<PawnMove>().StatPan.SetActive(false);
         if(this.tag == "WhiteTile")
         {
             renderer.material.color = Color.white;
