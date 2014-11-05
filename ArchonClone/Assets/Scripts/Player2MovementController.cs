@@ -33,7 +33,7 @@ public class Player2MovementController : MonoBehaviour
 
     Player1MovementController enemy;
 
-    int health;
+    public float health;
     int bulletSize;
     float chargeTime = 2.0f;
 
