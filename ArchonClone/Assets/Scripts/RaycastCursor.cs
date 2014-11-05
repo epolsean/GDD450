@@ -57,7 +57,7 @@ public class RaycastCursor : MonoBehaviour {
                         if (Input.GetButtonUp("360_AButton1"))
                         {
                             Debug.Log("A button pressed");
-                            currentHex.GetComponent<TileProperties>().OnMouseDown();
+                            currentHex.GetComponent<TileProperties>().MouseDownCall();
                         }
                     }
                     /*else
