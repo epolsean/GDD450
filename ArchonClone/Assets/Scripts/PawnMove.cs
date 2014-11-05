@@ -32,7 +32,11 @@ public class PawnMove : MonoBehaviour {
             }
             else if(SelectedPiece.name == "White02(Clone)"|| SelectedPiece.name == "Black02(Clone)")
             {
-                MaxMove = 5 * 3;
+                MaxMove = 5 * 2.75;
+            }
+            else if(SelectedPiece.name == "WhiteRunner(Clone)" || SelectedPiece.name == "BlackRunner")
+            {
+                MaxMove = 5 * 3.25; 
             }
                 
         }

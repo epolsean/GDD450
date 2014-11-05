@@ -54,8 +54,6 @@ public class pieceMove : MonoBehaviour {
             //MoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
             //MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(false);
             
-            Debug.Log("moved Piece");
-            
             return;
         }
 

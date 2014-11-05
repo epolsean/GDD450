@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Pathfinding;
 
 public class TileProperties : MonoBehaviour {
 
@@ -61,6 +62,11 @@ public class TileProperties : MonoBehaviour {
         else if (UnitMoveController.GetComponent<PawnMove>().isMoving == true)
         {
             UnitMoveController.GetComponent<PawnMove>().MoveToTile = this.gameObject;
+            if (this.gameObject.GetComponent<TileProperties>().UnitOnTile != null)
+            {
+                this.datNode.SetActive(true);
+                GridManager.rescan = true; 
+            }
             if(Vector3.Distance(UnitMoveController.GetComponent<PawnMove>().SelectedPiece.transform.position, this.transform.position) <= UnitMoveController.GetComponent<PawnMove>().MaxMove)
             {
                 renderer.material.color = Color.green;
@@ -87,6 +93,11 @@ public class TileProperties : MonoBehaviour {
         }
         canPlace = false;
         UnitMoveController.GetComponent<PawnMove>().MoveToTile = null;
+        if (this.gameObject.GetComponent<TileProperties>().UnitOnTile != null && this.gameObject != UnitMoveController.GetComponent<PawnMove>().currentTile)
+        {
+            this.datNode.SetActive(false);
+            GridManager.rescan = true;
+        }
     }
 
     public void OnMouseDown()
@@ -222,6 +233,9 @@ public class TileProperties : MonoBehaviour {
     }
     void SetTarget()
     {
+        UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.SetActive(true);
+        GridManager.rescan = true;
+        print("targetTile true");
         GameObject newTarget = Instantiate(datTarget, transform.position, transform.rotation) as GameObject;
         UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().targetPosition = newTarget.transform.position;
         UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().GetNewPath();
@@ -230,13 +244,17 @@ public class TileProperties : MonoBehaviour {
         this.UnitOnTile = UnitMoveController.GetComponent<PawnMove>().SelectedPiece;
         //this.datNode.gameObject.SetActive(true);
         UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
-        UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(false);
+        if (UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile != null)
+        {
+            UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(false);
+        }
+        
         UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().UnitOnTile = null;
         UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().Occupied = false;
         UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().Occupied = false;
         UnitMoveController.GetComponent<PawnMove>().isMoving = false;
         canPlace = false;
-        datNode.gameObject.SetActive(true);
+        //datNode.gameObject.SetActive(true);
     }
 
     void SelectPiece()

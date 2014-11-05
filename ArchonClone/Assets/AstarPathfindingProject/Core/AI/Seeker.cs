@@ -69,7 +69,7 @@ public class Seeker : MonoBehaviour {
 	//END DEBUG
 	
 	/** The current path */
-	[System.NonSerialized]
+    [System.NonSerialized]
 	protected Path path;
 
 	/** Previous path. Used to draw gizmos */
@@ -399,6 +399,7 @@ public class Seeker : MonoBehaviour {
 	 * \a Callback will not be called if the path is canceled (e.g when a new path is requested before the previous one has completed) */
 	public Path StartPath (Vector3 start, Vector3 end, OnPathDelegate callback, int graphMask) {
 		Path p = GetNewPath (start,end);
+        print("path length: " + p.GetTotalLength());
 		return StartPath (p, callback, graphMask);
 	}
 	
