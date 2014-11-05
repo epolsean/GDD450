@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9d495b492b27223419fedee876578aa7
+guid: bc6e173c869955a408376074ca20b845
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: alienGrunt
+    100002: alienGrunt 1
     100004: body
     100006: head
     100008: ikHandle1
@@ -77,7 +77,7 @@ ModelImporter:
     100142: tail
     100144: whatWhat
     400000: //RootNode
-    400002: alienGrunt
+    400002: alienGrunt 1
     400004: body
     400006: head
     400008: ikHandle1
@@ -152,7 +152,7 @@ ModelImporter:
     4300000: alienGrunt
     7400000: Take 001
     9500000: //RootNode
-    13700000: alienGrunt
+    13700000: alienGrunt 1
   materials:
     importMaterials: 1
     materialName: 0

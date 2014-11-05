@@ -10,7 +10,12 @@ public class PawnMove : MonoBehaviour {
     public GameObject Player01;
     public GameObject Player02;
     public double MaxMove;
+
     public GameObject StatPan;
+    public GameObject BlackGruntPan;
+    public GameObject BlackTankPan;
+    public GameObject WhiteScoutPan;
+    public GameObject WhiteTankPan; 
 
     // Use this for initialization
 	void Start () {
