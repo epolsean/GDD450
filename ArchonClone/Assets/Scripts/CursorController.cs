@@ -15,7 +15,7 @@ public class CursorController : MonoBehaviour
     {
         Screen.showCursor = false;
         
-        cursor.transform.position = new Vector3(20, 20, 0);
+        cursor.transform.position = new Vector3(50, 50, 0);
 	}
 	
  
