@@ -35,7 +35,7 @@ public class GoTo : MonoBehaviour {
 
     public void MultiplayerMode()
     {
-        Application.LoadLevel("SelectMultiplayerMode");
+        Application.LoadLevel("SelectMode");
     }
 
     public void Battle()
