@@ -58,27 +58,49 @@ public class TileProperties : MonoBehaviour {
     {
         if(this.UnitOnTile != null)
         {
-            if(this.UnitOnTile.name == "BlackPawn(Clone)")
+            if(this.UnitOnTile.name == "BlackTank(Clone)")
             {
                 UnitMoveController.GetComponent<PawnMove>().BlackTankPan.SetActive(true);
+                if (GameObject.Find("PieceNameText") != null)
+                {
+                    GameObject.Find("PieceNameText").GetComponent<Text>().text = "Organic Tank";
+                }
+                
             }
-            else if (this.UnitOnTile.name == "Black02(Clone)")
+            else if (this.UnitOnTile.name == "BlackGrunt(Clone)")
             {
                 UnitMoveController.GetComponent<PawnMove>().BlackGruntPan.SetActive(true);
             }
-            else if (this.UnitOnTile.name == "WhitePawn(Clone)")
+            else if (this.UnitOnTile.name == "WhiteTank(Clone)")
             {
                 UnitMoveController.GetComponent<PawnMove>().WhiteTankPan.SetActive(true);
             }
-            else if (this.UnitOnTile.name == "White02(Clone)")
+            else if (this.UnitOnTile.name == "WhiteScout(Clone)")
             {
                 UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan.SetActive(true);
             }
             
             UnitMoveController.GetComponent<PawnMove>().StatPan.SetActive(true);
-            GameObject.Find("HealthSlider").GetComponent<Slider>().value = this.UnitOnTile.GetComponent<PiecePropScript>().Health;
-            GameObject.Find("DamageSlider").GetComponent<Slider>().value = this.UnitOnTile.GetComponent<PiecePropScript>().Damage;
-            GameObject.Find("SpeedSlider").GetComponent<Slider>().value = this.UnitOnTile.GetComponent<PiecePropScript>().Movement;
+            if (GameObject.Find("HealthSlider") != null)
+            {
+                GameObject.Find("HealthSlider").GetComponent<Slider>().maxValue = this.UnitOnTile.GetComponent<PiecePropScript>().MaxHealth;
+                GameObject.Find("HealthSlider").GetComponent<Slider>().value = this.UnitOnTile.GetComponent<PiecePropScript>().Health;
+            }
+            if (GameObject.Find("healthText") != null)
+            {
+                GameObject.Find("healthText").GetComponent<Text>().text = this.UnitOnTile.GetComponent<PiecePropScript>().Health.ToString();
+            }
+            if(GameObject.Find("DamageSlider") != null)
+            {
+                GameObject.Find("DamageSlider").GetComponent<Slider>().value = this.UnitOnTile.GetComponent<PiecePropScript>().Damage;
+            }
+            if (GameObject.Find("SpeedSlider") != null)
+            {
+                GameObject.Find("SpeedSlider").GetComponent<Slider>().value = this.UnitOnTile.GetComponent<PiecePropScript>().Movement;
+            }
+            
+            
+            
         }
         if (UnitMoveController.GetComponent<PawnMove>().isMoving == false)
         {

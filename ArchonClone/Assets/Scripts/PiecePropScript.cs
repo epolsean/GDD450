@@ -5,6 +5,7 @@ public class PiecePropScript : MonoBehaviour {
 
 	//Stats of a piece
     public int Health;
+    public int MaxHealth;
     public int Movement;
     public int Damage;
     public double SpecialStat; 
@@ -12,26 +13,30 @@ public class PiecePropScript : MonoBehaviour {
     
     // Use this for initialization
 	void Start () {
-        if(this.name == "BlackScout(Clone)" || this.name == "White02(Clone)")//stats for Scout
+        if(this.name == "BlackScout(Clone)" || this.name == "WhiteScout(Clone)")//stats for Scout
         {
+            MaxHealth = 50;
             Health = 50;
             Movement = 3;
             Damage = 15;
         }
-        else if(this.name == "BlackPawn(Clone)" || this.name == "WhitePawn(Clone)")//stats for Tank
+        else if(this.name == "BlackTank(Clone)" || this.name == "WhiteTank(Clone)")//stats for Tank
         {
+            MaxHealth = 100;
             Health = 100;
             Movement = 2;
             Damage = 20;
         }
         else if(this.name == "BlackRunner(Clone)" || this.name == "WhiteRunner(Clone)")//stats for Runner
         {
+            MaxHealth = 40;
             Health = 40;
-            Movement = 4;
+            Movement = 5;
             Damage = 6;
         }
         else//stats for Grunt
         {
+            MaxHealth = 70;
             Health = 70;
             Movement = 2;
             Damage = 8;

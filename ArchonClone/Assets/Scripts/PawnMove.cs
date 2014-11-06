@@ -32,17 +32,21 @@ public class PawnMove : MonoBehaviour {
         }
         if(isMoving && MoveToTile != null)
         {
-            if (SelectedPiece.name == "WhitePawn(Clone)" || SelectedPiece.name == "BlackPawn(Clone)")
+            if (SelectedPiece.name == "WhiteTank(Clone)" || SelectedPiece.name == "BlackTank(Clone)")
             {
                 MaxMove = 5 * 2;
             }
-            else if(SelectedPiece.name == "White02(Clone)"|| SelectedPiece.name == "Black02(Clone)")
+            else if(SelectedPiece.name == "WhiteGrunt(Clone)"|| SelectedPiece.name == "BlackGrunt(Clone)")
             {
                 MaxMove = 5 * 2.75;
             }
-            else if(SelectedPiece.name == "WhiteRunner(Clone)" || SelectedPiece.name == "BlackRunner")
+            else if(SelectedPiece.name == "WhiteRunner(Clone)" || SelectedPiece.name == "BlackRunner(Clone)")
             {
                 MaxMove = 5 * 3.25; 
+            }
+            else if(SelectedPiece.name == "WhiteScout(Clone)" || SelectedPiece.name == "BlackScout(Clone)")
+            {
+                MaxMove = 5 * 2.75;
             }
                 
         }
