@@ -40,6 +40,7 @@ public class Player2MovementController : MonoBehaviour
     public bool win = false;
     bool reloading = false;
     float reloadTime = 0.5f;
+    CharacterController controller;
 
     public GameObject MoveController;
 
@@ -49,6 +50,8 @@ public class Player2MovementController : MonoBehaviour
     {
         enemy = GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>();
         MoveController = GameObject.Find("MovementController");
+        controller = GetComponent<CharacterController>();
+
         //Determine Character and set up stats
         if (myCharacter == Character.Grunt)
         {
@@ -73,20 +76,6 @@ public class Player2MovementController : MonoBehaviour
     }
     void Update()
     {
-        if (!Network.isServer && !Network.isClient)
-            calledFromUpdatePlayer2();
-        else if (Network.isClient)
-        {
-            networkView.RPC("calledFromUpdatePlayer2", RPCMode.AllBuffered);
-            camMine.camera.rect = new Rect(0,0,1,1);
-            camEnemy.gameObject.SetActive(false);
-        }
-    }
-
-    [RPC]
-    void calledFromUpdatePlayer2()
-    {
-        CharacterController controller = GetComponent<CharacterController>();
         if (topDownView)
         {
             if (controller.isGrounded)
@@ -99,13 +88,7 @@ public class Player2MovementController : MonoBehaviour
                     }
                     else
                     {
-                        if (!Network.isClient)
-                        {
-                            transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick2"), 0, Input.GetAxis("360_VerticalRightStick2"));
-                            lastLooking = transform.forward;
-                        }
-                        else
-                            networkView.RPC("updateRotation", RPCMode.AllBuffered, 0);
+                        transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick2"), 0, Input.GetAxis("360_VerticalRightStick2"));
                     }
                     moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick2"), 0, Input.GetAxis("360_VerticalLeftStick2"));
                     moveDirection *= speed;
@@ -118,19 +101,14 @@ public class Player2MovementController : MonoBehaviour
                     }
                     else
                     {
-                        if (!Network.isClient)
-                        {
-                            transform.forward = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2"));
-                            lastLooking = transform.forward;
-                        }
-                        else
-                            networkView.RPC("updateRotation", RPCMode.AllBuffered, 1);
+                        transform.forward = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2"));
                     }
                     moveDirection = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2"));
                     moveDirection *= speed;
                 }
 
             }
+            lastLooking = transform.forward;
             moveDirection.y -= gravity * Time.deltaTime;
             controller.Move(moveDirection * Time.deltaTime);
         }
@@ -172,7 +150,6 @@ public class Player2MovementController : MonoBehaviour
 
             /*if ((Input.GetAxis("360_RBButton2") == 1 || Input.GetAxis("Fire2") == 1) && name == "Player 2 Controller" && bulletSize == 1 && reloading == false)
             {
-                Debug.Log(chargeTime);
                 chargeTime -= Time.deltaTime;
                 if (chargeTime < 0)
                 {
@@ -188,48 +165,34 @@ public class Player2MovementController : MonoBehaviour
                 {
                     if ((Input.GetAxis("360_RightTrigger2") == 1) && reloading == false)
                     {
-                        if (!Network.isClient && !Network.isServer)
-                        {
-                            Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.5f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                            bulletClone.rigidbody.useGravity = false;
-                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                            Destroy(bulletClone.gameObject, 3);
-                            audio.Play();
-                            bulletSize = 1;
-                            bulletSpeed = 25;
-                            chargeTime = 0.5f;
-                            halo.enabled = false;
-                            reloading = true;
-                        }
-                        else if (Network.isClient)
-                        {
-                            networkView.RPC("createBullet", RPCMode.AllBuffered);
-                        }
+                        Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.5f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                        bulletClone.rigidbody.useGravity = false;
+                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                        Destroy(bulletClone.gameObject, 3);
+                        audio.Play();
+                        bulletSize = 1;
+                        bulletSpeed = 25;
+                        chargeTime = 0.5f;
+                        halo.enabled = false;
+                        reloading = true;
                     }
                 }
                 else
                 {
                     if ((Input.GetAxis("Fire2") == 1) && reloading == false)
                     {
-                        if (!Network.isClient && !Network.isServer)
-                        {
-                            Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.5f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                            bulletClone.rigidbody.useGravity = false;
-                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                            Destroy(bulletClone.gameObject, 3);
-                            audio.Play();
-                            bulletSize = 1;
-                            bulletSpeed = 25;
-                            chargeTime = 0.5f;
-                            halo.enabled = false;
-                            reloading = true;
-                        }
-                        else if (Network.isClient)
-                        {
-                            networkView.RPC("createBullet", RPCMode.AllBuffered);
-                        }
+                        Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.5f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                        bulletClone.rigidbody.useGravity = false;
+                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                        Destroy(bulletClone.gameObject, 3);
+                        audio.Play();
+                        bulletSize = 1;
+                        bulletSpeed = 25;
+                        chargeTime = 0.5f;
+                        halo.enabled = false;
+                        reloading = true;
                     }
                 }
             }
@@ -248,7 +211,7 @@ public class Player2MovementController : MonoBehaviour
 
             if (win == false)
             {
-                if (Input.GetButtonUp("360_RightTrigger2") && swinging == false)
+                if (Input.GetAxis("360_RightTrigger2") == 1 && swinging == false)
                 {
                     GameObject sword = Instantiate(Sword, transform.position + this.transform.forward, transform.rotation) as GameObject;
                     sword.tag = tag;
@@ -282,9 +245,9 @@ public class Player2MovementController : MonoBehaviour
             //Application.LoadLevel("TestingHexTiles");
             //Destroy(this.gameObject);
         }
+
         if (health <= 0 && win == false)
         {
-            Debug.Log("win b4 : " + enemy.win);
             if (MoveController.GetComponent<PawnMove>().Player02.tag == "White")
             {
                 SpawnBasicUnits.WhitePieceCount--;
@@ -295,23 +258,7 @@ public class Player2MovementController : MonoBehaviour
             }
             Destroy(MoveController.GetComponent<PawnMove>().Player02);
             enemy.win = true;
-            Debug.Log("win after : " + enemy.win);
             //Destroy(this.gameObject);
-        }
-    }
-
-    [RPC]
-    void updateRotation(int mode)
-    {
-        if (mode == 0)
-        {
-            transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick2"), 0, Input.GetAxis("360_VerticalRightStick2"));
-            lastLooking = transform.forward;
-        }
-        else
-        {
-            transform.forward = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2"));
-            lastLooking = transform.forward;
         }
     }
 
@@ -320,13 +267,8 @@ public class Player2MovementController : MonoBehaviour
         //If the player gets shot
         if (other.tag == "robotBullet")
         {
-            if (!Network.isClient && !Network.isServer)
-            {
-                Destroy(other.gameObject);
-                health -= 10;
-            }
-            else if (Network.isClient)
-                networkView.RPC("destroyBullet", RPCMode.AllBuffered, (GameObject)other.gameObject);
+            Destroy(other.gameObject);
+            health -= 10;
         }
         //If the player gets hit with melee
         if (other.name == "Sword(Clone)" && other.tag != tag)
@@ -338,29 +280,5 @@ public class Player2MovementController : MonoBehaviour
             this.gameObject.GetComponent<CharacterController>().Move(2 * (this2That));
             health -= 10;
         }
-
-    }
-
-    [RPC]
-    void destroyBullet(GameObject other)
-    {
-        Network.Destroy(other);
-        health -= 10;
-    }
-
-    [RPC]
-    void createBullet()
-    {
-        Rigidbody bulletClone = Network.Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation, 1) as Rigidbody;
-        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-        bulletClone.rigidbody.useGravity = false;
-        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-        Destroy(bulletClone.gameObject, 3);
-        audio.Play();
-        bulletSize = 1;
-        bulletSpeed = 25;
-        chargeTime = 0.5f;
-        halo.enabled = false;
-        reloading = true;
     }
 }

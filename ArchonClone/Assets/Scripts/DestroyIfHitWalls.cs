@@ -10,13 +10,7 @@ public class DestroyIfHitWalls : MonoBehaviour {
             if (!Network.isClient && !Network.isServer)
                 Destroy(gameObject);
             else
-                networkView.RPC("destroyBullet", RPCMode.AllBuffered);
+                Network.Destroy(gameObject);
         }
-    }
-
-    [RPC]
-    void destroyBullet()
-    {
-        Network.Destroy(gameObject);
     }
 }
