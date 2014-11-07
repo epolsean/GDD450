@@ -70,17 +70,32 @@ public class TileProperties : MonoBehaviour {
             else if (this.UnitOnTile.name == "BlackGrunt(Clone)" && UnitMoveController.GetComponent<PawnMove>().BlackGruntPan != null)
             {
                 UnitMoveController.GetComponent<PawnMove>().BlackGruntPan.SetActive(true);
+                if (GameObject.Find("PieceNameText") != null)
+                {
+                    GameObject.Find("PieceNameText").GetComponent<Text>().text = "Organic Grunt";
+                }
             }
             else if (this.UnitOnTile.name == "WhiteTank(Clone)" && UnitMoveController.GetComponent<PawnMove>().WhiteTankPan != null)
             {
                 UnitMoveController.GetComponent<PawnMove>().WhiteTankPan.SetActive(true);
+                if (GameObject.Find("PieceNameText") != null)
+                {
+                    GameObject.Find("PieceNameText").GetComponent<Text>().text = "Synthetic Tank";
+                }
             }
             else if (this.UnitOnTile.name == "WhiteScout(Clone)" && UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan != null)
             {
                 UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan.SetActive(true);
+                if (GameObject.Find("PieceNameText") != null)
+                {
+                    GameObject.Find("PieceNameText").GetComponent<Text>().text = "Synthetic Scout";
+                }
             }
             
-            UnitMoveController.GetComponent<PawnMove>().StatPan.SetActive(true);
+            if(UnitMoveController.GetComponent<PawnMove>().StatPan != null)
+            {
+                UnitMoveController.GetComponent<PawnMove>().StatPan.SetActive(true);
+            }
             if (GameObject.Find("HealthSlider") != null)
             {
                 GameObject.Find("HealthSlider").GetComponent<Slider>().maxValue = this.UnitOnTile.GetComponent<PiecePropScript>().MaxHealth;
@@ -151,6 +166,10 @@ public class TileProperties : MonoBehaviour {
         {
             UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan.SetActive(false);
         }
+        if (GameObject.Find("PieceNameText") != null)
+        {
+            GameObject.Find("PieceNameText").GetComponent<Text>().text = "";
+        }
         if(this.tag == "WhiteTile")
         {
             renderer.material.color = Color.white;
@@ -219,7 +238,7 @@ public class TileProperties : MonoBehaviour {
     {
         if (GameObject.Find("EnemyTurnController") != null)
         {
-            if(TurnStateMachine.OnHoverPiece.name == "WhitePawn(Clone)")
+            if(TurnStateMachine.OnHoverPiece.name == "WhiteTank(Clone)")
             {
                 UnitMoveController.GetComponent<PawnMove>().SelectedPiece = UnitOnTile;
                 UnitMoveController.GetComponent<PawnMove>().isMoving = true;

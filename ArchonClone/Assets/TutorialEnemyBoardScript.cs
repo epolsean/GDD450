@@ -38,7 +38,7 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
         
         if(enemyTurn == 1/* && TurnStateMachine.state == TurnStateMachine.State.otherTurn*/)
         {
-            TutorialDummy = GameObject.Find("Black02(Clone)");
+            TutorialDummy = GameObject.Find("BlackGrunt(Clone)");
             UnitMovementController.GetComponent<PawnMove>().MoveToTile = Turn01Tile;
             UnitMovementController.GetComponent<PawnMove>().SelectedPiece = TutorialDummy;
 
