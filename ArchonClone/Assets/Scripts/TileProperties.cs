@@ -58,7 +58,7 @@ public class TileProperties : MonoBehaviour {
     {
         if(this.UnitOnTile != null)
         {
-            if(this.UnitOnTile.name == "BlackTank(Clone)")
+            if (this.UnitOnTile.name == "BlackTank(Clone)" && UnitMoveController.GetComponent<PawnMove>().BlackTankPan != null)
             {
                 UnitMoveController.GetComponent<PawnMove>().BlackTankPan.SetActive(true);
                 if (GameObject.Find("PieceNameText") != null)
@@ -67,15 +67,15 @@ public class TileProperties : MonoBehaviour {
                 }
                 
             }
-            else if (this.UnitOnTile.name == "BlackGrunt(Clone)")
+            else if (this.UnitOnTile.name == "BlackGrunt(Clone)" && UnitMoveController.GetComponent<PawnMove>().BlackGruntPan != null)
             {
                 UnitMoveController.GetComponent<PawnMove>().BlackGruntPan.SetActive(true);
             }
-            else if (this.UnitOnTile.name == "WhiteTank(Clone)")
+            else if (this.UnitOnTile.name == "WhiteTank(Clone)" && UnitMoveController.GetComponent<PawnMove>().WhiteTankPan != null)
             {
                 UnitMoveController.GetComponent<PawnMove>().WhiteTankPan.SetActive(true);
             }
-            else if (this.UnitOnTile.name == "WhiteScout(Clone)")
+            else if (this.UnitOnTile.name == "WhiteScout(Clone)" && UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan != null)
             {
                 UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan.SetActive(true);
             }
@@ -131,11 +131,26 @@ public class TileProperties : MonoBehaviour {
 
     public void OnMouseExit()
     {
-        UnitMoveController.GetComponent<PawnMove>().StatPan.SetActive(false);
-        UnitMoveController.GetComponent<PawnMove>().BlackTankPan.SetActive(false);
-        UnitMoveController.GetComponent<PawnMove>().BlackGruntPan.SetActive(false);
-        UnitMoveController.GetComponent<PawnMove>().WhiteTankPan.SetActive(false);
-        UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan.SetActive(false);
+        if(UnitMoveController.GetComponent<PawnMove>().StatPan != null)
+        {
+            UnitMoveController.GetComponent<PawnMove>().StatPan.SetActive(false);
+        }
+        if(UnitMoveController.GetComponent<PawnMove>().BlackTankPan != null)
+        {
+            UnitMoveController.GetComponent<PawnMove>().BlackTankPan.SetActive(false);
+        }
+        if(UnitMoveController.GetComponent<PawnMove>().BlackGruntPan != null)
+        {
+            UnitMoveController.GetComponent<PawnMove>().BlackGruntPan.SetActive(false);
+        }
+        if(UnitMoveController.GetComponent<PawnMove>().WhiteTankPan != null)
+        {
+            UnitMoveController.GetComponent<PawnMove>().WhiteTankPan.SetActive(false);
+        }
+        if(UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan != null)
+        {
+            UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan.SetActive(false);
+        }
         if(this.tag == "WhiteTile")
         {
             renderer.material.color = Color.white;
@@ -303,7 +318,7 @@ public class TileProperties : MonoBehaviour {
                 {
                     if (GameObject.Find("EnemyTurnConroller") != null)
                     {
-                        if (UnitOnTile.name == "Black02(Clone)")
+                        if (UnitOnTile.name == "BlackGrunt(Clone)")
                         {
                             Debug.Log("Fight");
                             UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
