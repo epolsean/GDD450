@@ -31,6 +31,15 @@ public class pieceMove : MonoBehaviour {
         //}
     }
 
+    public int CalcNewPathDist()
+    {
+        Path p = seeker.GetNewPath(transform.position, targetPosition);
+        print("PathNodeCopacity: " + p.vectorPath.Capacity);
+        return p.vectorPath.Capacity;
+
+        
+    }
+
     void OnPathComplete(Path newPath)
     {
         if (!newPath.error)
