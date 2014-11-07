@@ -38,7 +38,7 @@ public class TileProperties : MonoBehaviour {
             }
             else
             {
-                whatScene = Random.Range(0, 1);
+                whatScene = Random.Range(1, 10);
                 Debug.Log("GOTO fight Scene!!!");
                 fighting = false; 
                 fightTimer = 0;
@@ -51,7 +51,7 @@ public class TileProperties : MonoBehaviour {
                 }
                 else
                 {
-                    if (whatScene == 0)
+                    if (whatScene <=5)
                     {
                         Application.LoadLevelAdditive("RobotBattleSmall");
                     }
