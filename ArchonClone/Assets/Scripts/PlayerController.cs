@@ -291,7 +291,7 @@ public class PlayerController : MonoBehaviour {
         //If the player gets shot
         if (other.tag == "alienBullet" || other.tag == "robotBullet")
         {
-            Network.Destroy(other.gameObject);
+            //Network.Destroy(other.gameObject);
             //networkView.RPC("subHealth", RPCMode.AllBuffered);
         }
         //If the player gets hit with melee
