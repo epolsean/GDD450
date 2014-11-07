@@ -15,6 +15,8 @@ public class TileProperties : MonoBehaviour {
     public double fightTimer;
     public bool Occupied = false;
     public bool canPlace;
+
+    int whatScene = 0;
     
     
     // Use this for initialization
@@ -36,6 +38,7 @@ public class TileProperties : MonoBehaviour {
             }
             else
             {
+                whatScene = Random.Range(0, 1);
                 Debug.Log("GOTO fight Scene!!!");
                 fighting = false; 
                 fightTimer = 0;
@@ -48,7 +51,14 @@ public class TileProperties : MonoBehaviour {
                 }
                 else
                 {
-                    Application.LoadLevelAdditive("BattleTest");
+                    if (whatScene == 0)
+                    {
+                        Application.LoadLevelAdditive("RobotBattleSmall");
+                    }
+                    else
+                    {
+                        Application.LoadLevelAdditive("AlienBattleSmall");
+                    }
                 }
             }
         }

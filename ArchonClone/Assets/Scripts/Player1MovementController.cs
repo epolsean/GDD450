@@ -128,7 +128,7 @@ public class Player1MovementController : MonoBehaviour
                 {
                     transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("Horizontal"));
 
-                    moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                    moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
                     moveDirection = transform.TransformDirection(moveDirection);
                     moveDirection *= speed;
                 }
@@ -240,7 +240,7 @@ public class Player1MovementController : MonoBehaviour
             {
                 TurnStateMachine.state = TurnStateMachine.State.playerTurn;
             }
-            Destroy(GameObject.Find("BattleTestAdditive"));
+            Destroy(GameObject.Find("BattleSceneAdditive"));
             Destroy(MoveController.GetComponent<PawnMove>().Player02);
             //Application.LoadLevel("TestingHexTiles");
             //Destroy(this.gameObject);

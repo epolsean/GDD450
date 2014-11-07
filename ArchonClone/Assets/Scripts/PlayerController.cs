@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour {
                         {
                             transform.forward = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
                         }
-                        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
                         moveDirection *= speed;
                     }
 
@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour {
                     {
                         transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("Horizontal"));
 
-                        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
                         moveDirection = transform.TransformDirection(moveDirection);
                         moveDirection *= speed;
                     }
@@ -261,7 +261,7 @@ public class PlayerController : MonoBehaviour {
             //    {
             //        TurnStateMachine.state = TurnStateMachine.State.playerTurn;
             //    }
-            //    Destroy(GameObject.Find("BattleTestAdditive"));
+            //    Destroy(GameObject.Find("BattleSceneAdditive"));
             //    //Application.LoadLevel("TestingHexTiles");
             //    //Destroy(this.gameObject);
             //}
@@ -292,7 +292,7 @@ public class PlayerController : MonoBehaviour {
         if (other.tag == "alienBullet" || other.tag == "robotBullet")
         {
             Network.Destroy(other.gameObject);
-            networkView.RPC("subHealth", RPCMode.AllBuffered);
+            //networkView.RPC("subHealth", RPCMode.AllBuffered);
         }
         //If the player gets hit with melee
         if (other.name == "Sword(Clone)" && other.tag != tag)
