@@ -24,7 +24,11 @@ public class pieceMove : MonoBehaviour {
 
     public void GetNewPath()
     {
-        seeker.StartPath(transform.position, targetPosition, OnPathComplete);
+        //Path p = seeker.GetNewPath(transform.position, targetPosition);
+        //if (p.vectorPath.Count > 0)
+        //{
+            seeker.StartPath(transform.position, targetPosition, OnPathComplete);
+        //}
     }
 
     void OnPathComplete(Path newPath)
@@ -49,8 +53,10 @@ public class pieceMove : MonoBehaviour {
                 Debug.Log("DA END");
                 GridManager.rescan = true;
                 MoveController.GetComponent<PawnMove>().SelectedPiece.transform.position = targetPosition;//MoveController.GetComponent<PawnMove>().MoveToTile.transform.position;
+                isMoving = false;
+                print("Path Waypoint Count: " + path.vectorPath.Count);
             }
-            isMoving = false;
+            
             //MoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
             //MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(false);
             

@@ -130,6 +130,22 @@ public class TileProperties : MonoBehaviour {
                 this.datNode.SetActive(true);
                 GridManager.rescan = true; 
             }
+            
+            /*if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().seeker.CalcNewPathLength(UnitMoveController.GetComponent<PawnMove>().SelectedPiece.transform.position, UnitMoveController.GetComponent<PawnMove>().MoveToTile.transform.position) <= 2)
+            {
+                print("path <= 2");
+                UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().seeker.StartPath(UnitMoveController.GetComponent<PawnMove>().SelectedPiece.transform.position, UnitMoveController.GetComponent<PawnMove>().MoveToTile.transform.position);
+                renderer.material.color = Color.green;
+                canPlace = true;
+            }
+            else
+            {
+                print("path > 2");
+                print(UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().seeker.CalcNewPathLength(UnitMoveController.GetComponent<PawnMove>().SelectedPiece.transform.position, UnitMoveController.GetComponent<PawnMove>().MoveToTile.transform.position));
+                renderer.material.color = Color.red;
+                canPlace = false; 
+            }*/
+
             if(Vector3.Distance(UnitMoveController.GetComponent<PawnMove>().SelectedPiece.transform.position, this.transform.position) <= UnitMoveController.GetComponent<PawnMove>().MaxMove)
             {
                 renderer.material.color = Color.green;
