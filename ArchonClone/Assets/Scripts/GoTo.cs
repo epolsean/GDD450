@@ -3,7 +3,12 @@ using System.Collections;
 
 public class GoTo : MonoBehaviour {
 
-	public void Local () 
+    public void Single()
+    {
+        //Application.LoadLevel("TestingHexTiles");
+    }
+
+	public void Local() 
     {
         Application.LoadLevel("TestingHexTiles");
 	}

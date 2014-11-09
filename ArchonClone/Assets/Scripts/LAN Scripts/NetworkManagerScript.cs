@@ -16,7 +16,7 @@ public class NetworkManagerScript : MonoBehaviour {
     public EventSystem eventSystem;
 
     float startTime = 0;
-    int count = 5;
+    int count = 3;
     string serverName = "Default Server Name";
     string gameName = "GDD450_Test_LAN_Game";
     bool refreshing;
@@ -102,7 +102,7 @@ public class NetworkManagerScript : MonoBehaviour {
                             count--;
                         }
                         else
-                            Application.LoadLevel("BattleTest");
+                            Application.LoadLevel("TestingHexTiles");
                         startTime = Time.time + 1f;
                     }
                 }
