@@ -16,6 +16,8 @@ public class TileProperties : MonoBehaviour {
     public bool Occupied = false;
     public bool canPlace;
 
+    public Animator PieceAnim;
+
     int whatScene = 0;
     
     
@@ -26,6 +28,14 @@ public class TileProperties : MonoBehaviour {
         datNode = transform.FindChild("Node").gameObject;
         AStarController = GameObject.Find("ISOCamera");
         SoundController = GameObject.Find("UISoundController");
+        if(UnitOnTile != null)
+        {
+            if (UnitOnTile.GetComponentInChildren<Animator>() != null)
+            {
+                print("Set Animator");
+                PieceAnim = UnitOnTile.GetComponentInChildren<Animator>();
+            }
+        }
 	}
 	
 	// Update is called once per frame
@@ -241,6 +251,12 @@ public class TileProperties : MonoBehaviour {
         UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().Occupied = false;
         UnitMoveController.GetComponent<PawnMove>().isMoving = false;
         canPlace = false;
+        /*if(PieceAnim != null)
+        {
+            print("Call Walking");
+            PieceAnim.SetBool("isWalking", true);
+        }*/
+        
         //datNode.gameObject.SetActive(true);
     }
 

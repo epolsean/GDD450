@@ -14,12 +14,19 @@ public class pieceMove : MonoBehaviour {
     int currentWaypoint = 0;
     public bool isMoving = false;
     public GameObject MoveController;
+    public Animator PieceAnim;
 
     void Start()
     {
         //targetPosition = GameObject.FindWithTag("GroundTargetObject").transform.position;
         //GetNewPath();
         MoveController = GameObject.Find("MovementController");
+        if(name == "BlackGrunt(Clone)")
+        {
+            print("Set Piece Animator");
+            PieceAnim = GetComponentInChildren<Animator>();
+            print("Animator Set = true");
+        }
     }
 
     public void GetNewPath()
@@ -28,6 +35,11 @@ public class pieceMove : MonoBehaviour {
         //if (p.vectorPath.Count > 0)
         //{
             seeker.StartPath(transform.position, targetPosition, OnPathComplete);
+            if(name == "BlackGrunt(Clone)")
+            {
+                //PieceAnim.SetTrigger("WalkOnce");
+                PieceAnim.SetBool("isWalking", true);
+            }
         //}
     }
 
@@ -59,9 +71,16 @@ public class pieceMove : MonoBehaviour {
         {
             if(isMoving)
             {
+
+                if (name == "BlackGrunt(Clone)")
+                {
+                    //GetComponentInChildren<Animator>().SetBool("isWalking", false);
+                    PieceAnim.SetBool("isWalking", false);
+                } 
                 Debug.Log("DA END");
                 GridManager.rescan = true;
-                MoveController.GetComponent<PawnMove>().SelectedPiece.transform.position = targetPosition;//MoveController.GetComponent<PawnMove>().MoveToTile.transform.position;
+                transform.position = targetPosition;
+                
                 isMoving = false;
                 print("Path Waypoint Count: " + path.vectorPath.Count);
             }

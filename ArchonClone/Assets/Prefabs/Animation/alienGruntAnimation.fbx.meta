@@ -1,0 +1,428 @@
+fileFormatVersion: 2
+guid: 9ae886356320e494793f702f3043c146
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: alienGrunt
+    100002: //RootNode
+    100004: body
+    100006: head
+    100008: leftBF
+    100010: leftBK
+    100012: leftBL
+    100014: leftFF
+    100016: leftFK
+    100018: leftFL
+    100020: leftMBF
+    100022: leftMBK
+    100024: leftMBL
+    100026: leftMFF
+    100028: leftMFK
+    100030: leftMFL
+    100032: leftPIncher001
+    100034: leftPincher002
+    100036: leftPincher003
+    100038: leftPincher004
+    100040: leftPincherRoot
+    100042: leftTail001
+    100044: leftTail002
+    100046: leftTail003
+    100048: leftTail004
+    100050: leftTailRoot
+    100052: neck
+    100054: rightBF
+    100056: rightBK
+    100058: rightBL
+    100060: rightFF
+    100062: rightFK
+    100064: rightFL
+    100066: rightMBF
+    100068: rightMBK
+    100070: rightMBL
+    100072: rightMFF
+    100074: rightMFK
+    100076: rightMFL
+    100078: rightPincher001
+    100080: rightPincher002
+    100082: rightPincher003
+    100084: rightPincher004
+    100086: rightPincher005
+    100088: rightPincherRoot
+    100090: rightTail001
+    100092: rightTail002
+    100094: rightTail003
+    100096: rightTail004
+    100098: rightTailRoot
+    100100: tail
+    100102: whatWhat
+    400000: alienGrunt
+    400002: //RootNode
+    400004: body
+    400006: head
+    400008: leftBF
+    400010: leftBK
+    400012: leftBL
+    400014: leftFF
+    400016: leftFK
+    400018: leftFL
+    400020: leftMBF
+    400022: leftMBK
+    400024: leftMBL
+    400026: leftMFF
+    400028: leftMFK
+    400030: leftMFL
+    400032: leftPIncher001
+    400034: leftPincher002
+    400036: leftPincher003
+    400038: leftPincher004
+    400040: leftPincherRoot
+    400042: leftTail001
+    400044: leftTail002
+    400046: leftTail003
+    400048: leftTail004
+    400050: leftTailRoot
+    400052: neck
+    400054: rightBF
+    400056: rightBK
+    400058: rightBL
+    400060: rightFF
+    400062: rightFK
+    400064: rightFL
+    400066: rightMBF
+    400068: rightMBK
+    400070: rightMBL
+    400072: rightMFF
+    400074: rightMFK
+    400076: rightMFL
+    400078: rightPincher001
+    400080: rightPincher002
+    400082: rightPincher003
+    400084: rightPincher004
+    400086: rightPincher005
+    400088: rightPincherRoot
+    400090: rightTail001
+    400092: rightTail002
+    400094: rightTail003
+    400096: rightTail004
+    400098: rightTailRoot
+    400100: tail
+    400102: whatWhat
+    4300000: alienGrunt
+    7400000: AlienGruntIdle
+    7400002: AlienGruntWalk
+    9500000: //RootNode
+    13700000: alienGrunt
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: AlienGruntIdle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: alienGrunt
+        weight: 1
+      - path: body
+        weight: 1
+      - path: body/leftBL
+        weight: 1
+      - path: body/leftBL/leftBK
+        weight: 1
+      - path: body/leftBL/leftBK/leftBF
+        weight: 1
+      - path: body/leftFL
+        weight: 1
+      - path: body/leftFL/leftFK
+        weight: 1
+      - path: body/leftFL/leftFK/leftFF
+        weight: 1
+      - path: body/leftMBL
+        weight: 1
+      - path: body/leftMBL/leftMBK
+        weight: 1
+      - path: body/leftMBL/leftMBK/leftMBF
+        weight: 1
+      - path: body/leftMFL
+        weight: 1
+      - path: body/leftMFL/leftMFK
+        weight: 1
+      - path: body/leftMFL/leftMFK/leftMFF
+        weight: 1
+      - path: body/neck
+        weight: 1
+      - path: body/neck/head
+        weight: 1
+      - path: body/neck/head/leftPIncher001
+        weight: 1
+      - path: body/neck/head/leftPIncher001/leftPincher002
+        weight: 1
+      - path: body/neck/head/leftPIncher001/leftPincher002/leftPincher003
+        weight: 1
+      - path: body/neck/head/leftPIncher001/leftPincher002/leftPincher003/leftPincher004
+        weight: 1
+      - path: body/neck/head/leftPIncher001/leftPincher002/leftPincher003/leftPincher004/leftPincherRoot
+        weight: 1
+      - path: body/neck/head/rightPincher001
+        weight: 1
+      - path: body/neck/head/rightPincher001/rightPincher002
+        weight: 1
+      - path: body/neck/head/rightPincher001/rightPincher002/rightPincher003
+        weight: 1
+      - path: body/neck/head/rightPincher001/rightPincher002/rightPincher003/rightPincher004
+        weight: 1
+      - path: body/neck/head/rightPincher001/rightPincher002/rightPincher003/rightPincher004/rightPincher005
+        weight: 1
+      - path: body/neck/head/rightPincher001/rightPincher002/rightPincher003/rightPincher004/rightPincher005/rightPincherRoot
+        weight: 1
+      - path: body/rightBL
+        weight: 1
+      - path: body/rightBL/rightBK
+        weight: 1
+      - path: body/rightBL/rightBK/rightBF
+        weight: 1
+      - path: body/rightFL
+        weight: 1
+      - path: body/rightFL/rightFK
+        weight: 1
+      - path: body/rightFL/rightFK/rightFF
+        weight: 1
+      - path: body/rightMBL
+        weight: 1
+      - path: body/rightMBL/rightMBK
+        weight: 1
+      - path: body/rightMBL/rightMBK/rightMBF
+        weight: 1
+      - path: body/rightMFL
+        weight: 1
+      - path: body/rightMFL/rightMFK
+        weight: 1
+      - path: body/rightMFL/rightMFK/rightMFF
+        weight: 1
+      - path: body/whatWhat
+        weight: 1
+      - path: body/whatWhat/tail
+        weight: 1
+      - path: body/whatWhat/tail/leftTail001
+        weight: 1
+      - path: body/whatWhat/tail/leftTail001/leftTail002
+        weight: 1
+      - path: body/whatWhat/tail/leftTail001/leftTail002/leftTail003
+        weight: 1
+      - path: body/whatWhat/tail/leftTail001/leftTail002/leftTail003/leftTail004
+        weight: 1
+      - path: body/whatWhat/tail/leftTail001/leftTail002/leftTail003/leftTail004/leftTailRoot
+        weight: 1
+      - path: body/whatWhat/tail/rightTail001
+        weight: 1
+      - path: body/whatWhat/tail/rightTail001/rightTail002
+        weight: 1
+      - path: body/whatWhat/tail/rightTail001/rightTail002/rightTail003
+        weight: 1
+      - path: body/whatWhat/tail/rightTail001/rightTail002/rightTail003/rightTail004
+        weight: 1
+      - path: body/whatWhat/tail/rightTail001/rightTail002/rightTail003/rightTail004/rightTailRoot
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: AlienGruntWalk
+      takeName: Take 001
+      firstFrame: 255
+      lastFrame: 450
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: alienGrunt
+        weight: 1
+      - path: body
+        weight: 1
+      - path: body/leftBL
+        weight: 1
+      - path: body/leftBL/leftBK
+        weight: 1
+      - path: body/leftBL/leftBK/leftBF
+        weight: 1
+      - path: body/leftFL
+        weight: 1
+      - path: body/leftFL/leftFK
+        weight: 1
+      - path: body/leftFL/leftFK/leftFF
+        weight: 1
+      - path: body/leftMBL
+        weight: 1
+      - path: body/leftMBL/leftMBK
+        weight: 1
+      - path: body/leftMBL/leftMBK/leftMBF
+        weight: 1
+      - path: body/leftMFL
+        weight: 1
+      - path: body/leftMFL/leftMFK
+        weight: 1
+      - path: body/leftMFL/leftMFK/leftMFF
+        weight: 1
+      - path: body/neck
+        weight: 1
+      - path: body/neck/head
+        weight: 1
+      - path: body/neck/head/leftPIncher001
+        weight: 1
+      - path: body/neck/head/leftPIncher001/leftPincher002
+        weight: 1
+      - path: body/neck/head/leftPIncher001/leftPincher002/leftPincher003
+        weight: 1
+      - path: body/neck/head/leftPIncher001/leftPincher002/leftPincher003/leftPincher004
+        weight: 1
+      - path: body/neck/head/leftPIncher001/leftPincher002/leftPincher003/leftPincher004/leftPincherRoot
+        weight: 1
+      - path: body/neck/head/rightPincher001
+        weight: 1
+      - path: body/neck/head/rightPincher001/rightPincher002
+        weight: 1
+      - path: body/neck/head/rightPincher001/rightPincher002/rightPincher003
+        weight: 1
+      - path: body/neck/head/rightPincher001/rightPincher002/rightPincher003/rightPincher004
+        weight: 1
+      - path: body/neck/head/rightPincher001/rightPincher002/rightPincher003/rightPincher004/rightPincher005
+        weight: 1
+      - path: body/neck/head/rightPincher001/rightPincher002/rightPincher003/rightPincher004/rightPincher005/rightPincherRoot
+        weight: 1
+      - path: body/rightBL
+        weight: 1
+      - path: body/rightBL/rightBK
+        weight: 1
+      - path: body/rightBL/rightBK/rightBF
+        weight: 1
+      - path: body/rightFL
+        weight: 1
+      - path: body/rightFL/rightFK
+        weight: 1
+      - path: body/rightFL/rightFK/rightFF
+        weight: 1
+      - path: body/rightMBL
+        weight: 1
+      - path: body/rightMBL/rightMBK
+        weight: 1
+      - path: body/rightMBL/rightMBK/rightMBF
+        weight: 1
+      - path: body/rightMFL
+        weight: 1
+      - path: body/rightMFL/rightMFK
+        weight: 1
+      - path: body/rightMFL/rightMFK/rightMFF
+        weight: 1
+      - path: body/whatWhat
+        weight: 1
+      - path: body/whatWhat/tail
+        weight: 1
+      - path: body/whatWhat/tail/leftTail001
+        weight: 1
+      - path: body/whatWhat/tail/leftTail001/leftTail002
+        weight: 1
+      - path: body/whatWhat/tail/leftTail001/leftTail002/leftTail003
+        weight: 1
+      - path: body/whatWhat/tail/leftTail001/leftTail002/leftTail003/leftTail004
+        weight: 1
+      - path: body/whatWhat/tail/leftTail001/leftTail002/leftTail003/leftTail004/leftTailRoot
+        weight: 1
+      - path: body/whatWhat/tail/rightTail001
+        weight: 1
+      - path: body/whatWhat/tail/rightTail001/rightTail002
+        weight: 1
+      - path: body/whatWhat/tail/rightTail001/rightTail002/rightTail003
+        weight: 1
+      - path: body/whatWhat/tail/rightTail001/rightTail002/rightTail003/rightTail004
+        weight: 1
+      - path: body/whatWhat/tail/rightTail001/rightTail002/rightTail003/rightTail004/rightTailRoot
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
