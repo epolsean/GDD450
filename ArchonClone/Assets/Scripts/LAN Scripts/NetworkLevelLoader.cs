@@ -22,8 +22,8 @@ public class NetworkLevelLoader : MonoBehaviour {
         {
             GameObject p1 = (GameObject)Instantiate(player1, spawn1.transform.position, spawn1.transform.rotation);
             GameObject p2 = (GameObject)Instantiate(player2, spawn2.transform.position, spawn2.transform.rotation);
-            p1.transform.parent = GameObject.Find("BattleTestAdditive").transform;
-            p2.transform.parent = GameObject.Find("BattleTestAdditive").transform;
+            p1.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
+            p2.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
         }
         else
         {

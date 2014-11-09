@@ -369,6 +369,14 @@ public class Seeker : MonoBehaviour {
 		
 		return p;
 	}
+
+    public int CalcNewPathLength(Vector3 start, Vector3 end)
+    {
+        int wayPointCount = 0;
+        Path p = GetNewPath(start, end);
+        wayPointCount = p.vectorPath.Count;
+        return wayPointCount;
+    }
 	
 	/** Call this function to start calculating a path.
 	 * \param start		The start point of the path
@@ -399,7 +407,7 @@ public class Seeker : MonoBehaviour {
 	 * \a Callback will not be called if the path is canceled (e.g when a new path is requested before the previous one has completed) */
 	public Path StartPath (Vector3 start, Vector3 end, OnPathDelegate callback, int graphMask) {
 		Path p = GetNewPath (start,end);
-        print("path length: " + p.GetTotalLength());
+        print("path length On Gen: " + p.path.Count);
 		return StartPath (p, callback, graphMask);
 	}
 	

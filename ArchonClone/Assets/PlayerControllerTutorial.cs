@@ -96,7 +96,7 @@ public class PlayerControllerTutorial : MonoBehaviour
                         {
                             transform.forward = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
                         }
-                        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
                         moveDirection *= speed;
                     }
 
@@ -128,7 +128,7 @@ public class PlayerControllerTutorial : MonoBehaviour
                         {
                             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
                         }
-                        moveDirection = transform.TransformDirection(moveDirection);
+                        moveDirection = transform.TransformDirection(moveDirection) + (transform.right * Input.GetAxis("Strafe1"));
                         moveDirection *= speed;
                     }
                 }
@@ -180,7 +180,7 @@ public class PlayerControllerTutorial : MonoBehaviour
                     }
                     else
                     {
-                        if ((Input.GetButtonUp("Fire1")) && reloading == false)
+                        if ((Input.GetAxis("Fire1") == 1) && reloading == false)
                         {
                             Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
                             bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
