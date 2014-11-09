@@ -14,8 +14,12 @@ public class PawnMove : MonoBehaviour {
     public GameObject StatPan;
     public GameObject BlackGruntPan;
     public GameObject BlackTankPan;
+    public GameObject BlackRunnerPan;
+    public GameObject BlackScoutPan;
     public GameObject WhiteScoutPan;
-    public GameObject WhiteTankPan; 
+    public GameObject WhiteTankPan;
+    public GameObject WhiteGruntPan;
+    public GameObject WhiteRunnerPan;
 
     // Use this for initialization
 	void Start () {
@@ -42,7 +46,7 @@ public class PawnMove : MonoBehaviour {
             }
             else if(SelectedPiece.name == "WhiteRunner(Clone)" || SelectedPiece.name == "BlackRunner(Clone)")
             {
-                MaxMove = 5 * 3.25; 
+                MaxMove = 5 * 3.5; 
             }
             else if(SelectedPiece.name == "WhiteScout(Clone)" || SelectedPiece.name == "BlackScout(Clone)")
             {
