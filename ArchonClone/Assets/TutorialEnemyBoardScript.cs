@@ -45,7 +45,7 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
             GameObject newTarget = Instantiate(datTarget, Turn01Tile.transform.position, Turn01Tile.transform.rotation) as GameObject;
             TutorialDummy.GetComponent<pieceMove>().targetPosition = newTarget.transform.position;
             TutorialDummy.GetComponent<pieceMove>().GetNewPath();
-            //TutorialDummy.GetComponent<pieceMove>().isMoving = true;
+            TutorialDummy.GetComponent<pieceMove>().isMoving = true;
             Destroy(newTarget.gameObject);
             Turn01Tile.GetComponent<TileProperties>().UnitOnTile = TutorialDummy;
             //this.datNode.gameObject.SetActive(true);

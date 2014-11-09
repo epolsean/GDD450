@@ -251,13 +251,7 @@ public class TileProperties : MonoBehaviour {
         UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().Occupied = false;
         UnitMoveController.GetComponent<PawnMove>().isMoving = false;
         canPlace = false;
-        /*if(PieceAnim != null)
-        {
-            print("Call Walking");
-            PieceAnim.SetBool("isWalking", true);
-        }*/
-        
-        //datNode.gameObject.SetActive(true);
+
     }
 
     void SelectPiece()
