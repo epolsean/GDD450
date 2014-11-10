@@ -7,8 +7,6 @@ public class MenuCursorController : MonoBehaviour
 {
     GameObject eSystem;
     public GameObject firstSelected;
-    Vector3 moveDirection = Vector3.zero;
-    float speed = 5.0F;
 
     public GameObject cursor;
 

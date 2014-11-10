@@ -66,6 +66,11 @@ public class CursorController : MonoBehaviour
                 cursor.transform.position = new Vector3(Input.mousePosition.x + 6, Input.mousePosition.y - 6, Input.mousePosition.z);
             }
         }
+
+        Vector3 pos = cursor.transform.position;
+        pos.x = Mathf.Clamp(cursor.transform.position.x, 6, Screen.width-6);
+        pos.y = Mathf.Clamp(cursor.transform.position.y, 6, Screen.height-6);
+        cursor.transform.position = pos;
     }
 }
 
