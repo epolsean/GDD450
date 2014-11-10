@@ -20,7 +20,7 @@ public class TutorialTextHints : MonoBehaviour
         }
         else
         {
-            continueText.GetComponent<Text>().text = "Press the Space Bar to continue";
+            continueText.GetComponent<Text>().text = "Press the 'R' key to continue";
         }
         if (curTutorialStep == 0)
         {
@@ -30,7 +30,7 @@ public class TutorialTextHints : MonoBehaviour
             }
             else
             {
-                GetComponent<Text>().text = "Use the WASD keys to move and look around";
+                GetComponent<Text>().text = "Use the WASD keys to move and look around. You can also use the 'Q' key to strafe left and the 'E' key to strafe right";
             }
         }
         else if (curTutorialStep == 1)
@@ -41,12 +41,12 @@ public class TutorialTextHints : MonoBehaviour
             }
             else
             {
-                GetComponent<Text>().text = "Press the E key to fire a bullet";
+                GetComponent<Text>().text = "Press the 'Space bar' to fire a bullet";
             }
         }
         else if (curTutorialStep == 2)
         {
-            GetComponent<Text>().text = "The enemy is somewhere on the map and it is up to you to find and destroy them";
+            GetComponent<Text>().text = "The enemy is somewhere on the map and it is up to you to find and destroy them. When the enemies health is low enough another hint will appear";
         }
         else if (curTutorialStep == 3)
         {
@@ -57,7 +57,7 @@ public class TutorialTextHints : MonoBehaviour
         }
         else if (curTutorialStep == 4)
         {
-            GetComponent<Text>().text = "In the settings you can change your preference of camera to either fight battles in top down or third person";
+            GetComponent<Text>().text = "In the settings you can change your preference of your character view to either fight battles in top down or third person";
         }
         else if (curTutorialStep == 5)
         {

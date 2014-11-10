@@ -88,7 +88,7 @@ public class SetupTutorial : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyUp(KeyCode.Space) && (TutorialTextHints.curTutorialStep <= 2 || TutorialTextHints.curTutorialStep == 4))
+            if (Input.GetKeyUp(KeyCode.R) && (TutorialTextHints.curTutorialStep <= 2 || TutorialTextHints.curTutorialStep == 4))
             {
                 TutorialTextHints.curTutorialStep++;
             }

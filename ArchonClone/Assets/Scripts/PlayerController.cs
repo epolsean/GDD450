@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour {
     public Camera camEnemy;
 
     public bool swinging = false;
-    float swingTimer = 0.3f;
+    float swingTimer = 0.5f;
 
     Player1MovementController self1;
     Player2MovementController self2;
@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour {
 
     public float health;
     int bulletSize;
-    float chargeTime = 2.0f;
 
     public bool win = false;
     bool reloading = false;
@@ -186,17 +185,6 @@ public class PlayerController : MonoBehaviour {
                     }
                 }
 
-                /*if ((Input.GetAxis("360_RightTrigger1") == 1 || Input.GetAxis("Fire1") == 1) && bulletSize == 1 && reloading == false)
-                {
-                    chargeTime -= Time.deltaTime;
-                    if (chargeTime < 0)
-                    {
-                        halo.enabled = true;
-                        bulletSize = 2;
-                        bulletSpeed -= 4;
-                    }
-                }*/
-
                 if (win == false)
                 {
                     if (Input.GetJoystickNames().Length != 0)
@@ -231,12 +219,25 @@ public class PlayerController : MonoBehaviour {
 
                 if (win == false)
                 {
-                    if (Input.GetAxis("360_RightTrigger1") == 1 && swinging == false)
+                    if (Input.GetJoystickNames().Length != 0)
                     {
-                        GameObject sword = Instantiate(Sword, transform.position + this.transform.forward, transform.rotation) as GameObject;
-                        sword.tag = tag;
-                        swinging = true;
-                        Destroy(sword.gameObject, 0.3f);
+                        if ((Input.GetAxis("360_RightTrigger1") == 1) && swinging == false)
+                        {
+                            GameObject sword = Instantiate(Sword, transform.position + 3 * this.transform.forward, transform.rotation) as GameObject;
+                            sword.tag = tag;
+                            swinging = true;
+                            Destroy(sword.gameObject, 0.2f);
+                        }
+                    }
+                    else
+                    {
+                        if ((Input.GetAxis("Fire1") == 1) && swinging == false)
+                        {
+                            GameObject sword = Instantiate(Sword, transform.position + 3 * this.transform.forward, transform.rotation) as GameObject;
+                            sword.tag = tag;
+                            swinging = true;
+                            Destroy(sword.gameObject, 0.2f);
+                        }
                     }
                 }
             }
@@ -295,7 +296,7 @@ public class PlayerController : MonoBehaviour {
             //networkView.RPC("subHealth", RPCMode.AllBuffered);
         }
         //If the player gets hit with melee
-        if (other.name == "Sword(Clone)" && other.tag != tag)
+        /*if (other.name == "Sword(Clone)" && other.tag != tag)
         {
             if(enemy1 == null)
                 enemy1.swinging = false;
@@ -306,7 +307,7 @@ public class PlayerController : MonoBehaviour {
             Vector3 this2That = new Vector3(this.transform.position.x - other.transform.position.x, 0, this.transform.position.z - other.transform.position.z);
             this.gameObject.GetComponent<CharacterController>().Move(2 * (this2That));
             health -= 10;
-        }
+        }*/
 
     }
 
@@ -320,7 +321,6 @@ public class PlayerController : MonoBehaviour {
         audio.Play();
         bulletSize = 1;
         bulletSpeed = 25;
-        chargeTime = 0.5f;
         //halo.enabled = false;
 
         //Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.5f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
@@ -331,7 +331,6 @@ public class PlayerController : MonoBehaviour {
         //audio.Play();
         //bulletSize = 1;
         //bulletSpeed = 25;
-        //chargeTime = 0.5f;
         //halo.enabled = false;
         //reloading = true;
     }

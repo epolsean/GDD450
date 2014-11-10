@@ -29,13 +29,12 @@ public class Player2MovementController : MonoBehaviour
     public Camera camEnemy;
 
     public bool swinging = false;
-    float swingTimer = 0.3f;
+    float swingTimer = 0.5f;
 
     Player1MovementController enemy;
 
     public float health;
     int bulletSize;
-    float chargeTime = 2.0f;
 
     public bool win = false;
     bool reloading = false;
@@ -148,17 +147,6 @@ public class Player2MovementController : MonoBehaviour
                 }
             }
 
-            /*if ((Input.GetAxis("360_RBButton2") == 1 || Input.GetAxis("Fire2") == 1) && name == "Player 2 Controller" && bulletSize == 1 && reloading == false)
-            {
-                chargeTime -= Time.deltaTime;
-                if (chargeTime < 0)
-                {
-                    halo.enabled = true;
-                    bulletSize = 2;
-                    bulletSpeed -= 4;
-                }
-            }*/
-
             if (win == false)
             {
                 if (Input.GetJoystickNames().Length != 0)
@@ -173,7 +161,6 @@ public class Player2MovementController : MonoBehaviour
                         audio.Play();
                         bulletSize = 1;
                         bulletSpeed = 25;
-                        chargeTime = 0.5f;
                         halo.enabled = false;
                         reloading = true;
                     }
@@ -190,7 +177,6 @@ public class Player2MovementController : MonoBehaviour
                         audio.Play();
                         bulletSize = 1;
                         bulletSpeed = 25;
-                        chargeTime = 0.5f;
                         halo.enabled = false;
                         reloading = true;
                     }
@@ -204,19 +190,32 @@ public class Player2MovementController : MonoBehaviour
                 swingTimer -= Time.deltaTime;
                 if (swingTimer < 0)
                 {
-                    swingTimer = 0.3f;
+                    swingTimer = 0.2f;
                     swinging = false;
                 }
             }
 
             if (win == false)
             {
-                if (Input.GetAxis("360_RightTrigger2") == 1 && swinging == false)
+                if (Input.GetJoystickNames().Length != 0)
                 {
-                    GameObject sword = Instantiate(Sword, transform.position + this.transform.forward, transform.rotation) as GameObject;
-                    sword.tag = tag;
-                    swinging = true;
-                    Destroy(sword.gameObject, 0.3f);
+                    if ((Input.GetAxis("360_RightTrigger1") == 1) && swinging == false)
+                    {
+                        GameObject sword = Instantiate(Sword, transform.position + this.transform.forward, transform.rotation) as GameObject;
+                        sword.tag = tag;
+                        swinging = true;
+                        Destroy(sword.gameObject, 0.2f);
+                    }
+                }
+                else
+                {
+                    if ((Input.GetAxis("Fire1") == 1) && swinging == false)
+                    {
+                        GameObject sword = Instantiate(Sword, transform.position + this.transform.forward, transform.rotation) as GameObject;
+                        sword.tag = tag;
+                        swinging = true;
+                        Destroy(sword.gameObject, 0.2f);
+                    }
                 }
             }
         }

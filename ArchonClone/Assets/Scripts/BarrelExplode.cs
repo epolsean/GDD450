@@ -34,7 +34,7 @@ public class BarrelExplode : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "alienBullet" || other.tag == "robotBullet")
+        if(other.tag == "alienBullet" || other.tag == "robotBullet" || other.name=="Sword(Clone)")
         {
             isExploding = true;
             GetComponent<ParticleSystem>().Play();
