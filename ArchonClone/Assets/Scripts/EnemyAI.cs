@@ -132,7 +132,10 @@ public class EnemyAI : MonoBehaviour {
 
         //search for tiles around selectedAIPiece 
         //try using OverlapShpere()
+        print("Array Initiated");
         Collider[] TilesWithinRange = Physics.OverlapSphere(AIPiece.transform.position, 2);
+        int pieceIndex = Random.Range(0, TilesWithinRange.Length);
+        //selectedTile = 
 
 
         return selectedTile; 

@@ -63,13 +63,6 @@ public class TurnStateMachine : MonoBehaviour {
             NextState();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	    /*if(Input.GetMouseButtonDown(0))
-        {
-            state = State.DaSwitch;
-        }*/
-	}
 
     [RPC]
     void NextState()

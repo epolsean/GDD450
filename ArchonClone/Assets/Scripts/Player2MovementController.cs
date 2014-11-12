@@ -241,6 +241,8 @@ public class Player2MovementController : MonoBehaviour
             }
             Destroy(GameObject.Find("BattleSceneAdditive"));
             Destroy(MoveController.GetComponent<PawnMove>().Player01);
+            MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
+
             //Application.LoadLevel("TestingHexTiles");
             //Destroy(this.gameObject);
         }
@@ -257,6 +259,7 @@ public class Player2MovementController : MonoBehaviour
             }
             Destroy(MoveController.GetComponent<PawnMove>().Player02);
             enemy.win = true;
+            //MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player01;
             //Destroy(this.gameObject);
         }
     }
