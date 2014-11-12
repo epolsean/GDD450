@@ -45,8 +45,6 @@ public class PlayerController : MonoBehaviour {
 
     //public GameObject MoveController;
 
-    Behaviour halo;
-
     void Start()
     {
         //MoveController = GameObject.Find("MovementController");
@@ -88,7 +86,6 @@ public class PlayerController : MonoBehaviour {
         {
 
         }
-        halo = (Behaviour)GetComponent("Halo");
         health = 100;
         bulletSize = 1;
         lastLooking = transform.forward;
@@ -290,13 +287,17 @@ public class PlayerController : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         //If the player gets shot
-        if (other.tag == "alienBullet" || other.tag == "robotBullet")
+        /*if (other.tag == "alienBullet" || other.tag == "robotBullet")
         {
-            //Network.Destroy(other.gameObject);
-            //networkView.RPC("subHealth", RPCMode.AllBuffered);
+            Network.Destroy(other.gameObject);
+            networkView.RPC("subHealth", RPCMode.AllBuffered);
+        }
+        if (other.name == "laser" && other.GetComponent<LaserController>().shooting)
+        {
+            health -= 0.5f;
         }
         //If the player gets hit with melee
-        /*if (other.name == "Sword(Clone)" && other.tag != tag)
+        if (other.name == "Sword(Clone)" && other.tag != tag)
         {
             if(enemy1 == null)
                 enemy1.swinging = false;

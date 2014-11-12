@@ -38,7 +38,7 @@ public class Player2MovementController : MonoBehaviour
 
     public bool win = false;
     bool reloading = false;
-    float reloadTime = 0.5f;
+    float reloadTime = 0.8f;
     CharacterController controller;
 
     public GameObject MoveController;
@@ -142,7 +142,7 @@ public class Player2MovementController : MonoBehaviour
                 reloadTime -= Time.deltaTime;
                 if (reloadTime < 0)
                 {
-                    reloadTime = 0.5f;
+                    reloadTime = 0.8f;
                     reloading = false;
                 }
             }
@@ -268,6 +268,10 @@ public class Player2MovementController : MonoBehaviour
         {
             Destroy(other.gameObject);
             health -= 10;
+        }
+        if (other.name == "laser" && other.GetComponent<LaserController>().shooting)
+        {
+            health -= 0.5f;
         }
         //If the player gets hit with melee
         if (other.name == "Sword(Clone)" && other.tag != tag)

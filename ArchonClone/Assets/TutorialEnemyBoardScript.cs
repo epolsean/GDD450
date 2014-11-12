@@ -63,11 +63,11 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
         }
         else if(enemyTurn == 2)
         {
-            StepButton.active = false;
+            StepButton.SetActive(false);
         }
         else if(enemyTurn == 3)
         {
-            StepButton.active = false; 
+            StepButton.SetActive(false); 
         }
         /*else if(enemyTurn == 4)
         {
@@ -95,7 +95,7 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
         else if(enemyTurn == 4.5)
         {
             StepText.GetComponent<Text>().text = "Congratulations! You Have successfully Destroyed the enemies piece! Now you have the required Knowledge to continue your conquest of this planet!";
-            StepButton.active = true;
+            StepButton.SetActive(true);
         }
         else if(enemyTurn == 5)
         {
@@ -105,7 +105,7 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
 
     public void NextStep()
     {
-        if(StepButton.active)
+        if(StepButton.activeSelf)
             enemyTurn += .5;
     }
 }

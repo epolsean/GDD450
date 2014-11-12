@@ -14,7 +14,6 @@ public class TutorialEnemyAI : MonoBehaviour
 
     Vector3 currentTarget;
     Vector3 nextTarget;
-    Vector3 prevTarget;
 
     public static int xSensitivity = 3;
     public static int ySensitivity = 3;
@@ -210,7 +209,6 @@ public class TutorialEnemyAI : MonoBehaviour
 
     void ChooseNextTarget()
     {
-        prevTarget = currentTarget;
         currentTarget = nextTarget;
         Vector3 moveDirection = Vector3.Normalize(currentTarget - transform.position); // Get direction of current target
         transform.forward = new Vector3(moveDirection.x, 0, moveDirection.z);
