@@ -284,4 +284,9 @@ public class Player1MovementController : MonoBehaviour
             health -= 10;
         }
     }
+
+    void OnParticleCollision(GameObject other)
+    {
+        health -= 100;
+    }
 }
