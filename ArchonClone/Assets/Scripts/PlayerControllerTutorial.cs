@@ -32,7 +32,6 @@ public class PlayerControllerTutorial : MonoBehaviour
 
     int health;
     int bulletSize;
-    float chargeTime = 2.0f;
 
     public bool win = false;
     bool reloading = false;
@@ -132,7 +131,6 @@ public class PlayerControllerTutorial : MonoBehaviour
                         moveDirection *= speed;
                     }
                 }
-                Debug.Log("Horizontal " + Input.GetAxis("Horizontal"));
                 moveDirection.y -= gravity * Time.deltaTime;
                 controller.Move(moveDirection * Time.deltaTime);
             }
@@ -173,7 +171,6 @@ public class PlayerControllerTutorial : MonoBehaviour
                             audio.Play();
                             bulletSize = 1;
                             bulletSpeed = 25;
-                            chargeTime = 0.5f;
                             halo.enabled = false;
                             reloading = true;
                         }
@@ -190,7 +187,6 @@ public class PlayerControllerTutorial : MonoBehaviour
                             audio.Play();
                             bulletSize = 1;
                             bulletSpeed = 25;
-                            chargeTime = 0.5f;
                             halo.enabled = false;
                             reloading = true;
                         }

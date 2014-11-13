@@ -38,7 +38,7 @@ public class Player1MovementController : MonoBehaviour
 
     public bool win = false;
     bool reloading = false;
-    float reloadTime = 0.5f;
+    float reloadTime = 0.8f;
     CharacterController controller;
 
     public GameObject MoveController;
@@ -69,7 +69,8 @@ public class Player1MovementController : MonoBehaviour
 
         }
         halo = (Behaviour)GetComponent("Halo");
-        health = 100;
+        //health = 100;
+        health = (float)MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health;
         bulletSize = 1;
         lastLooking = transform.forward;
     }
@@ -241,8 +242,10 @@ public class Player1MovementController : MonoBehaviour
             }
             Destroy(GameObject.Find("BattleSceneAdditive"));
             Destroy(MoveController.GetComponent<PawnMove>().Player02);
+            MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player01;
             //Application.LoadLevel("TestingHexTiles");
             //Destroy(this.gameObject);
+            MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health = (int)health;
         }
 
         if (health <= 0 && win == false)
@@ -257,6 +260,7 @@ public class Player1MovementController : MonoBehaviour
             }
             Destroy(MoveController.GetComponent<PawnMove>().Player01);
             enemy.win = true;
+            //MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
             //Destroy(this.gameObject);
         }
     }
@@ -267,7 +271,11 @@ public class Player1MovementController : MonoBehaviour
         if (other.tag == "alienBullet")
         {
             Destroy(other.gameObject);
-            health -= 10;
+            health -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+        }
+        if (other.name == "laser" && other.GetComponent<LaserController>().shooting)
+        {
+            health -= 0.5f;
         }
         //If the player gets hit with melee
         if (other.name == "Sword(Clone)" && other.tag != tag)
@@ -279,5 +287,10 @@ public class Player1MovementController : MonoBehaviour
             this.gameObject.GetComponent<CharacterController>().Move(2 * (this2That));
             health -= 10;
         }
+    }
+
+    void OnParticleCollision(GameObject other)
+    {
+        health -= 100;
     }
 }

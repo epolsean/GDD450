@@ -249,7 +249,7 @@ public class TileProperties : MonoBehaviour {
             renderer.material.color = Color.black;
         }
         canPlace = false;
-        UnitMoveController.GetComponent<PawnMove>().MoveToTile = null;
+        //UnitMoveController.GetComponent<PawnMove>().MoveToTile = null;
         if (this.gameObject.GetComponent<TileProperties>().UnitOnTile != null && this.gameObject != UnitMoveController.GetComponent<PawnMove>().currentTile)
         {
             this.datNode.SetActive(false);
