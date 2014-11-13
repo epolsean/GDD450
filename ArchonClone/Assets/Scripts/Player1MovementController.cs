@@ -43,8 +43,6 @@ public class Player1MovementController : MonoBehaviour
 
     public GameObject MoveController;
 
-    Behaviour halo;
-
     void Start()
     {
         enemy = GameObject.Find("Player2(Clone)").GetComponent<Player2MovementController>();
@@ -68,7 +66,6 @@ public class Player1MovementController : MonoBehaviour
         {
 
         }
-        halo = (Behaviour)GetComponent("Halo");
         //health = 100;
         health = (float)MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health;
         bulletSize = 1;
@@ -162,7 +159,6 @@ public class Player1MovementController : MonoBehaviour
                         audio.Play();
                         bulletSize = 1;
                         bulletSpeed = 25;
-                        halo.enabled = false;
                         reloading = true;
                     }
                 }
@@ -178,7 +174,6 @@ public class Player1MovementController : MonoBehaviour
                         audio.Play();
                         bulletSize = 1;
                         bulletSpeed = 25;
-                        halo.enabled = false;
                         reloading = true;
                     }
                 }
