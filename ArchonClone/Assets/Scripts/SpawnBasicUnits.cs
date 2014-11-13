@@ -83,17 +83,38 @@ public class SpawnBasicUnits : MonoBehaviour {
 
     public void SpawnWhitePiece(GameObject piece, GameObject tile)
     {
-        tile.GetComponent<TileProperties>().UnitOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-        //tile.GetComponent<TileProperties>().Occupied = true;
-        WhitePieceCount++;
 
-        
+        if (!Network.isServer && !Network.isClient)
+        {
+            tile.GetComponent<TileProperties>().UnitOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+            //tile.GetComponent<TileProperties>().Occupied = true;
+            WhitePieceCount++;
+        }
+        else
+        {
+            tile.GetComponent<TileProperties>().UnitOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0), 1) as GameObject;
+            networkView.RPC("addPieceCount", RPCMode.AllBuffered, WhitePieceCount);
+        }
     }
 
     public void SpawnBlackPiece(GameObject piece, GameObject tile)
     {
-        tile.GetComponent<TileProperties>().UnitOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;
-        //tile.GetComponent<TileProperties>().Occupied = true;
-        BlackPieceCount++;
+        if (!Network.isServer && !Network.isClient)
+        {
+            tile.GetComponent<TileProperties>().UnitOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;
+            //tile.GetComponent<TileProperties>().Occupied = true;
+            BlackPieceCount++;
+        }
+        else
+        {
+            tile.GetComponent<TileProperties>().UnitOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0), 1) as GameObject;
+            networkView.RPC("addPieceCount", RPCMode.AllBuffered, WhitePieceCount);
+        }
+    }
+
+    [RPC]
+    void addPieceCount(int pieceCount)
+    {
+        pieceCount++;
     }
 }

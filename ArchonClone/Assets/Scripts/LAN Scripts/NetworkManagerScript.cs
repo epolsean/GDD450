@@ -111,7 +111,7 @@ public class NetworkManagerScript : MonoBehaviour {
                             count--;
                         }
                         else
-                            Application.LoadLevel("TestingHexTiles");
+                            Application.LoadLevel("");
                         startTime = Time.time + 1f;
                     }
                 }
