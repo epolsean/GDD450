@@ -73,190 +73,193 @@ public class Player1MovementController : MonoBehaviour
     }
     void Update()
     {
-        if (topDownView)
+        if (GameObject.Find("Fight") == null)
         {
-            if (controller.isGrounded)
+            if (topDownView)
             {
-                if (Input.GetJoystickNames().Length != 0)
+                if (controller.isGrounded)
                 {
-                    if (Input.GetAxis("360_HorizontalRightStick1") == 0 && Input.GetAxis("360_VerticalRightStick1") == 0)
+                    if (Input.GetJoystickNames().Length != 0)
                     {
-                        transform.forward = lastLooking;
+                        if (Input.GetAxis("360_HorizontalRightStick1") == 0 && Input.GetAxis("360_VerticalRightStick1") == 0)
+                        {
+                            transform.forward = lastLooking;
+                        }
+                        else
+                        {
+                            transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick1"), 0, Input.GetAxis("360_VerticalRightStick1"));
+                        }
+                        moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
+                        moveDirection *= speed;
                     }
                     else
                     {
-                        transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick1"), 0, Input.GetAxis("360_VerticalRightStick1"));
+                        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+                        {
+                            transform.forward = lastLooking;
+                        }
+                        else
+                        {
+                            transform.forward = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                        }
+                        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
+                        moveDirection *= speed;
                     }
-                    moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
-                    moveDirection *= speed;
+
                 }
-                else
+                lastLooking = transform.forward;
+                moveDirection.y -= gravity * Time.deltaTime;
+                controller.Move(moveDirection * Time.deltaTime);
+            }
+            else
+            {
+                if (controller.isGrounded)
                 {
-                    if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+                    if (Input.GetJoystickNames().Length != 0)
                     {
-                        transform.forward = lastLooking;
+                        transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("360_HorizontalRightStick1"));
+
+                        moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
+                        moveDirection = transform.TransformDirection(moveDirection);
+                        moveDirection *= speed;
                     }
                     else
                     {
-                        transform.forward = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical") );
+                        transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("Horizontal"));
+
+                        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
+                        moveDirection = transform.TransformDirection(moveDirection);
+                        moveDirection *= speed;
                     }
-                    moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
-                    moveDirection *= speed;
                 }
-
+                moveDirection.y -= gravity * Time.deltaTime;
+                controller.Move(moveDirection * Time.deltaTime);
             }
-            lastLooking = transform.forward;
-            moveDirection.y -= gravity * Time.deltaTime;
-            controller.Move(moveDirection * Time.deltaTime);
-        }
-        else
-        {
-            if (controller.isGrounded)
+            if (isMelee == false)
             {
-                if (Input.GetJoystickNames().Length != 0)
+                if (reloading)
                 {
-                    transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("360_HorizontalRightStick1"));
-
-                    moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
-                    moveDirection = transform.TransformDirection(moveDirection);
-                    moveDirection *= speed;
-                }
-                else
-                {
-                    transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("Horizontal"));
-
-                    moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
-                    moveDirection = transform.TransformDirection(moveDirection);
-                    moveDirection *= speed;
-                }
-            }
-            moveDirection.y -= gravity * Time.deltaTime;
-            controller.Move(moveDirection * Time.deltaTime);
-        }
-        if (isMelee == false)
-        {
-            if (reloading)
-            {
-                reloadTime -= Time.deltaTime;
-                if (reloadTime < 0)
-                {
-                    reloadTime = 0.8f;
-                    reloading = false;
-                }
-            }
-
-            if (win == false)
-            {
-                if (Input.GetJoystickNames().Length != 0)
-                {
-                    if ((Input.GetAxis("360_RightTrigger1") == 1) && reloading == false)
+                    reloadTime -= Time.deltaTime;
+                    if (reloadTime < 0)
                     {
-                        Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                        bulletClone.rigidbody.useGravity = false;
-                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                        Destroy(bulletClone.gameObject, 3);
-                        audio.Play();
-                        bulletSize = 1;
-                        bulletSpeed = 25;
-                        reloading = true;
+                        reloadTime = 0.8f;
+                        reloading = false;
                     }
                 }
-                else
-                {
-                    if ((Input.GetAxis("Fire1") == 1) && reloading == false)
-                    {
-                        Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                        bulletClone.rigidbody.useGravity = false;
-                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                        Destroy(bulletClone.gameObject, 3);
-                        audio.Play();
-                        bulletSize = 1;
-                        bulletSpeed = 25;
-                        reloading = true;
-                    }
-                }
-            }
-        }
-        else
-        {
-            if (swinging)
-            {
-                swingTimer -= Time.deltaTime;
-                if (swingTimer < 0)
-                {
-                    swingTimer = 0.5f;
-                    swinging = false;
-                }
-            }
 
-            if (win == false)
-            {
-                if (Input.GetJoystickNames().Length != 0)
+                if (win == false)
                 {
-                    if ((Input.GetAxis("360_RightTrigger1") == 1) && swinging == false)
+                    if (Input.GetJoystickNames().Length != 0)
                     {
-                        GameObject sword = Instantiate(Sword, transform.position + 3*this.transform.forward, transform.rotation) as GameObject;
-                        sword.tag = tag;
-                        swinging = true;
-                        Destroy(sword.gameObject, 0.2f);
+                        if ((Input.GetAxis("360_RightTrigger1") == 1) && reloading == false)
+                        {
+                            Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                            bulletClone.rigidbody.useGravity = false;
+                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                            Destroy(bulletClone.gameObject, 3);
+                            audio.Play();
+                            bulletSize = 1;
+                            bulletSpeed = 25;
+                            reloading = true;
+                        }
+                    }
+                    else
+                    {
+                        if ((Input.GetMouseButton(0)) && reloading == false)
+                        {
+                            Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                            bulletClone.rigidbody.useGravity = false;
+                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                            Destroy(bulletClone.gameObject, 3);
+                            audio.Play();
+                            bulletSize = 1;
+                            bulletSpeed = 25;
+                            reloading = true;
+                        }
                     }
                 }
-                else
-                {
-                    if ((Input.GetAxis("Fire1") == 1) && swinging == false)
-                    {
-                        GameObject sword = Instantiate(Sword, transform.position + 3*this.transform.forward, transform.rotation) as GameObject;
-                        sword.tag = tag;
-                        swinging = true;
-                        Destroy(sword.gameObject, 0.2f);
-                    }
-                }
-            }
-        }
-
-        healthPiece1.GetComponent<Image>().fillAmount = (float)((float)health / 200);
-        healthPiece2.GetComponent<Image>().fillAmount = (float)((float)health / 200);
-
-        if (health <= 30)
-        {
-            healthPiece1.GetComponent<Image>().color = Color.red;
-            healthPiece2.GetComponent<Image>().color = Color.red;
-        }
-        if (win == true)
-        {
-            BattleStats.winner = tag;
-            if (TurnStateMachine.state == TurnStateMachine.State.playerTurn)
-            {
-                TurnStateMachine.state = TurnStateMachine.State.otherTurn;
             }
             else
             {
-                TurnStateMachine.state = TurnStateMachine.State.playerTurn;
-            }
-            Destroy(GameObject.Find("BattleSceneAdditive"));
-            Destroy(MoveController.GetComponent<PawnMove>().Player02);
-            MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player01;
-            //Application.LoadLevel("TestingHexTiles");
-            //Destroy(this.gameObject);
-            MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health = (int)health;
-        }
+                if (swinging)
+                {
+                    swingTimer -= Time.deltaTime;
+                    if (swingTimer < 0)
+                    {
+                        swingTimer = 0.5f;
+                        swinging = false;
+                    }
+                }
 
-        if (health <= 0 && win == false)
-        {
-            if (MoveController.GetComponent<PawnMove>().Player01.tag == "White")
-            {
-                SpawnBasicUnits.WhitePieceCount--;
+                if (win == false)
+                {
+                    if (Input.GetJoystickNames().Length != 0)
+                    {
+                        if ((Input.GetAxis("360_RightTrigger1") == 1) && swinging == false)
+                        {
+                            GameObject sword = Instantiate(Sword, transform.position + 3 * this.transform.forward, transform.rotation) as GameObject;
+                            sword.tag = tag;
+                            swinging = true;
+                            Destroy(sword.gameObject, 0.2f);
+                        }
+                    }
+                    else
+                    {
+                        if ((Input.GetAxis("Fire1") == 1) && swinging == false)
+                        {
+                            GameObject sword = Instantiate(Sword, transform.position + 3 * this.transform.forward, transform.rotation) as GameObject;
+                            sword.tag = tag;
+                            swinging = true;
+                            Destroy(sword.gameObject, 0.2f);
+                        }
+                    }
+                }
             }
-            else
+
+            healthPiece1.GetComponent<Image>().fillAmount = (float)((float)health / 200);
+            healthPiece2.GetComponent<Image>().fillAmount = (float)((float)health / 200);
+
+            if (health <= 30)
             {
-                SpawnBasicUnits.BlackPieceCount--;
+                healthPiece1.GetComponent<Image>().color = Color.red;
+                healthPiece2.GetComponent<Image>().color = Color.red;
             }
-            Destroy(MoveController.GetComponent<PawnMove>().Player01);
-            enemy.win = true;
-            //MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
-            //Destroy(this.gameObject);
+            if (win == true)
+            {
+                BattleStats.winner = tag;
+                if (TurnStateMachine.state == TurnStateMachine.State.playerTurn)
+                {
+                    TurnStateMachine.state = TurnStateMachine.State.otherTurn;
+                }
+                else
+                {
+                    TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+                }
+                Destroy(GameObject.Find("BattleSceneAdditive"));
+                Destroy(MoveController.GetComponent<PawnMove>().Player02);
+                MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player01;
+                //Application.LoadLevel("TestingHexTiles");
+                //Destroy(this.gameObject);
+                MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health = (int)health;
+            }
+
+            if (health <= 0 && win == false)
+            {
+                if (MoveController.GetComponent<PawnMove>().Player01.tag == "White")
+                {
+                    SpawnBasicUnits.WhitePieceCount--;
+                }
+                else
+                {
+                    SpawnBasicUnits.BlackPieceCount--;
+                }
+                Destroy(MoveController.GetComponent<PawnMove>().Player01);
+                enemy.win = true;
+                //MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
+                //Destroy(this.gameObject);
+            }
         }
     }
 
