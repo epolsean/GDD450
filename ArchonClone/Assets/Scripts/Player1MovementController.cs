@@ -69,7 +69,8 @@ public class Player1MovementController : MonoBehaviour
 
         }
         halo = (Behaviour)GetComponent("Halo");
-        health = 100;
+        //health = 100;
+        health = (float)MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health;
         bulletSize = 1;
         lastLooking = transform.forward;
     }
@@ -244,6 +245,7 @@ public class Player1MovementController : MonoBehaviour
             MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player01;
             //Application.LoadLevel("TestingHexTiles");
             //Destroy(this.gameObject);
+            MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health = (int)health;
         }
 
         if (health <= 0 && win == false)
@@ -269,7 +271,7 @@ public class Player1MovementController : MonoBehaviour
         if (other.tag == "alienBullet")
         {
             Destroy(other.gameObject);
-            health -= 10;
+            health -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
         }
         if (other.name == "laser" && other.GetComponent<LaserController>().shooting)
         {

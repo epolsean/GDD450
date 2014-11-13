@@ -69,7 +69,8 @@ public class Player2MovementController : MonoBehaviour
 
         }
         halo = (Behaviour)GetComponent("Halo");
-        health = 100;
+        //health = 100;
+        health = (float)MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health;
         bulletSize = 1;
         lastLooking = transform.forward;
     }
@@ -242,7 +243,7 @@ public class Player2MovementController : MonoBehaviour
             Destroy(GameObject.Find("BattleSceneAdditive"));
             Destroy(MoveController.GetComponent<PawnMove>().Player01);
             MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
-
+            MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health = (int)health;
             //Application.LoadLevel("TestingHexTiles");
             //Destroy(this.gameObject);
         }
@@ -270,7 +271,7 @@ public class Player2MovementController : MonoBehaviour
         if (other.tag == "robotBullet")
         {
             Destroy(other.gameObject);
-            health -= 10;
+            health -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
         }
         if (other.name == "laser" && other.GetComponent<LaserController>().shooting)
         {
