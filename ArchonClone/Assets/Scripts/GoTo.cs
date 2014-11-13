@@ -10,7 +10,7 @@ public class GoTo : MonoBehaviour {
 
 	public void Local() 
     {
-        Application.LoadLevel("TestingHexTiles");
+        Application.LoadLevel("LargeTileBoard");
 	}
 
     public void Tutorial()
