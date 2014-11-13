@@ -34,11 +34,11 @@ public class FlameRockActivity : MonoBehaviour {
         Debug.Log("collision with other : " + other.name);
         if (other.name == "Player1(Clone)")
         {
-            other.GetComponent<Player1MovementController>().health -= Random.Range(15,35);
+            other.GetComponent<Player1MovementController>().health -= Random.Range(15,30);
         }
         else if(other.name == "Player2(Clone)")
         {
-            other.GetComponent<Player2MovementController>().health -= Random.Range(15, 35);
+            other.GetComponent<Player2MovementController>().health -= Random.Range(15, 30);
         }
     }
 }

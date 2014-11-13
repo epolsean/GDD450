@@ -17,6 +17,14 @@ public class RaycastCursor : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (GameObject.Find("BattleSceneAdditive") || GameObject.Find("TutorialTestBattle"))
+        {
+            gameObject.GetComponent<Canvas>().enabled = false;
+        }
+        else
+        {
+            gameObject.GetComponent<Canvas>().enabled = true;
+        }
         if (TurnStateMachine.state == TurnStateMachine.State.playerTurn)
         {
             robotCursor.SetActive(true);
