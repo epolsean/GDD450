@@ -8,9 +8,6 @@ public class Player1MovementController : MonoBehaviour
     public static int xSensitivity = 3;
     public static int ySensitivity = 3;
 
-    public enum Character { Grunt, Tank, Runner, Scout };
-    public static Character myCharacter;
-
     public float speed = 6.0F;
     public float gravity = 20.0F;
     private Vector3 moveDirection = Vector3.zero;
@@ -18,6 +15,7 @@ public class Player1MovementController : MonoBehaviour
     public bool topDownView = false;
 
     public Rigidbody Bullet;
+    public Rigidbody missile;
     public GameObject Sword;
     public bool isMelee = false;
     public int bulletSpeed = 25;
@@ -30,6 +28,9 @@ public class Player1MovementController : MonoBehaviour
 
     public bool swinging = false;
     float swingTimer = 0.5f;
+
+    public float specialTimer = 5.0f;
+    bool specialAvailable = false;
 
     Player2MovementController enemy;
 
@@ -49,23 +50,6 @@ public class Player1MovementController : MonoBehaviour
         MoveController = GameObject.Find("MovementController");
         controller = GetComponent<CharacterController>();
 
-        //Determine character and set up stats
-        if (myCharacter == Character.Grunt)
-        {
-
-        }
-        else if (myCharacter == Character.Runner)
-        {
-
-        }
-        else if (myCharacter == Character.Tank)
-        {
-
-        }
-        else if (myCharacter == Character.Scout)
-        {
-
-        }
         //health = 100;
         health = (float)MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health;
         bulletSize = 1;
@@ -218,6 +202,39 @@ public class Player1MovementController : MonoBehaviour
                 }
             }
 
+            if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteTank(Clone)")
+            {
+                RobotTankSpecial();
+            }
+            else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteScout(Clone)")
+            {
+                RobotScoutSpecial();
+            }
+            else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteRunner(Clone)")
+            {
+                RobotRunnerSpecial();
+            }
+            else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteGrunt(Clone)")
+            {
+                RobotGruntSpecial();
+            }
+            else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackTank(Clone)")
+            {
+                AlienTankSpecial();
+            }
+            else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackScout(Clone)")
+            {
+                AlienScoutSpecial();
+            }
+            else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackRunner(Clone)")
+            {
+                AlienRunnerSpecial();
+            }
+            else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackGrunt(Clone)")
+            {
+                AlienGruntSpecial();
+            }
+
             healthPiece1.GetComponent<Image>().fillAmount = (float)((float)health / 200);
             healthPiece2.GetComponent<Image>().fillAmount = (float)((float)health / 200);
 
@@ -287,8 +304,59 @@ public class Player1MovementController : MonoBehaviour
         }
     }
 
-    void OnParticleCollision(GameObject other)
+    void RobotGruntSpecial()
     {
-        health -= 100;
+
     }
+    void RobotScoutSpecial()
+    {
+
+    }
+    void RobotTankSpecial()
+    {
+        if (specialAvailable == false)
+        {
+            specialTimer -= Time.deltaTime;
+            if (specialTimer < 0)
+            {
+                specialTimer = 5.0f;
+                specialAvailable = true;
+            }
+        }
+        if (Input.GetAxis("Special1") == 1 && specialAvailable)
+        {
+
+            Rigidbody missileClone = Instantiate(missile, transform.position + (1.2f * bulletSize * this.transform.forward) + (1.2f * this.transform.up), transform.rotation) as Rigidbody;
+            missileClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+            missileClone.GetComponent<TargetEnemy>().target = enemy.gameObject;
+            missileClone.rigidbody.useGravity = false;
+            missileClone.velocity = transform.TransformDirection(Vector3.forward * 0.75f * bulletSpeed);
+            Destroy(missileClone.gameObject, 20);
+            audio.Play();
+            audio.Play();
+            specialAvailable = false;
+        }
+    }
+    void RobotRunnerSpecial()
+    {
+
+    }
+
+    void AlienGruntSpecial()
+    {
+        
+    }
+    void AlienScoutSpecial()
+    {
+
+    }
+    void AlienTankSpecial()
+    {
+
+    }
+    void AlienRunnerSpecial()
+    {
+
+    }
+
 }
