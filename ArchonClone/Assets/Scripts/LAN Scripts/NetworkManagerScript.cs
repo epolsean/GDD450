@@ -30,15 +30,15 @@ public class NetworkManagerScript : MonoBehaviour {
 
     void Start()
     {
-        serversListText.text = "Page 1 of 1 / Total Servers: 0";
         if (Application.loadedLevelName == "LANLobby")
         {
             inputPanel.SetActive(false);
             playerPanel.SetActive(false);
             stopServer.gameObject.SetActive(false);
+            serversListText.text = "Page 1 of 1 / Total Servers: 0";
+            MasterServer.RequestHostList(gameName);
+            refreshing = true;
         }
-        MasterServer.RequestHostList(gameName);
-        refreshing = true;
     }
 
     void Update()
