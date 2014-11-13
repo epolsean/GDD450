@@ -7,18 +7,22 @@ public class NetworkManagerScript : MonoBehaviour {
 
     public GameObject Canvas;
     public Button serverButton;
-    public Text serverButtonText;
-    public GameObject playerPanel;
+    public Button stopServer;
     public Text playerPanelDetectorText;
     public Text playerPanelLoaderText;
+    public Text serversListText;
+    public GameObject playerPanel;
     public GameObject inputPanel;
+    public GameObject serverPanel;
     public InputField serverNameInput;
+    public InputField serverDesInput;
     public EventSystem eventSystem;
 
     float startTime = 0;
     int count = 3;
-    string serverName = "Default Server Name";
     string gameName = "GDD450_Test_LAN_Game";
+    string serverName = "Default Server Name";
+    string serverDes = "This is a 'Insert-Final-Game-Name-Here' LAN game";
     bool refreshing;
     bool secondPlayerConnected;
     HostData[] hostData;
@@ -26,10 +30,12 @@ public class NetworkManagerScript : MonoBehaviour {
 
     void Start()
     {
+        serversListText.text = "Page 1 of 1 / Total Servers: 0";
         if (Application.loadedLevelName == "LANLobby")
         {
             inputPanel.SetActive(false);
             playerPanel.SetActive(false);
+            stopServer.gameObject.SetActive(false);
         }
         MasterServer.RequestHostList(gameName);
         refreshing = true;
@@ -52,17 +58,20 @@ public class NetworkManagerScript : MonoBehaviour {
                     if (MasterServer.PollHostList().Length > 0)
                     {
                         refreshing = false;
-                        Debug.Log(MasterServer.PollHostList().Length);
+                        //Debug.Log(MasterServer.PollHostList().Length);
+                        int page = MasterServer.PollHostList().Length % 1 + 1;
+                        serversListText.text = "Page 1 of " + page + " / Total Servers: " + MasterServer.PollHostList().Length;
                         hostData = MasterServer.PollHostList();
                         for (int i = 0; i < hostData.Length; i++)
                         {
                             Button newServer = (Button)Instantiate(serverButton);
-                            newServer.transform.parent = Canvas.transform;
+                            newServer.transform.parent = serverPanel.transform;
                             newServer.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 0);
                             newServer.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
-                            newServer.GetComponent<RectTransform>().anchorMin = new Vector2(0.25f, 0.8f - 0.125f * i);
-                            newServer.GetComponent<RectTransform>().anchorMax = new Vector2(0.45f, 0.9f - 0.125f * i);
-                            newServer.GetComponent<serverButtonScript>().buttonText.text = hostData[i].gameName;
+                            newServer.GetComponent<RectTransform>().anchorMin = new Vector2(0.0125f, 0.9f - 0.9f * i);
+                            newServer.GetComponent<RectTransform>().anchorMax = new Vector2(0.9875f, 0.985f - 0.9f * i);
+                            newServer.GetComponent<serverButtonScript>().serverName.text = hostData[i].gameName;
+                            newServer.GetComponent<serverButtonScript>().serverDes.text = hostData[i].comment;
                             newServer.GetComponent<serverButtonScript>().hostData = hostData[i];
                         }
                     }
@@ -132,12 +141,6 @@ public class NetworkManagerScript : MonoBehaviour {
 
     public void onStartServerButtonClick()
     {
-        if (GameObject.FindGameObjectsWithTag("server").Length > 0)
-        {
-            GameObject[] oldButtons = GameObject.FindGameObjectsWithTag("server");
-            foreach (GameObject i in oldButtons)
-                GameObject.Destroy(i);
-        }
         inputPanel.SetActive(true);
     }
 
@@ -145,10 +148,13 @@ public class NetworkManagerScript : MonoBehaviour {
     {
         if (serverNameInput.text.text != "Input")
             serverName = serverNameInput.text.text;
+        if (serverDesInput.text.text != "Input")
+            serverDes = serverDesInput.text.text;
         Network.InitializeServer(2, 25000, !Network.HavePublicAddress());
-        MasterServer.RegisterHost(gameName, serverName, "This is a 'Insert-Final-Game-Name-Here' LAN game");
+        MasterServer.RegisterHost(gameName, serverName, serverDes);
         inputPanel.SetActive(false);
         playerPanel.SetActive(true);
+        stopServer.gameObject.SetActive(true);
     }
 
     public void refreshHostList()
@@ -156,6 +162,7 @@ public class NetworkManagerScript : MonoBehaviour {
         if (Network.isClient || Network.isServer)
         {
             Network.Disconnect();
+            secondPlayerConnected = false;
         }
         MasterServer.RequestHostList(gameName);
         inputPanel.SetActive(false);
@@ -178,13 +185,15 @@ public class NetworkManagerScript : MonoBehaviour {
             foreach (GameObject i in oldButtons)
                 GameObject.Destroy(i);
         }
-        networkView.RPC("setSecondPlayerCheck", RPCMode.AllBuffered, true);
+        if(Network.connections.Length >= 1)
+            networkView.RPC("setSecondPlayerCheck", RPCMode.AllBuffered, true);
         playerPanel.SetActive(true);
     }
 
     void OnDisconnectedFromServer()
     {
-        Application.LoadLevel("LANLobby");
+        if(Application.loadedLevelName != "LANLobby")
+            Application.LoadLevel("LANLobby");
     }
 
     void OnMasterServerEvent(MasterServerEvent mse)
@@ -192,6 +201,25 @@ public class NetworkManagerScript : MonoBehaviour {
         if (mse == MasterServerEvent.RegistrationSucceeded)
         {
             Debug.Log("Registered Server");
+            MasterServer.RequestHostList(gameName);
+            refreshing = true;
         }
+    }
+
+    public void StopServer()
+    {
+        Network.Disconnect();
+        playerPanel.SetActive(false);
+        StartCoroutine(disconnectRefresh());
+    }
+
+    IEnumerator disconnectRefresh()
+    {
+        MasterServer.RequestHostList(gameName);
+        //refreshing = true;
+        yield return new WaitForSeconds(.35f);
+        stopServer.gameObject.SetActive(false);
+        MasterServer.RequestHostList(gameName);
+        refreshing = true;
     }
 }

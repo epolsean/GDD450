@@ -14,7 +14,6 @@ public class SetUpGame : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-
         if (BattleStats.hotSeat == false)
         {
             hotSeatCamera.SetActive(false);
@@ -22,11 +21,13 @@ public class SetUpGame : MonoBehaviour {
             {
                 //p1ThirdCamera.GetComponent<Camera>().rect = new Rect(0,0,1,1);
                 p1TopDownCamera.SetActive(false);
+                p1ThirdCamera.SetActive(true);
                 player1.GetComponent<Player1MovementController>().topDownView = false;
             }
             else
             {
                 p1ThirdCamera.SetActive(false);
+                p1TopDownCamera.SetActive(true);
                 player1.GetComponent<Player1MovementController>().topDownView = true;
             }
 
@@ -34,13 +35,16 @@ public class SetUpGame : MonoBehaviour {
             {
                 //p2ThirdCamera.GetComponent<Camera>().rect = new Rect(0, 0, 1, 1);
                 p2TopDownCamera.SetActive(false);
+                p2ThirdCamera.SetActive(true);
                 player2.GetComponent<Player2MovementController>().topDownView = false;
             }
             else
             {
                 p2ThirdCamera.SetActive(false);
+                p2TopDownCamera.SetActive(true);
                 player2.GetComponent<Player2MovementController>().topDownView = true;
             }
+
         }
         else
         {
@@ -49,6 +53,8 @@ public class SetUpGame : MonoBehaviour {
                 hotSeatCamera.SetActive(false);
                 p1TopDownCamera.SetActive(false);
                 p2TopDownCamera.SetActive(false);
+                p1ThirdCamera.SetActive(true);
+                p2ThirdCamera.SetActive(true);
                 player1.GetComponent<Player1MovementController>().topDownView = false;
                 player2.GetComponent<Player2MovementController>().topDownView = false;
             }

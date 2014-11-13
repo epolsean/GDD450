@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Options : MonoBehaviour {
@@ -13,6 +14,29 @@ public class Options : MonoBehaviour {
     public GameObject ControllerPanel;
     public GameObject LocalPanel;
     public GameObject SingleLANPanel;
+
+    public ToggleGroup ViewToggle;
+
+    public Toggle TopDownMark;
+    public Toggle ThirdPersonMark;
+
+    void Awake()
+    {
+        ViewToggle.RegisterToggle(TopDownMark);
+        ViewToggle.RegisterToggle(ThirdPersonMark);
+    }
+
+    void Start()
+    {
+        if (BattleStats.player1Pref == "third" && BattleStats.player2Pref == "third")
+        {
+            ThirdPersonMark.isOn = true;
+        }
+        else if (BattleStats.player1Pref == "top" && BattleStats.player2Pref == "top")
+        {
+            TopDownMark.isOn = true;
+        }
+    }
 
     public void backToOptions()
     {
@@ -89,6 +113,20 @@ public class Options : MonoBehaviour {
             ControllerPanel.SetActive(false);
             LocalPanel.SetActive(true);
             SingleLANPanel.SetActive(false);
+        }
+    }
+
+    public void toggleView()
+    {
+        if (TopDownMark.isOn == true)
+        {
+            BattleStats.player1Pref = "top";
+            BattleStats.player2Pref = "top";
+        }
+        else if (ThirdPersonMark.isOn == true)
+        {
+            BattleStats.player1Pref = "third";
+            BattleStats.player2Pref = "third";
         }
     }
 }

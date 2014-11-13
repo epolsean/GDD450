@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class serverButtonScript : MonoBehaviour {
 
     public HostData hostData;
-    public Text buttonText;
+    public Text serverName;
+    public Text serverDes;
 
 	// Use this for initialization
 	void Start () {
