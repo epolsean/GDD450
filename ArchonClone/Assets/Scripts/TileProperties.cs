@@ -79,67 +79,98 @@ public class TileProperties : MonoBehaviour {
     {
         if(this.UnitOnTile != null)
         {
-            if (this.UnitOnTile.name == "BlackTank(Clone)" && UnitMoveController.GetComponent<PawnMove>().BlackTankPan != null)
+            if (this.UnitOnTile.name == "BlackTank(Clone)")
             {
-                UnitMoveController.GetComponent<PawnMove>().BlackTankPan.SetActive(true);
+                if (UnitMoveController.GetComponent<PawnMove>().BlackTankPan != null)
+                {
+                    UnitMoveController.GetComponent<PawnMove>().BlackTankPan.SetActive(true);
+                }
+                
                 if (GameObject.Find("PieceNameText") != null)
                 {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Organic Tank";
                 }
                 
             }
-            else if (this.UnitOnTile.name == "BlackGrunt(Clone)" && UnitMoveController.GetComponent<PawnMove>().BlackGruntPan != null)
+            else if (this.UnitOnTile.name == "BlackGrunt(Clone)")
             {
-                UnitMoveController.GetComponent<PawnMove>().BlackGruntPan.SetActive(true);
+                if (UnitMoveController.GetComponent<PawnMove>().BlackGruntPan != null)
+                {
+                    UnitMoveController.GetComponent<PawnMove>().BlackGruntPan.SetActive(true);
+                }
+                
                 if (GameObject.Find("PieceNameText") != null)
                 {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Organic Grunt";
                 }
             }
-            else if (this.UnitOnTile.name == "BlackScout(Clone)" && UnitMoveController.GetComponent<PawnMove>().BlackTankPan != null)
+            else if (this.UnitOnTile.name == "BlackScout(Clone)")
             {
-                UnitMoveController.GetComponent<PawnMove>().BlackScoutPan.SetActive(true);
+                if (UnitMoveController.GetComponent<PawnMove>().BlackTankPan != null)
+                {
+                    UnitMoveController.GetComponent<PawnMove>().BlackScoutPan.SetActive(true);
+                }
+                
                 if (GameObject.Find("PieceNameText") != null)
                 {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Organic Scout";
                 }
 
             }
-            else if (this.UnitOnTile.name == "BlackRunner(Clone)" && UnitMoveController.GetComponent<PawnMove>().BlackGruntPan != null)
+            else if (this.UnitOnTile.name == "BlackRunner(Clone)")
             {
-                UnitMoveController.GetComponent<PawnMove>().BlackRunnerPan.SetActive(true);
+                if (UnitMoveController.GetComponent<PawnMove>().BlackGruntPan != null)
+                {
+                    UnitMoveController.GetComponent<PawnMove>().BlackRunnerPan.SetActive(true);
+                }
+                
                 if (GameObject.Find("PieceNameText") != null)
                 {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Organic Runner";
                 }
             }
-            else if (this.UnitOnTile.name == "WhiteTank(Clone)" && UnitMoveController.GetComponent<PawnMove>().WhiteTankPan != null)
+            else if (this.UnitOnTile.name == "WhiteTank(Clone)")
             {
-                UnitMoveController.GetComponent<PawnMove>().WhiteTankPan.SetActive(true);
+                if (UnitMoveController.GetComponent<PawnMove>().WhiteTankPan != null)
+                {
+                    UnitMoveController.GetComponent<PawnMove>().WhiteTankPan.SetActive(true);
+                }
+                
                 if (GameObject.Find("PieceNameText") != null)
                 {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Synthetic Tank";
                 }
             }
-            else if (this.UnitOnTile.name == "WhiteScout(Clone)" && UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan != null)
+            else if (this.UnitOnTile.name == "WhiteScout(Clone)")
             {
-                UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan.SetActive(true);
+                if (UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan != null)
+                {
+                    UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan.SetActive(true);
+                }
+                
                 if (GameObject.Find("PieceNameText") != null)
                 {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Synthetic Scout";
                 }
             }
-            else if (this.UnitOnTile.name == "WhiteGrunt(Clone)" && UnitMoveController.GetComponent<PawnMove>().WhiteTankPan != null)
+            else if (this.UnitOnTile.name == "WhiteGrunt(Clone)")
             {
-                UnitMoveController.GetComponent<PawnMove>().WhiteGruntPan.SetActive(true);
+
+                if (UnitMoveController.GetComponent<PawnMove>().WhiteTankPan != null)
+                {
+                    UnitMoveController.GetComponent<PawnMove>().WhiteGruntPan.SetActive(true);
+                }
                 if (GameObject.Find("PieceNameText") != null)
                 {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Synthetic Grunt";
                 }
             }
-            else if (this.UnitOnTile.name == "WhiteRunner(Clone)" && UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan != null)
+            else if (this.UnitOnTile.name == "WhiteRunner(Clone)")
             {
-                UnitMoveController.GetComponent<PawnMove>().WhiteRunnerPan.SetActive(true);
+                if (UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan != null)
+                {
+                    UnitMoveController.GetComponent<PawnMove>().WhiteRunnerPan.SetActive(true);
+                }
                 if (GameObject.Find("PieceNameText") != null)
                 {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Synthetic Runner";

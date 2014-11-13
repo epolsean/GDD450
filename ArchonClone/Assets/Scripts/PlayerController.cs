@@ -322,7 +322,6 @@ public class PlayerController : MonoBehaviour {
         audio.Play();
         bulletSize = 1;
         bulletSpeed = 25;
-        //halo.enabled = false;
 
         //Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.5f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
         //bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
@@ -332,7 +331,6 @@ public class PlayerController : MonoBehaviour {
         //audio.Play();
         //bulletSize = 1;
         //bulletSpeed = 25;
-        //halo.enabled = false;
         //reloading = true;
     }
 
