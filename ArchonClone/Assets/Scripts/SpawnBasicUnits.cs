@@ -93,7 +93,7 @@ public class SpawnBasicUnits : MonoBehaviour {
         else
         {
             tile.GetComponent<TileProperties>().UnitOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0), 1) as GameObject;
-            networkView.RPC("addPieceCount", RPCMode.AllBuffered, WhitePieceCount);
+            networkView.RPC("addPieceCount", RPCMode.AllBuffered, WhitePieceCount, 0);
         }
     }
 
@@ -108,13 +108,21 @@ public class SpawnBasicUnits : MonoBehaviour {
         else
         {
             tile.GetComponent<TileProperties>().UnitOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0), 1) as GameObject;
-            networkView.RPC("addPieceCount", RPCMode.AllBuffered, WhitePieceCount);
+            networkView.RPC("addPieceCount", RPCMode.AllBuffered, BlackPieceCount, 1);
         }
     }
 
     [RPC]
-    void addPieceCount(int pieceCount)
+    void addPieceCount(int pieceCount, int type)
     {
         pieceCount++;
+        if (type == 0)
+        {
+            WhitePieceCount = pieceCount;
+        }
+        else if (type == 1)
+        {
+            BlackPieceCount = pieceCount;
+        }
     }
 }
