@@ -222,4 +222,9 @@ public class NetworkManagerScript : MonoBehaviour {
         MasterServer.RequestHostList(gameName);
         refreshing = true;
     }
+
+    public void BackToMode()
+    {
+        Application.LoadLevel("SelectMode");
+    }
 }
