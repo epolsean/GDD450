@@ -27,11 +27,12 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
         UnitMovementController = GameObject.Find("MovementController");
         TurnStateMachine.state = TurnStateMachine.State.otherTurn;
         StepText.GetComponent<Text>().text = "Here is the Hex Tile grid of the field, the enemy will start by moving one of his pieces";
+        B01Turn0Tile.GetComponent<TileProperties>().datNode.SetActive(true);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	    if(Input.GetKeyDown(KeyCode.Space))
+	    if(Input.GetKeyDown(KeyCode.R))
         {
             NextStep();
         }
@@ -55,10 +56,11 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
             B02Turn0Tile.GetComponent<TileProperties>().Occupied = false;
             Turn01Tile.GetComponent<TileProperties>().Occupied = true;
             UnitMovementController.GetComponent<PawnMove>().isMoving = false;
-            Turn01Tile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
-            enemyTurn += 0.5;
             TurnStateMachine.state = TurnStateMachine.State.playerTurn;
-            StepText.GetComponent<Text>().text = "The Enemy is in a perfect place for you to attack! Select Your Tank piece with the mouse then select the enemies piece!";
+            StepButton.SetActive(false);
+            enemyTurn += 0.5;
+            Invoke("SetTutorialTextTrue", 3);
+            //SetTutorialTextTrue();
             
         }
         else if(enemyTurn == 2)
@@ -108,4 +110,14 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
         if(StepButton.activeSelf)
             enemyTurn += .5;
     }
+
+    public void SetTutorialTextTrue()
+    {
+        Turn01Tile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
+        StepButton.SetActive(true);
+
+
+        StepText.GetComponent<Text>().text = "The Enemy is in a perfect place for you to attack! When you hover over a tile that is occupied by a unit the stats will be displayed to you. Select Your Tank piece with the mouse then select the enemies piece!";
+    }
+    
 }

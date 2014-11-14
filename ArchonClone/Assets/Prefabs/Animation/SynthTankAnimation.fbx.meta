@@ -1,0 +1,443 @@
+fileFormatVersion: 2
+guid: a389996da157fa94ca4d45102028f3aa
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: body
+    100002: body 1
+    100004: canonGroup
+    100006: canonRail
+    100008: canonRoatation
+    100010: eye1
+    100012: eye2
+    100014: eye3
+    100016: eye4
+    100018: frontLeftFoot
+    100020: frontLeftHip
+    100022: frontLeftKnee
+    100024: frontLeftRoot
+    100026: frontRightFoot
+    100028: frontRightHip
+    100030: frontRightKnee
+    100032: frontRightRoot
+    100034: head
+    100036: headPiece
+    100038: headStuff
+    100040: neck
+    100042: rearLeftFoot
+    100044: rearLeftHip
+    100046: rearLeftKnee
+    100048: rearLeftRoot
+    100050: rearRightFoot
+    100052: rearRightHip
+    100054: rearRightKnee
+    100056: rearRightRoot
+    100058: //RootNode
+    100060: synthTankSeparate
+    100062: tubeCenter
+    100064: tubeLeft
+    100066: tubeRight
+    100068: tubes
+    400000: body
+    400002: body 1
+    400004: canonGroup
+    400006: canonRail
+    400008: canonRoatation
+    400010: eye1
+    400012: eye2
+    400014: eye3
+    400016: eye4
+    400018: frontLeftFoot
+    400020: frontLeftHip
+    400022: frontLeftKnee
+    400024: frontLeftRoot
+    400026: frontRightFoot
+    400028: frontRightHip
+    400030: frontRightKnee
+    400032: frontRightRoot
+    400034: head
+    400036: headPiece
+    400038: headStuff
+    400040: neck
+    400042: rearLeftFoot
+    400044: rearLeftHip
+    400046: rearLeftKnee
+    400048: rearLeftRoot
+    400050: rearRightFoot
+    400052: rearRightHip
+    400054: rearRightKnee
+    400056: rearRightRoot
+    400058: //RootNode
+    400060: synthTankSeparate
+    400062: tubeCenter
+    400064: tubeLeft
+    400066: tubeRight
+    400068: tubes
+    4300000: eye1
+    4300002: eye2
+    4300004: eye3
+    4300006: eye4
+    4300008: headPiece
+    4300010: canonRail
+    4300012: canonRoatation
+    4300014: tubeLeft
+    4300016: tubeRight
+    4300018: tubeCenter
+    4300020: body
+    7400000: synthTankIdle
+    7400002: synthTankWalk
+    7400004: synthTankIdle02
+    9500000: //RootNode
+    13700000: body 1
+    13700002: canonRail
+    13700004: canonRoatation
+    13700006: eye1
+    13700008: eye2
+    13700010: eye3
+    13700012: eye4
+    13700014: headPiece
+    13700016: tubeCenter
+    13700018: tubeLeft
+    13700020: tubeRight
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: synthTankIdle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: body
+        weight: 1
+      - path: body/frontLeftHip
+        weight: 1
+      - path: body/frontLeftHip/frontLeftKnee
+        weight: 1
+      - path: body/frontLeftHip/frontLeftKnee/frontLeftFoot
+        weight: 1
+      - path: body/frontLeftHip/frontLeftKnee/frontLeftFoot/frontLeftRoot
+        weight: 1
+      - path: body/frontRightHip
+        weight: 1
+      - path: body/frontRightHip/frontRightKnee
+        weight: 1
+      - path: body/frontRightHip/frontRightKnee/frontRightFoot
+        weight: 1
+      - path: body/frontRightHip/frontRightKnee/frontRightFoot/frontRightRoot
+        weight: 1
+      - path: body/neck
+        weight: 1
+      - path: body/neck/head
+        weight: 1
+      - path: body/rearLeftHip
+        weight: 1
+      - path: body/rearLeftHip/rearLeftKnee
+        weight: 1
+      - path: body/rearLeftHip/rearLeftKnee/rearLeftFoot
+        weight: 1
+      - path: body/rearLeftHip/rearLeftKnee/rearLeftFoot/rearLeftRoot
+        weight: 1
+      - path: body/rearRightHip
+        weight: 1
+      - path: body/rearRightHip/rearRightKnee
+        weight: 1
+      - path: body/rearRightHip/rearRightKnee/rearRightFoot
+        weight: 1
+      - path: body/rearRightHip/rearRightKnee/rearRightFoot/rearRightRoot
+        weight: 1
+      - path: synthTankSeparate
+        weight: 1
+      - path: synthTankSeparate/body 1
+        weight: 1
+      - path: synthTankSeparate/canonGroup
+        weight: 1
+      - path: synthTankSeparate/canonGroup/canonRail
+        weight: 1
+      - path: synthTankSeparate/canonGroup/canonRoatation
+        weight: 1
+      - path: synthTankSeparate/headStuff
+        weight: 1
+      - path: synthTankSeparate/headStuff/eye1
+        weight: 1
+      - path: synthTankSeparate/headStuff/eye2
+        weight: 1
+      - path: synthTankSeparate/headStuff/eye3
+        weight: 1
+      - path: synthTankSeparate/headStuff/eye4
+        weight: 1
+      - path: synthTankSeparate/headStuff/headPiece
+        weight: 1
+      - path: synthTankSeparate/tubes
+        weight: 1
+      - path: synthTankSeparate/tubes/tubeCenter
+        weight: 1
+      - path: synthTankSeparate/tubes/tubeLeft
+        weight: 1
+      - path: synthTankSeparate/tubes/tubeRight
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: synthTankWalk
+      takeName: Take 001
+      firstFrame: 285
+      lastFrame: 300
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: body
+        weight: 1
+      - path: body/frontLeftHip
+        weight: 1
+      - path: body/frontLeftHip/frontLeftKnee
+        weight: 1
+      - path: body/frontLeftHip/frontLeftKnee/frontLeftFoot
+        weight: 1
+      - path: body/frontLeftHip/frontLeftKnee/frontLeftFoot/frontLeftRoot
+        weight: 1
+      - path: body/frontRightHip
+        weight: 1
+      - path: body/frontRightHip/frontRightKnee
+        weight: 1
+      - path: body/frontRightHip/frontRightKnee/frontRightFoot
+        weight: 1
+      - path: body/frontRightHip/frontRightKnee/frontRightFoot/frontRightRoot
+        weight: 1
+      - path: body/neck
+        weight: 1
+      - path: body/neck/head
+        weight: 1
+      - path: body/rearLeftHip
+        weight: 1
+      - path: body/rearLeftHip/rearLeftKnee
+        weight: 1
+      - path: body/rearLeftHip/rearLeftKnee/rearLeftFoot
+        weight: 1
+      - path: body/rearLeftHip/rearLeftKnee/rearLeftFoot/rearLeftRoot
+        weight: 1
+      - path: body/rearRightHip
+        weight: 1
+      - path: body/rearRightHip/rearRightKnee
+        weight: 1
+      - path: body/rearRightHip/rearRightKnee/rearRightFoot
+        weight: 1
+      - path: body/rearRightHip/rearRightKnee/rearRightFoot/rearRightRoot
+        weight: 1
+      - path: synthTankSeparate
+        weight: 1
+      - path: synthTankSeparate/body 1
+        weight: 1
+      - path: synthTankSeparate/canonGroup
+        weight: 1
+      - path: synthTankSeparate/canonGroup/canonRail
+        weight: 1
+      - path: synthTankSeparate/canonGroup/canonRoatation
+        weight: 1
+      - path: synthTankSeparate/headStuff
+        weight: 1
+      - path: synthTankSeparate/headStuff/eye1
+        weight: 1
+      - path: synthTankSeparate/headStuff/eye2
+        weight: 1
+      - path: synthTankSeparate/headStuff/eye3
+        weight: 1
+      - path: synthTankSeparate/headStuff/eye4
+        weight: 1
+      - path: synthTankSeparate/headStuff/headPiece
+        weight: 1
+      - path: synthTankSeparate/tubes
+        weight: 1
+      - path: synthTankSeparate/tubes/tubeCenter
+        weight: 1
+      - path: synthTankSeparate/tubes/tubeLeft
+        weight: 1
+      - path: synthTankSeparate/tubes/tubeRight
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: synthTankIdle02
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 300
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: body
+        weight: 1
+      - path: body/frontLeftHip
+        weight: 1
+      - path: body/frontLeftHip/frontLeftKnee
+        weight: 1
+      - path: body/frontLeftHip/frontLeftKnee/frontLeftFoot
+        weight: 1
+      - path: body/frontLeftHip/frontLeftKnee/frontLeftFoot/frontLeftRoot
+        weight: 1
+      - path: body/frontRightHip
+        weight: 1
+      - path: body/frontRightHip/frontRightKnee
+        weight: 1
+      - path: body/frontRightHip/frontRightKnee/frontRightFoot
+        weight: 1
+      - path: body/frontRightHip/frontRightKnee/frontRightFoot/frontRightRoot
+        weight: 1
+      - path: body/neck
+        weight: 1
+      - path: body/neck/head
+        weight: 1
+      - path: body/rearLeftHip
+        weight: 1
+      - path: body/rearLeftHip/rearLeftKnee
+        weight: 1
+      - path: body/rearLeftHip/rearLeftKnee/rearLeftFoot
+        weight: 1
+      - path: body/rearLeftHip/rearLeftKnee/rearLeftFoot/rearLeftRoot
+        weight: 1
+      - path: body/rearRightHip
+        weight: 1
+      - path: body/rearRightHip/rearRightKnee
+        weight: 1
+      - path: body/rearRightHip/rearRightKnee/rearRightFoot
+        weight: 1
+      - path: body/rearRightHip/rearRightKnee/rearRightFoot/rearRightRoot
+        weight: 1
+      - path: synthTankSeparate
+        weight: 1
+      - path: synthTankSeparate/body 1
+        weight: 1
+      - path: synthTankSeparate/canonGroup
+        weight: 1
+      - path: synthTankSeparate/canonGroup/canonRail
+        weight: 1
+      - path: synthTankSeparate/canonGroup/canonRoatation
+        weight: 1
+      - path: synthTankSeparate/headStuff
+        weight: 1
+      - path: synthTankSeparate/headStuff/eye1
+        weight: 1
+      - path: synthTankSeparate/headStuff/eye2
+        weight: 1
+      - path: synthTankSeparate/headStuff/eye3
+        weight: 1
+      - path: synthTankSeparate/headStuff/eye4
+        weight: 1
+      - path: synthTankSeparate/headStuff/headPiece
+        weight: 1
+      - path: synthTankSeparate/tubes
+        weight: 1
+      - path: synthTankSeparate/tubes/tubeCenter
+        weight: 1
+      - path: synthTankSeparate/tubes/tubeLeft
+        weight: 1
+      - path: synthTankSeparate/tubes/tubeRight
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00600000005
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

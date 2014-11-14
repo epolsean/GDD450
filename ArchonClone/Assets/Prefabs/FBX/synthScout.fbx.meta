@@ -1,126 +1,104 @@
 fileFormatVersion: 2
-guid: d2182c1cf07cb5a40b3608c987d5ecce
+guid: 4ec092fbb2be93144a3a71f6db51f0b7
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: arm
-    100002: arm 1
-    100004: armLeft
-    100006: armRight
-    100008: ballJoint
-    100010: base
-    100012: body
-    100014: extendingBarrel
-    100016: eyeMain
-    100018: eyeSecondary
-    100020: head
-    100022: head 1
-    100024: hover
-    100026: hoverSection
-    100028: neck
-    100030: neckAndHead
-    100032: neckBase
-    100034: neckJoint
-    100036: nurbsToSubd1
-    100038: nurbsToSubd2
-    100040: nurbsToSubd3
-    100042: nurbsToSubd4
-    100044: rifle
-    100046: rifle 1
-    100048: shoulderJoint
-    100050: shoulderJoint 1
-    100052: //RootNode
-    100054: torso
-    100056: tubes1
-    400000: arm
-    400002: arm 1
-    400004: armLeft
-    400006: armRight
-    400008: ballJoint
-    400010: base
-    400012: body
-    400014: extendingBarrel
-    400016: eyeMain
-    400018: eyeSecondary
-    400020: head
-    400022: head 1
-    400024: hover
-    400026: hoverSection
-    400028: neck
-    400030: neckAndHead
-    400032: neckBase
-    400034: neckJoint
-    400036: nurbsToSubd1
-    400038: nurbsToSubd2
-    400040: nurbsToSubd3
-    400042: nurbsToSubd4
-    400044: rifle
-    400046: rifle 1
-    400048: shoulderJoint
-    400050: shoulderJoint 1
-    400052: //RootNode
-    400054: torso
-    400056: tubes1
-    2300000: arm
-    2300002: arm 1
+    100000: ammoBattery
+    100002: arm
+    100004: armRight
+    100006: ballJoint
+    100008: base
+    100010: body1
+    100012: extendingBarrel
+    100014: eye5
+    100016: eye6
+    100018: head
+    100020: head 1
+    100022: hover
+    100024: hoverSection
+    100026: neck
+    100028: neckAndHead
+    100030: nurbsToSubd1
+    100032: nurbsToSubd2
+    100034: nurbsToSubd3
+    100036: nurbsToSubd4
+    100038: rifle
+    100040: rifle 1
+    100042: //RootNode
+    100044: torso
+    100046: tubes
+    400000: ammoBattery
+    400002: arm
+    400004: armRight
+    400006: ballJoint
+    400008: base
+    400010: body1
+    400012: extendingBarrel
+    400014: eye5
+    400016: eye6
+    400018: head
+    400020: head 1
+    400022: hover
+    400024: hoverSection
+    400026: neck
+    400028: neckAndHead
+    400030: nurbsToSubd1
+    400032: nurbsToSubd2
+    400034: nurbsToSubd3
+    400036: nurbsToSubd4
+    400038: rifle
+    400040: rifle 1
+    400042: //RootNode
+    400044: torso
+    400046: tubes
+    2300000: ammoBattery
+    2300002: arm
     2300004: ballJoint
     2300006: base
-    2300008: body
+    2300008: body1
     2300010: extendingBarrel
-    2300012: eyeMain
-    2300014: eyeSecondary
+    2300012: eye5
+    2300014: eye6
     2300016: head 1
     2300018: hoverSection
     2300020: neck
-    2300022: neckBase
-    2300024: neckJoint
-    2300026: nurbsToSubd1
-    2300028: nurbsToSubd2
-    2300030: nurbsToSubd3
-    2300032: nurbsToSubd4
-    2300034: rifle 1
-    2300036: shoulderJoint
-    2300038: shoulderJoint 1
-    3300000: arm
-    3300002: arm 1
+    2300022: nurbsToSubd1
+    2300024: nurbsToSubd2
+    2300026: nurbsToSubd3
+    2300028: nurbsToSubd4
+    2300030: rifle 1
+    3300000: ammoBattery
+    3300002: arm
     3300004: ballJoint
     3300006: base
-    3300008: body
+    3300008: body1
     3300010: extendingBarrel
-    3300012: eyeMain
-    3300014: eyeSecondary
+    3300012: eye5
+    3300014: eye6
     3300016: head 1
     3300018: hoverSection
     3300020: neck
-    3300022: neckBase
-    3300024: neckJoint
-    3300026: nurbsToSubd1
-    3300028: nurbsToSubd2
-    3300030: nurbsToSubd3
-    3300032: nurbsToSubd4
-    3300034: rifle 1
-    3300036: shoulderJoint
-    3300038: shoulderJoint 1
-    4300000: body
-    4300002: neckJoint
-    4300004: neck
-    4300006: neckBase
-    4300008: eyeMain
-    4300010: head
-    4300012: eyeSecondary
-    4300014: hoverSection
-    4300016: ballJoint
-    4300018: base
-    4300020: arm
-    4300022: shoulderJoint
-    4300024: arm
-    4300026: shoulderJoint
-    4300028: rifle
-    4300030: extendingBarrel
-    4300032: nurbsToSubd4
-    4300034: nurbsToSubd3
-    4300036: nurbsToSubd2
-    4300038: nurbsToSubd1
+    3300022: nurbsToSubd1
+    3300024: nurbsToSubd2
+    3300026: nurbsToSubd3
+    3300028: nurbsToSubd4
+    3300030: rifle 1
+    4300000: body1
+    4300002: neck
+    4300004: head
+    4300006: eye5
+    4300008: eye6
+    4300010: hoverSection
+    4300012: ballJoint
+    4300014: base
+    4300016: ammoBattery
+    4300018: arm
+    4300020: rifle
+    4300022: extendingBarrel
+    4300024: nurbsToSubd4
+    4300026: nurbsToSubd3
+    4300028: nurbsToSubd2
+    4300030: nurbsToSubd1
     9500000: //RootNode
   materials:
     importMaterials: 1

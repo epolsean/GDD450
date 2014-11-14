@@ -21,7 +21,7 @@ public class pieceMove : MonoBehaviour {
         //targetPosition = GameObject.FindWithTag("GroundTargetObject").transform.position;
         //GetNewPath();
         MoveController = GameObject.Find("MovementController");
-        if(name == "BlackGrunt(Clone)")
+        if(name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)")
         {
             print("Set Piece Animator");
             PieceAnim = GetComponentInChildren<Animator>();
@@ -35,7 +35,7 @@ public class pieceMove : MonoBehaviour {
         //if (p.vectorPath.Count > 0)
         //{
             seeker.StartPath(transform.position, targetPosition, OnPathComplete);
-            if(name == "BlackGrunt(Clone)")
+            if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)")
             {
                 //PieceAnim.SetTrigger("WalkOnce");
                 PieceAnim.SetBool("isWalking", true);
@@ -50,6 +50,11 @@ public class pieceMove : MonoBehaviour {
         return p.vectorPath.Capacity;
 
         
+    }
+
+    public void GenNewPath()
+    {
+        seeker.GetNewPath(transform.position, targetPosition);
     }
 
     void OnPathComplete(Path newPath)
@@ -72,7 +77,7 @@ public class pieceMove : MonoBehaviour {
             if(isMoving)
             {
 
-                if (name == "BlackGrunt(Clone)")
+                if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)")
                 {
                     //GetComponentInChildren<Animator>().SetBool("isWalking", false);
                     PieceAnim.SetBool("isWalking", false);

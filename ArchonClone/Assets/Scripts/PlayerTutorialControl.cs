@@ -5,6 +5,7 @@ public class PlayerTutorialControl : MonoBehaviour {
 
     public GameObject TutorialEnemyController;
     public GameObject UnitMoveController;
+    public bool PlayerError = false; 
     
     // Use this for initialization
 	void Start () {
@@ -17,7 +18,15 @@ public class PlayerTutorialControl : MonoBehaviour {
         {
             if (/*TurnStateMachine.state == TurnStateMachine.State.playerTurn && */TutorialEnemyController.GetComponent<TutorialEnemyBoardScript>().enemyTurn == 0)
             {
-                Invoke("SetEnemyTurn", 3);
+                if (PlayerError == false)
+                {
+                    Invoke("SetEnemyTurn", 3);
+                }
+                else
+                {
+                    PlayerError = false;
+                    TutorialEnemyController.GetComponent<TutorialEnemyBoardScript>().enemyTurn = 2;
+                }
                 //TurnStateMachine.state = TurnStateMachine.State.otherTurn;
             }
             else if (TutorialEnemyController.GetComponent<TutorialEnemyBoardScript>().enemyTurn == 2)
@@ -26,7 +35,6 @@ public class PlayerTutorialControl : MonoBehaviour {
             }
         }
 	}
-
     void SetEnemyTurn()
     {
         TutorialEnemyController.GetComponent<TutorialEnemyBoardScript>().enemyTurn = 3;

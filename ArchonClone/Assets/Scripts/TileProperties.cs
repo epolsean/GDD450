@@ -215,6 +215,13 @@ public class TileProperties : MonoBehaviour {
                 this.datNode.SetActive(true);
                 GridManager.rescan = true; 
             }
+            
+            //this should draw out path prior to moving
+            UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().targetPosition = UnitMoveController.GetComponent<PawnMove>().MoveToTile.transform.position;
+            print("past assigning targetposition");
+            UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().GenNewPath();
+            print("new path generated!!!!!");
+
             if(Vector3.Distance(UnitMoveController.GetComponent<PawnMove>().SelectedPiece.transform.position, this.transform.position) <= UnitMoveController.GetComponent<PawnMove>().MaxMove)
             {
                 renderer.material.color = Color.green;
@@ -397,7 +404,7 @@ public class TileProperties : MonoBehaviour {
                 {
                     //ReplaceBlackPiece(UnitMoveController.GetComponent<PawnMove>().SelectedPiece);
                     SetTarget();
-                    if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.name == "BlackPawn(Clone)")
+                    if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.name == "BlackGrunt(Clone)")
                     {
                         PiecePlaceScript.Black01Tile = UnitMoveController.GetComponent<PawnMove>().MoveToTile;
                         Debug.Log("SetBlackPawnTile");
@@ -412,7 +419,15 @@ public class TileProperties : MonoBehaviour {
                 {
                     if (GameObject.Find("EnemyTurnController") != null)
                     {
+                        Debug.Log("Incorrect");
                         SoundController.GetComponent<UISoundsScript>().playError();
+                        pieceSelected = false; 
+                        canPlace = false; 
+                        if (GameObject.Find("DummyPlayerPlaceHolder") != null)
+                        {
+                            GameObject.Find("DummyPlayerPlaceHolder").GetComponent<PlayerTutorialControl>().PlayerError = true; 
+                        }
+                        //GameObject.Find("EnemyTurnController").GetComponent<TutorialEnemyBoardScript>().enemyTurn = 2;
                     }
                     else
                     {

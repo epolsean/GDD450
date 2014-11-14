@@ -1,0 +1,368 @@
+fileFormatVersion: 2
+guid: 9cf11eebe1e0c26459d1f306ea746221
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: base
+    100002: chest
+    100004: endTail
+    100006: face
+    100008: faceRoot
+    100010: head
+    100012: leftFrontFoot
+    100014: leftFrontHip
+    100016: leftFrontKnee
+    100018: leftFrontRoot
+    100020: leftMiddleFoot
+    100022: leftMiddleHip
+    100024: leftMiddleKnee
+    100026: leftMiddleRoot
+    100028: leftRearFoot
+    100030: leftRearHip
+    100032: leftRearKnee
+    100034: leftRearRoot
+    100036: midTail
+    100038: mouth
+    100040: mouthRoot
+    100042: neck
+    100044: nurbsCircle8
+    100046: //RootNode
+    100048: rightFrontFoot
+    100050: rightFrontHip
+    100052: rightFrontKnee
+    100054: rightFrontRoot
+    100056: rightMiddleFoot
+    100058: rightMiddleHip
+    100060: rightMiddleKnee
+    100062: rightMiddleRoot
+    100064: rightRearFoot
+    100066: rightRearHip
+    100068: rightRearKnee
+    100070: rightRearRoot
+    100072: root
+    100074: slug
+    100076: stomach
+    100078: tail
+    100080: tailRoot
+    100082: whatWhat
+    400000: base
+    400002: chest
+    400004: endTail
+    400006: face
+    400008: faceRoot
+    400010: head
+    400012: leftFrontFoot
+    400014: leftFrontHip
+    400016: leftFrontKnee
+    400018: leftFrontRoot
+    400020: leftMiddleFoot
+    400022: leftMiddleHip
+    400024: leftMiddleKnee
+    400026: leftMiddleRoot
+    400028: leftRearFoot
+    400030: leftRearHip
+    400032: leftRearKnee
+    400034: leftRearRoot
+    400036: midTail
+    400038: mouth
+    400040: mouthRoot
+    400042: neck
+    400044: nurbsCircle8
+    400046: //RootNode
+    400048: rightFrontFoot
+    400050: rightFrontHip
+    400052: rightFrontKnee
+    400054: rightFrontRoot
+    400056: rightMiddleFoot
+    400058: rightMiddleHip
+    400060: rightMiddleKnee
+    400062: rightMiddleRoot
+    400064: rightRearFoot
+    400066: rightRearHip
+    400068: rightRearKnee
+    400070: rightRearRoot
+    400072: root
+    400074: slug
+    400076: stomach
+    400078: tail
+    400080: tailRoot
+    400082: whatWhat
+    4300000: slug
+    7400000: AlienTankWalk
+    7400002: AlienTankIdle
+    9500000: //RootNode
+    13700000: slug
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: AlienTankWalk
+      takeName: Take 001
+      firstFrame: 15
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: nurbsCircle8
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/base
+        weight: 1
+      - path: root/base/neck
+        weight: 1
+      - path: root/base/neck/head
+        weight: 1
+      - path: root/base/neck/head/face
+        weight: 1
+      - path: root/base/neck/head/face/faceRoot
+        weight: 1
+      - path: root/base/neck/head/mouth
+        weight: 1
+      - path: root/base/neck/head/mouth/mouthRoot
+        weight: 1
+      - path: root/chest
+        weight: 1
+      - path: root/chest/leftFrontHip
+        weight: 1
+      - path: root/chest/leftFrontHip/leftFrontKnee
+        weight: 1
+      - path: root/chest/leftFrontHip/leftFrontKnee/leftFrontFoot
+        weight: 1
+      - path: root/chest/leftFrontHip/leftFrontKnee/leftFrontFoot/leftFrontRoot
+        weight: 1
+      - path: root/chest/rightFrontHip
+        weight: 1
+      - path: root/chest/rightFrontHip/rightFrontKnee
+        weight: 1
+      - path: root/chest/rightFrontHip/rightFrontKnee/rightFrontFoot
+        weight: 1
+      - path: root/chest/rightFrontHip/rightFrontKnee/rightFrontFoot/rightFrontRoot
+        weight: 1
+      - path: root/chest/stomach
+        weight: 1
+      - path: root/chest/stomach/leftMiddleHip
+        weight: 1
+      - path: root/chest/stomach/leftMiddleHip/leftMiddleKnee
+        weight: 1
+      - path: root/chest/stomach/leftMiddleHip/leftMiddleKnee/leftMiddleFoot
+        weight: 1
+      - path: root/chest/stomach/leftMiddleHip/leftMiddleKnee/leftMiddleFoot/leftMiddleRoot
+        weight: 1
+      - path: root/chest/stomach/rightMiddleHip
+        weight: 1
+      - path: root/chest/stomach/rightMiddleHip/rightMiddleKnee
+        weight: 1
+      - path: root/chest/stomach/rightMiddleHip/rightMiddleKnee/rightMiddleFoot
+        weight: 1
+      - path: root/chest/stomach/rightMiddleHip/rightMiddleKnee/rightMiddleFoot/rightMiddleRoot
+        weight: 1
+      - path: root/chest/stomach/whatWhat
+        weight: 1
+      - path: root/chest/stomach/whatWhat/leftRearHip
+        weight: 1
+      - path: root/chest/stomach/whatWhat/leftRearHip/leftRearKnee
+        weight: 1
+      - path: root/chest/stomach/whatWhat/leftRearHip/leftRearKnee/leftRearFoot
+        weight: 1
+      - path: root/chest/stomach/whatWhat/leftRearHip/leftRearKnee/leftRearFoot/leftRearRoot
+        weight: 1
+      - path: root/chest/stomach/whatWhat/rightRearHip
+        weight: 1
+      - path: root/chest/stomach/whatWhat/rightRearHip/rightRearKnee
+        weight: 1
+      - path: root/chest/stomach/whatWhat/rightRearHip/rightRearKnee/rightRearFoot
+        weight: 1
+      - path: root/chest/stomach/whatWhat/rightRearHip/rightRearKnee/rightRearFoot/rightRearRoot
+        weight: 1
+      - path: root/chest/stomach/whatWhat/tail
+        weight: 1
+      - path: root/chest/stomach/whatWhat/tail/midTail
+        weight: 1
+      - path: root/chest/stomach/whatWhat/tail/midTail/endTail
+        weight: 1
+      - path: root/chest/stomach/whatWhat/tail/midTail/endTail/tailRoot
+        weight: 1
+      - path: slug
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: AlienTankIdle
+      takeName: Take 001
+      firstFrame: 40
+      lastFrame: 140
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: nurbsCircle8
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/base
+        weight: 1
+      - path: root/base/neck
+        weight: 1
+      - path: root/base/neck/head
+        weight: 1
+      - path: root/base/neck/head/face
+        weight: 1
+      - path: root/base/neck/head/face/faceRoot
+        weight: 1
+      - path: root/base/neck/head/mouth
+        weight: 1
+      - path: root/base/neck/head/mouth/mouthRoot
+        weight: 1
+      - path: root/chest
+        weight: 1
+      - path: root/chest/leftFrontHip
+        weight: 1
+      - path: root/chest/leftFrontHip/leftFrontKnee
+        weight: 1
+      - path: root/chest/leftFrontHip/leftFrontKnee/leftFrontFoot
+        weight: 1
+      - path: root/chest/leftFrontHip/leftFrontKnee/leftFrontFoot/leftFrontRoot
+        weight: 1
+      - path: root/chest/rightFrontHip
+        weight: 1
+      - path: root/chest/rightFrontHip/rightFrontKnee
+        weight: 1
+      - path: root/chest/rightFrontHip/rightFrontKnee/rightFrontFoot
+        weight: 1
+      - path: root/chest/rightFrontHip/rightFrontKnee/rightFrontFoot/rightFrontRoot
+        weight: 1
+      - path: root/chest/stomach
+        weight: 1
+      - path: root/chest/stomach/leftMiddleHip
+        weight: 1
+      - path: root/chest/stomach/leftMiddleHip/leftMiddleKnee
+        weight: 1
+      - path: root/chest/stomach/leftMiddleHip/leftMiddleKnee/leftMiddleFoot
+        weight: 1
+      - path: root/chest/stomach/leftMiddleHip/leftMiddleKnee/leftMiddleFoot/leftMiddleRoot
+        weight: 1
+      - path: root/chest/stomach/rightMiddleHip
+        weight: 1
+      - path: root/chest/stomach/rightMiddleHip/rightMiddleKnee
+        weight: 1
+      - path: root/chest/stomach/rightMiddleHip/rightMiddleKnee/rightMiddleFoot
+        weight: 1
+      - path: root/chest/stomach/rightMiddleHip/rightMiddleKnee/rightMiddleFoot/rightMiddleRoot
+        weight: 1
+      - path: root/chest/stomach/whatWhat
+        weight: 1
+      - path: root/chest/stomach/whatWhat/leftRearHip
+        weight: 1
+      - path: root/chest/stomach/whatWhat/leftRearHip/leftRearKnee
+        weight: 1
+      - path: root/chest/stomach/whatWhat/leftRearHip/leftRearKnee/leftRearFoot
+        weight: 1
+      - path: root/chest/stomach/whatWhat/leftRearHip/leftRearKnee/leftRearFoot/leftRearRoot
+        weight: 1
+      - path: root/chest/stomach/whatWhat/rightRearHip
+        weight: 1
+      - path: root/chest/stomach/whatWhat/rightRearHip/rightRearKnee
+        weight: 1
+      - path: root/chest/stomach/whatWhat/rightRearHip/rightRearKnee/rightRearFoot
+        weight: 1
+      - path: root/chest/stomach/whatWhat/rightRearHip/rightRearKnee/rightRearFoot/rightRearRoot
+        weight: 1
+      - path: root/chest/stomach/whatWhat/tail
+        weight: 1
+      - path: root/chest/stomach/whatWhat/tail/midTail
+        weight: 1
+      - path: root/chest/stomach/whatWhat/tail/midTail/endTail
+        weight: 1
+      - path: root/chest/stomach/whatWhat/tail/midTail/endTail/tailRoot
+        weight: 1
+      - path: slug
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .0799999982
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
