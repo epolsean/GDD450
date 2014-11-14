@@ -111,7 +111,7 @@ public class NetworkManagerScript : MonoBehaviour {
                             count--;
                         }
                         else
-                            Application.LoadLevel("LargeTileBoard");
+                            Application.LoadLevel("AlienBattleSmall");
                         startTime = Time.time + 1f;
                     }
                 }

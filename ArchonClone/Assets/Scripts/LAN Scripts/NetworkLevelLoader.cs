@@ -10,7 +10,7 @@ public class NetworkLevelLoader : MonoBehaviour {
 
     bool player1Created = false;
     bool player2Created = false;
-    string loadedLevel = "BattleTest";
+    string loadedLevel = "AlienBattleSmall";
     static bool player1Connected = false;
     static bool player2Connected = false;
     bool bothConnected = false;
@@ -47,13 +47,13 @@ public class NetworkLevelLoader : MonoBehaviour {
         if (Network.isServer && player1Created == false)
         {
             GameObject newPlayer = (GameObject)Network.Instantiate(player1, spawn1.transform.position, player1.transform.rotation, 1);
-            newPlayer.transform.parent = GameObject.Find("BattleTestAdditive").transform;
+            newPlayer.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
             player1Created = true;
         }
         else if (Network.isClient && player2Created == false)
         {
             GameObject newPlayer = (GameObject)Network.Instantiate(player2, spawn2.transform.position, player2.transform.rotation, 1);
-            newPlayer.transform.parent = GameObject.Find("BattleTestAdditive").transform;
+            newPlayer.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
             player2Created = true;
         }
 	}

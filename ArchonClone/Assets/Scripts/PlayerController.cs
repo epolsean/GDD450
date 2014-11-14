@@ -286,35 +286,45 @@ public class PlayerController : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        //If the player gets shot
-        /*if (other.tag == "alienBullet" || other.tag == "robotBullet")
+        if (Network.isClient || Network.isServer)
         {
-            Network.Destroy(other.gameObject);
-            networkView.RPC("subHealth", RPCMode.AllBuffered);
+
+            //If the player gets shot
+
+            if (other.tag == "alienBullet" && Network.isServer)
+            {
+                Network.Destroy(other.gameObject);
+                networkView.RPC("subHealth", RPCMode.AllBuffered);
+            }
+            else if (other.tag == "robotBullet" && Network.isServer)
+            {
+                Network.Destroy(other.gameObject);
+                networkView.RPC("subHealth", RPCMode.AllBuffered);
+            }
+            if (other.name == "laser" && other.GetComponent<LaserController>().shooting)
+            {
+                health -= 0.5f;
+            }
+            //If the player gets hit with melee
+            if (other.name == "Sword(Clone)" && other.tag != tag)
+            {
+                if(enemy1 == null)
+                    enemy1.swinging = false;
+                else if (enemy2 == null)
+                    enemy2.swinging = false;
+                Debug.Log("hit by sword");
+                Destroy(other.gameObject);
+                Vector3 this2That = new Vector3(this.transform.position.x - other.transform.position.x, 0, this.transform.position.z - other.transform.position.z);
+                this.gameObject.GetComponent<CharacterController>().Move(2 * (this2That));
+                health -= 10;
+            }
         }
-        if (other.name == "laser" && other.GetComponent<LaserController>().shooting)
-        {
-            health -= 0.5f;
-        }
-        //If the player gets hit with melee
-        if (other.name == "Sword(Clone)" && other.tag != tag)
-        {
-            if(enemy1 == null)
-                enemy1.swinging = false;
-            else if (enemy2 == null)
-                enemy2.swinging = false;
-            Debug.Log("hit by sword");
-            Destroy(other.gameObject);
-            Vector3 this2That = new Vector3(this.transform.position.x - other.transform.position.x, 0, this.transform.position.z - other.transform.position.z);
-            this.gameObject.GetComponent<CharacterController>().Move(2 * (this2That));
-            health -= 10;
-        }*/
 
     }
 
     void createBullet()
     {
-        Rigidbody bulletClone = Network.Instantiate(Bullet, transform.position + 2f * bulletSize * this.transform.forward, transform.rotation, 0) as Rigidbody;
+        Rigidbody bulletClone = Network.Instantiate(Bullet, transform.position + 2f * bulletSize * transform.forward, transform.rotation, 0) as Rigidbody;
         bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
         bulletClone.rigidbody.useGravity = false;
         bulletClone.velocity = transform.TransformDirection(transform.forward * bulletSpeed);
