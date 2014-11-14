@@ -90,6 +90,10 @@ public class TileProperties : MonoBehaviour {
                 {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Organic Tank";
                 }
+                if (GameObject.Find("SpecialText") != null)
+                {
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Heat Seeking Missile(F Key)";
+                }
                 
             }
             else if (this.UnitOnTile.name == "BlackGrunt(Clone)")
@@ -102,6 +106,10 @@ public class TileProperties : MonoBehaviour {
                 if (GameObject.Find("PieceNameText") != null)
                 {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Organic Grunt";
+                }
+                if (GameObject.Find("SpecialText") != null)
+                {
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "";
                 }
             }
             else if (this.UnitOnTile.name == "BlackScout(Clone)")
@@ -116,6 +124,11 @@ public class TileProperties : MonoBehaviour {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Organic Scout";
                 }
 
+                if(GameObject.Find("SpecialText") != null)
+                {
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Shield(F Key)";
+                }
+
             }
             else if (this.UnitOnTile.name == "BlackRunner(Clone)")
             {
@@ -127,6 +140,10 @@ public class TileProperties : MonoBehaviour {
                 if (GameObject.Find("PieceNameText") != null)
                 {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Organic Runner";
+                }
+                if (GameObject.Find("SpecialText") != null)
+                {
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "";
                 }
             }
             else if (this.UnitOnTile.name == "WhiteTank(Clone)")
@@ -140,6 +157,10 @@ public class TileProperties : MonoBehaviour {
                 {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Synthetic Tank";
                 }
+                if (GameObject.Find("SpecialText") != null)
+                {
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Heat Seeking Missile(F Key)";
+                }
             }
             else if (this.UnitOnTile.name == "WhiteScout(Clone)")
             {
@@ -151,6 +172,11 @@ public class TileProperties : MonoBehaviour {
                 if (GameObject.Find("PieceNameText") != null)
                 {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Synthetic Scout";
+                }
+
+                if (GameObject.Find("SpecialText") != null)
+                {
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Shield(F Key)";
                 }
             }
             else if (this.UnitOnTile.name == "WhiteGrunt(Clone)")
@@ -164,6 +190,10 @@ public class TileProperties : MonoBehaviour {
                 {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Synthetic Grunt";
                 }
+                if (GameObject.Find("SpecialText") != null)
+                {
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "";
+                }
             }
             else if (this.UnitOnTile.name == "WhiteRunner(Clone)")
             {
@@ -174,6 +204,10 @@ public class TileProperties : MonoBehaviour {
                 if (GameObject.Find("PieceNameText") != null)
                 {
                     GameObject.Find("PieceNameText").GetComponent<Text>().text = "Synthetic Runner";
+                }
+                if (GameObject.Find("SpecialText") != null)
+                {
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "";
                 }
             }
             
@@ -277,6 +311,10 @@ public class TileProperties : MonoBehaviour {
         if (GameObject.Find("PieceNameText") != null)
         {
             GameObject.Find("PieceNameText").GetComponent<Text>().text = "";
+        }
+        if (GameObject.Find("SpecialText") != null)
+        {
+            GameObject.Find("SpecialText").GetComponent<Text>().text = "";
         }
         if(this.tag == "WhiteTile")
         {
