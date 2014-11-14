@@ -23,16 +23,17 @@ public class Player2MovementController : MonoBehaviour
     private Vector3 lastLooking;
     public bool topDownView = false;
 
-    public Rigidbody Bullet;
-    public Rigidbody missile;
+    public Rigidbody robotBullet;
+    public Rigidbody alienBullet;
+    public Rigidbody robotMissile;
+    public Rigidbody alienMissile;
     public GameObject Sword;
     public bool isMelee = false;
     public int bulletSpeed = 25;
 
     public GameObject healthPieceGreen;
     public Sprite healthPieceRed;
-
-    bool isAlien;
+    public GameObject shield;
 
     public Camera camMine;
     public Camera camEnemy;
@@ -42,6 +43,9 @@ public class Player2MovementController : MonoBehaviour
 
     public float specialTimer = 5.0f;
     bool specialAvailable = false;
+    public bool usingShield = false;
+    float shieldPower = 100f;
+    bool shieldOverheat = false;
 
     Player1MovementController enemy;
 
@@ -55,6 +59,8 @@ public class Player2MovementController : MonoBehaviour
     CharacterController controller;
 
     public GameObject MoveController;
+
+    public bool isAlien;
 
     void Start()
     {
@@ -87,18 +93,22 @@ public class Player2MovementController : MonoBehaviour
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackTank(Clone)")
         {
             OrganicTank.SetActive(true);
+            isAlien = true;
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)")
         {
             OrganicScout.SetActive(true);
+            isAlien = true;
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)")
         {
             OrganicRunner.SetActive(true);
+            isAlien = true;
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)")
         {
             OrganicGrunt.SetActive(true);
+            isAlien = true;
         }
     }
     void Update()
@@ -181,11 +191,22 @@ public class Player2MovementController : MonoBehaviour
                 {
                     if ((Input.GetAxis("360_RightTrigger2") == 1) && reloading == false)
                     {
-                        Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.5f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                        bulletClone.rigidbody.useGravity = false;
-                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                        Destroy(bulletClone.gameObject, 3);
+                        if (isAlien)
+                        {
+                            Rigidbody bulletClone = Instantiate(alienBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                            bulletClone.rigidbody.useGravity = false;
+                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                            Destroy(bulletClone.gameObject, 3);
+                        }
+                        else
+                        {
+                            Rigidbody bulletClone = Instantiate(robotBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                            bulletClone.rigidbody.useGravity = false;
+                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                            Destroy(bulletClone.gameObject, 3);
+                        }
                         audio.Play();
                         bulletSize = 1;
                         bulletSpeed = 25;
@@ -196,11 +217,22 @@ public class Player2MovementController : MonoBehaviour
                 {
                     if ((Input.GetAxis("Fire2") == 1) && reloading == false)
                     {
-                        Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.5f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                        bulletClone.rigidbody.useGravity = false;
-                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                        Destroy(bulletClone.gameObject, 3);
+                        if (isAlien)
+                        {
+                            Rigidbody bulletClone = Instantiate(alienBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                            bulletClone.rigidbody.useGravity = false;
+                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                            Destroy(bulletClone.gameObject, 3);
+                        }
+                        else
+                        {
+                            Rigidbody bulletClone = Instantiate(robotBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                            bulletClone.rigidbody.useGravity = false;
+                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                            Destroy(bulletClone.gameObject, 3);
+                        }
                         audio.Play();
                         bulletSize = 1;
                         bulletSpeed = 25;
@@ -325,10 +357,29 @@ public class Player2MovementController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         //If the player gets shot
-        if (other.tag == "robotBullet")
+        if (!isAlien && other.tag == "alienBullet")
         {
             Destroy(other.gameObject);
-            health -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+            if (!usingShield)
+            {
+                health -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+            }
+            else
+            {
+                shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+            }
+        }
+        else if (isAlien && other.tag == "robotBullet")
+        {
+            Destroy(other.gameObject);
+            if (!usingShield)
+            {
+                health -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+            }
+            else
+            {
+                shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+            }
         }
         if (other.name == "laser" && other.GetComponent<LaserController>().shooting)
         {
@@ -342,13 +393,62 @@ public class Player2MovementController : MonoBehaviour
             Destroy(other.gameObject);
             Vector3 this2That = new Vector3(this.transform.position.x - other.transform.position.x, 0, this.transform.position.z - other.transform.position.z);
             this.gameObject.GetComponent<CharacterController>().Move(2 * (this2That));
-            health -= 10;
+            if (!usingShield)
+            {
+                health -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+            }
+            else
+            {
+                shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+            }
         }
     }
 
     void RobotGruntSpecial()
     {
+        shield.GetComponent<Image>().fillAmount = shieldPower;
+        Behaviour h = (Behaviour)GetComponent("Halo");
+        Debug.Log("shield power : " + shieldPower);
+        if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
+        {
+            shieldPower += Time.deltaTime;
+            if (shieldPower > 100)
+            {
+                shieldPower = 100;
+            }
+            h.enabled = false;
+        }
+        else if (usingShield)
+        {
+            shieldPower -= Time.deltaTime * 5;
+            if (shieldPower <= 0)
+            {
+                shieldOverheat = true;
+                usingShield = false;
+            }
+            h.enabled = true;
+        }
+        if (shieldOverheat)
+        {
+            h.enabled = false;
+            shieldPower += 2 * Time.deltaTime;
+            if (shieldPower >= 30)
+            {
+                shieldOverheat = false;
+            }
+        }
 
+        if (shieldPower >= 1 && !shieldOverheat)
+        {
+            if (Input.GetAxis("Special1") == 1)
+            {
+                usingShield = true;
+            }
+            else
+            {
+                usingShield = false;
+            }
+        }
     }
     void RobotScoutSpecial()
     {
@@ -367,8 +467,7 @@ public class Player2MovementController : MonoBehaviour
         }
         if (Input.GetAxis("Special1") == 1 && specialAvailable)
         {
-
-            Rigidbody missileClone = Instantiate(missile, transform.position + (1.2f * bulletSize * this.transform.forward) + (1.2f * this.transform.up), transform.rotation) as Rigidbody;
+            Rigidbody missileClone = Instantiate(robotMissile, transform.position + (1.2f * bulletSize * this.transform.forward) + (1.2f * this.transform.up), transform.rotation) as Rigidbody;
             missileClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
             missileClone.GetComponent<TargetEnemy>().target = enemy.gameObject;
             missileClone.rigidbody.useGravity = false;
@@ -386,7 +485,49 @@ public class Player2MovementController : MonoBehaviour
 
     void AlienGruntSpecial()
     {
+        shield.GetComponent<Image>().fillAmount = shieldPower;
+        Behaviour h = (Behaviour)GetComponent("Halo");
+        Debug.Log("shield power : " + shieldPower);
+        if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
+        {
+            shieldPower += Time.deltaTime;
+            if (shieldPower > 100)
+            {
+                shieldPower = 100;
+            }
+            h.enabled = false;
+        }
+        else if (usingShield)
+        {
+            shieldPower -= Time.deltaTime * 5;
+            if (shieldPower <= 0)
+            {
+                shieldOverheat = true;
+                usingShield = false;
+            }
+            h.enabled = true;
+        }
+        if (shieldOverheat)
+        {
+            h.enabled = false;
+            shieldPower += 2 * Time.deltaTime;
+            if (shieldPower >= 30)
+            {
+                shieldOverheat = false;
+            }
+        }
 
+        if (shieldPower >= 1 && !shieldOverheat)
+        {
+            if (Input.GetAxis("Special1") == 1)
+            {
+                usingShield = true;
+            }
+            else
+            {
+                usingShield = false;
+            }
+        }
     }
     void AlienScoutSpecial()
     {
