@@ -17,7 +17,7 @@ public class DisplayTimer : MonoBehaviour
             {
                 if (Accelerator.countdownTimer <= 0)
                 {
-                    GetComponent<Text>().text = "";
+                    transform.parent.gameObject.SetActive(false);
                 }
                 else
                 {
@@ -28,7 +28,7 @@ public class DisplayTimer : MonoBehaviour
             {
                 if (Accelerator.countdownTimer <= 0)
                 {
-                    GetComponent<Text>().text = "";
+                    transform.parent.gameObject.SetActive(false);
                 }
                 else
                 {

@@ -29,8 +29,8 @@ public class Player1MovementController : MonoBehaviour
     public bool isMelee = false;
     public int bulletSpeed = 25;
 
-    public GameObject healthPiece1;
-    public GameObject healthPiece2;
+    public GameObject healthPieceGreen;
+    public Sprite healthPieceRed;
 
     public Camera camMine;
     public Camera camEnemy;
@@ -44,6 +44,7 @@ public class Player1MovementController : MonoBehaviour
     Player2MovementController enemy;
 
     public float health;
+    public float MaxHealth;
     int bulletSize;
 
     public bool win = false;
@@ -61,6 +62,7 @@ public class Player1MovementController : MonoBehaviour
 
         //health = 100;
         health = (float)MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health;
+        MaxHealth = (float)MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().MaxHealth;
         bulletSize = 1;
         lastLooking = transform.forward;
 
@@ -192,7 +194,7 @@ public class Player1MovementController : MonoBehaviour
                     }
                     else
                     {
-                        if ((Input.GetMouseButton(0)) && reloading == false)
+                        if ((Input.GetAxis("Fire1")==1) && reloading == false)
                         {
                             Rigidbody bulletClone = Instantiate(Bullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
                             bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
@@ -277,13 +279,11 @@ public class Player1MovementController : MonoBehaviour
                 AlienGruntSpecial();
             }
 
-            healthPiece1.GetComponent<Image>().fillAmount = (float)((float)health / 200);
-            healthPiece2.GetComponent<Image>().fillAmount = (float)((float)health / 200);
+            healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health*2) / (MaxHealth*3));
 
-            if (health <= 30)
+            if ((float)((health * 2) / (MaxHealth * 3)) <= 0.16f)
             {
-                healthPiece1.GetComponent<Image>().color = Color.red;
-                healthPiece2.GetComponent<Image>().color = Color.red;
+                healthPieceGreen.GetComponent<Image>().sprite = healthPieceRed;
             }
             if (win == true)
             {

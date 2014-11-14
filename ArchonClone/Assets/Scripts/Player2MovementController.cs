@@ -29,8 +29,10 @@ public class Player2MovementController : MonoBehaviour
     public bool isMelee = false;
     public int bulletSpeed = 25;
 
-    public GameObject healthPiece1;
-    public GameObject healthPiece2;
+    public GameObject healthPieceGreen;
+    public Sprite healthPieceRed;
+
+    bool isAlien;
 
     public Camera camMine;
     public Camera camEnemy;
@@ -44,6 +46,7 @@ public class Player2MovementController : MonoBehaviour
     Player1MovementController enemy;
 
     public float health;
+    public float MaxHealth;
     int bulletSize;
 
     public bool win = false;
@@ -61,6 +64,7 @@ public class Player2MovementController : MonoBehaviour
 
         //health = 100;
         health = (float)MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health;
+        MaxHealth = (float)MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().MaxHealth;
         bulletSize = 1;
         lastLooking = transform.forward;
 
@@ -275,13 +279,12 @@ public class Player2MovementController : MonoBehaviour
             AlienGruntSpecial();
         }
 
-        healthPiece1.GetComponent<Image>().fillAmount = (float)((float)health / 200);
-        healthPiece2.GetComponent<Image>().fillAmount = (float)((float)health / 200);
+        healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
+        Debug.Log("health% : " + (float)((health * 2) / (MaxHealth * 3)));
 
-        if (health <= 30)
+        if ((float)((health * 2) / (MaxHealth * 3)) <= 0.16f)
         {
-            healthPiece1.GetComponent<Image>().color = Color.red;
-            healthPiece2.GetComponent<Image>().color = Color.red;
+            healthPieceGreen.GetComponent<Image>().sprite = healthPieceRed;
         }
         if (win == true)
         {
