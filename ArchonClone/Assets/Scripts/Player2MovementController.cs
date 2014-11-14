@@ -17,9 +17,6 @@ public class Player2MovementController : MonoBehaviour
     public static int xSensitivity = 3;
     public static int ySensitivity = 3;
 
-    public enum Character { Grunt, Tank, Runner, Scout };
-    public static Character myCharacter;
-
     public float speed = 6.0F;
     public float gravity = 20.0F;
     private Vector3 moveDirection = Vector3.zero;
@@ -58,64 +55,47 @@ public class Player2MovementController : MonoBehaviour
 
     void Start()
     {
-        if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteTank(Clone)")
-        {
-            SynthTank.transform.parent = this.gameObject.transform;
-        }
-        else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteScout(Clone)")
-        {
-            SynthScout.transform.parent = this.gameObject.transform;
-        }
-        else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteRunner(Clone)")
-        {
-            SynthRunner.transform.parent = this.gameObject.transform;
-        }
-        else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteGrunt(Clone)")
-        {
-            SynthGrunt.transform.parent = this.gameObject.transform;
-        }
-        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackTank(Clone)")
-        {
-            OrganicTank.transform.parent = this.gameObject.transform;
-        }
-        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackScout(Clone)")
-        {
-            OrganicScout.transform.parent = this.gameObject.transform;
-        }
-        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackRunner(Clone)")
-        {
-            OrganicRunner.transform.parent = this.gameObject.transform;
-        }
-        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackGrunt(Clone)")
-        {
-            OrganicGrunt.transform.parent = this.gameObject.transform;
-        }
-
         enemy = GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>();
         MoveController = GameObject.Find("MovementController");
         controller = GetComponent<CharacterController>();
 
-        //Determine Character and set up stats
-        if (myCharacter == Character.Grunt)
-        {
-
-        }
-        else if (myCharacter == Character.Runner)
-        {
-
-        }
-        else if (myCharacter == Character.Tank)
-        {
-
-        }
-        else if (myCharacter == Character.Scout)
-        {
-
-        }
         //health = 100;
         health = (float)MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health;
         bulletSize = 1;
         lastLooking = transform.forward;
+
+        if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)")
+        {
+            SynthTank.SetActive(true);
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteScout(Clone)")
+        {
+            SynthScout.SetActive(true);
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteRunner(Clone)")
+        {
+            SynthRunner.SetActive(true);
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteGrunt(Clone)")
+        {
+            SynthGrunt.SetActive(true);
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackTank(Clone)")
+        {
+            OrganicTank.SetActive(true);
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)")
+        {
+            OrganicScout.SetActive(true);
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)")
+        {
+            OrganicRunner.SetActive(true);
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)")
+        {
+            OrganicGrunt.SetActive(true);
+        }
     }
     void Update()
     {
