@@ -4,6 +4,15 @@ using System.Collections;
 
 public class Player1MovementController : MonoBehaviour 
 {
+    public GameObject SynthTank;
+    public GameObject SynthScout;
+    public GameObject SynthRunner;
+    public GameObject SynthGrunt;
+
+    public GameObject OrganicTank;
+    public GameObject OrganicScout;
+    public GameObject OrganicRunner;
+    public GameObject OrganicGrunt;
 
     public static int xSensitivity = 3;
     public static int ySensitivity = 3;
@@ -46,6 +55,39 @@ public class Player1MovementController : MonoBehaviour
 
     void Start()
     {
+        if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteTank(Clone)")
+        {
+            SynthTank.transform.parent = this.gameObject.transform;
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteScout(Clone)")
+        {
+            SynthScout.transform.parent = this.gameObject.transform;
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteRunner(Clone)")
+        {
+            SynthRunner.transform.parent = this.gameObject.transform;
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteGrunt(Clone)")
+        {
+            SynthGrunt.transform.parent = this.gameObject.transform;
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackTank(Clone)")
+        {
+            OrganicTank.transform.parent = this.gameObject.transform;
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackScout(Clone)")
+        {
+            OrganicScout.transform.parent = this.gameObject.transform;
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackRunner(Clone)")
+        {
+            OrganicRunner.transform.parent = this.gameObject.transform;
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackGrunt(Clone)")
+        {
+            OrganicGrunt.transform.parent = this.gameObject.transform;
+        }
+
         enemy = GameObject.Find("Player2(Clone)").GetComponent<Player2MovementController>();
         MoveController = GameObject.Find("MovementController");
         controller = GetComponent<CharacterController>();
