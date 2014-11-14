@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BarrelExplode : MonoBehaviour 
 {
+    public ParticleSystem explosion;
+    public ParticleSystem smoke;
     bool isExploding = false;
     bool p1Hit = false;
     bool p2Hit = false;
@@ -37,9 +39,19 @@ public class BarrelExplode : MonoBehaviour
         if(other.tag == "alienBullet" || other.tag == "robotBullet" || other.name=="Sword(Clone)")
         {
             isExploding = true;
-            GetComponent<ParticleSystem>().Play();
             GetComponent<AudioSource>().Play();
-            Destroy(this.gameObject, 0.5f);
+            explosion.Play();
+            smoke.Play();
+            StartCoroutine("explode");
+            Destroy(this.gameObject, 1.1f);
         }
+    }
+
+    IEnumerator explode()
+    {
+        yield return new WaitForSeconds(.1f);
+        this.renderer.enabled = false;
+        yield return new WaitForSeconds(.5f);
+        smoke.enableEmission = false;
     }
 }

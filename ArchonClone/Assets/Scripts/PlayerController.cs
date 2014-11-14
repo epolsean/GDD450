@@ -4,11 +4,11 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+    public GameObject SynthTank;
+    public GameObject OrganicGrunt;
+
     public static int xSensitivity = 3;
     public static int ySensitivity = 3;
-
-    public enum Character { Grunt, Tank, Runner, Scout };
-    public static Character myCharacter;
 
     public float speed = 6.0F;
     public float gravity = 20.0F;
@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour {
     public bool isMelee = false;
     public int bulletSpeed = 25;
 
-    public GameObject healthPiece1;
-    public GameObject healthPiece2;
+    public GameObject healthPieceGreen;
+    public Sprite healthPieceRed;
 
     public Camera camMine;
     public Camera camEnemy;
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
     Player1MovementController enemy2;
 
     public float health;
+    public float MaxHealth;
     int bulletSize;
 
     public bool win = false;
@@ -59,34 +60,20 @@ public class PlayerController : MonoBehaviour {
             {
                 self1 = this.GetComponent<Player1MovementController>();
                 self1.enabled = false;
+                SynthTank.SetActive(true);
                 enemy1 = GameObject.Find("Player2(Clone)").GetComponent<Player2MovementController>();
             }
             else
             {
                 self2 = this.GetComponent<Player2MovementController>();
                 self2.enabled = false;
+                OrganicGrunt.SetActive(true);
                 enemy2 = GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>();
             }
         }
 
-        //Determine character and set up stats
-        if (myCharacter == Character.Grunt)
-        {
-
-        }
-        else if (myCharacter == Character.Runner)
-        {
-
-        }
-        else if (myCharacter == Character.Tank)
-        {
-
-        }
-        else if (myCharacter == Character.Scout)
-        {
-
-        }
         health = 100;
+        MaxHealth = 100;
         bulletSize = 1;
         lastLooking = transform.forward;
     }
@@ -239,13 +226,11 @@ public class PlayerController : MonoBehaviour {
                 }
             }
 
-            healthPiece1.GetComponent<Image>().fillAmount = (float)((float)health / 200);
-            healthPiece2.GetComponent<Image>().fillAmount = (float)((float)health / 200);
+            healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
 
-            if (health <= 30)
+            if ((float)((health * 2) / (MaxHealth * 3)) <= 0.16f)
             {
-                healthPiece1.GetComponent<Image>().color = Color.red;
-                healthPiece2.GetComponent<Image>().color = Color.red;
+                healthPieceGreen.GetComponent<Image>().sprite = healthPieceRed;
             }
             //if (win == true)
             //{

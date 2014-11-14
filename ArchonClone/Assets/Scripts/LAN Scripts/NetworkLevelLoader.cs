@@ -46,14 +46,14 @@ public class NetworkLevelLoader : MonoBehaviour {
 	void loadPlayers () {
         if (Network.isServer && player1Created == false)
         {
-            GameObject newPlayer = (GameObject)Network.Instantiate(player1, spawn1.transform.position, player1.transform.rotation, 1);
-            newPlayer.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
+            GameObject newPlayer1 = (GameObject)Network.Instantiate(player1, spawn1.transform.position, player1.transform.rotation, 1);
+            newPlayer1.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
             player1Created = true;
         }
         else if (Network.isClient && player2Created == false)
         {
-            GameObject newPlayer = (GameObject)Network.Instantiate(player2, spawn2.transform.position, player2.transform.rotation, 1);
-            newPlayer.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
+            GameObject newPlayer2 = (GameObject)Network.Instantiate(player2, spawn2.transform.position, player2.transform.rotation, 1);
+            newPlayer2.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
             player2Created = true;
         }
 	}
