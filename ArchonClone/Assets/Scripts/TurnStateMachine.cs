@@ -76,6 +76,14 @@ public class TurnStateMachine : MonoBehaviour {
     }
     void SetText()
     {
-        stateText.GetComponent<Text>().text = TurnStateMachine.state.ToString();
+        if(TurnStateMachine.state == State.playerTurn)
+        {
+            stateText.GetComponent<Text>().text = "Player 1's Turn";
+        }
+        else if (TurnStateMachine.state == State.otherTurn)
+        {
+            stateText.GetComponent<Text>().text = "Player 2's Turn";
+        }
+        //stateText.GetComponent<Text>().text = TurnStateMachine.state.ToString();
     }
 }

@@ -418,7 +418,10 @@ public class Player1MovementController : MonoBehaviour
 
     void RobotGruntSpecial()
     {
-        shield.GetComponent<Image>().fillAmount = shieldPower;
+        if (shieldPower >= 0)
+        {
+            shield.GetComponent<Image>().fillAmount = shieldPower / 100;
+        }
         Behaviour h = (Behaviour)GetComponent("Halo");
         Debug.Log("shield power : " + shieldPower);
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
@@ -433,7 +436,7 @@ public class Player1MovementController : MonoBehaviour
         else if (usingShield)
         {
             shieldPower -= Time.deltaTime * 5;
-            if (shieldPower <= 0)
+            if (shieldPower <= 1)
             {
                 shieldOverheat = true;
                 usingShield = false;
@@ -497,7 +500,10 @@ public class Player1MovementController : MonoBehaviour
 
     void AlienGruntSpecial()
     {
-        shield.GetComponent<Image>().fillAmount = shieldPower;
+        if (shieldPower >= 0)
+        {
+            shield.GetComponent<Image>().fillAmount = shieldPower / 100;
+        }
         Behaviour h = (Behaviour)GetComponent("Halo");
         Debug.Log("shield power : " + shieldPower);
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
@@ -512,7 +518,7 @@ public class Player1MovementController : MonoBehaviour
         else if(usingShield)
         {
             shieldPower -= Time.deltaTime * 5;
-            if (shieldPower <= 0)
+            if (shieldPower <= 1)
             {
                 shieldOverheat = true;
                 usingShield = false;

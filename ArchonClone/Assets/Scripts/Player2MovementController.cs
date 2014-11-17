@@ -76,37 +76,45 @@ public class Player2MovementController : MonoBehaviour
 
         if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)")
         {
+            shield.SetActive(false);
             SynthTank.SetActive(true);
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteScout(Clone)")
         {
+            shield.SetActive(false);
             SynthScout.SetActive(true);
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteRunner(Clone)")
         {
+            shield.SetActive(false);
             SynthRunner.SetActive(true);
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteGrunt(Clone)")
         {
+            shield.SetActive(true);
             SynthGrunt.SetActive(true);
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackTank(Clone)")
         {
+            shield.SetActive(false);
             OrganicTank.SetActive(true);
             isAlien = true;
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)")
         {
+            shield.SetActive(false);
             OrganicScout.SetActive(true);
             isAlien = true;
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)")
         {
+            shield.SetActive(false);
             OrganicRunner.SetActive(true);
             isAlien = true;
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)")
         {
+            shield.SetActive(true);
             OrganicGrunt.SetActive(true);
             isAlien = true;
         }
@@ -406,7 +414,10 @@ public class Player2MovementController : MonoBehaviour
 
     void RobotGruntSpecial()
     {
-        shield.GetComponent<Image>().fillAmount = shieldPower;
+        if (shieldPower >= 0)
+        {
+            shield.GetComponent<Image>().fillAmount = shieldPower / 100;
+        }
         Behaviour h = (Behaviour)GetComponent("Halo");
         Debug.Log("shield power : " + shieldPower);
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
@@ -421,7 +432,7 @@ public class Player2MovementController : MonoBehaviour
         else if (usingShield)
         {
             shieldPower -= Time.deltaTime * 5;
-            if (shieldPower <= 0)
+            if (shieldPower <= 1)
             {
                 shieldOverheat = true;
                 usingShield = false;
@@ -440,7 +451,7 @@ public class Player2MovementController : MonoBehaviour
 
         if (shieldPower >= 1 && !shieldOverheat)
         {
-            if (Input.GetAxis("Special1") == 1)
+            if (Input.GetAxis("Special2") == 1)
             {
                 usingShield = true;
             }
@@ -465,7 +476,7 @@ public class Player2MovementController : MonoBehaviour
                 specialAvailable = true;
             }
         }
-        if (Input.GetAxis("Special1") == 1 && specialAvailable)
+        if (Input.GetAxis("Special2") == 1 && specialAvailable)
         {
             Rigidbody missileClone = Instantiate(robotMissile, transform.position + (1.2f * bulletSize * this.transform.forward) + (1.2f * this.transform.up), transform.rotation) as Rigidbody;
             missileClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
@@ -485,7 +496,11 @@ public class Player2MovementController : MonoBehaviour
 
     void AlienGruntSpecial()
     {
-        shield.GetComponent<Image>().fillAmount = shieldPower;
+        if (shieldPower >= 0)
+        {
+            shield.GetComponent<Image>().fillAmount = shieldPower / 100;
+        }
+        
         Behaviour h = (Behaviour)GetComponent("Halo");
         Debug.Log("shield power : " + shieldPower);
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
@@ -500,7 +515,7 @@ public class Player2MovementController : MonoBehaviour
         else if (usingShield)
         {
             shieldPower -= Time.deltaTime * 5;
-            if (shieldPower <= 0)
+            if (shieldPower <= 1)
             {
                 shieldOverheat = true;
                 usingShield = false;
@@ -519,7 +534,7 @@ public class Player2MovementController : MonoBehaviour
 
         if (shieldPower >= 1 && !shieldOverheat)
         {
-            if (Input.GetAxis("Special1") == 1)
+            if (Input.GetAxis("Special2") == 1)
             {
                 usingShield = true;
             }
