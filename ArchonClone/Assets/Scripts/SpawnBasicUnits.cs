@@ -87,6 +87,7 @@ public class SpawnBasicUnits : MonoBehaviour {
         if (!Network.isServer && !Network.isClient)
         {
             tile.GetComponent<TileProperties>().UnitOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+            tile.GetComponent<TileProperties>().UnitOnTile.GetComponent<pieceMove>().datTile = tile;
             //tile.GetComponent<TileProperties>().Occupied = true;
             WhitePieceCount++;
         }
@@ -102,6 +103,7 @@ public class SpawnBasicUnits : MonoBehaviour {
         if (!Network.isServer && !Network.isClient)
         {
             tile.GetComponent<TileProperties>().UnitOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;
+            tile.GetComponent<TileProperties>().UnitOnTile.GetComponent<pieceMove>().datTile = tile;
             //tile.GetComponent<TileProperties>().Occupied = true;
             BlackPieceCount++;
         }

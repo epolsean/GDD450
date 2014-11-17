@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour {
     
     // Use this for initialization
 	void Start () {
-	
+        NextState();
 	}
 	
 	// Update is called once per frame
@@ -27,10 +27,14 @@ public class EnemyAI : MonoBehaviour {
         Debug.Log("EnemyIdle: Enter");
         while (AIstate == State.Idle)
         {
-            print("Player's Turn");
+            
             if(TurnStateMachine.state == TurnStateMachine.State.otherTurn)
             {
                 AIstate = State.SelectingPiece;
+            }
+            else
+            {
+                print("Player's Turn");
             }
             yield return 0;
         }
@@ -43,25 +47,36 @@ public class EnemyAI : MonoBehaviour {
 
     IEnumerator SelectingPieceState()//this state will determine if the enemy will attack a player or just select a random tile to move to
     {
-        Debug.Log("Enemy" + AIstate.ToString() + ": Exit");
-        while (AIstate == State.Idle)
+       // Debug.Log("Enemy" + AIstate.ToString() + ": Exit");
+        Debug.Log("Enemy SelectingPieceState: Enter");
+        while (AIstate == State.SelectingPiece)
         {
             AIstate = State.DaMove;
             AISelectedPiece = SelectRandP("Black");//this will give you a random black piece
             AITargetPlayerP = FindNearestPiece(AISelectedPiece, "White");
-            if(Vector3.Distance(AISelectedPiece.transform.position, AITargetPlayerP.transform.position) <= AISelectedPiece.GetComponent<PawnMove>().MaxMove)
+
+            Debug.Log("Distance: " + Vector3.Distance(AISelectedPiece.transform.position, AITargetPlayerP.transform.position));
+
+            if(Vector3.Distance(AISelectedPiece.transform.position, AITargetPlayerP.transform.position) <= AISelectedPiece.GetComponent<pieceMove>().MaxPieceMove)
             {
-                print("Closest PlayerPiece is too far from selectedPiece");
+                Debug.Log("Player is Close enough to attack");
                 AIFinalTurnTarget = AITargetPlayerP;
             }
             else
             {
-                print("Finding random tile to move to");
-                //set final target to be a random tile
+                Debug.Log("Player out of range, finding random tile");
+                AIFinalTurnTarget = FindTile(AISelectedPiece, "White");
             }
+            //AISelectedPiece = SelectRandP("Black");
+            //AITargetPlayerP = FindNearestPiece(AISelectedPiece, "White");
+            //TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+            //AIstate = State.DaMove;
+            //AIstate = State.Idle;
+            //TurnStateMachine.state = TurnStateMachine.State.playerTurn;
             yield return 0;
         }
-        Debug.Log("Enemy" + AIstate.ToString() + ": Exit");
+        //Debug.Log("Enemy" + AIstate.ToString() + ": Exit");
+        Debug.Log("Enemy SelectingPieceState: Exit");
         if (Network.isClient || Network.isServer)
             networkView.RPC("NextState", RPCMode.AllBuffered);
         else
@@ -71,7 +86,7 @@ public class EnemyAI : MonoBehaviour {
     IEnumerator DaMoveState()//this state will determine if the enemy will attack a player or just select a random tile to move to
     {
         Debug.Log("Enemy" + AIstate.ToString() + ": Exit");
-        while (AIstate == State.Idle)
+        while (AIstate == State.DaMove)
         {
             AIstate = State.Ending;
             SetTargetAI(AISelectedPiece, AIFinalTurnTarget);
@@ -89,8 +104,8 @@ public class EnemyAI : MonoBehaviour {
         Debug.Log("Enemy" + AIstate.ToString() + ": Exit");
         while (AIstate == State.Ending)
         {
-            AIstate = State.Idle;
             TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+            AIstate = State.Idle;
             yield return 0;
         }
         Debug.Log("Enemy" + AIstate.ToString() + ": Exit");
@@ -122,20 +137,40 @@ public class EnemyAI : MonoBehaviour {
         //randomly select one of these pieces...
 
         selectedPiece = AIPs[Random.Range(0, AIPs.Length)];
+        //CurrentTile = selectedPiece.GetComponent<pieceMove>().MoveController.GetComponent<PawnMove>().currentTile;
 
         return selectedPiece;
     }
 
-    public GameObject FindTile(GameObject AIPiece, string TagName)
+    public GameObject FindTile(GameObject AIPiece, string TagName)//if the enemy piece has no available moves it will break....looking for solution. possibly select different piece to move
     {
         GameObject selectedTile = null;
 
         //search for tiles around selectedAIPiece 
         //try using OverlapShpere()
         print("Array Initiated");
-        Collider[] TilesWithinRange = Physics.OverlapSphere(AIPiece.transform.position, 2);
-        int pieceIndex = Random.Range(0, TilesWithinRange.Length);
-        //selectedTile = 
+        Collider[] TilesWithinRange = Physics.OverlapSphere(AIPiece.transform.position, 3);
+        int pieceIndex = 0;
+        Debug.Log("ObjectWithinRange length: " + TilesWithinRange.Length);
+        for (int i = 0; i < TilesWithinRange.Length; i++)
+        {
+            Debug.Log("[" + i + "] name: " + TilesWithinRange[i].name);
+        }
+
+            do
+            {
+                int tempIndex = Random.Range(1, TilesWithinRange.Length);
+                GameObject tempTile = TilesWithinRange[tempIndex].gameObject;
+                if (tempTile.tag == "WhiteTile")
+                {
+                    if(tempTile.GetComponent<TileProperties>().UnitOnTile == null)
+                    {
+                        pieceIndex = tempIndex;
+                    }
+                }
+            } while (pieceIndex <= 0);
+            //pieceIndex = Random.Range(0, TilesWithinRange.Length);
+        selectedTile = TilesWithinRange[pieceIndex].gameObject;
 
 
         return selectedTile; 
@@ -175,5 +210,10 @@ public class EnemyAI : MonoBehaviour {
         SelectedPiece.GetComponent<pieceMove>().targetPosition = targetPos;
         SelectedPiece.GetComponent<pieceMove>().GetNewPath();
         SelectedPiece.GetComponent<pieceMove>().isMoving = true;
+        SelectedPiece.GetComponent<pieceMove>().datTile = TargetPiece;
+        SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().UnitOnTile = SelectedPiece;
+        
+        
+        
     }
 }

@@ -15,6 +15,8 @@ public class pieceMove : MonoBehaviour {
     public bool isMoving = false;
     public GameObject MoveController;
     public Animator PieceAnim;
+    public double MaxPieceMove;
+    public GameObject datTile; 
 
     void Start()
     {
@@ -27,6 +29,23 @@ public class pieceMove : MonoBehaviour {
             PieceAnim = GetComponentInChildren<Animator>();
             print("Animator Set = true");
         }
+        if (name == "WhiteTank(Clone)" || name == "BlackTank(Clone)")
+        {
+            MaxPieceMove = 5 * 2;
+        }
+        else if (name == "WhiteGrunt(Clone)" || name == "BlackGrunt(Clone)")
+        {
+            MaxPieceMove = 5 * 2.75;
+        }
+        else if (name == "WhiteRunner(Clone)" || name == "BlackRunner(Clone)")
+        {
+            MaxPieceMove = 5 * 3.5;
+        }
+        else if (name == "WhiteScout(Clone)" || name == "BlackScout(Clone)")
+        {
+            MaxPieceMove = 5 * 2.75;
+        }
+               
     }
 
     public void GetNewPath()
@@ -88,6 +107,14 @@ public class pieceMove : MonoBehaviour {
                 
                 isMoving = false;
                 print("Path Waypoint Count: " + path.vectorPath.Count);
+                if(TurnStateMachine.state == TurnStateMachine.State.playerTurn)
+                {
+                    TurnStateMachine.state = TurnStateMachine.State.otherTurn;
+                }
+                else
+                {
+                    TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+                }
             }
             
             //MoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);

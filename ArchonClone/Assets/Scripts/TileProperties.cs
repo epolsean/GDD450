@@ -366,6 +366,7 @@ public class TileProperties : MonoBehaviour {
         UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().isMoving = true;
         Destroy(newTarget.gameObject);
         this.UnitOnTile = UnitMoveController.GetComponent<PawnMove>().SelectedPiece;
+        UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().datTile = this.gameObject;
         //this.datNode.gameObject.SetActive(true);
         UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
         if (UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile != null)
@@ -451,7 +452,10 @@ public class TileProperties : MonoBehaviour {
                     {
                         PiecePlaceScript.Black02Tile = UnitMoveController.GetComponent<PawnMove>().MoveToTile;
                     }
-                    TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+                    if(GameObject.Find("EnemyAI") == null)
+                    {
+                        TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+                    }
                 }
                 else
                 {
@@ -479,7 +483,7 @@ public class TileProperties : MonoBehaviour {
                         {
                             PiecePlaceScript.White02Tile = UnitMoveController.GetComponent<PawnMove>().MoveToTile;
                         }
-                        TurnStateMachine.state = TurnStateMachine.State.otherTurn;
+                        //TurnStateMachine.state = TurnStateMachine.State.otherTurn;
                     }
                 }
             }
