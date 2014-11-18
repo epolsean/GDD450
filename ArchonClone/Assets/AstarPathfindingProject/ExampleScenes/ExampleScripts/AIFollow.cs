@@ -64,7 +64,8 @@ public class AIFollow : MonoBehaviour {
 		seeker = GetComponent<Seeker>();
 		controller = GetComponent<CharacterController>();
 		navmeshController = GetComponent<NavmeshController>();
-		
+
+        
 		tr = transform;
 		Repath ();
 	}
@@ -194,7 +195,11 @@ public class AIFollow : MonoBehaviour {
 	
 	/** Update is called once per frame */
 	public void Update () {
-		
+        if (GameObject.Find("Player1(Clone)") != null)
+        {
+            Debug.Log("found player clone");
+            target = GameObject.Find("Player1(Clone)").transform;
+        }
 		if (path == null || pathIndex >= path.Length || pathIndex < 0 || !canMove) {
 			return;
 		}

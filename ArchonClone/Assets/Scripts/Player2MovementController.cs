@@ -33,7 +33,7 @@ public class Player2MovementController : MonoBehaviour
 
     public GameObject healthPieceGreen;
     public Sprite healthPieceRed;
-    public GameObject shield;
+    public GameObject special;
 
     public Camera camMine;
     public Camera camEnemy;
@@ -76,48 +76,49 @@ public class Player2MovementController : MonoBehaviour
 
         if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)")
         {
-            shield.SetActive(false);
+            special.SetActive(false);
             SynthTank.SetActive(true);
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteScout(Clone)")
         {
-            shield.SetActive(false);
+            special.SetActive(false);
             SynthScout.SetActive(true);
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteRunner(Clone)")
         {
-            shield.SetActive(false);
+            special.SetActive(false);
             SynthRunner.SetActive(true);
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteGrunt(Clone)")
         {
-            shield.SetActive(true);
+            special.SetActive(true);
             SynthGrunt.SetActive(true);
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackTank(Clone)")
         {
-            shield.SetActive(false);
+            special.SetActive(false);
             OrganicTank.SetActive(true);
             isAlien = true;
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)")
         {
-            shield.SetActive(false);
+            special.SetActive(false);
             OrganicScout.SetActive(true);
             isAlien = true;
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)")
         {
-            shield.SetActive(false);
+            special.SetActive(false);
             OrganicRunner.SetActive(true);
             isAlien = true;
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)")
         {
-            shield.SetActive(true);
+            special.SetActive(true);
             OrganicGrunt.SetActive(true);
             isAlien = true;
         }
+        healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
     }
     void Update()
     {
@@ -195,7 +196,7 @@ public class Player2MovementController : MonoBehaviour
 
             if (win == false)
             {
-                if (Input.GetJoystickNames().Length != 0)
+                if (Input.GetJoystickNames().Length == 2)
                 {
                     if ((Input.GetAxis("360_RightTrigger2") == 1) && reloading == false)
                     {
@@ -263,7 +264,7 @@ public class Player2MovementController : MonoBehaviour
 
             if (win == false)
             {
-                if (Input.GetJoystickNames().Length != 0)
+                if (Input.GetJoystickNames().Length == 2)
                 {
                     if ((Input.GetAxis("360_RightTrigger1") == 1) && swinging == false)
                     {
@@ -286,41 +287,40 @@ public class Player2MovementController : MonoBehaviour
             }
         }
 
-        if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)")
+        if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)" && win == false && enemy.win == false)
         {
             RobotTankSpecial();
         }
-        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteScout(Clone)")
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteScout(Clone)" && win == false && enemy.win == false)
         {
             RobotScoutSpecial();
         }
-        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteRunner(Clone)")
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteRunner(Clone)" && win == false && enemy.win == false)
         {
             RobotRunnerSpecial();
         }
-        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteGrunt(Clone)")
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteGrunt(Clone)" && win == false && enemy.win == false)
         {
             RobotGruntSpecial();
         }
-        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackTank(Clone)")
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackTank(Clone)" && win == false && enemy.win == false)
         {
             AlienTankSpecial();
         }
-        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)")
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)" && win == false && enemy.win == false)
         {
             AlienScoutSpecial();
         }
-        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)")
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)" && win == false && enemy.win == false)
         {
             AlienRunnerSpecial();
         }
-        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)")
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)" && win == false && enemy.win == false)
         {
             AlienGruntSpecial();
         }
 
         healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
-        Debug.Log("health% : " + (float)((health * 2) / (MaxHealth * 3)));
 
         if ((float)((health * 2) / (MaxHealth * 3)) <= 0.16f)
         {
@@ -396,11 +396,10 @@ public class Player2MovementController : MonoBehaviour
         //If the player gets hit with melee
         if (other.name == "Sword(Clone)" && other.tag != tag)
         {
-            enemy.swinging = false;
             Debug.Log("hit by sword");
             Destroy(other.gameObject);
-            Vector3 this2That = new Vector3(this.transform.position.x - other.transform.position.x, 0, this.transform.position.z - other.transform.position.z);
-            this.gameObject.GetComponent<CharacterController>().Move(2 * (this2That));
+            Vector3 this2That = new Vector3(this.transform.position.x - enemy.transform.position.x, 0, this.transform.position.z - enemy.transform.position.z);
+            controller.SimpleMove(MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage * (Vector3.Normalize(this2That)));
             if (!usingShield)
             {
                 health -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
@@ -416,7 +415,7 @@ public class Player2MovementController : MonoBehaviour
     {
         if (shieldPower >= 0)
         {
-            shield.GetComponent<Image>().fillAmount = shieldPower / 100;
+            special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
         Behaviour h = (Behaviour)GetComponent("Halo");
         Debug.Log("shield power : " + shieldPower);
@@ -451,13 +450,27 @@ public class Player2MovementController : MonoBehaviour
 
         if (shieldPower >= 1 && !shieldOverheat)
         {
-            if (Input.GetAxis("Special2") == 1)
+            if (Input.GetJoystickNames().Length == 2) // If there is a controller connected
             {
-                usingShield = true;
+                if (Input.GetAxis("360_LeftTrigger2") == 1)
+                {
+                    usingShield = true;
+                }
+                else
+                {
+                    usingShield = false;
+                }
             }
             else
             {
-                usingShield = false;
+                if (Input.GetAxis("Special2") == 1)
+                {
+                    usingShield = true;
+                }
+                else
+                {
+                    usingShield = false;
+                }
             }
         }
     }
@@ -476,17 +489,35 @@ public class Player2MovementController : MonoBehaviour
                 specialAvailable = true;
             }
         }
-        if (Input.GetAxis("Special2") == 1 && specialAvailable)
+        if (Input.GetJoystickNames().Length == 2) // If there is a controller connected
         {
-            Rigidbody missileClone = Instantiate(robotMissile, transform.position + (1.2f * bulletSize * this.transform.forward) + (1.2f * this.transform.up), transform.rotation) as Rigidbody;
-            missileClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-            missileClone.GetComponent<TargetEnemy>().target = enemy.gameObject;
-            missileClone.rigidbody.useGravity = false;
-            missileClone.velocity = transform.TransformDirection(Vector3.forward * 0.75f * bulletSpeed);
-            Destroy(missileClone.gameObject, 20);
-            audio.Play();
-            audio.Play();
-            specialAvailable = false;
+            if (Input.GetAxis("360_LeftTrigger2") == 1 && specialAvailable)
+            {
+                Rigidbody missileClone = Instantiate(robotMissile, transform.position + (1.2f * bulletSize * this.transform.forward) + (1.2f * this.transform.up), transform.rotation) as Rigidbody;
+                missileClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                missileClone.GetComponent<TargetEnemy>().target = enemy.gameObject;
+                missileClone.rigidbody.useGravity = false;
+                missileClone.velocity = transform.TransformDirection(Vector3.forward * 0.75f * bulletSpeed);
+                Destroy(missileClone.gameObject, 20);
+                audio.Play();
+                audio.Play();
+                specialAvailable = false;
+            }
+        }
+        else
+        {
+            if (Input.GetAxis("Special2") == 1 && specialAvailable)
+            {
+                Rigidbody missileClone = Instantiate(robotMissile, transform.position + (1.2f * bulletSize * this.transform.forward) + (1.2f * this.transform.up), transform.rotation) as Rigidbody;
+                missileClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                missileClone.GetComponent<TargetEnemy>().target = enemy.gameObject;
+                missileClone.rigidbody.useGravity = false;
+                missileClone.velocity = transform.TransformDirection(Vector3.forward * 0.75f * bulletSpeed);
+                Destroy(missileClone.gameObject, 20);
+                audio.Play();
+                audio.Play();
+                specialAvailable = false;
+            }
         }
     }
     void RobotRunnerSpecial()
@@ -498,7 +529,7 @@ public class Player2MovementController : MonoBehaviour
     {
         if (shieldPower >= 0)
         {
-            shield.GetComponent<Image>().fillAmount = shieldPower / 100;
+            special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
         
         Behaviour h = (Behaviour)GetComponent("Halo");
@@ -534,13 +565,27 @@ public class Player2MovementController : MonoBehaviour
 
         if (shieldPower >= 1 && !shieldOverheat)
         {
-            if (Input.GetAxis("Special2") == 1)
+            if (Input.GetJoystickNames().Length == 2) // If there is a controller connected
             {
-                usingShield = true;
+                if (Input.GetAxis("360_LeftTrigger2") == 1)
+                {
+                    usingShield = true;
+                }
+                else
+                {
+                    usingShield = false;
+                }
             }
             else
             {
-                usingShield = false;
+                if (Input.GetAxis("Special2") == 1)
+                {
+                    usingShield = true;
+                }
+                else
+                {
+                    usingShield = false;
+                }
             }
         }
     }
@@ -550,7 +595,36 @@ public class Player2MovementController : MonoBehaviour
     }
     void AlienTankSpecial()
     {
-
+        if (Input.GetJoystickNames().Length == 2) // If there is a controller connected
+        {
+            if (Input.GetAxis("360_LeftTrigger2") == 1 && specialAvailable)
+            {
+                Rigidbody missileClone = Instantiate(alienMissile, transform.position + (1.2f * bulletSize * this.transform.forward) + (1.2f * this.transform.up), transform.rotation) as Rigidbody;
+                missileClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                missileClone.GetComponent<TargetEnemy>().target = enemy.gameObject;
+                missileClone.rigidbody.useGravity = false;
+                missileClone.velocity = transform.TransformDirection(Vector3.forward * 0.75f * bulletSpeed);
+                Destroy(missileClone.gameObject, 20);
+                audio.Play();
+                audio.Play();
+                specialAvailable = false;
+            }
+        }
+        else
+        {
+            if (Input.GetAxis("Special2") == 1 && specialAvailable)
+            {
+                Rigidbody missileClone = Instantiate(alienMissile, transform.position + (1.2f * bulletSize * this.transform.forward) + (1.2f * this.transform.up), transform.rotation) as Rigidbody;
+                missileClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                missileClone.GetComponent<TargetEnemy>().target = enemy.gameObject;
+                missileClone.rigidbody.useGravity = false;
+                missileClone.velocity = transform.TransformDirection(Vector3.forward * 0.75f * bulletSpeed);
+                Destroy(missileClone.gameObject, 20);
+                audio.Play();
+                audio.Play();
+                specialAvailable = false;
+            }
+        }
     }
     void AlienRunnerSpecial()
     {
