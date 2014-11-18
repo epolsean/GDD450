@@ -329,13 +329,14 @@ public class Player2MovementController : MonoBehaviour
         if (win == true)
         {
             BattleStats.winner = tag;
-            if (TurnStateMachine.state == TurnStateMachine.State.playerTurn)
+            if (TurnStateMachine.state == TurnStateMachine.State.playerTurn/* && GameObject.Find("EnemyAI") == null*/)
             {
                 TurnStateMachine.state = TurnStateMachine.State.otherTurn;
             }
             else
             {
                 TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+                EnemyAI.AIstate = EnemyAI.State.Idle;
             }
             Destroy(GameObject.Find("BattleSceneAdditive"));
             Destroy(MoveController.GetComponent<PawnMove>().Player01);

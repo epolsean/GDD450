@@ -107,14 +107,19 @@ public class pieceMove : MonoBehaviour {
                 
                 isMoving = false;
                 print("Path Waypoint Count: " + path.vectorPath.Count);
-                if(TurnStateMachine.state == TurnStateMachine.State.playerTurn)
+                if (datTile.GetComponent<TileProperties>().fighting == false)
                 {
-                    TurnStateMachine.state = TurnStateMachine.State.otherTurn;
+                    if (TurnStateMachine.state == TurnStateMachine.State.playerTurn)
+                    {
+                        TurnStateMachine.state = TurnStateMachine.State.otherTurn;
+                    }
+                    else
+                    {
+                        TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+                        EnemyAI.AIstate = EnemyAI.State.Idle;
+                    }
                 }
-                else
-                {
-                    TurnStateMachine.state = TurnStateMachine.State.playerTurn;
-                }
+                
             }
             
             //MoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);

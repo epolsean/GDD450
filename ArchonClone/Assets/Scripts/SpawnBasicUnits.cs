@@ -45,8 +45,8 @@ public class SpawnBasicUnits : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("BlackCount: " + BlackPieceCount);
-        Debug.Log("WhiteCount: " + WhitePieceCount);
+        //Debug.Log("BlackCount: " + BlackPieceCount);
+        //Debug.Log("WhiteCount: " + WhitePieceCount);
         if(BlackPieceCount <= 0 || WhitePieceCount <= 0)
         {
             EndControllerScript.isEnd = true; 

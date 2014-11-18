@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        Debug.Log("EnemyState: " + AIstate);
 	}
 
     IEnumerator IdleState()
@@ -31,10 +31,6 @@ public class EnemyAI : MonoBehaviour {
             if(TurnStateMachine.state == TurnStateMachine.State.otherTurn)
             {
                 AIstate = State.SelectingPiece;
-            }
-            else
-            {
-                print("Player's Turn");
             }
             yield return 0;
         }
@@ -65,6 +61,7 @@ public class EnemyAI : MonoBehaviour {
             else
             {
                 Debug.Log("Player out of range, finding random tile");
+                AITargetPlayerP = null;
                 AIFinalTurnTarget = FindTile(AISelectedPiece, "White");
             }
             //AISelectedPiece = SelectRandP("Black");
@@ -85,14 +82,14 @@ public class EnemyAI : MonoBehaviour {
 
     IEnumerator DaMoveState()//this state will determine if the enemy will attack a player or just select a random tile to move to
     {
-        Debug.Log("Enemy" + AIstate.ToString() + ": Exit");
+        Debug.Log("Enemy DaMoveState: Enter");
         while (AIstate == State.DaMove)
         {
             AIstate = State.Ending;
             SetTargetAI(AISelectedPiece, AIFinalTurnTarget);
             yield return 0;
         }
-        Debug.Log("Enemy" + AIstate.ToString() + ": Exit");
+        Debug.Log("Enemy DaMoveState: Exit");
         if (Network.isClient || Network.isServer)
             networkView.RPC("NextState", RPCMode.AllBuffered);
         else
@@ -101,14 +98,14 @@ public class EnemyAI : MonoBehaviour {
 
     IEnumerator EndingState()//this state will determine if the enemy will attack a player or just select a random tile to move to
     {
-        Debug.Log("Enemy" + AIstate.ToString() + ": Exit");
+        Debug.Log("Enemy EndingState: Enter");
         while (AIstate == State.Ending)
         {
-            TurnStateMachine.state = TurnStateMachine.State.playerTurn;
-            AIstate = State.Idle;
+            //TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+            //AIstate = State.Idle;//do this at the end of the path
             yield return 0;
         }
-        Debug.Log("Enemy" + AIstate.ToString() + ": Exit");
+        Debug.Log("Enemy EndingState: Exit");
         if (Network.isClient || Network.isServer)
             networkView.RPC("NextState", RPCMode.AllBuffered);
         else
@@ -199,19 +196,39 @@ public class EnemyAI : MonoBehaviour {
                 distance = curDustance;
             }
         }
+        PlayerPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().datNode.SetActive(true);
+        GridManager.rescan = true;
 
         return PlayerPiece; 
     }
 
-    public void SetTargetAI(GameObject SelectedPiece, GameObject TargetPiece)//only called if PlayerPiece within radius
+    public void SetTargetAI(GameObject SelectedPiece, GameObject TargetPiece)
     {
         //this sets the target for the AI Opponent and moves initiates combat...
         Vector3 targetPos = TargetPiece.transform.position;
         SelectedPiece.GetComponent<pieceMove>().targetPosition = targetPos;
         SelectedPiece.GetComponent<pieceMove>().GetNewPath();
         SelectedPiece.GetComponent<pieceMove>().isMoving = true;
-        SelectedPiece.GetComponent<pieceMove>().datTile = TargetPiece;
-        SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().UnitOnTile = SelectedPiece;
+
+        if (TargetPiece.tag == "WhiteTile")
+        {
+            SelectedPiece.GetComponent<pieceMove>().datTile = TargetPiece;
+            SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().UnitOnTile = SelectedPiece;
+        }
+        else if (TargetPiece.tag == "White" || TargetPiece.tag == "Black") ;
+        {
+            if(AITargetPlayerP != null)
+            {
+                //this is the initializing of fighting
+                SelectedPiece.GetComponent<pieceMove>().datTile = TargetPiece.GetComponent<pieceMove>().datTile;
+                Debug.Log("Fight");
+                //TargetPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
+                GridManager.rescan = true;
+                SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().UnitMoveController.GetComponent<PawnMove>().Player01 = SelectedPiece;
+                SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().UnitMoveController.GetComponent<PawnMove>().Player02 = TargetPiece;
+                TargetPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().fighting = true; 
+            }
+        }
         
         
         

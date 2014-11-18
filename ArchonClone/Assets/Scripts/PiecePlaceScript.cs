@@ -43,10 +43,6 @@ public class PiecePlaceScript : MonoBehaviour {
             setPieces = false;
             SpawnPieces();
         }
-        if (White01Tile != null)
-        {
-            Debug.Log("There's Something in There");
-        }
         TestWhite01Tile = White01Tile;
 	}
 
