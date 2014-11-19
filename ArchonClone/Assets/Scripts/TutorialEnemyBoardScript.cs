@@ -56,7 +56,7 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
             B02Turn0Tile.GetComponent<TileProperties>().Occupied = false;
             Turn01Tile.GetComponent<TileProperties>().Occupied = true;
             UnitMovementController.GetComponent<PawnMove>().isMoving = false;
-            TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+            //TurnStateMachine.state = TurnStateMachine.State.playerTurn;
             StepButton.SetActive(false);
             enemyTurn += 0.5;
             Invoke("SetTutorialTextTrue", 3);
@@ -71,29 +71,6 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
         {
             StepButton.SetActive(false); 
         }
-        /*else if(enemyTurn == 4)
-        {
-            TutorialDummy = GameObject.Find("BlackPawn(Clone)");
-            UnitMovementController.GetComponent<PawnMove>().MoveToTile = Turn02Tile;
-            UnitMovementController.GetComponent<PawnMove>().SelectedPiece = TutorialDummy;
-
-            GameObject newTarget = Instantiate(datTarget, Turn02Tile.transform.position, Turn02Tile.transform.rotation) as GameObject;
-            TutorialDummy.GetComponent<pieceMove>().targetPosition = newTarget.transform.position;
-            TutorialDummy.GetComponent<pieceMove>().GetNewPath();
-            //TutorialDummy.GetComponent<pieceMove>().isMoving = true;
-            Destroy(newTarget.gameObject);
-            Turn01Tile.GetComponent<TileProperties>().UnitOnTile = TutorialDummy;
-            //this.datNode.gameObject.SetActive(true);
-            //UnitMovementController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
-            //UnitMovementController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(false);
-            B01Turn0Tile.GetComponent<TileProperties>().UnitOnTile = null;
-            B01Turn0Tile.GetComponent<TileProperties>().Occupied = false;
-            Turn02Tile.GetComponent<TileProperties>().Occupied = true;
-            UnitMovementController.GetComponent<PawnMove>().isMoving = false;
-            //Turn02Tile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
-            enemyTurn += 0.5;
-            TurnStateMachine.state = TurnStateMachine.State.playerTurn;
-        }*/
         else if(enemyTurn == 4.5)
         {
             StepText.GetComponent<Text>().text = "Congratulations! You Have successfully Destroyed the enemies piece! Now you have the required Knowledge to continue your conquest of this planet!";
