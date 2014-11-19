@@ -115,7 +115,7 @@ public class TileProperties : MonoBehaviour {
                 }
                 if (GameObject.Find("SpecialText") != null)
                 {
-                    GameObject.Find("SpecialText").GetComponent<Text>().text = "";
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Shield(F Key)";
                 }
             }
             else if (this.UnitOnTile.name == "BlackScout(Clone)")
@@ -132,7 +132,7 @@ public class TileProperties : MonoBehaviour {
 
                 if(GameObject.Find("SpecialText") != null)
                 {
-                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Shield(F Key)";
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "";
                 }
 
             }
@@ -182,7 +182,7 @@ public class TileProperties : MonoBehaviour {
 
                 if (GameObject.Find("SpecialText") != null)
                 {
-                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Shield(F Key)";
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "";
                 }
             }
             else if (this.UnitOnTile.name == "WhiteGrunt(Clone)")
@@ -198,7 +198,7 @@ public class TileProperties : MonoBehaviour {
                 }
                 if (GameObject.Find("SpecialText") != null)
                 {
-                    GameObject.Find("SpecialText").GetComponent<Text>().text = "";
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Shield(F Key)";
                 }
             }
             else if (this.UnitOnTile.name == "WhiteRunner(Clone)")
@@ -431,11 +431,11 @@ public class TileProperties : MonoBehaviour {
         if (canPlace == false && UnitOnTile != null && pieceSelected == false)
         {
             SoundController.GetComponent<UISoundsScript>().playSelectPiece();
-            if (TurnStateMachine.state == TurnStateMachine.State.playerTurn && TurnStateMachine.OnHoverPiece.tag == "White")
+            if (TurnStateMachine.state == TurnStateMachine.State.playerTurn && TurnStateMachine.OnHoverPiece != null && TurnStateMachine.OnHoverPiece.tag == "White")
             {
                 SelectPiece();
             }
-            else if (TurnStateMachine.state == TurnStateMachine.State.otherTurn && TurnStateMachine.OnHoverPiece.tag == "Black")
+            else if (TurnStateMachine.state == TurnStateMachine.State.otherTurn && TurnStateMachine.OnHoverPiece != null && TurnStateMachine.OnHoverPiece.tag == "Black")
             {
                 SelectPiece();
             }
