@@ -48,7 +48,7 @@ public class TileProperties : MonoBehaviour {
             if(fightTimer <= 3)
             {
                 fightTimer += Time.deltaTime;
-                if (fightTimer >= 1)
+                if (fightTimer >= .75f)
                 {
                     Canvas.GetComponent<SceneTrans>().trigger = true;
                 }
