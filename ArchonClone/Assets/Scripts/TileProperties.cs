@@ -19,12 +19,14 @@ public class TileProperties : MonoBehaviour {
 
     public Animator PieceAnim;
 
+    GameObject Canvas;
     int whatScene = 0;
     
     
     // Use this for initialization
 	void Start () {
         //UnitOnTile = null;
+        Canvas = GameObject.Find("Canvas");
         UnitMoveController = GameObject.Find("MovementController");
         datNode = transform.FindChild("Node").gameObject;
         AStarController = GameObject.Find("ISOCamera");
@@ -46,6 +48,10 @@ public class TileProperties : MonoBehaviour {
             if(fightTimer <= 3)
             {
                 fightTimer += Time.deltaTime;
+                if (fightTimer >= 1)
+                {
+                    Canvas.GetComponent<SceneTrans>().trigger = true;
+                }
             }
             else
             {

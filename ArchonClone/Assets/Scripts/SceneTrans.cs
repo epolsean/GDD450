@@ -8,49 +8,80 @@ public class SceneTrans : MonoBehaviour
     public GameObject slider1;
     public GameObject slider2;
     public GameObject slider3;
-    public GameObject slider4;
 
+    public bool trigger;
+
+    float fracJourney;
+    float distCovered;
     float startTime;
+
+    bool S1N2;
+    bool S3;
+    bool S1N2Started = false;
+    bool S3Started = false;
 
 	// Use this for initialization
 	void Start () {
-	
+	    slider1.GetComponent<Image>().fillAmount = 0;
+        slider2.GetComponent<Image>().fillAmount = 0;
+        slider3.GetComponent<Image>().fillAmount = 0;
+        trigger = false;
 	}
 	
 	// Update is called once per frame
     void Update()
     {
-        float distCovered = (Time.time - startTime) * 10;
-        float fracJourney = distCovered / 10;
-
-        if (slider2.GetComponent<Image>().fillAmount != .5f)
+        if (trigger == true)
         {
-            slider1.GetComponent<Image>().fillAmount = Mathf.Lerp(0, 0.5f, fracJourney);
-            slider2.GetComponent<Image>().fillAmount = Mathf.Lerp(0, 0.5f, fracJourney);
-        }
+            if (slider2.GetComponent<Image>().fillAmount != .5f)
+            {
+                S1N2 = true;
+                S3 = false;
+            }
+            else if (slider2.GetComponent<Image>().fillAmount == .5f)
+            {
+                S1N2 = false;
+                S3 = true;
+            }
 
-        if (slider2.GetComponent<Image>().fillAmount == .5f && slider3.GetComponent<Image>().fillAmount == 0)
+            if (S1N2 == true)
+            {
+                sliderOneAndTwoMove();
+            }
+
+            if (S3 == true)
+            {
+                sliderThreeMove();
+            }
+        }
+    }
+
+    void sliderOneAndTwoMove()
+    {
+        if (S1N2Started == false)
         {
             startTime = Time.time;
-            distCovered = (Time.time - startTime) * 10;
-            slider3.GetComponent<Image>().fillAmount = Mathf.Lerp(0, 1f, fracJourney);
+            S1N2Started = true;
         }
-        else if (slider2.GetComponent<Image>().fillAmount == .5f)
-        {
-            float fracJourney2 = distCovered / 6;
-            slider3.GetComponent<Image>().fillAmount = Mathf.Lerp(0, 1f, fracJourney2);
-        }
-        
-        if (slider3.GetComponent<Image>().fillAmount == 1f && slider4.GetComponent<Image>().fillAmount == 0)
+
+        distCovered = (Time.time - startTime) * 10;
+        fracJourney = distCovered / 10;
+
+        slider1.GetComponent<Image>().fillAmount = Mathf.Lerp(0, 0.5f, fracJourney);
+        slider2.GetComponent<Image>().fillAmount = Mathf.Lerp(0, 0.5f, fracJourney);
+    }
+
+    void sliderThreeMove()
+    {
+        if (S3Started == false)
         {
             startTime = Time.time;
-            distCovered = (Time.time - startTime) * 10;
-            slider4.GetComponent<Image>().fillAmount = Mathf.Lerp(0, 1f, fracJourney);
+            S3Started = true;
         }
-        else if (slider3.GetComponent<Image>().fillAmount == 1f)
-        {
-            float fracJourney3 = distCovered / 15;
-            slider4.GetComponent<Image>().fillAmount = Mathf.Lerp(0, 1f, fracJourney3);
-        }
+
+        distCovered = (Time.time - startTime) * 10;
+        fracJourney = distCovered / 4;
+
+        slider3.GetComponent<Image>().fillAmount = Mathf.Lerp(0, 1f, fracJourney);
     }
 }
