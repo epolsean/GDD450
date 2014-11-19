@@ -35,10 +35,6 @@ public class Player1MovementController : MonoBehaviour
     public Sprite healthPieceRed;
     public GameObject special;
 
-    public bool speedBoost = false;
-    public bool damageBoost = false;
-    float powerUpTimer = 5.0f;
-
     public Camera camMine;
     public Camera camEnemy;
 
@@ -78,6 +74,10 @@ public class Player1MovementController : MonoBehaviour
         }
         MoveController = GameObject.Find("MovementController");
         controller = GetComponent<CharacterController>();
+
+        //controller.collider = GetComponent<BoxCollider>().collider;
+        controller.detectCollisions = false;
+        //controller.collider.enabled = false;
 
         //health = 100;
         speed = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement;
@@ -443,29 +443,21 @@ public class Player1MovementController : MonoBehaviour
                 //MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
                 //Destroy(this.gameObject);
             }
-
-            if (powerUpTimer < 0)
-            {
-                damageBoost = false;
-                speedBoost = false;
-            }
-            else
-            {
-
-            }
+            Debug.Log("P1 Damage  : " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage);
+            Debug.Log("P1 Speed  : " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement);
         }
     }
 
     IEnumerator DamageBoost(int startDamage)
     {
         yield return new WaitForSeconds(5.0f);
-        yield return startDamage;
+        MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage = startDamage;
     }
 
     IEnumerator SpeedBoost(int startSpeed)
     {
         yield return new WaitForSeconds(5.0f);
-        yield return startSpeed;
+        MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement = startSpeed;
     }
 
     void OnTriggerEnter(Collider other)
@@ -475,15 +467,15 @@ public class Player1MovementController : MonoBehaviour
             float statBoost = Random.Range(0, 100);
             if (statBoost < 40)
             {
-                damageBoost = true;
                 Debug.Log("Damage Boost p1");
-                //MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage = StartCoRoutineMoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage*2;
-                //MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage = DamageBoost(MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage);
+                StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage);
+                MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage*2;
             }
             else if (statBoost < 70)
             {
-                speedBoost = true;
-                Debug.Log("speed Boost p1");
+                Debug.Log("Speed Boost p1");
+                StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage);
+                MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement * 2;
             }
             else
             {

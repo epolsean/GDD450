@@ -17,28 +17,28 @@ public class PiecePropScript : MonoBehaviour {
         {
             MaxHealth = 50;
             Health = 50;
-            Movement = 3;
+            Movement = 10;
             Damage = 15;
         }
         else if(this.name == "BlackTank(Clone)" || this.name == "WhiteTank(Clone)")//stats for Tank
         {
             MaxHealth = 100;
             Health = 100;
-            Movement = 2;
+            Movement = 6;
             Damage = 20;
         }
         else if(this.name == "BlackRunner(Clone)" || this.name == "WhiteRunner(Clone)")//stats for Runner
         {
             MaxHealth = 40;
             Health = 40;
-            Movement = 5;
+            Movement = 12;
             Damage = 6;
         }
         else//stats for Grunt
         {
             MaxHealth = 70;
             Health = 70;
-            Movement = 2;
+            Movement = 8;
             Damage = 8;
         }
 
