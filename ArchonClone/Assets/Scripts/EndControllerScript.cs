@@ -3,7 +3,9 @@ using System.Collections;
 
 public class EndControllerScript : MonoBehaviour {
 
-    public static bool isEnd = false; 
+    public static bool isEnd = false;
+    public static bool SynthVic = false;
+    public static bool OrgVic = false; 
     
     // Use this for initialization
 	void Start () {
@@ -21,5 +23,13 @@ public class EndControllerScript : MonoBehaviour {
     void LoadEndScene()
     {
         Application.LoadLevel("EndPlaceHolderScene");
+        if(SynthVic)
+        {
+            Application.LoadLevel("SyntheticVictory");
+        }
+        else if(OrgVic)
+        {
+            Application.LoadLevel("OrganicsVictoryScreen");
+        }
     }
 }

@@ -31,6 +31,8 @@ public class SpawnBasicUnits : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        EndControllerScript.OrgVic = false;
+        EndControllerScript.SynthVic = false; 
         if(PiecePlaceScript.isStart)
         {
             PiecePlaceScript.isStart = false; 
@@ -47,8 +49,14 @@ public class SpawnBasicUnits : MonoBehaviour {
 	void Update () {
         //Debug.Log("BlackCount: " + BlackPieceCount);
         //Debug.Log("WhiteCount: " + WhitePieceCount);
-        if(BlackPieceCount <= 0 || WhitePieceCount <= 0)
+        if(BlackPieceCount <= 0)
         {
+            EndControllerScript.SynthVic = true; 
+            EndControllerScript.isEnd = true; 
+        }
+        else if(WhitePieceCount <= 0)
+        {
+            EndControllerScript.OrgVic = true;
             EndControllerScript.isEnd = true; 
         }
 	}
