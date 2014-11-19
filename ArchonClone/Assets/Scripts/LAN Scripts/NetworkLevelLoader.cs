@@ -7,6 +7,7 @@ public class NetworkLevelLoader : MonoBehaviour {
     public GameObject spawn2;
     public GameObject player1;
     public GameObject player2;
+    public GameObject EnemyAI;
 
     bool player1Created = false;
     bool player2Created = false;
@@ -21,9 +22,18 @@ public class NetworkLevelLoader : MonoBehaviour {
         if (!Network.isClient && !Network.isServer)
         {
             GameObject p1 = (GameObject)Instantiate(player1, spawn1.transform.position, spawn1.transform.rotation);
-            GameObject p2 = (GameObject)Instantiate(player2, spawn2.transform.position, spawn2.transform.rotation);
             p1.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
-            p2.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
+
+            if (BattleStats.singlePlayer)
+            {
+                GameObject p2 = (GameObject)Instantiate(EnemyAI, spawn2.transform.position, spawn2.transform.rotation);
+                p2.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
+            }
+            else
+            {
+                GameObject p2 = (GameObject)Instantiate(player2, spawn2.transform.position, spawn2.transform.rotation);
+                p2.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
+            }
         }
         else
         {
