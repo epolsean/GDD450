@@ -59,9 +59,9 @@ public class ParticleCirclesSphere : MonoBehaviour
                 p.z *= -1;
             }
             points[i].color = new Color(p.x, p.y, p.z);
-            points[i].velocity = Vector3.Normalize(points[i].position);//Vector3.Cross(points[i].position,transform.position);
+            //points[i].velocity = Vector3.Normalize(points[i].position);//Vector3.Cross(points[i].position,transform.position);
             //Debug.Log("velocity : " + points[i].velocity);
-            points[i].startLifetime = 5;
+            //points[i].startLifetime = 5;
             points[i].position += points[i].velocity;
         }
         particleSystem.SetParticles(points, points.Length);
