@@ -6,21 +6,25 @@ public class GoTo : MonoBehaviour {
     public void Single()
     {
         //Application.LoadLevel("TestingHexTiles");
+        BattleStats.singlePlayer = true;
     }
 
 	public void Local() 
     {
         Application.LoadLevel("LargeTileBoard");
+        BattleStats.singlePlayer = false;
 	}
 
     public void Tutorial()
     {
         Application.LoadLevel("TutorialTestGrid");
+        BattleStats.singlePlayer = false;
     }
 
     public void LAN()
     {
         Application.LoadLevel("LANLobby");
+        BattleStats.singlePlayer = false;
     }
 
     public void StartScreen()

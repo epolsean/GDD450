@@ -69,6 +69,7 @@ public class Player2MovementController : MonoBehaviour
         controller = GetComponent<CharacterController>();
 
         //health = 100;
+        speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
         health = (float)MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health;
         MaxHealth = (float)MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().MaxHealth;
         bulletSize = 1;
@@ -122,166 +123,169 @@ public class Player2MovementController : MonoBehaviour
     }
     void Update()
     {
-        if (topDownView)
+        if (GameObject.Find("Fight") == null)
         {
-            if (controller.isGrounded)
+            if (topDownView)
             {
-                if (Input.GetJoystickNames().Length == 2)
+                if (controller.isGrounded)
                 {
-                    if (Input.GetAxis("360_HorizontalRightStick2") == 0 && Input.GetAxis("360_VerticalRightStick2") == 0)
+                    if (Input.GetJoystickNames().Length == 2)
                     {
-                        transform.forward = lastLooking;
-                    }
-                    else
-                    {
-                        transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick2"), 0, Input.GetAxis("360_VerticalRightStick2"));
-                    }
-                    moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick2"), 0, Input.GetAxis("360_VerticalLeftStick2"));
-                    moveDirection *= speed;
-                }
-                else
-                {
-                    if (Input.GetAxis("Horizontal2") == 0 && Input.GetAxis("Vertical2") == 0)
-                    {
-                        transform.forward = lastLooking;
-                    }
-                    else
-                    {
-                        transform.forward = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2"));
-                    }
-                    moveDirection = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2")) + transform.right * Input.GetAxis("Strafe2");
-                    moveDirection *= speed;
-                }
-
-            }
-            lastLooking = transform.forward;
-            moveDirection.y -= gravity * Time.deltaTime;
-            controller.Move(moveDirection * Time.deltaTime);
-        }
-        else
-        {
-            if (controller.isGrounded)
-            {
-                if (Input.GetJoystickNames().Length == 2)
-                {
-                    transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("360_HorizontalRightStick2"));
-
-                    moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick2"), 0, Input.GetAxis("360_VerticalLeftStick2"));
-                    moveDirection = transform.TransformDirection(moveDirection);
-                    moveDirection *= speed;
-                }
-                else
-                {
-                    transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("Horizontal2"));
-
-                    moveDirection = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2")) + transform.right * Input.GetAxis("Strafe2");
-                    moveDirection = transform.TransformDirection(moveDirection);
-                    moveDirection *= speed;
-                }
-            }
-            moveDirection.y -= gravity * Time.deltaTime;
-            controller.Move(moveDirection * Time.deltaTime);
-        }
-        if (isMelee == false)
-        {
-            if (reloading)
-            {
-                reloadTime -= Time.deltaTime;
-                if (reloadTime < 0)
-                {
-                    reloadTime = 0.8f;
-                    reloading = false;
-                }
-            }
-
-            if (win == false)
-            {
-                if (Input.GetJoystickNames().Length == 2)
-                {
-                    if ((Input.GetAxis("360_RightTrigger2") == 1) && reloading == false)
-                    {
-                        if (isAlien)
+                        if (Input.GetAxis("360_HorizontalRightStick2") == 0 && Input.GetAxis("360_VerticalRightStick2") == 0)
                         {
-                            Rigidbody bulletClone = Instantiate(alienBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                            bulletClone.rigidbody.useGravity = false;
-                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                            Destroy(bulletClone.gameObject, 3);
+                            transform.forward = lastLooking;
                         }
                         else
                         {
-                            Rigidbody bulletClone = Instantiate(robotBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                            bulletClone.rigidbody.useGravity = false;
-                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                            Destroy(bulletClone.gameObject, 3);
+                            transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick2"), 0, Input.GetAxis("360_VerticalRightStick2"));
                         }
-                        audio.Play();
-                        bulletSize = 1;
-                        bulletSpeed = 25;
-                        reloading = true;
+                        moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick2"), 0, Input.GetAxis("360_VerticalLeftStick2"));
+                        moveDirection *= speed;
                     }
-                }
-                else
-                {
-                    if ((Input.GetAxis("Fire2") == 1) && reloading == false)
+                    else
                     {
-                        if (isAlien)
+                        if (Input.GetAxis("Horizontal2") == 0 && Input.GetAxis("Vertical2") == 0)
                         {
-                            Rigidbody bulletClone = Instantiate(alienBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                            bulletClone.rigidbody.useGravity = false;
-                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                            Destroy(bulletClone.gameObject, 3);
+                            transform.forward = lastLooking;
                         }
                         else
                         {
-                            Rigidbody bulletClone = Instantiate(robotBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                            bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                            bulletClone.rigidbody.useGravity = false;
-                            bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                            Destroy(bulletClone.gameObject, 3);
+                            transform.forward = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2"));
                         }
-                        audio.Play();
-                        bulletSize = 1;
-                        bulletSpeed = 25;
-                        reloading = true;
+                        moveDirection = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2")) + transform.right * Input.GetAxis("Strafe2");
+                        moveDirection *= speed;
                     }
-                }
-            }
-        }
-        else
-        {
-            if (swinging)
-            {
-                swingTimer -= Time.deltaTime;
-                if (swingTimer < 0)
-                {
-                    swingTimer = 0.2f;
-                    swinging = false;
-                }
-            }
 
-            if (win == false)
+                }
+                lastLooking = transform.forward;
+                moveDirection.y -= gravity * Time.deltaTime;
+                controller.Move(moveDirection * Time.deltaTime);
+            }
+            else
             {
-                if (Input.GetJoystickNames().Length == 2)
+                if (controller.isGrounded)
                 {
-                    if ((Input.GetAxis("360_RightTrigger1") == 1) && swinging == false)
+                    if (Input.GetJoystickNames().Length == 2)
                     {
-                        GameObject sword = Instantiate(Sword, transform.position + this.transform.forward, transform.rotation) as GameObject;
-                        sword.tag = tag;
-                        swinging = true;
-                        Destroy(sword.gameObject, 0.2f);
+                        transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("360_HorizontalRightStick2"));
+
+                        moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick2"), 0, Input.GetAxis("360_VerticalLeftStick2"));
+                        moveDirection = transform.TransformDirection(moveDirection);
+                        moveDirection *= speed;
+                    }
+                    else
+                    {
+                        transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("Horizontal2"));
+
+                        moveDirection = new Vector3(Input.GetAxis("Horizontal2"), 0, Input.GetAxis("Vertical2")) + transform.right * Input.GetAxis("Strafe2");
+                        moveDirection = transform.TransformDirection(moveDirection);
+                        moveDirection *= speed;
                     }
                 }
-                else
+                moveDirection.y -= gravity * Time.deltaTime;
+                controller.Move(moveDirection * Time.deltaTime);
+            }
+            if (isMelee == false)
+            {
+                if (reloading)
                 {
-                    if ((Input.GetAxis("Fire1") == 1) && swinging == false)
+                    reloadTime -= Time.deltaTime;
+                    if (reloadTime < 0)
                     {
-                        GameObject sword = Instantiate(Sword, transform.position + this.transform.forward, transform.rotation) as GameObject;
-                        sword.tag = tag;
-                        swinging = true;
-                        Destroy(sword.gameObject, 0.2f);
+                        reloadTime = 0.8f;
+                        reloading = false;
+                    }
+                }
+
+                if (win == false)
+                {
+                    if (Input.GetJoystickNames().Length == 2)
+                    {
+                        if ((Input.GetAxis("360_RightTrigger2") == 1) && reloading == false)
+                        {
+                            if (isAlien)
+                            {
+                                Rigidbody bulletClone = Instantiate(alienBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                                bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                                bulletClone.rigidbody.useGravity = false;
+                                bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                                Destroy(bulletClone.gameObject, 3);
+                            }
+                            else
+                            {
+                                Rigidbody bulletClone = Instantiate(robotBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                                bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                                bulletClone.rigidbody.useGravity = false;
+                                bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                                Destroy(bulletClone.gameObject, 3);
+                            }
+                            audio.Play();
+                            bulletSize = 1;
+                            bulletSpeed = 25;
+                            reloading = true;
+                        }
+                    }
+                    else
+                    {
+                        if ((Input.GetAxis("Fire2") == 1) && reloading == false)
+                        {
+                            if (isAlien)
+                            {
+                                Rigidbody bulletClone = Instantiate(alienBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                                bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                                bulletClone.rigidbody.useGravity = false;
+                                bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                                Destroy(bulletClone.gameObject, 3);
+                            }
+                            else
+                            {
+                                Rigidbody bulletClone = Instantiate(robotBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                                bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                                bulletClone.rigidbody.useGravity = false;
+                                bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                                Destroy(bulletClone.gameObject, 3);
+                            }
+                            audio.Play();
+                            bulletSize = 1;
+                            bulletSpeed = 25;
+                            reloading = true;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (swinging)
+                {
+                    swingTimer -= Time.deltaTime;
+                    if (swingTimer < 0)
+                    {
+                        swingTimer = 0.2f;
+                        swinging = false;
+                    }
+                }
+
+                if (win == false)
+                {
+                    if (Input.GetJoystickNames().Length == 2)
+                    {
+                        if ((Input.GetAxis("360_RightTrigger1") == 1) && swinging == false)
+                        {
+                            GameObject sword = Instantiate(Sword, transform.position + this.transform.forward, transform.rotation) as GameObject;
+                            sword.tag = tag;
+                            swinging = true;
+                            Destroy(sword.gameObject, 0.2f);
+                        }
+                    }
+                    else
+                    {
+                        if ((Input.GetAxis("Fire1") == 1) && swinging == false)
+                        {
+                            GameObject sword = Instantiate(Sword, transform.position + this.transform.forward, transform.rotation) as GameObject;
+                            sword.tag = tag;
+                            swinging = true;
+                            Destroy(sword.gameObject, 0.2f);
+                        }
                     }
                 }
             }

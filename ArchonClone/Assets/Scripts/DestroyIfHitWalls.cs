@@ -12,5 +12,12 @@ public class DestroyIfHitWalls : MonoBehaviour {
             else
                 Network.Destroy(gameObject);
         }
+        else if (other.tag == "ItemNode")
+        {
+            if (!Network.isClient && !Network.isServer)
+                Destroy(gameObject);
+            else
+                Network.Destroy(gameObject);
+        }
     }
 }
