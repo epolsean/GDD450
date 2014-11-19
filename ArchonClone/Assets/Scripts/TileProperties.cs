@@ -460,7 +460,7 @@ public class TileProperties : MonoBehaviour {
                     }
                     if(GameObject.Find("EnemyAI") == null)
                     {
-                        TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+                        //TurnStateMachine.state = TurnStateMachine.State.playerTurn;
                     }
                 }
                 else
