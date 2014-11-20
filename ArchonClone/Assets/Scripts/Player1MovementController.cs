@@ -90,19 +90,19 @@ public class Player1MovementController : MonoBehaviour
         if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteTank(Clone)")
         {
             isMelee = true;
-            special.SetActive(false);
+            special.SetActive(true);
             SynthTank.SetActive(true);
         }
         else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteScout(Clone)")
         {
             isMelee = false;
-            special.SetActive(false);
+            special.SetActive(true);
             SynthScout.SetActive(true);
         }
         else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteRunner(Clone)")
         {
             isMelee = false;
-            special.SetActive(false);
+            special.SetActive(true);
             SynthRunner.SetActive(true);
         }
         else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteGrunt(Clone)")
@@ -114,21 +114,21 @@ public class Player1MovementController : MonoBehaviour
         else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackTank(Clone)")
         {
             isMelee = true;
-            special.SetActive(false);
+            special.SetActive(true);
             OrganicTank.SetActive(true);
             isAlien = true;
         }
         else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackScout(Clone)")
         {
             isMelee = false;
-            special.SetActive(false);
+            special.SetActive(true);
             OrganicScout.SetActive(true);
             isAlien = true;
         }
         else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackRunner(Clone)")
         {
             isMelee = false;
-            special.SetActive(false);
+            special.SetActive(true);
             OrganicRunner.SetActive(true);
             isAlien = true;
         }
