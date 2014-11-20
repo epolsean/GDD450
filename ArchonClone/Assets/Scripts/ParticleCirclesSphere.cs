@@ -62,7 +62,7 @@ public class ParticleCirclesSphere : MonoBehaviour
             //points[i].velocity = Vector3.Normalize(points[i].position);//Vector3.Cross(points[i].position,transform.position);
             //Debug.Log("velocity : " + points[i].velocity);
             //points[i].startLifetime = 5;
-            points[i].position += points[i].velocity;
+            //points[i].position += points[i].velocity;
         }
         particleSystem.SetParticles(points, points.Length);
     }

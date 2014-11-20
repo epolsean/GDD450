@@ -9,7 +9,7 @@ public class BattleStats : MonoBehaviour {
     public static int player1Speed=0;
     public static int player2Speed=0;
 
-    public static bool singlePlayer = false;
+    public static bool singlePlayer = true;
 
     public static string winner = null;
     public static string player1Pref = "top";

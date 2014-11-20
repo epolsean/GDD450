@@ -12,6 +12,11 @@ public class SetUpGame : MonoBehaviour {
     public GameObject p2TopDownCamera;
     public GameObject p2ThirdCamera;
 
+    public GameObject laser1;
+    public GameObject laser2;
+    public GameObject ff1;
+    public GameObject ff2;
+
 	// Use this for initialization
 	void Awake () {
         if (BattleStats.hotSeat == false)
@@ -66,6 +71,34 @@ public class SetUpGame : MonoBehaviour {
                 p1ThirdCamera.SetActive(false);
                 player1.GetComponent<Player1MovementController>().topDownView = true;
                 player2.GetComponent<Player2MovementController>().topDownView = true;
+            }
+        }
+        if (laser1 != null)
+        {
+            if (Random.Range(0, 100) < 50)
+            {
+                laser1.SetActive(true);
+            }
+        }
+        if (laser2 != null)
+        {
+            if (Random.Range(0, 100) < 50)
+            {
+                laser2.SetActive(true);
+            }
+        }
+        if (ff1 != null)
+        {
+            if (Random.Range(0, 100) < 50)
+            {
+                ff1.SetActive(true);
+            }
+        }
+        if (ff2 != null)
+        {
+            if (Random.Range(0, 100) < 50)
+            {
+                ff2.SetActive(true);
             }
         }
 	
