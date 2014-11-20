@@ -62,8 +62,13 @@ public class Player2MovementController : MonoBehaviour
 
     public bool isAlien;
 
+    GameObject Canvas;
+
+    float endTimer;
+
     void Start()
     {
+        Canvas = GameObject.Find("Canvas2");
         enemy = GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>();
         MoveController = GameObject.Find("MovementController");
         controller = GetComponent<CharacterController>();
@@ -340,22 +345,33 @@ public class Player2MovementController : MonoBehaviour
         }
         if (win == true)
         {
-            BattleStats.winner = tag;
-            if (TurnStateMachine.state == TurnStateMachine.State.playerTurn/* && GameObject.Find("EnemyAI") == null*/)
+            if (endTimer <= 3)
             {
-                TurnStateMachine.state = TurnStateMachine.State.otherTurn;
+                endTimer += Time.deltaTime;
+                if (endTimer >= .75f)
+                {
+                    Canvas.GetComponent<SceneTrans>().trigger = true;
+                }
             }
             else
             {
-                TurnStateMachine.state = TurnStateMachine.State.playerTurn;
-                EnemyAI.AIstate = EnemyAI.State.Idle;
+                BattleStats.winner = tag;
+                if (TurnStateMachine.state == TurnStateMachine.State.playerTurn/* && GameObject.Find("EnemyAI") == null*/)
+                {
+                    TurnStateMachine.state = TurnStateMachine.State.otherTurn;
+                }
+                else
+                {
+                    TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+                    EnemyAI.AIstate = EnemyAI.State.Idle;
+                }
+                Destroy(GameObject.Find("BattleSceneAdditive"));
+                Destroy(MoveController.GetComponent<PawnMove>().Player01);
+                MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
+                MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health = (int)health;
+                //Application.LoadLevel("TestingHexTiles");
+                //Destroy(this.gameObject);
             }
-            Destroy(GameObject.Find("BattleSceneAdditive"));
-            Destroy(MoveController.GetComponent<PawnMove>().Player01);
-            MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
-            MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health = (int)health;
-            //Application.LoadLevel("TestingHexTiles");
-            //Destroy(this.gameObject);
         }
 
         if (health <= 0 && win == false)

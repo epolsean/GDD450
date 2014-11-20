@@ -3,32 +3,54 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class FadeOut : MonoBehaviour {
+
+    GameObject Canvas;
     float delay = 3;
+    float startTimer;
+    bool endTrans;
+
 	// Use this for initialization
 	void Start () {
-	
+        Canvas = GameObject.Find("Canvas2");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-        if (delay <= 0)
+        if (endTrans == false)
         {
-            GetComponent<Text>().text = "FIGHT!";
-            GetComponent<Text>().color = new Color(GetComponent<Text>().color.r, GetComponent<Text>().color.g, GetComponent<Text>().color.b, GetComponent<Text>().color.a - Time.deltaTime);
-            if (GetComponent<Text>().color.a < 0.5)
+            if (startTimer <= 2.5)
             {
-                Destroy(this.gameObject);
+                startTimer += Time.deltaTime;
+                if (startTimer >= 1.25f)
+                {
+                    Canvas.GetComponent<SceneTrans>().trigger2 = true;
+                }
             }
-        }
-        else if (delay >= 1)
-        {
-            GetComponent<Text>().text = delay.ToString("0");
-            delay -= Time.deltaTime;
+            else
+            {
+                endTrans = true;
+            }
         }
         else
         {
-            delay -= Time.deltaTime;
+            if (delay <= 0)
+            {
+                GetComponent<Text>().text = "FIGHT!";
+                GetComponent<Text>().color = new Color(GetComponent<Text>().color.r, GetComponent<Text>().color.g, GetComponent<Text>().color.b, GetComponent<Text>().color.a - Time.deltaTime);
+                if (GetComponent<Text>().color.a < 0.5)
+                {
+                    Destroy(this.gameObject);
+                }
+            }
+            else if (delay >= 1)
+            {
+                GetComponent<Text>().text = delay.ToString("0");
+                delay -= Time.deltaTime;
+            }
+            else
+            {
+                delay -= Time.deltaTime;
+            }
         }
 	}
 }

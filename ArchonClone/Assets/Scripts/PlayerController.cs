@@ -46,6 +46,30 @@ public class PlayerController : MonoBehaviour {
 
     //public GameObject MoveController;
 
+    void Awake()
+    {
+        //LAN Switch
+        if (!Network.isClient && !Network.isServer)
+            this.enabled = false;
+        else if (Network.isClient || Network.isServer)
+        {
+            if (this.GetComponent<Player1MovementController>())
+            {
+                self1 = this.GetComponent<Player1MovementController>();
+                self1.enabled = false;
+                SynthTank.SetActive(true);
+                enemy1 = GameObject.Find("Player2(Clone)").GetComponent<Player2MovementController>();
+            }
+            else
+            {
+                self2 = this.GetComponent<Player2MovementController>();
+                self2.enabled = false;
+                OrganicGrunt.SetActive(true);
+                enemy2 = GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>();
+            }
+        }
+    }
+
     void Start()
     {
         //MoveController = GameObject.Find("MovementController");
@@ -60,14 +84,14 @@ public class PlayerController : MonoBehaviour {
             {
                 self1 = this.GetComponent<Player1MovementController>();
                 self1.enabled = false;
-                //SynthTank.SetActive(true);
+                SynthTank.SetActive(true);
                 enemy1 = GameObject.Find("Player2(Clone)").GetComponent<Player2MovementController>();
             }
             else
             {
                 self2 = this.GetComponent<Player2MovementController>();
                 self2.enabled = false;
-                //OrganicGrunt.SetActive(true);
+                OrganicGrunt.SetActive(true);
                 enemy2 = GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>();
             }
         }
