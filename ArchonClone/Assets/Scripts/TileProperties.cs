@@ -51,7 +51,8 @@ public class TileProperties : MonoBehaviour {
                 backTimer += Time.deltaTime;
                 if (backTimer >= .75f)
                 {
-                    Canvas.GetComponent<SceneTrans>().trigger = true;
+                    Canvas.GetComponent<SceneTrans>().open = true;
+                    Canvas.GetComponent<SceneTrans>().close = false;
                 }
             }
             else
@@ -60,7 +61,7 @@ public class TileProperties : MonoBehaviour {
                 cameBack = false;
             }
         }
-
+        
         if (GameObject.Find("Player1(Clone)") != null && GameObject.Find("Player2(Clone)") != null)
         {
             if (GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>().win == true || GameObject.Find("Player2(Clone)").GetComponent<Player2MovementController>().win == true)
@@ -76,7 +77,8 @@ public class TileProperties : MonoBehaviour {
                 fightTimer += Time.deltaTime;
                 if (fightTimer >= 1.5f)
                 {
-                    Canvas.GetComponent<SceneTrans>().trigger2 = true;
+                    Canvas.GetComponent<SceneTrans>().close = true;
+                    Canvas.GetComponent<SceneTrans>().open = false;
                 }
             }
             else

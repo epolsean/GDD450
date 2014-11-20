@@ -23,7 +23,7 @@ public class FadeOut : MonoBehaviour {
                 startTimer += Time.deltaTime;
                 if (startTimer >= 1.25f)
                 {
-                    Canvas.GetComponent<SceneTrans>().trigger2 = true;
+                    Canvas.GetComponent<SceneTrans>().open = true;
                 }
             }
             else

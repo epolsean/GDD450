@@ -62,7 +62,7 @@ public class Player1MovementController : MonoBehaviour
 
     public bool isAlien;
 
-    GameObject Canvas;
+    public GameObject Canvas;
 
     float endTimer;
     float startTimer;
@@ -420,26 +420,29 @@ public class Player1MovementController : MonoBehaviour
             }
             if (win == true)
             {
+                if (TurnStateMachine.state == TurnStateMachine.State.playerTurn/* && GameObject.Find("EnemyAI") == null*/)
+                {
+                    TurnStateMachine.state = TurnStateMachine.State.otherTurn;
+                }
+                else
+                {
+                    TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+                    EnemyAI.AIstate = EnemyAI.State.Idle;
+                }
                 if (endTimer <= 3)
                 {
+                    Debug.Log("We are in the Timer");
                     endTimer += Time.deltaTime;
                     if (endTimer >= .75f)
                     {
-                        Canvas.GetComponent<SceneTrans>().trigger = true;
+                        Debug.Log("Should be drawing the Transitions");
+                        Canvas.GetComponent<SceneTrans>().close = true;
+                        Canvas.GetComponent<SceneTrans>().open = false;
                     }
                 }
                 else
                 {
                     BattleStats.winner = tag;
-                    if (TurnStateMachine.state == TurnStateMachine.State.playerTurn/* && GameObject.Find("EnemyAI") == null*/)
-                    {
-                        TurnStateMachine.state = TurnStateMachine.State.otherTurn;
-                    }
-                    else
-                    {
-                        TurnStateMachine.state = TurnStateMachine.State.playerTurn;
-                        EnemyAI.AIstate = EnemyAI.State.Idle;
-                    }
                     Destroy(GameObject.Find("BattleSceneAdditive"));
                     Destroy(MoveController.GetComponent<PawnMove>().Player02);
                     MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player01;

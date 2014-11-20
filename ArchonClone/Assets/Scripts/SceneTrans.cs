@@ -9,8 +9,8 @@ public class SceneTrans : MonoBehaviour
     public GameObject slider2;
     public GameObject slider3;
 
-    public bool trigger;
-    public bool trigger2;
+    public bool close;
+    public bool open;
 
     float fracJourney;
     float distCovered;
@@ -25,44 +25,44 @@ public class SceneTrans : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-        trigger = false;
-        trigger2 = false;
+        close = false;
+        open = false;
 	}
 	
 	// Update is called once per frame
     void Update()
     {
-        if (trigger == true)
+        if (close == true)
         {
             if (slider2.GetComponent<Image>().fillAmount != .5f)
             {
                 S1N2 = true;
                 S3 = false;
             }
-            else if (slider2.GetComponent<Image>().fillAmount == .5f)
+            /*else if (slider2.GetComponent<Image>().fillAmount == .5f)
             {
                 S1N2 = false;
                 S3 = true;
-            }
+            }*/
 
             if (S1N2 == true)
             {
                 sliderOneAndTwoMove();
             }
-
+            /*
             if (S3 == true)
             {
                 sliderThreeMove();
-            }
+            }*/
         }
-        if (trigger2 == true)
+        if (open == true)
         {
-            if (slider3.GetComponent<Image>().fillAmount != 0f)
+            /*if (slider3.GetComponent<Image>().fillAmount != 0f)
             {
                 S1N2R = false;
                 S3R = true;
-            }
-            else if (slider3.GetComponent<Image>().fillAmount == 0f)
+            }*/
+            if (slider2.GetComponent<Image>().fillAmount != 0f)
             {
                 S1N2R = true;
                 S3R = false;
@@ -72,11 +72,11 @@ public class SceneTrans : MonoBehaviour
             {
                 sliderOneAndTwoMove();
             }
-
+            /*
             if (S3R == true)
             {
                 sliderThreeMove();
-            }
+            }*/
         }
     }
 

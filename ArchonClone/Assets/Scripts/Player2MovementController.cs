@@ -345,26 +345,27 @@ public class Player2MovementController : MonoBehaviour
         }
         if (win == true)
         {
+            if (TurnStateMachine.state == TurnStateMachine.State.playerTurn/* && GameObject.Find("EnemyAI") == null*/)
+            {
+                TurnStateMachine.state = TurnStateMachine.State.otherTurn;
+            }
+            else
+            {
+                TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+                EnemyAI.AIstate = EnemyAI.State.Idle;
+            }
             if (endTimer <= 3)
             {
                 endTimer += Time.deltaTime;
                 if (endTimer >= .75f)
                 {
-                    Canvas.GetComponent<SceneTrans>().trigger = true;
+                    Canvas.GetComponent<SceneTrans>().close = true;
+                    Canvas.GetComponent<SceneTrans>().open = false;
                 }
             }
             else
             {
                 BattleStats.winner = tag;
-                if (TurnStateMachine.state == TurnStateMachine.State.playerTurn/* && GameObject.Find("EnemyAI") == null*/)
-                {
-                    TurnStateMachine.state = TurnStateMachine.State.otherTurn;
-                }
-                else
-                {
-                    TurnStateMachine.state = TurnStateMachine.State.playerTurn;
-                    EnemyAI.AIstate = EnemyAI.State.Idle;
-                }
                 Destroy(GameObject.Find("BattleSceneAdditive"));
                 Destroy(MoveController.GetComponent<PawnMove>().Player01);
                 MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
