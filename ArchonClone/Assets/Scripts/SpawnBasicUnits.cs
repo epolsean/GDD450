@@ -29,6 +29,40 @@ public class SpawnBasicUnits : MonoBehaviour {
     public GameObject B6StartTile;
     public GameObject W6StartTile;
 
+    //Set up all the alien Tiles
+    public GameObject AlienGrunt1StartTile;
+    public GameObject AlienGrunt2StartTile;
+    public GameObject AlienGrunt3StartTile;
+    public GameObject AlienGrunt4StartTile;
+    public GameObject AlienGrunt5StartTile;
+    public GameObject AlienGrunt6StartTile;
+
+    public GameObject AlienTank1StartTile;
+    public GameObject AlienTank2StartTile;
+
+    public GameObject AlienScout1StartTile;
+    public GameObject AlienScout2StartTile;
+
+    public GameObject AlienRunner1StartTile;
+    public GameObject AlienRunner2StartTile;
+
+    //Set up all the robot Tiles
+    public GameObject RobotGrunt1StartTile;
+    public GameObject RobotGrunt2StartTile;
+    public GameObject RobotGrunt3StartTile;
+    public GameObject RobotGrunt4StartTile;
+    public GameObject RobotGrunt5StartTile;
+    public GameObject RobotGrunt6StartTile;
+
+    public GameObject RobotTank1StartTile;
+    public GameObject RobotTank2StartTile;
+
+    public GameObject RobotScout1StartTile;
+    public GameObject RobotScout2StartTile;
+
+    public GameObject RobotRunner1StartTile;
+    public GameObject RobotRunner2StartTile;
+
 	// Use this for initialization
 	void Start () {
         EndControllerScript.OrgVic = false;

@@ -21,6 +21,7 @@ public class ItemSpawner : MonoBehaviour
         {
             if (ItemSpawner.numExplodingBarrels < 3)
             {
+                GameObject.Find("A*").GetComponent<AstarPath>().Scan();
                 explodingBarrel.SetActive(true);
                 empty = false;
                 ItemSpawner.numExplodingBarrels++;
@@ -30,6 +31,7 @@ public class ItemSpawner : MonoBehaviour
         {
             if (ItemSpawner.numRegularBarrels < 3)
             {
+                GameObject.Find("A*").GetComponent<AstarPath>().Scan();
                 regularBarrel.SetActive(true);
                 empty = false;
                 ItemSpawner.numRegularBarrels++;
@@ -37,6 +39,7 @@ public class ItemSpawner : MonoBehaviour
         }
         else if (spawnNum < 50)
         {
+            GameObject.Find("A*").GetComponent<AstarPath>().Scan();
             if (ItemSpawner.numPowerUps < 3)
             {
                 powerUp.SetActive(true);
@@ -62,6 +65,7 @@ public class ItemSpawner : MonoBehaviour
                 {
                     if (ItemSpawner.numExplodingBarrels < 3)
                     {
+                        GameObject.Find("A*").GetComponent<AstarPath>().Scan();
                         explodingBarrel.SetActive(true);
                         empty = false;
                         ItemSpawner.numExplodingBarrels++;
@@ -69,6 +73,7 @@ public class ItemSpawner : MonoBehaviour
                 }
                 else if (spawnNum < 50)
                 {
+                    GameObject.Find("A*").GetComponent<AstarPath>().Scan();
                     if (ItemSpawner.numPowerUps < 3)
                     {
                         powerUp.SetActive(true);

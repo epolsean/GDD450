@@ -2,8 +2,11 @@
 using UnityEngine.UI;
 using System.Collections;
 
+
 public class Player1MovementController : MonoBehaviour 
 {
+    //File fileName = "MyFile.txt";
+
     public GameObject SynthTank;
     public GameObject SynthScout;
     public GameObject SynthRunner;
@@ -68,7 +71,7 @@ public class Player1MovementController : MonoBehaviour
     {
         if (BattleStats.singlePlayer)
         {
-            enemy = GameObject.Find("EnemyAI(Clone)");
+            enemy = GameObject.Find("EnemyBattleAI(Clone)");
         }
         else
         {
@@ -403,6 +406,7 @@ public class Player1MovementController : MonoBehaviour
                     }
                 }
             }
+            Debug.Log(MoveController.GetComponent<PawnMove>().Player01);
 
             healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health*2) / (MaxHealth*3));
 
@@ -412,6 +416,7 @@ public class Player1MovementController : MonoBehaviour
             }
             if (win == true)
             {
+                //System.IO.File.AppendAllText("D:\Student Data\Documents\GitHub\GDD450\ArchonClone\WhoWins.txt", "Winner is " + MoveController.GetComponent<PawnMove>().Player01);
                 if (TurnStateMachine.state == TurnStateMachine.State.playerTurn/* && GameObject.Find("EnemyAI") == null*/)
                 {
                     TurnStateMachine.state = TurnStateMachine.State.otherTurn;
