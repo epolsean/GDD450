@@ -31,13 +31,16 @@ public class EnemyAIForBattle : MonoBehaviour
     public bool isMelee = false;
     public int bulletSpeed = 25;
 
+    bool reloading = false;
+    public bool swinging = false;
+    float attackRate = 1.5f;
+    float attackTimer = 0;
+    int bulletSize;
+
     public GameObject healthPieceGreen;
     public Sprite healthPieceRed;
     public GameObject special;
-
-    public bool swinging = false;
-    float swingTimer = 0.5f;
-
+    
     public float specialTimer = 5.0f;
     bool specialAvailable = false;
     public bool usingShield = false;
@@ -48,11 +51,8 @@ public class EnemyAIForBattle : MonoBehaviour
 
     public float health;
     public float MaxHealth;
-    int bulletSize;
-
+    
     public bool win = false;
-    bool reloading = false;
-    float reloadTime = 0.8f;
     CharacterController controller;
 
     public GameObject MoveController;
@@ -70,6 +70,8 @@ public class EnemyAIForBattle : MonoBehaviour
         speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
         health = (float)MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health;
         MaxHealth = (float)MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().MaxHealth;
+        attackRate = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().MaxHealth;
+        attackTimer = attackRate;
         bulletSize = 1;
 
         if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)")
@@ -137,10 +139,10 @@ public class EnemyAIForBattle : MonoBehaviour
             {
                 if (reloading)
                 {
-                    reloadTime -= Time.deltaTime;
-                    if (reloadTime < 0)
+                    attackTimer -= Time.deltaTime;
+                    if (attackTimer < 0)
                     {
-                        reloadTime = 1f;
+                        attackTimer = attackRate;
                         reloading = false;
                     }
                 }
@@ -173,8 +175,6 @@ public class EnemyAIForBattle : MonoBehaviour
                                     Destroy(bulletClone.gameObject, 3);
                                 }
                                 audio.Play();
-                                bulletSize = 1;
-                                bulletSpeed = 25;
                                 reloading = true;
                             }
                         }
@@ -184,13 +184,13 @@ public class EnemyAIForBattle : MonoBehaviour
             }
             else
             {
-                if (swinging)
+                if (reloading)
                 {
-                    swingTimer -= Time.deltaTime;
-                    if (swingTimer < 0)
+                    attackTimer -= Time.deltaTime;
+                    if (attackTimer < 0)
                     {
-                        swingTimer = 0.5f;
-                        swinging = false;
+                        attackTimer = attackRate;
+                        reloading = false;
                     }
                 }
 
@@ -395,27 +395,13 @@ public class EnemyAIForBattle : MonoBehaviour
 
         if (shieldPower >= 1 && !shieldOverheat)
         {
-            if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
+            if (Input.GetAxis("360_LeftTrigger2") == 1)
             {
-                if (Input.GetAxis("360_LeftTrigger2") == 1)
-                {
-                    usingShield = true;
-                }
-                else
-                {
-                    usingShield = false;
-                }
+                usingShield = true;
             }
             else
             {
-                if (Input.GetAxis("Special2") == 1)
-                {
-                    usingShield = true;
-                }
-                else
-                {
-                    usingShield = false;
-                }
+                usingShield = false;
             }
         }
     }
@@ -452,6 +438,7 @@ public class EnemyAIForBattle : MonoBehaviour
             if (specialTimer < 0)
             {
                 specialTimer = 5.0f;
+                special.GetComponent<Image>().fillAmount = 1;
                 specialAvailable = true;
             }
         }
@@ -467,6 +454,7 @@ public class EnemyAIForBattle : MonoBehaviour
                 Destroy(missileClone.gameObject, 20);
                 audio.Play();
                 audio.Play();
+                special.GetComponent<Image>().fillAmount = 0;
                 specialAvailable = false;
             }
         }
@@ -482,6 +470,7 @@ public class EnemyAIForBattle : MonoBehaviour
                 Destroy(missileClone.gameObject, 20);
                 audio.Play();
                 audio.Play();
+                special.GetComponent<Image>().fillAmount = 0;
                 specialAvailable = false;
             }
         }
@@ -557,6 +546,16 @@ public class EnemyAIForBattle : MonoBehaviour
     }
     void AlienTankSpecial()
     {
+        if (specialAvailable == false)
+        {
+            specialTimer -= Time.deltaTime;
+            if (specialTimer < 0)
+            {
+                specialTimer = 5.0f;
+                special.GetComponent<Image>().fillAmount = 1;
+                specialAvailable = true;
+            }
+        }
         if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
         {
             if (Input.GetAxis("360_LeftTrigger2") == 1 && specialAvailable)
@@ -569,6 +568,7 @@ public class EnemyAIForBattle : MonoBehaviour
                 Destroy(missileClone.gameObject, 20);
                 audio.Play();
                 audio.Play();
+                special.GetComponent<Image>().fillAmount = 0;
                 specialAvailable = false;
             }
         }
@@ -584,6 +584,7 @@ public class EnemyAIForBattle : MonoBehaviour
                 Destroy(missileClone.gameObject, 20);
                 audio.Play();
                 audio.Play();
+                special.GetComponent<Image>().fillAmount = 0;
                 specialAvailable = false;
             }
         }
