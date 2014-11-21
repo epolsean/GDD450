@@ -62,12 +62,7 @@ public class Player1MovementController : MonoBehaviour
 
     public bool isAlien;
 
-    public GameObject Canvas;
-
     float endTimer;
-    float startTimer;
-
-    bool endTrans;
 
     void Start()
     {
@@ -79,7 +74,6 @@ public class Player1MovementController : MonoBehaviour
         {
             enemy = GameObject.Find("Player2(Clone)");
         }
-        Canvas = GameObject.Find("Canvas2");
         MoveController = GameObject.Find("MovementController");
         controller = GetComponent<CharacterController>();
 
@@ -429,14 +423,7 @@ public class Player1MovementController : MonoBehaviour
                 }
                 if (endTimer <= 3)
                 {
-                    Debug.Log("We are in the Timer");
                     endTimer += Time.deltaTime;
-                    if (endTimer >= .75f)
-                    {
-                        Debug.Log("Should be drawing the Transitions");
-                        Canvas.GetComponent<SceneTrans>().close = true;
-                        Canvas.GetComponent<SceneTrans>().open = false;
-                    }
                 }
                 else
                 {

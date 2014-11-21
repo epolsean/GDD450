@@ -39,29 +39,14 @@ public class SceneTrans : MonoBehaviour
                 S1N2 = true;
                 S3 = false;
             }
-            /*else if (slider2.GetComponent<Image>().fillAmount == .5f)
-            {
-                S1N2 = false;
-                S3 = true;
-            }*/
 
             if (S1N2 == true)
             {
                 sliderOneAndTwoMove();
             }
-            /*
-            if (S3 == true)
-            {
-                sliderThreeMove();
-            }*/
         }
         if (open == true)
         {
-            /*if (slider3.GetComponent<Image>().fillAmount != 0f)
-            {
-                S1N2R = false;
-                S3R = true;
-            }*/
             if (slider2.GetComponent<Image>().fillAmount != 0f)
             {
                 S1N2R = true;
@@ -72,11 +57,6 @@ public class SceneTrans : MonoBehaviour
             {
                 sliderOneAndTwoMove();
             }
-            /*
-            if (S3R == true)
-            {
-                sliderThreeMove();
-            }*/
         }
     }
 
@@ -100,27 +80,6 @@ public class SceneTrans : MonoBehaviour
         {
             slider1.GetComponent<Image>().fillAmount = Mathf.Lerp(0.5f, 0, fracJourney);
             slider2.GetComponent<Image>().fillAmount = Mathf.Lerp(0.5f, 0, fracJourney);
-        }
-    }
-
-    void sliderThreeMove()
-    {
-        if (S3Started == false)
-        {
-            startTime = Time.time;
-            S3Started = true;
-        }
-
-        distCovered = (Time.time - startTime) * 10;
-        fracJourney = distCovered / 4;
-
-        if (S3 == true)
-        {
-            slider3.GetComponent<Image>().fillAmount = Mathf.Lerp(0, 1f, fracJourney);
-        }
-        else if (S3R == true)
-        {
-            slider3.GetComponent<Image>().fillAmount = Mathf.Lerp(1f, 0, fracJourney);
         }
     }
 }

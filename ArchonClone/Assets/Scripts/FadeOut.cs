@@ -18,12 +18,13 @@ public class FadeOut : MonoBehaviour {
 	void Update () {
         if (endTrans == false)
         {
-            if (startTimer <= 2.5)
+            if (startTimer <= 2.5f)
             {
                 startTimer += Time.deltaTime;
                 if (startTimer >= 1.25f)
                 {
                     Canvas.GetComponent<SceneTrans>().open = true;
+                    Canvas.GetComponent<SceneTrans>().close = false;
                 }
             }
             else

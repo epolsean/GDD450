@@ -44,31 +44,7 @@ public class TileProperties : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (GameObject.Find("BattleSceneAdditive") == null && cameBack == true)
-        {
-            if (backTimer <= 3)
-            {
-                backTimer += Time.deltaTime;
-                if (backTimer >= .75f)
-                {
-                    Canvas.GetComponent<SceneTrans>().open = true;
-                    Canvas.GetComponent<SceneTrans>().close = false;
-                }
-            }
-            else
-            {
-                backTimer = 0;
-                cameBack = false;
-            }
-        }
         
-        if (GameObject.Find("Player1(Clone)") != null && GameObject.Find("Player2(Clone)") != null)
-        {
-            if (GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>().win == true || GameObject.Find("Player2(Clone)").GetComponent<Player2MovementController>().win == true)
-            {
-                cameBack = true;
-            }
-        }
 
         if(fighting)
         {

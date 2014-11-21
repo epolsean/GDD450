@@ -62,13 +62,10 @@ public class Player2MovementController : MonoBehaviour
 
     public bool isAlien;
 
-    GameObject Canvas;
-
     float endTimer;
 
     void Start()
     {
-        Canvas = GameObject.Find("Canvas2");
         enemy = GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>();
         MoveController = GameObject.Find("MovementController");
         controller = GetComponent<CharacterController>();
@@ -355,11 +352,6 @@ public class Player2MovementController : MonoBehaviour
             if (endTimer <= 3)
             {
                 endTimer += Time.deltaTime;
-                if (endTimer >= .75f)
-                {
-                    Canvas.GetComponent<SceneTrans>().close = true;
-                    Canvas.GetComponent<SceneTrans>().open = false;
-                }
             }
             else
             {
