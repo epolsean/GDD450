@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.IO;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -64,8 +66,13 @@ public class Player2MovementController : MonoBehaviour
 
     float endTimer;
 
+    string enemyName;
+    int enemyStartHealth;
+    bool printStats = false;
+
     void Start()
     {
+        printStats = false;
         enemy = GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>();
         MoveController = GameObject.Find("MovementController");
         controller = GetComponent<CharacterController>();
@@ -132,6 +139,8 @@ public class Player2MovementController : MonoBehaviour
             isAlien = true;
         }
         healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
+        enemyName = MoveController.GetComponent<PawnMove>().Player01.name;
+        enemyStartHealth = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health;
     }
     void Update()
     {
@@ -298,38 +307,40 @@ public class Player2MovementController : MonoBehaviour
                 }
             }
         }
-
-        if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)" && win == false && enemy.win == false)
+        if (enemy.GetComponent<Player1MovementController>().win == false)
         {
-            RobotTankSpecial();
-        }
-        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteScout(Clone)" && win == false && enemy.win == false)
-        {
-            RobotScoutSpecial();
-        }
-        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteRunner(Clone)" && win == false && enemy.win == false)
-        {
-            RobotRunnerSpecial();
-        }
-        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteGrunt(Clone)" && win == false && enemy.win == false)
-        {
-            RobotGruntSpecial();
-        }
-        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackTank(Clone)" && win == false && enemy.win == false)
-        {
-            AlienTankSpecial();
-        }
-        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)" && win == false && enemy.win == false)
-        {
-            AlienScoutSpecial();
-        }
-        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)" && win == false && enemy.win == false)
-        {
-            AlienRunnerSpecial();
-        }
-        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)" && win == false && enemy.win == false)
-        {
-            AlienGruntSpecial();
+            if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)" && win == false && enemy.win == false)
+            {
+                RobotTankSpecial();
+            }
+            else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteScout(Clone)" && win == false && enemy.win == false)
+            {
+                RobotScoutSpecial();
+            }
+            else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteRunner(Clone)" && win == false && enemy.win == false)
+            {
+                RobotRunnerSpecial();
+            }
+            else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteGrunt(Clone)" && win == false && enemy.win == false)
+            {
+                RobotGruntSpecial();
+            }
+            else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackTank(Clone)" && win == false && enemy.win == false)
+            {
+                AlienTankSpecial();
+            }
+            else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)" && win == false && enemy.win == false)
+            {
+                AlienScoutSpecial();
+            }
+            else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)" && win == false && enemy.win == false)
+            {
+                AlienRunnerSpecial();
+            }
+            else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)" && win == false && enemy.win == false)
+            {
+                AlienGruntSpecial();
+            }
         }
 
         healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
@@ -340,6 +351,17 @@ public class Player2MovementController : MonoBehaviour
         }
         if (win == true)
         {
+            /*if (!printStats)
+            {
+                using (StreamWriter sw = new StreamWriter("Assets/WhoWins.txt", true))
+                {
+                    sw.WriteLine("Battle between .... " + MoveController.GetComponent<PawnMove>().Player02.name + " with " + MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health + " health  vs   " + enemyName + " with " + enemyStartHealth + " health");
+                    sw.WriteLine("Winner is " + MoveController.GetComponent<PawnMove>().Player02.name);
+                    sw.WriteLine("-------------------");
+                    UpdateStats();
+                    printStats = true;
+                }
+            }*/
             if (TurnStateMachine.state == TurnStateMachine.State.playerTurn/* && GameObject.Find("EnemyAI") == null*/)
             {
                 TurnStateMachine.state = TurnStateMachine.State.otherTurn;
@@ -382,8 +404,48 @@ public class Player2MovementController : MonoBehaviour
         }
     }
 
+    IEnumerator DamageBoost(int startDamage)
+    {
+        yield return new WaitForSeconds(5.0f);
+        MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = startDamage;
+    }
+
+    IEnumerator SpeedBoost(int startSpeed)
+    {
+        yield return new WaitForSeconds(5.0f);
+        MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = startSpeed;
+    }
+
     void OnTriggerEnter(Collider other)
     {
+        if (other.name == "PowerUp")
+        {
+            float statBoost = UnityEngine.Random.Range(0, 100);
+            if (statBoost < 40)
+            {
+                Debug.Log("Damage Boost p2");
+                StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage);
+                MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage * 2;
+            }
+            else if (statBoost < 70)
+            {
+                Debug.Log("Speed Boost p2");
+                StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage);
+                MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement * 2;
+            }
+            else
+            {
+                health += 10;
+                if (health > MaxHealth)
+                {
+                    health = MaxHealth;
+                }
+                Debug.Log("increase health p2");
+            }
+            ItemSpawner.numPowerUps--;
+            other.transform.parent.gameObject.GetComponent<ItemSpawner>().empty = true;
+            other.gameObject.SetActive(false);
+        }
         //If the player gets shot
         if (!isAlien && other.tag == "alienBullet")
         {
@@ -664,5 +726,161 @@ public class Player2MovementController : MonoBehaviour
     void AlienRunnerSpecial()
     {
 
+    }
+
+    void UpdateStats()
+    {
+        if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteGrunt(Clone)")
+        {
+            if (enemyName == "BlackGrunt(Clone)")
+            {
+                BattleStats.RobotGruntWinsVSAlienGrunt++;
+            }
+            else if (enemyName == "BlackTank(Clone)")
+            {
+                BattleStats.RobotGruntWinsVSAlienTank++;
+            }
+            else if (enemyName == "BlackScout(Clone)")
+            {
+                BattleStats.RobotGruntWinsVSAlienScout++;
+            }
+            else if (enemyName == "BlackRunner(Clone)")
+            {
+                BattleStats.RobotGruntWinsVSAlienRunner++;
+            }
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)")
+        {
+            if (enemyName == "BlackGrunt(Clone)")
+            {
+                BattleStats.RobotTankWinsVSAlienGrunt++;
+            }
+            else if (enemyName == "BlackTank(Clone)")
+            {
+                BattleStats.RobotTankWinsVSAlienTank++;
+            }
+            else if (enemyName == "BlackScout(Clone)")
+            {
+                BattleStats.RobotTankWinsVSAlienScout++;
+            }
+            else if (enemyName == "BlackRunner(Clone)")
+            {
+                BattleStats.RobotTankWinsVSAlienRunner++;
+            }
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteScout(Clone)")
+        {
+            if (enemyName == "BlackGrunt(Clone)")
+            {
+                BattleStats.RobotScoutWinsVSAlienGrunt++;
+            }
+            else if (enemyName == "BlackTank(Clone)")
+            {
+                BattleStats.RobotScoutWinsVSAlienTank++;
+            }
+            else if (enemyName == "BlackScout(Clone)")
+            {
+                BattleStats.RobotScoutWinsVSAlienScout++;
+            }
+            else if (enemyName == "BlackRunner(Clone)")
+            {
+                BattleStats.RobotScoutWinsVSAlienRunner++;
+            }
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteRunner(Clone)")
+        {
+            if (enemyName == "BlackGrunt(Clone)")
+            {
+                BattleStats.RobotRunnerWinsVSAlienGrunt++;
+            }
+            else if (enemyName == "BlackTank(Clone)")
+            {
+                BattleStats.RobotRunnerWinsVSAlienTank++;
+            }
+            else if (enemyName == "BlackScout(Clone)")
+            {
+                BattleStats.RobotRunnerWinsVSAlienScout++;
+            }
+            else if (enemyName == "BlackRunner(Clone)")
+            {
+                BattleStats.RobotRunnerWinsVSAlienRunner++;
+            }
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)")
+        {
+            if (enemyName == "WhiteGrunt(Clone)")
+            {
+                BattleStats.AlienGruntWinsVSRobotGrunt++;
+            }
+            else if (enemyName == "WhiteTank(Clone)")
+            {
+                BattleStats.AlienGruntWinsVSRobotTank++;
+            }
+            else if (enemyName == "WhiteScout(Clone)")
+            {
+                BattleStats.AlienGruntWinsVSRobotScout++;
+            }
+            else if (enemyName == "WhiteRunner(Clone)")
+            {
+                BattleStats.AlienGruntWinsVSRobotRunner++;
+            }
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackTank(Clone)")
+        {
+            if (enemyName == "WhiteGrunt(Clone)")
+            {
+                BattleStats.AlienTankWinsVSRobotGrunt++;
+            }
+            else if (enemyName == "WhiteTank(Clone)")
+            {
+                BattleStats.AlienTankWinsVSRobotTank++;
+            }
+            else if (enemyName == "WhiteScout(Clone)")
+            {
+                BattleStats.AlienTankWinsVSRobotScout++;
+            }
+            else if (enemyName == "WhiteRunner(Clone)")
+            {
+                BattleStats.AlienTankWinsVSRobotRunner++;
+            }
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)")
+        {
+            if (enemyName == "WhiteGrunt(Clone)")
+            {
+                BattleStats.AlienScoutWinsVSRobotGrunt++;
+            }
+            else if (enemyName == "WhiteTank(Clone)")
+            {
+                BattleStats.AlienScoutWinsVSRobotTank++;
+            }
+            else if (enemyName == "WhiteScout(Clone)")
+            {
+                BattleStats.AlienScoutWinsVSRobotScout++;
+            }
+            else if (enemyName == "WhiteRunner(Clone)")
+            {
+                BattleStats.AlienScoutWinsVSRobotRunner++;
+            }
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)")
+        {
+            if (enemyName == "WhiteGrunt(Clone)")
+            {
+                BattleStats.AlienRunnerWinsVSRobotGrunt++;
+            }
+            else if (enemyName == "WhiteTank(Clone)")
+            {
+                BattleStats.AlienRunnerWinsVSRobotTank++;
+            }
+            else if (enemyName == "WhiteScout(Clone)")
+            {
+                BattleStats.AlienRunnerWinsVSRobotScout++;
+            }
+            else if (enemyName == "WhiteRunner(Clone)")
+            {
+                BattleStats.AlienRunnerWinsVSRobotRunner++;
+            }
+        }
     }
 }

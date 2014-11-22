@@ -215,38 +215,41 @@ public class EnemyAIForBattle : MonoBehaviour
                     }
                 }
             }
-            //Depending on what the player is their specific special will get called
-            if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)" && win == false && enemyController.win == false)
+            if (enemy.GetComponent<Player1MovementController>().win == false)
             {
-                RobotTankSpecial();
-            }
-            else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteScout(Clone)" && win == false && enemyController.win == false)
-            {
-                RobotScoutSpecial();
-            }
-            else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteRunner(Clone)" && win == false && enemyController.win == false)
-            {
-                RobotRunnerSpecial();
-            }
-            else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteGrunt(Clone)" && win == false && enemyController.win == false)
-            {
-                RobotGruntSpecial();
-            }
-            else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackTank(Clone)" && win == false && enemyController.win == false)
-            {
-                AlienTankSpecial();
-            }
-            else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)" && win == false && enemyController.win == false)
-            {
-                AlienScoutSpecial();
-            }
-            else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)" && win == false && enemyController.win == false)
-            {
-                AlienRunnerSpecial();
-            }
-            else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)" && win == false && enemyController.win == false)
-            {
-                AlienGruntSpecial();
+                //Depending on what the player is their specific special will get called
+                if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)" && win == false && enemyController.win == false)
+                {
+                    RobotTankSpecial();
+                }
+                else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteScout(Clone)" && win == false && enemyController.win == false)
+                {
+                    RobotScoutSpecial();
+                }
+                else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteRunner(Clone)" && win == false && enemyController.win == false)
+                {
+                    RobotRunnerSpecial();
+                }
+                else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteGrunt(Clone)" && win == false && enemyController.win == false)
+                {
+                    RobotGruntSpecial();
+                }
+                else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackTank(Clone)" && win == false && enemyController.win == false)
+                {
+                    AlienTankSpecial();
+                }
+                else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)" && win == false && enemyController.win == false)
+                {
+                    AlienScoutSpecial();
+                }
+                else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)" && win == false && enemyController.win == false)
+                {
+                    AlienRunnerSpecial();
+                }
+                else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)" && win == false && enemyController.win == false)
+                {
+                    AlienGruntSpecial();
+                }
             }
 
             healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
@@ -293,15 +296,48 @@ public class EnemyAIForBattle : MonoBehaviour
         }
     }
 	
-
-    void OnDeath()
+    IEnumerator DamageBoost(int startDamage)
     {
-        Destroy(gameObject);
-        enabled = false;
+        yield return new WaitForSeconds(5.0f);
+        MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = startDamage;
+    }
+
+    IEnumerator SpeedBoost(int startSpeed)
+    {
+        yield return new WaitForSeconds(5.0f);
+        MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = startSpeed;
     }
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.name == "PowerUp")
+        {
+            float statBoost = UnityEngine.Random.Range(0, 100);
+            if (statBoost < 40)
+            {
+                Debug.Log("Damage Boost p2");
+                StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage);
+                MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage * 2;
+            }
+            else if (statBoost < 70)
+            {
+                Debug.Log("Speed Boost p2");
+                StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage);
+                MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement * 2;
+            }
+            else
+            {
+                health += 10;
+                if (health > MaxHealth)
+                {
+                    health = MaxHealth;
+                }
+                Debug.Log("increase health p2");
+            }
+            ItemSpawner.numPowerUps--;
+            other.transform.parent.gameObject.GetComponent<ItemSpawner>().empty = true;
+            other.gameObject.SetActive(false);
+        }
         //If the player gets shot
         if (!isAlien && other.tag == "alienBullet")
         {
