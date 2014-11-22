@@ -89,7 +89,7 @@ public class Player1MovementController : MonoBehaviour
         speed = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement;
         health = (float)MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health;
         MaxHealth = (float)MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().MaxHealth;
-        attackRate = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().MaxHealth;
+        attackRate = 2;//MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().AttackRate;
         attackTimer = attackRate;
         bulletSize = 1;
         lastLooking = transform.forward;

@@ -74,7 +74,7 @@ public class Player2MovementController : MonoBehaviour
         speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
         health = (float)MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health;
         MaxHealth = (float)MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().MaxHealth;
-        attackRate = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().MaxHealth;
+        attackRate = 2;//MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().AttackRate;
         attackTimer = attackRate;
         bulletSize = 1;
         lastLooking = transform.forward;
@@ -269,7 +269,7 @@ public class Player2MovementController : MonoBehaviour
                     if (attackTimer < 0)
                     {
                         attackTimer = attackRate;
-                        reloading = false;
+                        swinging = false;
                     }
                 }
 
