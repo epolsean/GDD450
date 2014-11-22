@@ -29,12 +29,16 @@ public class TransitionCall : MonoBehaviour {
             {
                 Debug.Log("We are in the Timer");
                 endTimer += Time.deltaTime;
-                if (endTimer >= 1.25f)
+                if (endTimer >= 1.5f && endTimer < 1.6f)
                 {
                     Debug.Log("Should be drawing the Transitions");
                     Canvas.GetComponent<SceneTrans>().close = true;
-                    Canvas.GetComponent<SceneTrans>().open = false;
+                    Canvas.GetComponent<SceneTrans>().startTimer = 0;
                 }
+            }
+            else
+            {
+                GameObject.Find("HexGrid").GetComponent<TileProperties>().cameBack = true;
             }
         }
 	}

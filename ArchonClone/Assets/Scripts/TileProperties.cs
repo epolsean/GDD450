@@ -22,7 +22,8 @@ public class TileProperties : MonoBehaviour {
     GameObject Canvas;
     int whatScene = 0;
     float backTimer;
-    bool cameBack;
+    bool transStarted;
+    public bool cameBack;
     
     // Use this for initialization
 	void Start () {
@@ -44,17 +45,33 @@ public class TileProperties : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+        if (GameObject.Find("BattleSceneAdditive") == null && cameBack == true)
+        {
+            if (backTimer <= 3)
+            {
+                backTimer += Time.deltaTime;
+                if (backTimer >= 2f && backTimer < 2.1f)
+                {
+                    Canvas.GetComponent<SceneTrans>().open = true;
+                    Canvas.GetComponent<SceneTrans>().startTimer = 0;
+                }
+            }
+            else
+            {
+                cameBack = false;
+                backTimer = 0;
+            }
+        }
 
         if(fighting)
         {
             if(fightTimer <= 3)
             {
                 fightTimer += Time.deltaTime;
-                if (fightTimer >= 1.5f)
+                if (fightTimer >= 2f && fightTimer < 2.1f)
                 {
                     Canvas.GetComponent<SceneTrans>().close = true;
-                    Canvas.GetComponent<SceneTrans>().open = false;
+                    Canvas.GetComponent<SceneTrans>().startTimer = 0;
                 }
             }
             else
