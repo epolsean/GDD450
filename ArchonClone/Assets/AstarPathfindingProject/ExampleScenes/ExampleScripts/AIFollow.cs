@@ -197,7 +197,6 @@ public class AIFollow : MonoBehaviour {
 	public void Update () {
         if (GameObject.Find("Player1(Clone)") != null)
         {
-            Debug.Log("found player clone");
             target = GameObject.Find("Player1(Clone)").transform;
         }
 		if (path == null || pathIndex >= path.Length || pathIndex < 0 || !canMove) {

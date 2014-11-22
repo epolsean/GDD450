@@ -4,32 +4,28 @@ using System.Collections;
 public class ParticleCirclesSphere : MonoBehaviour 
 {
     private ParticleSystem.Particle[] points;
+    float[] angleThetaIncreases;
+    float[] anglePhiIncreases;
+    float[] startAngleTheta;
+    float[] startAnglePhi;
 
     private void CreatePoints()
     {
-        points = new ParticleSystem.Particle[10];
+        points = new ParticleSystem.Particle[50];
+        angleThetaIncreases = new float[50];
+        anglePhiIncreases = new float[50];
+        startAngleTheta = new float[50];
+        startAnglePhi = new float[50];
         for (int i = 0; i < points.Length; i++)
         {
-            float angle = Mathf.PI * (36f* i/180f);
-            Vector3 p = new Vector3(Mathf.Sin(angle), 0,Mathf.Cos(angle));
-            points[i].position = p;
-            if (p.x < 0)
-            {
-                p.x *=-1;
-            }
-            if (p.y < 0)
-            {
-                p.y *= -1;
-            }
-            if (p.z < 0)
-            {
-                p.z *= -1;
-            }
-            points[i].color = new Color(p.x,p.y,p.z);
-            Debug.Log("color of particle : " + points[i].color);
-            points[i].velocity = new Vector3(0, 1, 0);
-            Debug.Log("position : " + points[i].position);
-            points[i].size = 1f;
+            angleThetaIncreases[i] = Random.Range(-1f,1f);
+            anglePhiIncreases[i] = angleThetaIncreases[i];
+            startAngleTheta[i] = Random.Range(0, 2*Mathf.PI);
+            startAnglePhi[i] = Random.Range(0, 2*Mathf.PI);
+            points[i].position = new Vector3(Mathf.Cos(startAnglePhi[i]) * Mathf.Sin(startAngleTheta[i]), Mathf.Sin(startAnglePhi[i]) * Mathf.Sin(startAngleTheta[i]), Mathf.Cos(startAngleTheta[i]));
+            
+            points[i].color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0, 1f));
+            points[i].size = Random.Range(0.4f,0.6f);
         }
     }
     void Start()
@@ -40,29 +36,11 @@ public class ParticleCirclesSphere : MonoBehaviour
 
     void Update()
     {
-        //CreatePoints();
         for (int i = 0; i < points.Length; i++)
         {
-            //int vel = Random.Range(-4, 4);
-            float angle = Mathf.PI * (36f * i / 180f);
-            Vector3 p = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
-            if (p.x < 0)
-            {
-                p.x *= -1;
-            }
-            if (p.y < 0)
-            {
-                p.y *= -1;
-            }
-            if (p.z < 0)
-            {
-                p.z *= -1;
-            }
-            points[i].color = new Color(p.x, p.y, p.z);
-            //points[i].velocity = Vector3.Normalize(points[i].position);//Vector3.Cross(points[i].position,transform.position);
-            //Debug.Log("velocity : " + points[i].velocity);
-            //points[i].startLifetime = 5;
-            //points[i].position += points[i].velocity;
+            startAnglePhi[i] += anglePhiIncreases[i] * Time.deltaTime * Random.Range(1.0f, 2.0f);
+            startAngleTheta[i] += angleThetaIncreases[i] * Time.deltaTime * Random.Range(1.0f, 2.0f);
+            points[i].position = new Vector3(Mathf.Cos(startAnglePhi[i]) * Mathf.Sin(startAngleTheta[i]), Mathf.Sin(startAnglePhi[i]) * Mathf.Sin(startAngleTheta[i]), Mathf.Cos(startAngleTheta[i]));
         }
         particleSystem.SetParticles(points, points.Length);
     }

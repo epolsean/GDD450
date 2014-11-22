@@ -16,6 +16,7 @@ public class ItemSpawner : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
+        transform.position += new Vector3(Random.Range(0, 2), 0, Random.Range(0, 2));
         float spawnNum = Random.Range(0, 100);
         if (spawnNum < 25)
         {
@@ -39,8 +40,7 @@ public class ItemSpawner : MonoBehaviour
         }
         else if (spawnNum < 50)
         {
-            GameObject.Find("A*").GetComponent<AstarPath>().Scan();
-            if (ItemSpawner.numPowerUps < 3)
+            if (ItemSpawner.numPowerUps < 2)
             {
                 powerUp.SetActive(true);
                 empty = false;
@@ -61,7 +61,7 @@ public class ItemSpawner : MonoBehaviour
             if (reSpawnTimer < 0)
             {
                 float spawnNum = Random.Range(0, 1000);
-                if (spawnNum < 25)
+                if (spawnNum < 75)
                 {
                     if (ItemSpawner.numExplodingBarrels < 3)
                     {
@@ -71,10 +71,9 @@ public class ItemSpawner : MonoBehaviour
                         ItemSpawner.numExplodingBarrels++;
                     }
                 }
-                else if (spawnNum < 50)
+                else if (spawnNum < 150)
                 {
-                    GameObject.Find("A*").GetComponent<AstarPath>().Scan();
-                    if (ItemSpawner.numPowerUps < 3)
+                    if (ItemSpawner.numPowerUps < 2)
                     {
                         powerUp.SetActive(true);
                         empty = false;

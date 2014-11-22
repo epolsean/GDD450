@@ -31,7 +31,7 @@ public class FlameRockActivity : MonoBehaviour {
 	}
     void OnParticleCollision(GameObject other)
     {
-        Debug.Log("collision with other : " + other.name);
+        //Debug.Log("collision with other : " + other.name);
         if (other.name == "Player1(Clone)")
         {
             other.GetComponent<Player1MovementController>().health -= Random.Range(15,30);

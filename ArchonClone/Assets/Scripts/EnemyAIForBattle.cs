@@ -149,7 +149,7 @@ public class EnemyAIForBattle : MonoBehaviour
 
                 if (win == false)
                 {
-                    Debug.Log("Distance : " + Vector3.Distance(enemy.transform.position, transform.position));
+                    //Debug.Log("Distance : " + Vector3.Distance(enemy.transform.position, transform.position));
                     if (Vector3.Distance(enemy.transform.position, transform.position) < 30 && reloading == false)
                     {
                         if (Physics.Raycast(transform.position, Vector3.Normalize(enemy.transform.position - transform.position), out hit))
@@ -363,7 +363,6 @@ public class EnemyAIForBattle : MonoBehaviour
             special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
         Behaviour h = (Behaviour)GetComponent("Halo");
-        Debug.Log("shield power : " + shieldPower);
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
             shieldPower += Time.deltaTime;
@@ -487,7 +486,6 @@ public class EnemyAIForBattle : MonoBehaviour
             special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
         Behaviour h = (Behaviour)GetComponent("Halo");
-        Debug.Log("shield power : " + shieldPower);
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
             shieldPower += Time.deltaTime;

@@ -438,7 +438,7 @@ public class Player2MovementController : MonoBehaviour
             special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
         Behaviour h = (Behaviour)GetComponent("Halo");
-        Debug.Log("shield power : " + shieldPower);
+        //Debug.Log("shield power : " + shieldPower);
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
             shieldPower += Time.deltaTime;
@@ -556,7 +556,7 @@ public class Player2MovementController : MonoBehaviour
         }
         
         Behaviour h = (Behaviour)GetComponent("Halo");
-        Debug.Log("shield power : " + shieldPower);
+        //Debug.Log("shield power : " + shieldPower);
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
             shieldPower += Time.deltaTime;

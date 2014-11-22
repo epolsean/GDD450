@@ -507,7 +507,9 @@ public class Player1MovementController : MonoBehaviour
                 }
                 Debug.Log("increase health p1");
             }
-            Destroy(other.gameObject);
+            ItemSpawner.numPowerUps--;
+            other.transform.parent.gameObject.GetComponent<ItemSpawner>().empty = true;
+            other.gameObject.SetActive(false);
         }
         //If the player gets shot
         if (!isAlien && other.tag == "alienBullet")
@@ -562,7 +564,6 @@ public class Player1MovementController : MonoBehaviour
             special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
         Behaviour h = (Behaviour)GetComponent("Halo");
-        Debug.Log("shield power : " + shieldPower);
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
             shieldPower += Time.deltaTime;
@@ -700,7 +701,6 @@ public class Player1MovementController : MonoBehaviour
             special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
         Behaviour h = (Behaviour)GetComponent("Halo");
-        Debug.Log("shield power : " + shieldPower);
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
             shieldPower += Time.deltaTime;
