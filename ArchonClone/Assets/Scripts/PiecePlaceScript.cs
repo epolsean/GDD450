@@ -49,13 +49,13 @@ public class PiecePlaceScript : MonoBehaviour {
     public void SpawnPieces()
     {
         //Spawn 2 White Units at their tiles
-        SpawnController.GetComponent<SpawnBasicUnits>().SpawnWhitePiece(SpawnController.GetComponent<SpawnBasicUnits>().WhitePawn, White01Tile);
-        SpawnController.GetComponent<SpawnBasicUnits>().SpawnWhitePiece(SpawnController.GetComponent<SpawnBasicUnits>().White02, White02Tile);
+        SpawnController.GetComponent<SpawnBasicUnits>().SpawnWhitePiece(SpawnController.GetComponent<SpawnBasicUnits>().WhiteGrunt, White01Tile);
+        SpawnController.GetComponent<SpawnBasicUnits>().SpawnWhitePiece(SpawnController.GetComponent<SpawnBasicUnits>().WhiteScout, White02Tile);
         SpawnController.GetComponent<SpawnBasicUnits>().SpawnWhitePiece(SpawnController.GetComponent<SpawnBasicUnits>().WhiteGrunt, White03Tile);
         SpawnController.GetComponent<SpawnBasicUnits>().SpawnWhitePiece(SpawnController.GetComponent<SpawnBasicUnits>().WhiteRunner, White04Tile);
         //Spawn 2 Black Unity at their tiles
-        SpawnController.GetComponent<SpawnBasicUnits>().SpawnBlackPiece(SpawnController.GetComponent<SpawnBasicUnits>().BlackPawn, Black01Tile);
-        SpawnController.GetComponent<SpawnBasicUnits>().SpawnBlackPiece(SpawnController.GetComponent<SpawnBasicUnits>().Black02, Black02Tile);
+        SpawnController.GetComponent<SpawnBasicUnits>().SpawnBlackPiece(SpawnController.GetComponent<SpawnBasicUnits>().BlackTank, Black01Tile);
+        SpawnController.GetComponent<SpawnBasicUnits>().SpawnBlackPiece(SpawnController.GetComponent<SpawnBasicUnits>().BlackGrunt, Black02Tile);
         SpawnController.GetComponent<SpawnBasicUnits>().SpawnBlackPiece(SpawnController.GetComponent<SpawnBasicUnits>().BlackScout, Black03Tile);
         SpawnController.GetComponent<SpawnBasicUnits>().SpawnBlackPiece(SpawnController.GetComponent<SpawnBasicUnits>().BlackRunner, Black04Tile);
     }

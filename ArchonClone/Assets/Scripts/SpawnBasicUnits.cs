@@ -6,28 +6,32 @@ public class SpawnBasicUnits : MonoBehaviour {
     public static int BlackPieceCount;
     public static int WhitePieceCount;
     
-    public GameObject WhitePawn;
-    public GameObject White02;
+    public GameObject WhiteTank;
+    public GameObject WhiteScout;
     public GameObject WhiteGrunt;
     public GameObject WhiteRunner; 
 
-    public GameObject BlackPawn;
-    public GameObject Black02;
+    public GameObject BlackTank;
+    public GameObject BlackGrunt;
     public GameObject BlackRunner;
     public GameObject BlackScout; 
 
-    public GameObject BPawnStartTile;
-    public GameObject WPawnStartTile;
-    public GameObject B2StartTile;
-    public GameObject W2StartTile;
-    public GameObject B3StartTile;
-    public GameObject W3StartTile;
-    public GameObject B4StartTile;
-    public GameObject W4StartTile;
-    public GameObject B5StartTile;
-    public GameObject W5StartTile;
-    public GameObject B6StartTile;
-    public GameObject W6StartTile;
+    public GameObject BTank01Tile;
+    public GameObject WTank01Tile;
+    public GameObject BTank02Tile;
+    public GameObject WTank02Tile;
+    public GameObject BRunner01Tile;
+    public GameObject WRunner01Tile;
+    public GameObject BRunner02Tile;
+    public GameObject WRunner02Tile;
+    public GameObject BGrunt01Tile;
+    public GameObject WGrunt01Tile;
+    public GameObject BGrunt02Tile;
+    public GameObject WGrunt02Tile;
+    public GameObject BGrunt03Tile;
+    public GameObject WGrunt03Tile;
+    public GameObject BGrunt04Tile;
+    public GameObject WGrunt04Tile;
 
     //Set up all the alien Tiles
     public GameObject AlienGrunt1StartTile;
@@ -66,17 +70,8 @@ public class SpawnBasicUnits : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         EndControllerScript.OrgVic = false;
-        EndControllerScript.SynthVic = false; 
-        if(PiecePlaceScript.isStart)
-        {
-            PiecePlaceScript.isStart = false; 
-            StartSpawn();
-            PiecePlaceScript.setPieces = true; 
-        }
-        else
-        {
-            //PiecePlaceScript.setPieces = true; 
-        }
+        EndControllerScript.SynthVic = false;
+        StartSpawn();
 	}
 	
 	// Update is called once per frame
@@ -97,30 +92,78 @@ public class SpawnBasicUnits : MonoBehaviour {
 
     void StartSpawn()
     {
-        //SpawnWhitePiece(WhitePawn, WPawnStartTile);
-        PiecePlaceScript.White01Tile = WPawnStartTile;
-        //SpawnWhitePiece(White02, W2StartTile);
-        PiecePlaceScript.White02Tile = W2StartTile;
-        //SpawnWhitePiece(WhiteX, W3StartTile);
-        PiecePlaceScript.White03Tile = W3StartTile;
-        //SpawnWhitePiece(WhiteX, W4StartTile);
-        PiecePlaceScript.White04Tile = W4StartTile;
-        //SpawnWhitePiece(WhiteX, W5StartTile);
-        PiecePlaceScript.White05Tile = W5StartTile;
-        //SpawnWhitePiece(WhiteX, W6StartTile);
-        PiecePlaceScript.White06Tile = W6StartTile;
-        //SpawnBlackPiece(BlackPawn, BPawnStartTile);
-        PiecePlaceScript.Black01Tile = BPawnStartTile;
-        //SpawnBlackPiece(Black02, B2StartTile);
-        PiecePlaceScript.Black02Tile = B2StartTile;
-        //SpawnBlackPiece(BlackX, B3StartTile);
-        PiecePlaceScript.Black03Tile = B3StartTile;
-        //SpawnBlackPiece(BlackX, B4StartTile);
-        PiecePlaceScript.Black04Tile = B4StartTile;
-        //SpawnBlackPiece(BlackX, B5StartTile);
-        PiecePlaceScript.Black05Tile = B5StartTile;
-        //SpawnBlackPiece(BlackX, B6StartTile);
-        PiecePlaceScript.Black06Tile = B6StartTile;
+        //Spawn 2 SynthTanks
+        if(WTank01Tile != null)
+        {
+            SpawnWhitePiece(WhiteTank, WTank01Tile);
+        }
+        if (WTank02Tile != null)
+        {
+            SpawnWhitePiece(WhiteTank, WTank02Tile);
+        }
+        //Spawn 2 SynthRunner
+        if(WRunner01Tile != null)
+        {
+            SpawnWhitePiece(WhiteRunner, WRunner01Tile);
+        }
+        if (WRunner02Tile != null)
+        {
+            SpawnWhitePiece(WhiteRunner, WRunner02Tile);
+        }
+        //Spawn 4 SynthGrunts
+        if (WGrunt01Tile != null)
+        {
+            SpawnWhitePiece(WhiteGrunt, WGrunt01Tile);
+        }
+        if (WGrunt02Tile != null)
+        {
+            SpawnWhitePiece(WhiteGrunt, WGrunt02Tile);
+        }
+        if (WGrunt03Tile != null)
+        {
+            SpawnWhitePiece(WhiteGrunt, WGrunt03Tile);
+        }
+        if (WGrunt04Tile != null)
+        {
+            SpawnWhitePiece(WhiteGrunt, WGrunt04Tile);
+        }
+
+        //Spawn 2 AlienTanks
+        if (BTank01Tile != null)
+        {
+            SpawnBlackPiece(BlackTank, BTank01Tile);
+        }
+        if (BTank02Tile != null)
+        {
+            SpawnBlackPiece(BlackTank, BTank02Tile);
+        }
+        //Spawn 2 AlienRunner
+        if (BRunner01Tile != null)
+        {
+            SpawnBlackPiece(BlackRunner, BRunner01Tile);
+        }
+        if (BRunner02Tile != null)
+        {
+            SpawnBlackPiece(BlackRunner, BRunner02Tile);
+        }
+        //Spawn 4 AlienGrunts
+        if (BGrunt01Tile != null)
+        {
+            SpawnBlackPiece(BlackGrunt, BGrunt01Tile);
+        }
+        if (BGrunt02Tile != null)
+        {
+            SpawnBlackPiece(BlackGrunt, BGrunt02Tile);
+        }
+        if (BGrunt03Tile != null)
+        {
+            SpawnBlackPiece(BlackGrunt, BGrunt03Tile);
+        }
+        if (BGrunt04Tile != null)
+        {
+            SpawnBlackPiece(BlackGrunt, BGrunt04Tile);
+        }
+        
     }
 
     public void SpawnWhitePiece(GameObject piece, GameObject tile)
