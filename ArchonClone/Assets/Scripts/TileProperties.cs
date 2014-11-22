@@ -464,6 +464,7 @@ public class TileProperties : MonoBehaviour {
         else if (canPlace == true && UnitOnTile == null)//these checks result in a piece moving to an empty hex tile
         {
             SoundController.GetComponent<UISoundsScript>().playMovePiece();
+            UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().datNode.SetActive(true);
             if (UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().Occupied == false && canPlace == true)
             {
                 if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag == "Black")
@@ -519,6 +520,7 @@ public class TileProperties : MonoBehaviour {
         else if (canPlace == true && UnitOnTile != null && UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag != UnitOnTile.tag)
         {
             SoundController.GetComponent<UISoundsScript>().playFight();
+            UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().datNode.SetActive(true);
             if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag == "White")
             {
                 if (UnitOnTile.tag == "Black" && canPlace)
@@ -565,6 +567,11 @@ public class TileProperties : MonoBehaviour {
                     SetTarget();
                 }
             }
+        }
+        else if(canPlace == true && UnitOnTile.tag == UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag)
+        {
+            SoundController.GetComponent<UISoundsScript>().playSelectPiece();
+            SelectPiece();
         }
         else
         {

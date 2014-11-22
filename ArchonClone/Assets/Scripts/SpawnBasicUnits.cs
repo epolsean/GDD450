@@ -101,14 +101,14 @@ public class SpawnBasicUnits : MonoBehaviour {
         {
             SpawnWhitePiece(WhiteTank, WTank02Tile);
         }
-        //Spawn 2 SynthRunner
+        //Spawn 2 SynthScout
         if(WRunner01Tile != null)
         {
-            SpawnWhitePiece(WhiteRunner, WRunner01Tile);
+            SpawnWhitePiece(WhiteScout, WRunner01Tile);
         }
         if (WRunner02Tile != null)
         {
-            SpawnWhitePiece(WhiteRunner, WRunner02Tile);
+            SpawnWhitePiece(WhiteScout, WRunner02Tile);
         }
         //Spawn 4 SynthGrunts
         if (WGrunt01Tile != null)

@@ -50,16 +50,13 @@ public class pieceMove : MonoBehaviour {
 
     public void GetNewPath()
     {
-        //Path p = seeker.GetNewPath(transform.position, targetPosition);
-        //if (p.vectorPath.Count > 0)
-        //{
-            seeker.StartPath(transform.position, targetPosition, OnPathComplete);
-            if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)")
-            {
-                //PieceAnim.SetTrigger("WalkOnce");
-                PieceAnim.SetBool("isWalking", true);
-            }
-        //}
+        Debug.Log("Generating Path");
+        seeker.StartPath(transform.position, targetPosition, OnPathComplete);
+        if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)")
+        {
+            //PieceAnim.SetTrigger("WalkOnce");
+            PieceAnim.SetBool("isWalking", true);
+        }
     }
 
     public int CalcNewPathDist()
@@ -96,6 +93,7 @@ public class pieceMove : MonoBehaviour {
             if(isMoving)
             {
 
+                isMoving = false;
                 if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)")
                 {
                     //GetComponentInChildren<Animator>().SetBool("isWalking", false);
@@ -103,10 +101,10 @@ public class pieceMove : MonoBehaviour {
                 } 
                 Debug.Log("DA END");
                 GridManager.rescan = true;
-                transform.position = targetPosition;
-                
-                isMoving = false;
+                //Debug.Log("Setting piece transform to target transform!");
+                //transform.position = targetPosition;
                 print("Path Waypoint Count: " + path.vectorPath.Count);
+                
                 if (datTile.GetComponent<TileProperties>().fighting == false)
                 {
                     if (TurnStateMachine.state == TurnStateMachine.State.playerTurn)
@@ -119,6 +117,8 @@ public class pieceMove : MonoBehaviour {
                         EnemyAI.AIstate = EnemyAI.State.Idle;
                     }
                 }
+                transform.position = targetPosition;
+                Debug.Log("Setting piece transform to target transform!");
                 
             }
             
@@ -137,10 +137,6 @@ public class pieceMove : MonoBehaviour {
         if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance - 1)
         {
             currentWaypoint++;
-        }
-        else if(path.vectorPath[currentWaypoint] == targetPosition)
-        {
-            Debug.Log("I'm Here");
         }
     }
 

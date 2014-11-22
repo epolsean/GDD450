@@ -10,6 +10,8 @@ public class EnemyAI : MonoBehaviour {
     public GameObject CurrentTile;
     public GameObject AITargetPlayerP;
     public GameObject AIFinalTurnTarget;
+    public GameObject AIpieceOldTile;
+    public int TurnCount = 0;
 
     
     // Use this for initialization
@@ -19,7 +21,7 @@ public class EnemyAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("EnemyState: " + AIstate);
+        //Debug.Log("EnemyState: " + AIstate);
 	}
 
     IEnumerator IdleState()
@@ -30,6 +32,7 @@ public class EnemyAI : MonoBehaviour {
             
             if(TurnStateMachine.state == TurnStateMachine.State.otherTurn)
             {
+                TurnCount++;
                 AIstate = State.SelectingPiece;
             }
             yield return 0;
@@ -134,6 +137,8 @@ public class EnemyAI : MonoBehaviour {
         //randomly select one of these pieces...
 
         selectedPiece = AIPs[Random.Range(0, AIPs.Length)];
+        selectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().datNode.SetActive(true);
+        GridManager.rescan = true;
         //CurrentTile = selectedPiece.GetComponent<pieceMove>().MoveController.GetComponent<PawnMove>().currentTile;
 
         return selectedPiece;
@@ -142,6 +147,7 @@ public class EnemyAI : MonoBehaviour {
     public GameObject FindTile(GameObject AIPiece, string TagName)//if the enemy piece has no available moves it will break....looking for solution. possibly select different piece to move
     {
         GameObject selectedTile = null;
+        AIpieceOldTile = AIPiece.GetComponent<pieceMove>().datTile;
 
         //search for tiles around selectedAIPiece 
         //try using OverlapShpere()
@@ -160,7 +166,7 @@ public class EnemyAI : MonoBehaviour {
                 GameObject tempTile = TilesWithinRange[tempIndex].gameObject;
                 if (tempTile.tag == "WhiteTile")
                 {
-                    if(tempTile.GetComponent<TileProperties>().UnitOnTile == null)
+                    if(tempTile.GetComponent<TileProperties>().UnitOnTile == null && tempTile != AIpieceOldTile)
                     {
                         pieceIndex = tempIndex;
                     }
@@ -205,6 +211,7 @@ public class EnemyAI : MonoBehaviour {
     public void SetTargetAI(GameObject SelectedPiece, GameObject TargetPiece)
     {
         //this sets the target for the AI Opponent and moves initiates combat...
+        SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().datNode.SetActive(true);
         Vector3 targetPos = TargetPiece.transform.position;
         SelectedPiece.GetComponent<pieceMove>().targetPosition = targetPos;
         SelectedPiece.GetComponent<pieceMove>().GetNewPath();
@@ -214,6 +221,7 @@ public class EnemyAI : MonoBehaviour {
         {
             SelectedPiece.GetComponent<pieceMove>().datTile = TargetPiece;
             SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().UnitOnTile = SelectedPiece;
+            TargetPiece.GetComponent<TileProperties>().datNode.SetActive(false);
         }
         else if (TargetPiece.tag == "White" || TargetPiece.tag == "Black") ;
         {
@@ -224,13 +232,13 @@ public class EnemyAI : MonoBehaviour {
                 Debug.Log("Fight");
                 //TargetPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
                 GridManager.rescan = true;
+                TargetPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().datNode.SetActive(false);
                 SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().UnitMoveController.GetComponent<PawnMove>().Player01 = SelectedPiece;
                 SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().UnitMoveController.GetComponent<PawnMove>().Player02 = TargetPiece;
                 TargetPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().fighting = true; 
             }
         }
-        
-        
-        
+        AIpieceOldTile.GetComponent<TileProperties>().datNode.SetActive(true);
+        AIpieceOldTile.GetComponent<TileProperties>().UnitOnTile = null; 
     }
 }
