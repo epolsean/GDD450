@@ -39,6 +39,10 @@ public class PlayerControllerTutorial : MonoBehaviour
 
     Behaviour halo;
 
+    bool startTrans;
+    float endTimer;
+    GameObject Canvas;
+
     void Start()
     {
         //Determine character and set up stats
@@ -58,6 +62,9 @@ public class PlayerControllerTutorial : MonoBehaviour
         {
 
         }
+        Canvas = GameObject.Find("Canvas2");
+        startTrans = false;
+        endTimer = 0;
         halo = (Behaviour)GetComponent("Halo");
         health = 100;
         bulletSize = 1;
@@ -232,12 +239,21 @@ public class PlayerControllerTutorial : MonoBehaviour
             if (win == true)
             {
                 BattleStats.winner = tag;
-                //Destroy(GameObject.Find("P1 Health Text"));
-                //Destroy(GameObject.Find("P2 Health Text"));
-                //Application.LoadLevel("TutorialTestGrid");
-                //Destroy(this.gameObject);
-                Invoke("HasWon", 2.4f);
-                enabled = false;
+                if (endTimer <= 2.5f)
+                {
+                    endTimer += Time.deltaTime;
+                    if (endTimer >= 1.5f && endTimer < 1.6f)
+                    {
+                        Canvas.GetComponent<SceneTrans>().close = true;
+                        Canvas.GetComponent<SceneTrans>().startTimer = 0;
+                    }
+                }
+                else
+                {
+                    GameObject.Find("HexGrid").GetComponent<TileProperties>().cameBack = true;
+                    Invoke("HasWon", 0f);
+                    enabled = false;
+                }
             }
         }
     }
