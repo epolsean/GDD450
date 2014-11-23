@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 
-public class Player1MovementController : MonoBehaviour 
+public class Player1MovementController : MonoBehaviour
 {
     public GameObject SynthTank;
     public GameObject SynthScout;
@@ -87,7 +87,7 @@ public class Player1MovementController : MonoBehaviour
 
         //controller.collider = GetComponent<BoxCollider>().collider;
         //controller.detectCollisions = false;
-        
+
         //controller.collider.enabled = false;
 
         //health = 100;
@@ -154,7 +154,9 @@ public class Player1MovementController : MonoBehaviour
         healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
         enemyName = MoveController.GetComponent<PawnMove>().Player02.name;
         enemyStartHealth = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health;
-        
+        Debug.Log("Player 1 damage and speed  : " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage +"  "+ MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement);
+        Debug.Log("Player 2 damage and speed  : " + MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage + "  " + MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement);
+
     }
     void Update()
     {
@@ -336,7 +338,6 @@ public class Player1MovementController : MonoBehaviour
                         }
                     }
                 }
-
                 //Depending on what the player is their specific special will get called
                 if (BattleStats.singlePlayer)
                 {
@@ -421,84 +422,80 @@ public class Player1MovementController : MonoBehaviour
                 {
                     healthPieceGreen.GetComponent<Image>().sprite = healthPieceRed;
                 }
-                if (win == true)
+                if (health <= 0 && win == false)
                 {
-                    /*if (!printStats)
+                    MoveController.GetComponent<PawnMove>().Player01.GetComponent<pieceMove>().datSprite.SetActive(false);
+                    if (MoveController.GetComponent<PawnMove>().Player01.tag == "White")
                     {
-                        using (StreamWriter sw = new StreamWriter("Assets/WhoWins.txt", true))
-                        {
-                            sw.WriteLine("Battle between .... " + MoveController.GetComponent<PawnMove>().Player01.name + " with " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health + " health  vs   " + enemyName + " with " + enemyStartHealth + " health");
-                            sw.WriteLine("Winner is " + MoveController.GetComponent<PawnMove>().Player01.name);
-                            sw.WriteLine("-------------------");
-                            UpdateStats();
-                            printStats = true;
-                        }
-                    }*/
-                    //win = false; 
-                    //TurnStateMachine.fightDone = true; 
-
-                    if (endTimer <= 3)
-                    {
-                        endTimer += Time.deltaTime;
+                        SpawnBasicUnits.WhitePieceCount--;
                     }
                     else
                     {
-                        TurnStateMachine.fightDone = true;
-                        BattleStats.winner = tag;
-                        Destroy(GameObject.Find("BattleSceneAdditive"));
-                        Destroy(MoveController.GetComponent<PawnMove>().Player02);
-                        MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player01;
-                        //Application.LoadLevel("TestingHexTiles");
-                        //Destroy(this.gameObject);
-                        MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health = (int)health;
+                        SpawnBasicUnits.BlackPieceCount--;
                     }
-                }
-
-                if (health <= 0 && win == false)
-                {
-                    if (MoveController.GetComponent<PawnMove>().Player01 != null)
+                    Destroy(MoveController.GetComponent<PawnMove>().Player01);
+                    if (BattleStats.singlePlayer)
                     {
-                        MoveController.GetComponent<PawnMove>().Player01.GetComponent<pieceMove>().datSprite.SetActive(false);
-                        if (MoveController.GetComponent<PawnMove>().Player01.tag == "White")
-                        {
-                            SpawnBasicUnits.WhitePieceCount--;
-                        }
-                        else
-                        {
-                            SpawnBasicUnits.BlackPieceCount--;
-                        }
-                        Destroy(MoveController.GetComponent<PawnMove>().Player01);
-                        if (BattleStats.singlePlayer)
-                        {
-                            enemy.GetComponent<EnemyAIForBattle>().win = true;
-                        }
-                        else
-                        {
-                            enemy.GetComponent<Player2MovementController>().win = true;
-                        }
+                        enemy.GetComponent<EnemyAIForBattle>().win = true;
+                    }
+                    else
+                    {
+                        enemy.GetComponent<Player2MovementController>().win = true;
                     }
                     //MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
                     //Destroy(this.gameObject);
                 }
             }
         }
+        if (win == true)
+        {
+            /*if (!printStats)
+            {
+                using (StreamWriter sw = new StreamWriter("Assets/WhoWins.txt", true))
+                {
+                    sw.WriteLine("Battle between .... " + MoveController.GetComponent<PawnMove>().Player01.name + " with " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health + " health  vs   " + enemyName + " with " + enemyStartHealth + " health");
+                    sw.WriteLine("Winner is " + MoveController.GetComponent<PawnMove>().Player01.name);
+                    sw.WriteLine("-------------------");
+                    UpdateStats();
+                    printStats = true;
+                }
+            }*/
+            //win = false; 
+            //TurnStateMachine.fightDone = true; 
+
+            if (endTimer <= 3)
+            {
+                endTimer += Time.deltaTime;
+            }
+            else
+            {
+                TurnStateMachine.fightDone = true;
+                BattleStats.winner = tag;
+                Destroy(GameObject.Find("BattleSceneAdditive"));
+                Destroy(MoveController.GetComponent<PawnMove>().Player02);
+                MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player01;
+                //Application.LoadLevel("TestingHexTiles");
+                //Destroy(this.gameObject);
+                MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health = (int)health;
+            }
+        }
     }
 
     IEnumerator DamageBoost(int startDamage)
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(4.0f);
         MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage = startDamage;
     }
 
     IEnumerator SpeedBoost(int startSpeed)
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(4.0f);
         MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement = startSpeed;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (MoveController.GetComponent<PawnMove>().Player02 != null && MoveController.GetComponent<PawnMove>().Player01!=null)
+        if (MoveController.GetComponent<PawnMove>().Player02 != null && MoveController.GetComponent<PawnMove>().Player01 != null)
         {
             if (other.name == "PowerUp")
             {
@@ -728,7 +725,7 @@ public class Player1MovementController : MonoBehaviour
             }
             h.enabled = false;
         }
-        else if(usingShield)
+        else if (usingShield)
         {
             shieldPower -= Time.deltaTime * 5;
             if (shieldPower <= 1)

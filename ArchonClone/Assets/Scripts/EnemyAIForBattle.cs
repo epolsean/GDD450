@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class EnemyAIForBattle : MonoBehaviour 
+public class EnemyAIForBattle : MonoBehaviour
 {
     Vector3 currentTarget;
     Vector3 nextTarget;
@@ -40,7 +40,7 @@ public class EnemyAIForBattle : MonoBehaviour
     public GameObject healthPieceGreen;
     public Sprite healthPieceRed;
     public GameObject special;
-    
+
     public float specialTimer = 5.0f;
     bool specialAvailable = false;
     public bool usingShield = false;
@@ -51,7 +51,7 @@ public class EnemyAIForBattle : MonoBehaviour
 
     public float health;
     public float MaxHealth;
-    
+
     public bool win = false;
     CharacterController controller;
 
@@ -128,8 +128,8 @@ public class EnemyAIForBattle : MonoBehaviour
         }
         healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
     }
-	
-	// Update is called once per frame
+
+    // Update is called once per frame
     void Update()
     {
         if (MoveController.GetComponent<PawnMove>().Player02 != null && MoveController.GetComponent<PawnMove>().Player01 != null)
@@ -206,13 +206,12 @@ public class EnemyAIForBattle : MonoBehaviour
                                 if (hit.transform.gameObject == enemy)
                                 {
                                     Debug.DrawLine(transform.position, hit.point, Color.red);
-                                    GameObject sword = Instantiate(Sword, transform.position + Vector3.Normalize(enemy.transform.position - transform.position), transform.rotation) as GameObject;
+                                    GameObject sword = Instantiate(Sword, transform.position + 3*transform.forward, transform.rotation) as GameObject;
                                     sword.tag = tag;
                                     swinging = true;
                                     Destroy(sword.gameObject, 0.2f);
                                 }
                             }
-
                         }
                     }
                 }
@@ -252,33 +251,12 @@ public class EnemyAIForBattle : MonoBehaviour
                         AlienGruntSpecial();
                     }
                 }
-
                 healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
 
                 if ((float)((health * 2) / (MaxHealth * 3)) <= 0.16f)
                 {
                     healthPieceGreen.GetComponent<Image>().sprite = healthPieceRed;
                 }
-                if (win == true)
-                {
-                    BattleStats.winner = tag;
-                    if (TurnStateMachine.state == TurnStateMachine.State.playerTurn/* && GameObject.Find("EnemyAI") == null*/)
-                    {
-                        TurnStateMachine.state = TurnStateMachine.State.otherTurn;
-                    }
-                    else
-                    {
-                        TurnStateMachine.state = TurnStateMachine.State.playerTurn;
-                        EnemyAI.AIstate = EnemyAI.State.Idle;
-                    }
-                    Destroy(GameObject.Find("BattleSceneAdditive"));
-                    Destroy(MoveController.GetComponent<PawnMove>().Player01);
-                    MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
-                    //Application.LoadLevel("TestingHexTiles");
-                    //Destroy(this.gameObject);
-                    MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health = (int)health;
-                }
-
                 if (health <= 0 && win == false)
                 {
                     if (MoveController.GetComponent<PawnMove>().Player02.tag == "White")
@@ -296,17 +274,36 @@ public class EnemyAIForBattle : MonoBehaviour
                 }
             }
         }
+        if (win == true)
+        {
+            BattleStats.winner = tag;
+            if (TurnStateMachine.state == TurnStateMachine.State.playerTurn/* && GameObject.Find("EnemyAI") == null*/)
+            {
+                TurnStateMachine.state = TurnStateMachine.State.otherTurn;
+            }
+            else
+            {
+                TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+                EnemyAI.AIstate = EnemyAI.State.Idle;
+            }
+            Destroy(GameObject.Find("BattleSceneAdditive"));
+            Destroy(MoveController.GetComponent<PawnMove>().Player01);
+            MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
+            //Application.LoadLevel("TestingHexTiles");
+            //Destroy(this.gameObject);
+            MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health = (int)health;
+        }
     }
-	
+
     IEnumerator DamageBoost(int startDamage)
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(4.0f);
         MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = startDamage;
     }
 
     IEnumerator SpeedBoost(int startSpeed)
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(4.0f);
         MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = startSpeed;
     }
 
@@ -536,7 +533,7 @@ public class EnemyAIForBattle : MonoBehaviour
             }
             h.enabled = false;
         }
-        else if(usingShield)
+        else if (usingShield)
         {
             shieldPower -= Time.deltaTime * 5;
             if (shieldPower <= 1)
