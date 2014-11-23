@@ -94,7 +94,7 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
         StepButton.SetActive(true);
 
 
-        StepText.GetComponent<Text>().text = "The Enemy is in a perfect place for you to attack! When you hover over a tile that is occupied by a unit the stats will be displayed to you. Select Your Tank piece with the mouse then select the enemies piece!";
+        StepText.GetComponent<Text>().text = "When you hover over a tile that is occupied by a unit that pieces name and stats will be displayed to you. The enemy Grunt unit has moved to a tile within your Tank unit! You can view how far your selected unit can travel by selecting it with your left mouse button. When the tile shows green than that is a target within range, if red then target is out of range. Select your Tank unit and target the enemies Grunt unit with the left mouse button to ATTACK!";
     }
     
 }

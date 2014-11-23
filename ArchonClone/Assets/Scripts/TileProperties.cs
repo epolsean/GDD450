@@ -451,14 +451,16 @@ public class TileProperties : MonoBehaviour {
         Debug.Log("on mouse down called");
         if (canPlace == false && UnitOnTile != null && pieceSelected == false && TurnStateMachine.canSelectPiece)
         {
-            TurnStateMachine.canSelectPiece = false; 
+             
             SoundController.GetComponent<UISoundsScript>().playSelectPiece();
             if (TurnStateMachine.state == TurnStateMachine.State.playerTurn && TurnStateMachine.OnHoverPiece != null && TurnStateMachine.OnHoverPiece.tag == "White")
             {
+                TurnStateMachine.canSelectPiece = false;
                 SelectPiece();
             }
             else if (TurnStateMachine.state == TurnStateMachine.State.otherTurn && TurnStateMachine.OnHoverPiece != null && TurnStateMachine.OnHoverPiece.tag == "Black")
             {
+                TurnStateMachine.canSelectPiece = false;
                 SelectPiece();
             }
         }
