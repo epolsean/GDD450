@@ -457,6 +457,7 @@ public class Player1MovementController : MonoBehaviour
 
             if (health <= 0 && win == false)
             {
+                MoveController.GetComponent<PawnMove>().Player01.GetComponent<pieceMove>().datSprite.SetActive(false);
                 if (MoveController.GetComponent<PawnMove>().Player01.tag == "White")
                 {
                     SpawnBasicUnits.WhitePieceCount--;
