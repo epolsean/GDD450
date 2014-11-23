@@ -435,21 +435,16 @@ public class Player1MovementController : MonoBehaviour
                         printStats = true;
                     }
                 }*/
-                if (TurnStateMachine.state == TurnStateMachine.State.playerTurn/* && GameObject.Find("EnemyAI") == null*/)
-                {
-                    TurnStateMachine.state = TurnStateMachine.State.otherTurn;
-                }
-                else
-                {
-                    TurnStateMachine.state = TurnStateMachine.State.playerTurn;
-                    EnemyAI.AIstate = EnemyAI.State.Idle;
-                }
+                //win = false; 
+                //TurnStateMachine.fightDone = true; 
+
                 if (endTimer <= 3)
                 {
                     endTimer += Time.deltaTime;
                 }
                 else
                 {
+                    TurnStateMachine.fightDone = true;
                     BattleStats.winner = tag;
                     Destroy(GameObject.Find("BattleSceneAdditive"));
                     Destroy(MoveController.GetComponent<PawnMove>().Player02);

@@ -15,7 +15,7 @@ public class TileProperties : MonoBehaviour {
     public double fightTimer;
     public bool Occupied = false;
     public bool canPlace;
-    public static bool pieceSelected = false; 
+    public static bool pieceSelected = false;
 
     public Animator PieceAnim;
 
@@ -449,8 +449,9 @@ public class TileProperties : MonoBehaviour {
     public void MouseDownCall()
     {
         Debug.Log("on mouse down called");
-        if (canPlace == false && UnitOnTile != null && pieceSelected == false)
+        if (canPlace == false && UnitOnTile != null && pieceSelected == false && TurnStateMachine.canSelectPiece)
         {
+            TurnStateMachine.canSelectPiece = false; 
             SoundController.GetComponent<UISoundsScript>().playSelectPiece();
             if (TurnStateMachine.state == TurnStateMachine.State.playerTurn && TurnStateMachine.OnHoverPiece != null && TurnStateMachine.OnHoverPiece.tag == "White")
             {

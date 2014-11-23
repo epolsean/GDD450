@@ -233,8 +233,8 @@ public class EnemyAI : MonoBehaviour {
                 //TargetPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
                 GridManager.rescan = true;
                 TargetPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().datNode.SetActive(false);
-                SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().UnitMoveController.GetComponent<PawnMove>().Player01 = SelectedPiece;
-                SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().UnitMoveController.GetComponent<PawnMove>().Player02 = TargetPiece;
+                SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().UnitMoveController.GetComponent<PawnMove>().Player02 = SelectedPiece;
+                SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().UnitMoveController.GetComponent<PawnMove>().Player01 = TargetPiece;
                 TargetPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().fighting = true; 
             }
         }
