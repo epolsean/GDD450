@@ -457,29 +457,30 @@ public class Player1MovementController : MonoBehaviour
 
             if (health <= 0 && win == false)
             {
-                MoveController.GetComponent<PawnMove>().Player01.GetComponent<pieceMove>().datSprite.SetActive(false);
-                if (MoveController.GetComponent<PawnMove>().Player01.tag == "White")
+                if (MoveController.GetComponent<PawnMove>().Player01 != null)
                 {
-                    SpawnBasicUnits.WhitePieceCount--;
-                }
-                else
-                {
-                    SpawnBasicUnits.BlackPieceCount--;
-                }
-                Destroy(MoveController.GetComponent<PawnMove>().Player01);
-                if (BattleStats.singlePlayer)
-                {
-                    enemy.GetComponent<EnemyAIForBattle>().win = true;
-                }
-                else
-                {
-                    enemy.GetComponent<Player2MovementController>().win = true;
+                    MoveController.GetComponent<PawnMove>().Player01.GetComponent<pieceMove>().datSprite.SetActive(false);
+                    if (MoveController.GetComponent<PawnMove>().Player01.tag == "White")
+                    {
+                        SpawnBasicUnits.WhitePieceCount--;
+                    }
+                    else
+                    {
+                        SpawnBasicUnits.BlackPieceCount--;
+                    }
+                    Destroy(MoveController.GetComponent<PawnMove>().Player01);
+                    if (BattleStats.singlePlayer)
+                    {
+                        enemy.GetComponent<EnemyAIForBattle>().win = true;
+                    }
+                    else
+                    {
+                        enemy.GetComponent<Player2MovementController>().win = true;
+                    }
                 }
                 //MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
                 //Destroy(this.gameObject);
             }
-            Debug.Log("P1 Damage  : " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage);
-            Debug.Log("P1 Speed  : " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement);
         }
     }
 
