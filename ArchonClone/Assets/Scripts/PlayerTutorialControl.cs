@@ -14,9 +14,9 @@ public class PlayerTutorialControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(Input.GetMouseButtonDown(0))
+	    /*if(Input.GetMouseButtonDown(0))
         {
-            if (/*TurnStateMachine.state == TurnStateMachine.State.playerTurn && */TutorialEnemyController.GetComponent<TutorialEnemyBoardScript>().enemyTurn == 0)
+            if (TutorialEnemyController.GetComponent<TutorialEnemyBoardScript>().enemyTurn == 0)
             {
                 if (PlayerError == false)
                 {
@@ -33,7 +33,7 @@ public class PlayerTutorialControl : MonoBehaviour {
             {
                 TutorialEnemyController.GetComponent<TutorialEnemyBoardScript>().enemyTurn = 0;
             }
-        }
+        }*/
 	}
     void SetEnemyTurn()
     {

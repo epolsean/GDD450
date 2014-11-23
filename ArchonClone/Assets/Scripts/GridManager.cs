@@ -20,7 +20,7 @@ public class GridManager : MonoBehaviour {
         {
             aStarController.Scan();
             rescan = false;
-            Debug.Log("Scan Called");
+            //Debug.Log("Scan Called");
         }
 	}
 }

@@ -279,9 +279,9 @@ public class TileProperties : MonoBehaviour {
             
             //this should draw out path prior to moving
             UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().targetPosition = UnitMoveController.GetComponent<PawnMove>().MoveToTile.transform.position;
-            print("past assigning targetposition");
+            //print("past assigning targetposition");
             UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().GenNewPath();
-            print("new path generated!!!!!");
+            //print("new path generated!!!!!");
 
             if(Vector3.Distance(UnitMoveController.GetComponent<PawnMove>().SelectedPiece.transform.position, this.transform.position) <= UnitMoveController.GetComponent<PawnMove>().MaxMove)
             {
@@ -425,6 +425,7 @@ public class TileProperties : MonoBehaviour {
                 {
                     GridManager.rescan = true;
                 }
+                GameObject.Find("EnemyTurnController").GetComponent<TutorialEnemyBoardScript>().enemyTurn += 0.5;
             }
             else
             {
@@ -500,13 +501,14 @@ public class TileProperties : MonoBehaviour {
                         {
                             GameObject.Find("DummyPlayerPlaceHolder").GetComponent<PlayerTutorialControl>().PlayerError = true; 
                         }
-                        //GameObject.Find("EnemyTurnController").GetComponent<TutorialEnemyBoardScript>().enemyTurn = 2;
+                        GameObject.Find("EnemyTurnController").GetComponent<TutorialEnemyBoardScript>().enemyTurn = 3;
+                        TurnStateMachine.canSelectPiece = true; 
                     }
                     else
                     {
                         //ReplaceWhitePiece(UnitMoveController.GetComponent<PawnMove>().SelectedPiece);
                         SetTarget();
-                        if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.name == "WhitePawn(Clone)")
+                        if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.name == "WhiteTank(Clone)")
                         {
                             PiecePlaceScript.White01Tile = UnitMoveController.GetComponent<PawnMove>().MoveToTile;
                         }
@@ -573,8 +575,19 @@ public class TileProperties : MonoBehaviour {
         }
         else if(canPlace == true && UnitOnTile.tag == UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag)
         {
-            SoundController.GetComponent<UISoundsScript>().playSelectPiece();
-            SelectPiece();
+            if (GameObject.Find("EnemyTurnController") != null)
+             {
+                 SoundController.GetComponent<UISoundsScript>().playError();
+                 GameObject.Find("EnemyTurnController").GetComponent<TutorialEnemyBoardScript>().enemyTurn = 3.5;
+                 TurnStateMachine.canSelectPiece = true; 
+
+             }
+             else
+             {
+                 Debug.Log("selected a new piece");
+                 SoundController.GetComponent<UISoundsScript>().playSelectPiece();
+                 SelectPiece();
+             }
         }
         else
         {

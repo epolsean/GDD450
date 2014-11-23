@@ -23,7 +23,7 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
 	
     // Use this for initialization
 	void Start () {
-        enemyTurn = 0.5;
+        enemyTurn = 0.0;
         UnitMovementController = GameObject.Find("MovementController");
         TurnStateMachine.state = TurnStateMachine.State.otherTurn;
         StepText.GetComponent<Text>().text = "Here is the Hex Tile grid of the field, the enemy will start by moving one of his pieces";
@@ -34,11 +34,31 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
 	void Update () {
 	    if(Input.GetKeyDown(KeyCode.R))
         {
+            //StepButton.SetActive(false);
             NextStep();
         }
-        
-        if(enemyTurn == 1/* && TurnStateMachine.state == TurnStateMachine.State.otherTurn*/)
+        if(enemyTurn == 0.5)
         {
+            //introduce UI to player
+            StepText.GetComponent<Text>().text = "In front of you is the Hex Tile Grid, this is your strategic field that displays both players units they control. There are unit counters at the two corners of the screen to display both players units that are still in play.";
+            StepButton.SetActive(true);
+        }
+        else if(enemyTurn == 1)
+        {
+            //introduce strategy controls
+            StepText.GetComponent<Text>().text = "To select a unit on your turn, simply move your cursor over one of your units and press the mouse button. You may select a different piece to move by selecting a different piece you control.";
+            StepButton.SetActive(true);
+        }
+        else if(enemyTurn == 1.5)
+        {
+            //enemy moves first text
+            StepText.GetComponent<Text>().text = "Your opponent will go first by moving a grunt unit. You can identify a units name and stats by hovering over the tile it occupies with your cursor.";
+            StepButton.SetActive(true);
+        }
+        else if(enemyTurn == 2)
+        {
+            //enemy move
+            StepButton.SetActive(false);
             TutorialDummy = GameObject.Find("BlackGrunt(Clone)");
             UnitMovementController.GetComponent<PawnMove>().MoveToTile = Turn01Tile;
             UnitMovementController.GetComponent<PawnMove>().SelectedPiece = TutorialDummy;
@@ -63,6 +83,42 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
             //SetTutorialTextTrue();
             
         }
+        else if(enemyTurn == 3)
+        {
+            //select your tank
+            StepText.GetComponent<Text>().text = "Now it is your turn! Select your Tank unit, you may notice that the tile you hover over will change colors depending if the move is possible; Green for good, Red for bad.";
+            StepButton.SetActive(true);
+        }
+        else if(enemyTurn == 3.5)
+        {
+            StepButton.SetActive(false);
+        }
+        else if(enemyTurn == 4)
+        {
+            //select enemy piece to attack
+            StepText.GetComponent<Text>().text = "Now select your opponent's Grunt unit that is now within your Tank units movement range.";
+            StepButton.SetActive(true);
+        }
+        else if(enemyTurn == 4.5)
+        {
+            StepButton.SetActive(false);
+        }
+        else if(enemyTurn == 5)
+        {
+            //combas phase
+        }
+        else if(enemyTurn == 5.5)
+        {
+            //end tutorial
+            StepText.GetComponent<Text>().text = "Congratulations! You Have successfully Destroyed the enemies piece! Now you have the required Knowledge to continue your conquest of this planet!";
+            StepButton.SetActive(true);
+        }
+        else if(enemyTurn == 6)
+        {
+            Application.LoadLevel("StartScreen");
+        }
+        
+        /*
         else if(enemyTurn == 2)
         {
             StepButton.SetActive(false);
@@ -79,7 +135,7 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
         else if(enemyTurn == 5)
         {
             Application.LoadLevel("StartScreen");
-        }
+        }*/
 	}
 
     public void NextStep()
@@ -91,10 +147,7 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
     public void SetTutorialTextTrue()
     {
         Turn01Tile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
-        StepButton.SetActive(true);
-
-
-        StepText.GetComponent<Text>().text = "When you hover over a tile that is occupied by a unit that pieces name and stats will be displayed to you. The enemy Grunt unit has moved to a tile within your Tank unit! You can view how far your selected unit can travel by selecting it with your left mouse button. When the tile shows green than that is a target within range, if red then target is out of range. Select your Tank unit and target the enemies Grunt unit with the left mouse button to ATTACK!";
+        enemyTurn += .5;
     }
     
 }
