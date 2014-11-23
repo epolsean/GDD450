@@ -158,328 +158,328 @@ public class Player1MovementController : MonoBehaviour
     }
     void Update()
     {
-        if (GameObject.Find("Fight") == null)
+        if (MoveController.GetComponent<PawnMove>().Player02 != null && MoveController.GetComponent<PawnMove>().Player01 != null)
         {
-            if (topDownView)
+            if (GameObject.Find("Fight") == null)
             {
-                if (controller.isGrounded)
+                if (topDownView)
                 {
-                    if (Input.GetJoystickNames().Length != 0)
+                    if (controller.isGrounded)
                     {
-                        if (Input.GetAxis("360_HorizontalRightStick1") == 0 && Input.GetAxis("360_VerticalRightStick1") == 0)
+                        if (Input.GetJoystickNames().Length != 0)
                         {
-                            transform.forward = lastLooking;
-                        }
-                        else
-                        {
-                            transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick1"), 0, Input.GetAxis("360_VerticalRightStick1"));
-                        }
-                        moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
-                        moveDirection *= speed;
-                    }
-                    else
-                    {
-                        if (BattleStats.singlePlayer)
-                        {
-                            RaycastHit hit;
-                            if (Physics.Raycast(GameObject.Find("Hotseat Top Down Camera").GetComponent<Camera>().ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity))
-                            {
-                                //target.position = hit.point;
-                                Debug.DrawLine(GameObject.Find("Hotseat Top Down Camera").transform.position, hit.point, Color.red);
-                                transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
-                            }
-                        }
-                        else
-                        {
-                            if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+                            if (Input.GetAxis("360_HorizontalRightStick1") == 0 && Input.GetAxis("360_VerticalRightStick1") == 0)
                             {
                                 transform.forward = lastLooking;
                             }
                             else
                             {
-                                transform.forward = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                                transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick1"), 0, Input.GetAxis("360_VerticalRightStick1"));
                             }
+                            moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
+                            moveDirection *= speed;
                         }
-                        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
-                        moveDirection *= speed;
-                    }
-
-                }
-                lastLooking = transform.forward;
-                moveDirection.y -= gravity * Time.deltaTime;
-                controller.Move(moveDirection * Time.deltaTime);
-            }
-            else
-            {
-                if (controller.isGrounded)
-                {
-                    if (Input.GetJoystickNames().Length != 0)
-                    {
-                        transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("360_HorizontalRightStick1"));
-
-                        moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
-                        moveDirection = transform.TransformDirection(moveDirection);
-                        moveDirection *= speed;
-                    }
-                    else
-                    {
-                        transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("Horizontal"));
-
-                        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
-                        moveDirection = transform.TransformDirection(moveDirection);
-                        moveDirection *= speed;
-                    }
-                }
-                moveDirection.y -= gravity * Time.deltaTime;
-                controller.Move(moveDirection * Time.deltaTime);
-            }
-            if (isMelee == false)
-            {
-                if (reloading)
-                {
-                    attackTimer -= Time.deltaTime;
-                    if (attackTimer < 0)
-                    {
-                        attackTimer = attackRate;
-                        reloading = false;
-                    }
-                }
-
-                if (win == false)
-                {
-                    if (Input.GetJoystickNames().Length != 0)
-                    {
-                        if ((Input.GetAxis("360_RightTrigger1") == 1) && reloading == false)
+                        else
                         {
-                            if (isAlien)
+                            if (BattleStats.singlePlayer)
                             {
-                                Rigidbody bulletClone = Instantiate(alienBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                                bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                                bulletClone.rigidbody.useGravity = false;
-                                bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                                Destroy(bulletClone.gameObject, 3);
+                                RaycastHit hit;
+                                if (Physics.Raycast(GameObject.Find("Hotseat Top Down Camera").GetComponent<Camera>().ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity))
+                                {
+                                    //target.position = hit.point;
+                                    Debug.DrawLine(GameObject.Find("Hotseat Top Down Camera").transform.position, hit.point, Color.red);
+                                    transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+                                }
                             }
                             else
                             {
-                                Rigidbody bulletClone = Instantiate(robotBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                                bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                                bulletClone.rigidbody.useGravity = false;
-                                bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                                Destroy(bulletClone.gameObject, 3);
+                                if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+                                {
+                                    transform.forward = lastLooking;
+                                }
+                                else
+                                {
+                                    transform.forward = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                                }
                             }
-
-                            audio.Play();
-                            reloading = true;
+                            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
+                            moveDirection *= speed;
                         }
-                    }
-                    else
-                    {
-                        if ((Input.GetAxis("Fire1")==1) && reloading == false)
-                        {
-                            if (isAlien)
-                            {
-                                Rigidbody bulletClone = Instantiate(alienBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                                bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                                bulletClone.rigidbody.useGravity = false;
-                                bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                                Destroy(bulletClone.gameObject, 3);
-                            }
-                            else
-                            {
-                                Rigidbody bulletClone = Instantiate(robotBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                                bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                                bulletClone.rigidbody.useGravity = false;
-                                bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                                Destroy(bulletClone.gameObject, 3);
-                            }
-                            audio.Play();
-                            reloading = true;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if (swinging)
-                {
-                    attackTimer -= Time.deltaTime;
-                    if (attackTimer < 0)
-                    {
-                        attackTimer = attackRate;
-                        swinging = false;
-                    }
-                }
 
-                if (win == false) // If the player hasnt won yet
-                {
-                    if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
-                    {
-                        if ((Input.GetAxis("360_RightTrigger1") == 1) && swinging == false)
-                        {
-                            GameObject sword = Instantiate(Sword, transform.position + 3 * this.transform.forward, transform.rotation) as GameObject;
-                            sword.tag = tag;
-                            swinging = true;
-                            Destroy(sword.gameObject, 0.2f);
-                        }
                     }
-                    else // If no controller connected
-                    {
-                        if ((Input.GetAxis("Fire1") == 1) && swinging == false)
-                        {
-                            GameObject sword = Instantiate(Sword, transform.position + 3 * this.transform.forward, transform.rotation) as GameObject;
-                            sword.tag = tag;
-                            swinging = true;
-                            Destroy(sword.gameObject, 0.2f);
-                        }
-                    }
-                }
-            }
-
-            //Depending on what the player is their specific special will get called
-            if(BattleStats.singlePlayer)
-            {
-                if (enemy.GetComponent<EnemyAIForBattle>().win == false)
-                {
-                    if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteTank(Clone)" && win == false)
-                    {
-                        Debug.Log("getting into single player robot tank special");
-                        RobotTankSpecial();
-                    }
-                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteScout(Clone)" && win == false)
-                    {
-                        RobotScoutSpecial();
-                    }
-                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteRunner(Clone)" && win == false)
-                    {
-                        RobotRunnerSpecial();
-                    }
-                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteGrunt(Clone)" && win == false)
-                    {
-                        RobotGruntSpecial();
-                    }
-                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackTank(Clone)" && win == false)
-                    {
-                        AlienTankSpecial();
-                    }
-                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackScout(Clone)" && win == false)
-                    {
-                        AlienScoutSpecial();
-                    }
-                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackRunner(Clone)" && win == false)
-                    {
-                        AlienRunnerSpecial();
-                    }
-                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackGrunt(Clone)" && win == false)
-                    {
-                        AlienGruntSpecial();
-                    }
-                }
-            }
-            else
-            {
-                if (enemy.GetComponent<Player2MovementController>().win == false)
-                {
-                    if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteTank(Clone)" && win == false)
-                    {
-                        Debug.Log("getting into non single player robot tank special");
-                        RobotTankSpecial();
-                    }
-                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteScout(Clone)" && win == false)
-                    {
-                        RobotScoutSpecial();
-                    }
-                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteRunner(Clone)" && win == false)
-                    {
-                        RobotRunnerSpecial();
-                    }
-                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteGrunt(Clone)" && win == false)
-                    {
-                        RobotGruntSpecial();
-                    }
-                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackTank(Clone)" && win == false)
-                    {
-                        AlienTankSpecial();
-                    }
-                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackScout(Clone)" && win == false)
-                    {
-                        AlienScoutSpecial();
-                    }
-                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackRunner(Clone)" && win == false)
-                    {
-                        AlienRunnerSpecial();
-                    }
-                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackGrunt(Clone)" && win == false)
-                    {
-                        AlienGruntSpecial();
-                    }
-                }
-            }
-            Debug.Log(MoveController.GetComponent<PawnMove>().Player01);
-
-            healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health*2) / (MaxHealth*3));
-
-            if ((float)((health * 2) / (MaxHealth * 3)) <= 0.16f)
-            {
-                healthPieceGreen.GetComponent<Image>().sprite = healthPieceRed;
-            }
-            if (win == true)
-            {
-                /*if (!printStats)
-                {
-                    using (StreamWriter sw = new StreamWriter("Assets/WhoWins.txt", true))
-                    {
-                        sw.WriteLine("Battle between .... " + MoveController.GetComponent<PawnMove>().Player01.name + " with " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health + " health  vs   " + enemyName + " with " + enemyStartHealth + " health");
-                        sw.WriteLine("Winner is " + MoveController.GetComponent<PawnMove>().Player01.name);
-                        sw.WriteLine("-------------------");
-                        UpdateStats();
-                        printStats = true;
-                    }
-                }*/
-                //win = false; 
-                //TurnStateMachine.fightDone = true; 
-
-                if (endTimer <= 3)
-                {
-                    endTimer += Time.deltaTime;
+                    lastLooking = transform.forward;
+                    moveDirection.y -= gravity * Time.deltaTime;
+                    controller.Move(moveDirection * Time.deltaTime);
                 }
                 else
                 {
-                    TurnStateMachine.fightDone = true;
-                    BattleStats.winner = tag;
-                    Destroy(GameObject.Find("BattleSceneAdditive"));
-                    Destroy(MoveController.GetComponent<PawnMove>().Player02);
-                    MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player01;
-                    //Application.LoadLevel("TestingHexTiles");
-                    //Destroy(this.gameObject);
-                    MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health = (int)health;
-                }
-            }
+                    if (controller.isGrounded)
+                    {
+                        if (Input.GetJoystickNames().Length != 0)
+                        {
+                            transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("360_HorizontalRightStick1"));
 
-            if (health <= 0 && win == false)
-            {
-                if (MoveController.GetComponent<PawnMove>().Player01 != null)
+                            moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
+                            moveDirection = transform.TransformDirection(moveDirection);
+                            moveDirection *= speed;
+                        }
+                        else
+                        {
+                            transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("Horizontal"));
+
+                            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
+                            moveDirection = transform.TransformDirection(moveDirection);
+                            moveDirection *= speed;
+                        }
+                    }
+                    moveDirection.y -= gravity * Time.deltaTime;
+                    controller.Move(moveDirection * Time.deltaTime);
+                }
+                if (isMelee == false)
                 {
-                    MoveController.GetComponent<PawnMove>().Player01.GetComponent<pieceMove>().datSprite.SetActive(false);
-                    if (MoveController.GetComponent<PawnMove>().Player01.tag == "White")
+                    if (reloading)
                     {
-                        SpawnBasicUnits.WhitePieceCount--;
+                        attackTimer -= Time.deltaTime;
+                        if (attackTimer < 0)
+                        {
+                            attackTimer = attackRate;
+                            reloading = false;
+                        }
                     }
-                    else
+
+                    if (win == false)
                     {
-                        SpawnBasicUnits.BlackPieceCount--;
-                    }
-                    Destroy(MoveController.GetComponent<PawnMove>().Player01);
-                    if (BattleStats.singlePlayer)
-                    {
-                        enemy.GetComponent<EnemyAIForBattle>().win = true;
-                    }
-                    else
-                    {
-                        enemy.GetComponent<Player2MovementController>().win = true;
+                        if (Input.GetJoystickNames().Length != 0)
+                        {
+                            if ((Input.GetAxis("360_RightTrigger1") == 1) && reloading == false)
+                            {
+                                if (isAlien)
+                                {
+                                    Rigidbody bulletClone = Instantiate(alienBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                                    bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                                    bulletClone.rigidbody.useGravity = false;
+                                    bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                                    Destroy(bulletClone.gameObject, 3);
+                                }
+                                else
+                                {
+                                    Rigidbody bulletClone = Instantiate(robotBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                                    bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                                    bulletClone.rigidbody.useGravity = false;
+                                    bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                                    Destroy(bulletClone.gameObject, 3);
+                                }
+
+                                audio.Play();
+                                reloading = true;
+                            }
+                        }
+                        else
+                        {
+                            if ((Input.GetAxis("Fire1") == 1) && reloading == false)
+                            {
+                                if (isAlien)
+                                {
+                                    Rigidbody bulletClone = Instantiate(alienBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                                    bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                                    bulletClone.rigidbody.useGravity = false;
+                                    bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                                    Destroy(bulletClone.gameObject, 3);
+                                }
+                                else
+                                {
+                                    Rigidbody bulletClone = Instantiate(robotBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                                    bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                                    bulletClone.rigidbody.useGravity = false;
+                                    bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                                    Destroy(bulletClone.gameObject, 3);
+                                }
+                                audio.Play();
+                                reloading = true;
+                            }
+                        }
                     }
                 }
-                //MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
-                //Destroy(this.gameObject);
+                else
+                {
+                    if (swinging)
+                    {
+                        attackTimer -= Time.deltaTime;
+                        if (attackTimer < 0)
+                        {
+                            attackTimer = attackRate;
+                            swinging = false;
+                        }
+                    }
+
+                    if (win == false) // If the player hasnt won yet
+                    {
+                        if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
+                        {
+                            if ((Input.GetAxis("360_RightTrigger1") == 1) && swinging == false)
+                            {
+                                GameObject sword = Instantiate(Sword, transform.position + 3 * this.transform.forward, transform.rotation) as GameObject;
+                                sword.tag = tag;
+                                swinging = true;
+                                Destroy(sword.gameObject, 0.2f);
+                            }
+                        }
+                        else // If no controller connected
+                        {
+                            if ((Input.GetAxis("Fire1") == 1) && swinging == false)
+                            {
+                                GameObject sword = Instantiate(Sword, transform.position + 3 * this.transform.forward, transform.rotation) as GameObject;
+                                sword.tag = tag;
+                                swinging = true;
+                                Destroy(sword.gameObject, 0.2f);
+                            }
+                        }
+                    }
+                }
+
+                //Depending on what the player is their specific special will get called
+                if (BattleStats.singlePlayer)
+                {
+                    if (enemy.GetComponent<EnemyAIForBattle>().win == false)
+                    {
+                        if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteTank(Clone)" && win == false)
+                        {
+                            RobotTankSpecial();
+                        }
+                        else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteScout(Clone)" && win == false)
+                        {
+                            RobotScoutSpecial();
+                        }
+                        else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteRunner(Clone)" && win == false)
+                        {
+                            RobotRunnerSpecial();
+                        }
+                        else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteGrunt(Clone)" && win == false)
+                        {
+                            RobotGruntSpecial();
+                        }
+                        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackTank(Clone)" && win == false)
+                        {
+                            AlienTankSpecial();
+                        }
+                        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackScout(Clone)" && win == false)
+                        {
+                            AlienScoutSpecial();
+                        }
+                        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackRunner(Clone)" && win == false)
+                        {
+                            AlienRunnerSpecial();
+                        }
+                        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackGrunt(Clone)" && win == false)
+                        {
+                            AlienGruntSpecial();
+                        }
+                    }
+                }
+                else
+                {
+                    if (enemy.GetComponent<Player2MovementController>().win == false)
+                    {
+                        if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteTank(Clone)" && win == false)
+                        {
+                            RobotTankSpecial();
+                        }
+                        else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteScout(Clone)" && win == false)
+                        {
+                            RobotScoutSpecial();
+                        }
+                        else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteRunner(Clone)" && win == false)
+                        {
+                            RobotRunnerSpecial();
+                        }
+                        else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteGrunt(Clone)" && win == false)
+                        {
+                            RobotGruntSpecial();
+                        }
+                        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackTank(Clone)" && win == false)
+                        {
+                            AlienTankSpecial();
+                        }
+                        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackScout(Clone)" && win == false)
+                        {
+                            AlienScoutSpecial();
+                        }
+                        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackRunner(Clone)" && win == false)
+                        {
+                            AlienRunnerSpecial();
+                        }
+                        else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackGrunt(Clone)" && win == false)
+                        {
+                            AlienGruntSpecial();
+                        }
+                    }
+                }
+
+                healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
+
+                if ((float)((health * 2) / (MaxHealth * 3)) <= 0.16f)
+                {
+                    healthPieceGreen.GetComponent<Image>().sprite = healthPieceRed;
+                }
+                if (win == true)
+                {
+                    /*if (!printStats)
+                    {
+                        using (StreamWriter sw = new StreamWriter("Assets/WhoWins.txt", true))
+                        {
+                            sw.WriteLine("Battle between .... " + MoveController.GetComponent<PawnMove>().Player01.name + " with " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health + " health  vs   " + enemyName + " with " + enemyStartHealth + " health");
+                            sw.WriteLine("Winner is " + MoveController.GetComponent<PawnMove>().Player01.name);
+                            sw.WriteLine("-------------------");
+                            UpdateStats();
+                            printStats = true;
+                        }
+                    }*/
+                    //win = false; 
+                    //TurnStateMachine.fightDone = true; 
+
+                    if (endTimer <= 3)
+                    {
+                        endTimer += Time.deltaTime;
+                    }
+                    else
+                    {
+                        TurnStateMachine.fightDone = true;
+                        BattleStats.winner = tag;
+                        Destroy(GameObject.Find("BattleSceneAdditive"));
+                        Destroy(MoveController.GetComponent<PawnMove>().Player02);
+                        MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player01;
+                        //Application.LoadLevel("TestingHexTiles");
+                        //Destroy(this.gameObject);
+                        MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health = (int)health;
+                    }
+                }
+
+                if (health <= 0 && win == false)
+                {
+                    if (MoveController.GetComponent<PawnMove>().Player01 != null)
+                    {
+                        MoveController.GetComponent<PawnMove>().Player01.GetComponent<pieceMove>().datSprite.SetActive(false);
+                        if (MoveController.GetComponent<PawnMove>().Player01.tag == "White")
+                        {
+                            SpawnBasicUnits.WhitePieceCount--;
+                        }
+                        else
+                        {
+                            SpawnBasicUnits.BlackPieceCount--;
+                        }
+                        Destroy(MoveController.GetComponent<PawnMove>().Player01);
+                        if (BattleStats.singlePlayer)
+                        {
+                            enemy.GetComponent<EnemyAIForBattle>().win = true;
+                        }
+                        else
+                        {
+                            enemy.GetComponent<Player2MovementController>().win = true;
+                        }
+                    }
+                    //MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
+                    //Destroy(this.gameObject);
+                }
             }
         }
     }
@@ -498,76 +498,79 @@ public class Player1MovementController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.name == "PowerUp")
+        if (MoveController.GetComponent<PawnMove>().Player02 != null && MoveController.GetComponent<PawnMove>().Player01!=null)
         {
-            float statBoost = UnityEngine.Random.Range(0, 100);
-            if (statBoost < 40)
+            if (other.name == "PowerUp")
             {
-                Debug.Log("Damage Boost p1");
-                StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage);
-                MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage*2;
-            }
-            else if (statBoost < 70)
-            {
-                Debug.Log("Speed Boost p1");
-                StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage);
-                MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement * 2;
-            }
-            else
-            {
-                health += 10;
-                if (health > MaxHealth)
+                float statBoost = UnityEngine.Random.Range(0, 100);
+                if (statBoost < 40)
                 {
-                    health = MaxHealth;
+                    Debug.Log("Damage Boost p1");
+                    StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage);
+                    MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage * 2;
                 }
-                Debug.Log("increase health p1");
+                else if (statBoost < 70)
+                {
+                    Debug.Log("Speed Boost p1");
+                    StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage);
+                    MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement * 2;
+                }
+                else
+                {
+                    health += 10;
+                    if (health > MaxHealth)
+                    {
+                        health = MaxHealth;
+                    }
+                    Debug.Log("increase health p1");
+                }
+                ItemSpawner.numPowerUps--;
+                other.transform.parent.gameObject.GetComponent<ItemSpawner>().empty = true;
+                other.gameObject.SetActive(false);
             }
-            ItemSpawner.numPowerUps--;
-            other.transform.parent.gameObject.GetComponent<ItemSpawner>().empty = true;
-            other.gameObject.SetActive(false);
-        }
-        //If the player gets shot
-        if (!isAlien && other.tag == "alienBullet")
-        {
-            Destroy(other.gameObject);
-            if (!usingShield)
+            //If the player gets shot
+            if (!isAlien && other.tag == "alienBullet")
             {
-                health -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                Destroy(other.gameObject);
+                if (!usingShield)
+                {
+                    health -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                }
+                else
+                {
+                    shieldPower -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                }
             }
-            else
+            else if (isAlien && other.tag == "robotBullet")
             {
-                shieldPower -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                Destroy(other.gameObject);
+                if (!usingShield)
+                {
+                    health -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                }
+                else
+                {
+                    shieldPower -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                }
             }
-        }
-        else if (isAlien && other.tag == "robotBullet")
-        {
-            Destroy(other.gameObject);
-            if (!usingShield)
+            if (other.name == "laser" && other.GetComponent<LaserController>().shooting)
             {
-                health -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                health -= 0.5f;
             }
-            else
+            //If the player gets hit with melee
+            if (other.name == "Sword(Clone)" && other.tag != tag)
             {
-                shieldPower -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;  
-            }
-        }
-        if (other.name == "laser" && other.GetComponent<LaserController>().shooting)
-        {
-            health -= 0.5f;
-        }
-        //If the player gets hit with melee
-        if (other.name == "Sword(Clone)" && other.tag != tag)
-        {
-            Destroy(other.gameObject);
-            Vector3 this2That = new Vector3(this.transform.position.x - enemy.transform.position.x, 0, this.transform.position.z - enemy.transform.position.z);
-            controller.SimpleMove(MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage * (Vector3.Normalize(this2That)));
-            if (!usingShield)
-            {
-                health -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
-            }
-            else
-            {
-                shieldPower -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                Destroy(other.gameObject);
+                Vector3 this2That = new Vector3(this.transform.position.x - enemy.transform.position.x, 0, this.transform.position.z - enemy.transform.position.z);
+                controller.SimpleMove(MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage * (Vector3.Normalize(this2That)));
+                if (!usingShield)
+                {
+                    health -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                }
+                else
+                {
+                    shieldPower -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                }
             }
         }
     }

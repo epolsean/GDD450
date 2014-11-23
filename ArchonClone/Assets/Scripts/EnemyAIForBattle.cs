@@ -132,166 +132,168 @@ public class EnemyAIForBattle : MonoBehaviour
 	// Update is called once per frame
     void Update()
     {
-        if (GameObject.Find("Fight") == null)
+        if (MoveController.GetComponent<PawnMove>().Player02 != null && MoveController.GetComponent<PawnMove>().Player01 != null)
         {
-            RaycastHit hit;
-            if (isMelee == false)
+            if (GameObject.Find("Fight") == null)
             {
-                if (reloading)
+                RaycastHit hit;
+                if (isMelee == false)
                 {
-                    attackTimer -= Time.deltaTime;
-                    if (attackTimer < 0)
+                    if (reloading)
                     {
-                        attackTimer = attackRate;
-                        reloading = false;
-                    }
-                }
-
-                if (win == false)
-                {
-                    //Debug.Log("Distance : " + Vector3.Distance(enemy.transform.position, transform.position));
-                    if (Vector3.Distance(enemy.transform.position, transform.position) < 30 && reloading == false)
-                    {
-                        if (Physics.Raycast(transform.position, Vector3.Normalize(enemy.transform.position - transform.position), out hit))
+                        attackTimer -= Time.deltaTime;
+                        if (attackTimer < 0)
                         {
-                            transform.LookAt(new Vector3(enemy.transform.position.x, transform.position.y, enemy.transform.position.z));
-                            if (hit.transform.gameObject == enemy)
-                            {
-                                Debug.DrawLine(transform.position, hit.point, Color.red);
-                                if (isAlien)
-                                {
-                                    Rigidbody bulletClone = Instantiate(alienBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                                    bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                                    bulletClone.rigidbody.useGravity = false;
-                                    bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                                    Destroy(bulletClone.gameObject, 3);
-                                }
-                                else
-                                {
-                                    Rigidbody bulletClone = Instantiate(robotBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                                    bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                                    bulletClone.rigidbody.useGravity = false;
-                                    bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                                    Destroy(bulletClone.gameObject, 3);
-                                }
-                                audio.Play();
-                                reloading = true;
-                            }
+                            attackTimer = attackRate;
+                            reloading = false;
                         }
-
                     }
-                }
-            }
-            else
-            {
-                if (swinging)
-                {
-                    attackTimer -= Time.deltaTime;
-                    if (attackTimer < 0)
-                    {
-                        attackTimer = attackRate;
-                        swinging = false;
-                    }
-                }
 
-                if (win == false)
-                {
-                    Debug.Log("Distance : " + Vector3.Distance(enemy.transform.position, transform.position));
-                    if (Vector3.Distance(enemy.transform.position, transform.position) < 10 && reloading == false)
+                    if (win == false)
                     {
-                        if (Physics.Raycast(transform.position, Vector3.Normalize(enemy.transform.position - transform.position), out hit))
+                        //Debug.Log("Distance : " + Vector3.Distance(enemy.transform.position, transform.position));
+                        if (Vector3.Distance(enemy.transform.position, transform.position) < 30 && reloading == false)
                         {
-                            transform.LookAt(new Vector3(enemy.transform.position.x, transform.position.y, enemy.transform.position.z));
-                            if (hit.transform.gameObject == enemy)
+                            if (Physics.Raycast(transform.position, Vector3.Normalize(enemy.transform.position - transform.position), out hit))
                             {
-                                Debug.DrawLine(transform.position, hit.point, Color.red);
-                                GameObject sword = Instantiate(Sword, transform.position + Vector3.Normalize(enemy.transform.position - transform.position), transform.rotation) as GameObject;
-                                sword.tag = tag;
-                                swinging = true;
-                                Destroy(sword.gameObject, 0.2f);
+                                transform.LookAt(new Vector3(enemy.transform.position.x, transform.position.y, enemy.transform.position.z));
+                                if (hit.transform.gameObject == enemy)
+                                {
+                                    Debug.DrawLine(transform.position, hit.point, Color.red);
+                                    if (isAlien)
+                                    {
+                                        Rigidbody bulletClone = Instantiate(alienBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                                        bulletClone.rigidbody.useGravity = false;
+                                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                                        Destroy(bulletClone.gameObject, 3);
+                                    }
+                                    else
+                                    {
+                                        Rigidbody bulletClone = Instantiate(robotBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                                        bulletClone.rigidbody.useGravity = false;
+                                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                                        Destroy(bulletClone.gameObject, 3);
+                                    }
+                                    audio.Play();
+                                    reloading = true;
+                                }
                             }
+
                         }
-
                     }
-                }
-            }
-            if (enemy.GetComponent<Player1MovementController>().win == false)
-            {
-                //Depending on what the player is their specific special will get called
-                if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)" && win == false && enemyController.win == false)
-                {
-                    RobotTankSpecial();
-                }
-                else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteScout(Clone)" && win == false && enemyController.win == false)
-                {
-                    RobotScoutSpecial();
-                }
-                else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteRunner(Clone)" && win == false && enemyController.win == false)
-                {
-                    RobotRunnerSpecial();
-                }
-                else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteGrunt(Clone)" && win == false && enemyController.win == false)
-                {
-                    RobotGruntSpecial();
-                }
-                else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackTank(Clone)" && win == false && enemyController.win == false)
-                {
-                    AlienTankSpecial();
-                }
-                else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)" && win == false && enemyController.win == false)
-                {
-                    AlienScoutSpecial();
-                }
-                else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)" && win == false && enemyController.win == false)
-                {
-                    AlienRunnerSpecial();
-                }
-                else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)" && win == false && enemyController.win == false)
-                {
-                    AlienGruntSpecial();
-                }
-            }
-
-            healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
-
-            if ((float)((health * 2) / (MaxHealth * 3)) <= 0.16f)
-            {
-                healthPieceGreen.GetComponent<Image>().sprite = healthPieceRed;
-            }
-            if (win == true)
-            {
-                BattleStats.winner = tag;
-                if (TurnStateMachine.state == TurnStateMachine.State.playerTurn/* && GameObject.Find("EnemyAI") == null*/)
-                {
-                    TurnStateMachine.state = TurnStateMachine.State.otherTurn;
                 }
                 else
                 {
-                    TurnStateMachine.state = TurnStateMachine.State.playerTurn;
-                    EnemyAI.AIstate = EnemyAI.State.Idle;
-                }
-                Destroy(GameObject.Find("BattleSceneAdditive"));
-                Destroy(MoveController.GetComponent<PawnMove>().Player01);
-                MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
-                //Application.LoadLevel("TestingHexTiles");
-                //Destroy(this.gameObject);
-                MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health = (int)health;
-            }
+                    if (swinging)
+                    {
+                        attackTimer -= Time.deltaTime;
+                        if (attackTimer < 0)
+                        {
+                            attackTimer = attackRate;
+                            swinging = false;
+                        }
+                    }
 
-            if (health <= 0 && win == false)
-            {
-                if (MoveController.GetComponent<PawnMove>().Player02.tag == "White")
-                {
-                    SpawnBasicUnits.WhitePieceCount--;
+                    if (win == false)
+                    {
+                        if (Vector3.Distance(enemy.transform.position, transform.position) < 10 && reloading == false)
+                        {
+                            if (Physics.Raycast(transform.position, Vector3.Normalize(enemy.transform.position - transform.position), out hit))
+                            {
+                                transform.LookAt(new Vector3(enemy.transform.position.x, transform.position.y, enemy.transform.position.z));
+                                if (hit.transform.gameObject == enemy)
+                                {
+                                    Debug.DrawLine(transform.position, hit.point, Color.red);
+                                    GameObject sword = Instantiate(Sword, transform.position + Vector3.Normalize(enemy.transform.position - transform.position), transform.rotation) as GameObject;
+                                    sword.tag = tag;
+                                    swinging = true;
+                                    Destroy(sword.gameObject, 0.2f);
+                                }
+                            }
+
+                        }
+                    }
                 }
-                else
+                if (enemy.GetComponent<Player1MovementController>().win == false)
                 {
-                    SpawnBasicUnits.BlackPieceCount--;
+                    //Depending on what the player is their specific special will get called
+                    if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)" && win == false && enemyController.win == false)
+                    {
+                        RobotTankSpecial();
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteScout(Clone)" && win == false && enemyController.win == false)
+                    {
+                        RobotScoutSpecial();
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteRunner(Clone)" && win == false && enemyController.win == false)
+                    {
+                        RobotRunnerSpecial();
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteGrunt(Clone)" && win == false && enemyController.win == false)
+                    {
+                        RobotGruntSpecial();
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackTank(Clone)" && win == false && enemyController.win == false)
+                    {
+                        AlienTankSpecial();
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)" && win == false && enemyController.win == false)
+                    {
+                        AlienScoutSpecial();
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)" && win == false && enemyController.win == false)
+                    {
+                        AlienRunnerSpecial();
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)" && win == false && enemyController.win == false)
+                    {
+                        AlienGruntSpecial();
+                    }
                 }
-                Destroy(MoveController.GetComponent<PawnMove>().Player02);
-                enemyController.win = true;
-                //MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
-                //Destroy(this.gameObject);
+
+                healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
+
+                if ((float)((health * 2) / (MaxHealth * 3)) <= 0.16f)
+                {
+                    healthPieceGreen.GetComponent<Image>().sprite = healthPieceRed;
+                }
+                if (win == true)
+                {
+                    BattleStats.winner = tag;
+                    if (TurnStateMachine.state == TurnStateMachine.State.playerTurn/* && GameObject.Find("EnemyAI") == null*/)
+                    {
+                        TurnStateMachine.state = TurnStateMachine.State.otherTurn;
+                    }
+                    else
+                    {
+                        TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+                        EnemyAI.AIstate = EnemyAI.State.Idle;
+                    }
+                    Destroy(GameObject.Find("BattleSceneAdditive"));
+                    Destroy(MoveController.GetComponent<PawnMove>().Player01);
+                    MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
+                    //Application.LoadLevel("TestingHexTiles");
+                    //Destroy(this.gameObject);
+                    MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health = (int)health;
+                }
+
+                if (health <= 0 && win == false)
+                {
+                    if (MoveController.GetComponent<PawnMove>().Player02.tag == "White")
+                    {
+                        SpawnBasicUnits.WhitePieceCount--;
+                    }
+                    else
+                    {
+                        SpawnBasicUnits.BlackPieceCount--;
+                    }
+                    Destroy(MoveController.GetComponent<PawnMove>().Player02);
+                    enemyController.win = true;
+                    //MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
+                    //Destroy(this.gameObject);
+                }
             }
         }
     }
@@ -310,76 +312,79 @@ public class EnemyAIForBattle : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.name == "PowerUp")
+        if (MoveController.GetComponent<PawnMove>().Player02 != null && MoveController.GetComponent<PawnMove>().Player01 != null)
         {
-            float statBoost = UnityEngine.Random.Range(0, 100);
-            if (statBoost < 40)
+            if (other.name == "PowerUp")
             {
-                Debug.Log("Damage Boost p2");
-                StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage);
-                MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage * 2;
-            }
-            else if (statBoost < 70)
-            {
-                Debug.Log("Speed Boost p2");
-                StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage);
-                MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement * 2;
-            }
-            else
-            {
-                health += 10;
-                if (health > MaxHealth)
+                float statBoost = UnityEngine.Random.Range(0, 100);
+                if (statBoost < 40)
                 {
-                    health = MaxHealth;
+                    Debug.Log("Damage Boost p2");
+                    StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage);
+                    MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage * 2;
                 }
-                Debug.Log("increase health p2");
+                else if (statBoost < 70)
+                {
+                    Debug.Log("Speed Boost p2");
+                    StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage);
+                    MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement * 2;
+                }
+                else
+                {
+                    health += 10;
+                    if (health > MaxHealth)
+                    {
+                        health = MaxHealth;
+                    }
+                    Debug.Log("increase health p2");
+                }
+                ItemSpawner.numPowerUps--;
+                other.transform.parent.gameObject.GetComponent<ItemSpawner>().empty = true;
+                other.gameObject.SetActive(false);
             }
-            ItemSpawner.numPowerUps--;
-            other.transform.parent.gameObject.GetComponent<ItemSpawner>().empty = true;
-            other.gameObject.SetActive(false);
-        }
-        //If the player gets shot
-        if (!isAlien && other.tag == "alienBullet")
-        {
-            Destroy(other.gameObject);
-            if (!usingShield)
+            //If the player gets shot
+            if (!isAlien && other.tag == "alienBullet")
             {
-                health -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                Destroy(other.gameObject);
+                if (!usingShield)
+                {
+                    health -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                }
+                else
+                {
+                    shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                }
             }
-            else
+            else if (isAlien && other.tag == "robotBullet")
             {
-                shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                Destroy(other.gameObject);
+                if (!usingShield)
+                {
+                    health -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                }
+                else
+                {
+                    shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                }
             }
-        }
-        else if (isAlien && other.tag == "robotBullet")
-        {
-            Destroy(other.gameObject);
-            if (!usingShield)
+            if (other.name == "laser" && other.GetComponent<LaserController>().shooting)
             {
-                health -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                health -= 0.5f;
             }
-            else
+            //If the player gets hit with melee
+            if (other.name == "Sword(Clone)" && other.tag != tag)
             {
-                shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
-            }
-        }
-        if (other.name == "laser" && other.GetComponent<LaserController>().shooting)
-        {
-            health -= 0.5f;
-        }
-        //If the player gets hit with melee
-        if (other.name == "Sword(Clone)" && other.tag != tag)
-        {
-            Destroy(other.gameObject);
-            Vector3 this2That = new Vector3(this.transform.position.x - enemy.transform.position.x, 0, this.transform.position.z - enemy.transform.position.z);
-            controller.SimpleMove(MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage * (Vector3.Normalize(this2That)));
-            if (!usingShield)
-            {
-                health -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
-            }
-            else
-            {
-                shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                Destroy(other.gameObject);
+                Vector3 this2That = new Vector3(this.transform.position.x - enemy.transform.position.x, 0, this.transform.position.z - enemy.transform.position.z);
+                controller.SimpleMove(MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage * (Vector3.Normalize(this2That)));
+                if (!usingShield)
+                {
+                    health -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                }
+                else
+                {
+                    shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                }
             }
         }
     }
