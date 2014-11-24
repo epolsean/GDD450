@@ -5,7 +5,7 @@ public class GoTo : MonoBehaviour {
 
     public void Single()
     {
-        //Application.LoadLevel("TestingHexTiles");
+        Application.LoadLevel("TestingHexTiles");
         BattleStats.singlePlayer = true;
     }
 

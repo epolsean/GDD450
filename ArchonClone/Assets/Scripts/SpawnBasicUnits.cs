@@ -32,6 +32,14 @@ public class SpawnBasicUnits : MonoBehaviour {
     public GameObject WGrunt03Tile;
     public GameObject BGrunt04Tile;
     public GameObject WGrunt04Tile;
+    public GameObject BScout01Tile;
+    public GameObject WScout01Tile;
+    public GameObject BScout02Tile;
+    public GameObject WScout02Tile;
+    public GameObject BScout03Tile;
+    public GameObject WScout03Tile;
+    public GameObject BScout04Tile;
+    public GameObject WScout04Tile;
 
     //Set up all the alien Tiles
     public GameObject AlienGrunt1StartTile;
@@ -102,13 +110,22 @@ public class SpawnBasicUnits : MonoBehaviour {
             SpawnWhitePiece(WhiteTank, WTank02Tile);
         }
         //Spawn 2 SynthScout
-        if(WRunner01Tile != null)
+        if(WScout01Tile != null)
         {
-            SpawnWhitePiece(WhiteScout, WRunner01Tile);
+            SpawnWhitePiece(WhiteScout, WScout01Tile);
+        }
+        if (WScout02Tile != null)
+        {
+            SpawnWhitePiece(WhiteScout, WScout02Tile);
+        }
+        //Spawn 2 SynthRunner
+        if (WRunner01Tile != null)
+        {
+            SpawnWhitePiece(WhiteRunner, WRunner01Tile);
         }
         if (WRunner02Tile != null)
         {
-            SpawnWhitePiece(WhiteScout, WRunner02Tile);
+            SpawnWhitePiece(WhiteRunner, WRunner02Tile);
         }
         //Spawn 4 SynthGrunts
         if (WGrunt01Tile != null)
@@ -136,6 +153,15 @@ public class SpawnBasicUnits : MonoBehaviour {
         if (BTank02Tile != null)
         {
             SpawnBlackPiece(BlackTank, BTank02Tile);
+        }
+        //Spawn 2 AlienScout
+        if (BScout01Tile != null)
+        {
+            SpawnBlackPiece(BlackScout, BScout01Tile);
+        }
+        if (BScout02Tile != null)
+        {
+            SpawnBlackPiece(BlackScout, BScout02Tile);
         }
         //Spawn 2 AlienRunner
         if (BRunner01Tile != null)
