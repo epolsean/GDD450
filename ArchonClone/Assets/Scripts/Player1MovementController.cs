@@ -463,8 +463,10 @@ public class Player1MovementController : MonoBehaviour
             /*if (!Application.isEditor)
             {
                 if (!printStats)
-                {
-                    using (StreamWriter sw = new StreamWriter("Resources/WhoWins.txt", true))
+                {  
+                    path = Application.dataPath;
+                    path += "Resources/WhoWins.txt";
+                    using (StreamWriter sw = new StreamWriter(path, true))
                     {
                         sw.WriteLine("Battle between .... " + MoveController.GetComponent<PawnMove>().Player01.name + " with " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health + " health  vs   " + enemyName + " with " + enemyStartHealth + " health");
                         sw.WriteLine("Winner is " + MoveController.GetComponent<PawnMove>().Player01.name);
@@ -498,14 +500,20 @@ public class Player1MovementController : MonoBehaviour
     IEnumerator DamageBoost(int startDamage)
     {
         yield return new WaitForSeconds(4.0f);
-        MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage = startDamage;
+        if (MoveController.GetComponent<PawnMove>().Player01 != null)
+        {
+            MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage = startDamage;
+        }
     }
 
     IEnumerator SpeedBoost(int startSpeed)
     {
         yield return new WaitForSeconds(4.0f);
-        MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement = startSpeed;
-        speed = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement;
+        if (MoveController.GetComponent<PawnMove>().Player01 != null)
+        {
+            MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement = startSpeed;
+            speed = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement;
+        }
     }
 
     void OnTriggerEnter(Collider other)

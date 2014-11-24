@@ -65,7 +65,7 @@ public class ItemSpawner : MonoBehaviour
                 {
                     if (ItemSpawner.numExplodingBarrels < 3)
                     {
-                        GameObject.Find("A*Battle").GetComponent<AstarPath>().Scan();
+                        //GameObject.Find("A*Battle").GetComponent<AstarPath>().Scan();
                         explodingBarrel.SetActive(true);
                         empty = false;
                         ItemSpawner.numExplodingBarrels++;

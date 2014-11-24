@@ -49,6 +49,8 @@ public class EnemyAIForBattle : MonoBehaviour
 
     Player1MovementController enemyController;
 
+    float endTimer;
+
     public float health;
     public float MaxHealth;
 
@@ -276,22 +278,21 @@ public class EnemyAIForBattle : MonoBehaviour
         }
         if (win == true)
         {
-            BattleStats.winner = tag;
-            if (TurnStateMachine.state == TurnStateMachine.State.playerTurn/* && GameObject.Find("EnemyAI") == null*/)
+            if (endTimer <= 3)
             {
-                TurnStateMachine.state = TurnStateMachine.State.otherTurn;
+                endTimer += Time.deltaTime;
             }
             else
             {
-                TurnStateMachine.state = TurnStateMachine.State.playerTurn;
-                EnemyAI.AIstate = EnemyAI.State.Idle;
+                TurnStateMachine.fightDone = true;
+                BattleStats.winner = tag;
+                Destroy(GameObject.Find("BattleSceneAdditive"));
+                Destroy(MoveController.GetComponent<PawnMove>().Player01);
+                MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
+                //Application.LoadLevel("TestingHexTiles");
+                //Destroy(this.gameObject);
+                MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health = (int)health;
             }
-            Destroy(GameObject.Find("BattleSceneAdditive"));
-            Destroy(MoveController.GetComponent<PawnMove>().Player01);
-            MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
-            //Application.LoadLevel("TestingHexTiles");
-            //Destroy(this.gameObject);
-            MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health = (int)health;
         }
     }
 

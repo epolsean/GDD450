@@ -16,11 +16,21 @@ public class TransitionCall : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (GameObject.Find("Player1(Clone)") != null || GameObject.Find("Player2(Clone)") != null)
+        if (GameObject.Find("Player1(Clone)") != null || GameObject.Find("Player2(Clone)") != null || GameObject.Find("EnemyBattleAI(Clone)") != null)
         {
-            if (GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>().win == true || GameObject.Find("Player2(Clone)").GetComponent<Player2MovementController>().win == true)
+            if (BattleStats.singlePlayer)
             {
-                startTrans = true;
+                if (GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>().win == true || GameObject.Find("EnemyBattleAI(Clone)").GetComponent<EnemyAIForBattle>().win == true)
+                {
+                    startTrans = true;
+                }
+            }
+            else
+            {
+                if (GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>().win == true || GameObject.Find("Player2(Clone)").GetComponent<Player2MovementController>().win == true)
+                {
+                    startTrans = true;
+                }
             }
         }
         if (startTrans == true)
