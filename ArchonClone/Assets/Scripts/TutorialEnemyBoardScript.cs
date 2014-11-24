@@ -26,7 +26,7 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
         enemyTurn = 0.0;
         UnitMovementController = GameObject.Find("MovementController");
         TurnStateMachine.state = TurnStateMachine.State.otherTurn;
-        StepText.GetComponent<Text>().text = "Here is the Hex Tile grid of the field, the enemy will start by moving one of his pieces";
+        StepText.GetComponent<Text>().text = "Welcome to the Strategix boot camp! Here you will be transformed from the inferior being that you are, into a strategy machine! For this simulation, you will be in command of a group of the Sythetic units on the left!";
         B01Turn0Tile.GetComponent<TileProperties>().datNode.SetActive(true);
 	}
 	
@@ -110,7 +110,7 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
         else if(enemyTurn == 5.5)
         {
             //end tutorial
-            StepText.GetComponent<Text>().text = "Congratulations! You Have successfully Destroyed the enemies piece! Now you have the required Knowledge to continue your conquest of this planet!";
+            StepText.GetComponent<Text>().text = "Congratulations! You Have successfully Destroyed the enemy's Grunt! This concludes the tutorial! Use what you have learned here to continue your Conquest!";
             StepButton.SetActive(true);
         }
         else if(enemyTurn == 6)
