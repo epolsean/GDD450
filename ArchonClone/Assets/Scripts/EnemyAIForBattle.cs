@@ -305,6 +305,7 @@ public class EnemyAIForBattle : MonoBehaviour
     {
         yield return new WaitForSeconds(4.0f);
         MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = startSpeed;
+        speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
     }
 
     void OnTriggerEnter(Collider other)
@@ -323,8 +324,9 @@ public class EnemyAIForBattle : MonoBehaviour
                 else if (statBoost < 70)
                 {
                     Debug.Log("Speed Boost p2");
-                    StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage);
+                    StartCoroutine("SpeedBoost", MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement);
                     MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement * 2;
+                    speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
                 }
                 else
                 {
@@ -364,7 +366,7 @@ public class EnemyAIForBattle : MonoBehaviour
                     shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
                 }
             }
-            if (other.name == "laser" && other.GetComponent<LaserController>().shooting)
+            if (other.tag == "Laser" && other.GetComponent<LaserController>().shooting)
             {
                 health -= 0.5f;
             }

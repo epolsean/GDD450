@@ -227,11 +227,23 @@ public class Player1MovementController : MonoBehaviour
                         }
                         else
                         {
-                            transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("Horizontal"));
+                            transform.Rotate(transform.up, xSensitivity * Input.GetAxis("Horizontal"));
+                            if (Input.GetAxis("Vertical") == 0)
+                            {
+                                moveDirection = new Vector3(0, 0, Input.GetAxis("Vertical"));
+                            }
+                            else
+                            {
+                                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                            }
+                            moveDirection = transform.TransformDirection(moveDirection) + (transform.right * Input.GetAxis("Strafe1"));
+                            moveDirection *= speed;
+
+                            /*transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("Horizontal"));
 
                             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
                             moveDirection = transform.TransformDirection(moveDirection);
-                            moveDirection *= speed;
+                            moveDirection *= speed;*/
                         }
                     }
                     moveDirection.y -= gravity * Time.deltaTime;
@@ -491,6 +503,7 @@ public class Player1MovementController : MonoBehaviour
     {
         yield return new WaitForSeconds(4.0f);
         MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement = startSpeed;
+        speed = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement;
     }
 
     void OnTriggerEnter(Collider other)
@@ -509,8 +522,9 @@ public class Player1MovementController : MonoBehaviour
                 else if (statBoost < 70)
                 {
                     Debug.Log("Speed Boost p1");
-                    StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage);
+                    StartCoroutine("SpeedBoost", MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement);
                     MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement * 2;
+                    speed = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement;
                 }
                 else
                 {
@@ -550,7 +564,7 @@ public class Player1MovementController : MonoBehaviour
                     shieldPower -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
                 }
             }
-            if (other.name == "laser" && other.GetComponent<LaserController>().shooting)
+            if (other.tag == "Laser" && other.GetComponent<LaserController>().shooting)
             {
                 health -= 0.5f;
             }

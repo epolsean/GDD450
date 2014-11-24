@@ -319,7 +319,10 @@ public class AIPath : MonoBehaviour {
 	}
 	
 	public virtual void Update () {
-		
+        if (GameObject.Find("Player1(Clone)") != null)
+        {
+            target = GameObject.Find("Player1(Clone)").transform;
+        }
 		if (!canMove) { return; }
 		
 		Vector3 dir = CalculateVelocity (GetFeetPosition());
