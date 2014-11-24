@@ -104,32 +104,60 @@ public class pieceMove : MonoBehaviour {
                 datSprite = GameObject.Find("SynthTank04Sprite");
             }
         }
-        else if (datTile.name == "HexGrid(WRunner01Tile)")
+        else if (datTile.name == "HexGrid(WScout01Tile)")
         {
             if (GameObject.Find("SynthScout01Sprite") != null)
             {
                 datSprite = GameObject.Find("SynthScout01Sprite");
             }
         }
-        else if (datTile.name == "HexGrid(WRunner02Tile)")
+        else if (datTile.name == "HexGrid(WScout02Tile)")
         {
             if (GameObject.Find("SynthScout02Sprite") != null)
             {
                 datSprite = GameObject.Find("SynthScout02Sprite");
             }
         }
-        else if (datTile.name == "HexGrid(WRunner03Tile)")
+        else if (datTile.name == "HexGrid(WScout03Tile)")
         {
             if (GameObject.Find("SynthScout03Sprite") != null)
             {
                 datSprite = GameObject.Find("SynthScout03Sprite");
             }
         }
-        else if (datTile.name == "HexGrid(WRunner04Tile)")
+        else if (datTile.name == "HexGrid(WScout04Tile)")
         {
             if (GameObject.Find("SynthScout04Sprite") != null)
             {
                 datSprite = GameObject.Find("SynthScout04Sprite");
+            }
+        }
+        else if (datTile.name == "HexGrid(WRunner01Tile)")
+        {
+            if (GameObject.Find("SynthRunner01Sprite") != null)
+            {
+                datSprite = GameObject.Find("SynthRunner01Sprite");
+            }
+        }
+        else if (datTile.name == "HexGrid(WRunner02Tile)")
+        {
+            if (GameObject.Find("SynthRunner02Sprite") != null)
+            {
+                datSprite = GameObject.Find("SynthRunner02Sprite");
+            }
+        }
+        else if (datTile.name == "HexGrid(WRunner03Tile)")
+        {
+            if (GameObject.Find("SynthRunner03Sprite") != null)
+            {
+                datSprite = GameObject.Find("SynthRunner03Sprite");
+            }
+        }
+        else if (datTile.name == "HexGrid(WRunner04Tile)")
+        {
+            if (GameObject.Find("SynthRunner04Sprite") != null)
+            {
+                datSprite = GameObject.Find("SynthRunner04Sprite");
             }
         }
         else if (datTile.name == "HexGrid(BGrunt01Tile)")//assign all Alien piece sprites
@@ -188,32 +216,60 @@ public class pieceMove : MonoBehaviour {
                 datSprite = GameObject.Find("AlienTank04Sprite");
             }
         }
-        else if (datTile.name == "HexGrid(BRunner01Tile)")
+        else if (datTile.name == "HexGrid(BScout01Tile)")
         {
             if (GameObject.Find("AlienScout01Sprite") != null)
             {
                 datSprite = GameObject.Find("AlienScout01Sprite");
             }
         }
-        else if (datTile.name == "HexGrid(BRunner02Tile)")
+        else if (datTile.name == "HexGrid(BScout02Tile)")
         {
             if (GameObject.Find("AlienScout02Sprite") != null)
             {
                 datSprite = GameObject.Find("AlienScout02Sprite");
             }
         }
-        else if (datTile.name == "HexGrid(BRunner03Tile)")
+        else if (datTile.name == "HexGrid(BScout03Tile)")
         {
             if (GameObject.Find("AlienScout03Sprite") != null)
             {
                 datSprite = GameObject.Find("AlienScout03Sprite");
             }
         }
-        else if (datTile.name == "HexGrid(BRunner04Tile)")
+        else if (datTile.name == "HexGrid(BScout04Tile)")
         {
             if (GameObject.Find("AlienScout04Sprite") != null)
             {
                 datSprite = GameObject.Find("AlienScout04Sprite");
+            }
+        }
+        else if (datTile.name == "HexGrid(BRunner01Tile)")
+        {
+            if (GameObject.Find("AlienRunner01Sprite") != null)
+            {
+                datSprite = GameObject.Find("AlienRunner01Sprite");
+            }
+        }
+        else if (datTile.name == "HexGrid(BRunner02Tile)")
+        {
+            if (GameObject.Find("AlienRunner02Sprite") != null)
+            {
+                datSprite = GameObject.Find("AlienRunner02Sprite");
+            }
+        }
+        else if (datTile.name == "HexGrid(BRunner03Tile)")
+        {
+            if (GameObject.Find("AlienRunner03Sprite") != null)
+            {
+                datSprite = GameObject.Find("AlienRunner03Sprite");
+            }
+        }
+        else if (datTile.name == "HexGrid(BRunner04Tile)")
+        {
+            if (GameObject.Find("AlienRunner04Sprite") != null)
+            {
+                datSprite = GameObject.Find("AlienRunner04Sprite");
             }
         }
 
