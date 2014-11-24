@@ -17,6 +17,8 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
 
     public GameObject StepText;
 
+    public GameObject continueText;
+
     public GameObject UnitMovementController;
 
     public double enemyTurn = 0;
@@ -32,10 +34,29 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(Input.GetKeyDown(KeyCode.R))
+        if (Input.GetJoystickNames().Length != 0)
         {
-            //StepButton.SetActive(false);
-            NextStep();
+            continueText.GetComponent<Text>().text = "Press the A button to continue";
+        }
+        else
+        {
+            continueText.GetComponent<Text>().text = "Press the 'R' key to continue";
+        }
+        if (Input.GetJoystickNames().Length != 0)
+        {
+            if (Input.GetAxis("360_AButton1") == 1)
+            {
+                //StepButton.SetActive(false);
+                NextStep();
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                //StepButton.SetActive(false);
+                NextStep();
+            }
         }
         if(enemyTurn == 0.5)
         {

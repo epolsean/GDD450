@@ -21,16 +21,15 @@ public class PlayerControllerTutorial : MonoBehaviour
     public bool isMelee = false;
     public int bulletSpeed = 25;
 
-    public GameObject healthPiece1;
-    public GameObject healthPiece2;
-
-    public GameObject healthPiece3;
-    public GameObject healthPiece4;
+    public GameObject healthPieceGreen1;
+    public GameObject healthPieceGreen2;
+    public Sprite healthPieceRed;
 
     public bool swinging = false;
     float swingTimer = 0.3f;
 
-    int health;
+    float health;
+    float MaxHealth;
     int bulletSize;
 
     public bool win = false;
@@ -42,130 +41,116 @@ public class PlayerControllerTutorial : MonoBehaviour
     bool startTrans;
     float endTimer;
     GameObject Canvas;
+    CharacterController controller;
 
     void Start()
     {
-        //Determine character and set up stats
-        if (myCharacter == Character.Grunt)
-        {
-
-        }
-        else if (myCharacter == Character.Runner)
-        {
-
-        }
-        else if (myCharacter == Character.Tank)
-        {
-
-        }
-        else if (myCharacter == Character.Scout)
-        {
-
-        }
         Canvas = GameObject.Find("Canvas2");
         startTrans = false;
         endTimer = 0;
         halo = (Behaviour)GetComponent("Halo");
         health = 100;
+        MaxHealth = 100;
         bulletSize = 1;
         lastLooking = transform.forward;
+        controller = GetComponent<CharacterController>();
     }
     void Update()
     {
         if (TutorialTextHints.curTutorialStep != 4)
         {
-            CharacterController controller = GetComponent<CharacterController>();
-            if (topDownView)
+            if (win == false)
             {
-                if (controller.isGrounded)
+
+                if (topDownView)
                 {
-                    if (Input.GetJoystickNames().Length != 0)
+                    if (controller.isGrounded)
                     {
-                        if (Input.GetAxis("360_HorizontalRightStick1") == 0 && Input.GetAxis("360_VerticalRightStick1") == 0)
+                        if (Input.GetJoystickNames().Length != 0)
                         {
-                            transform.forward = lastLooking;
+                            if (Input.GetAxis("360_HorizontalRightStick1") == 0 && Input.GetAxis("360_VerticalRightStick1") == 0)
+                            {
+                                transform.forward = lastLooking;
+                            }
+                            else
+                            {
+                                transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick1"), 0, Input.GetAxis("360_VerticalRightStick1"));
+                            }
+                            moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
+                            moveDirection *= speed;
                         }
                         else
                         {
-                            transform.forward = new Vector3(Input.GetAxis("360_HorizontalRightStick1"), 0, Input.GetAxis("360_VerticalRightStick1"));
+                            if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+                            {
+                                transform.forward = lastLooking;
+                            }
+                            else
+                            {
+                                transform.forward = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                            }
+                            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
+                            moveDirection *= speed;
                         }
-                        moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
-                        moveDirection *= speed;
+
                     }
-                    else
+                    lastLooking = transform.forward;
+                    moveDirection.y -= gravity * Time.deltaTime;
+                    controller.Move(moveDirection * Time.deltaTime);
+                }
+                else
+                {
+                    if (controller.isGrounded)
                     {
-                        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+                        if (Input.GetJoystickNames().Length != 0)
                         {
-                            transform.forward = lastLooking;
+                            transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("360_HorizontalRightStick1"));
+
+                            moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
+                            moveDirection = transform.TransformDirection(moveDirection);
+                            moveDirection *= speed;
                         }
                         else
                         {
-                            transform.forward = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                            transform.Rotate(transform.up, xSensitivity * Input.GetAxis("Horizontal"));
+                            if (Input.GetAxis("Vertical") == 0)
+                            {
+                                moveDirection = new Vector3(0, 0, Input.GetAxis("Vertical"));
+                            }
+                            else
+                            {
+                                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                            }
+                            moveDirection = transform.TransformDirection(moveDirection) + (transform.right * Input.GetAxis("Strafe1"));
+                            moveDirection *= speed;
                         }
-                        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
-                        moveDirection *= speed;
                     }
-
+                    moveDirection.y -= gravity * Time.deltaTime;
+                    controller.Move(moveDirection * Time.deltaTime);
                 }
-                lastLooking = transform.forward;
-                moveDirection.y -= gravity * Time.deltaTime;
-                controller.Move(moveDirection * Time.deltaTime);
-            }
-            else
-            {
-                if (controller.isGrounded)
+                if (isMelee == false)
                 {
-                    if (Input.GetJoystickNames().Length != 0)
+                    if (reloading)
                     {
-                        transform.Rotate(Vector3.up, xSensitivity * Input.GetAxis("360_HorizontalRightStick1"));
-
-                        moveDirection = new Vector3(Input.GetAxis("360_HorizontalLeftStick1"), 0, Input.GetAxis("360_VerticalLeftStick1"));
-                        moveDirection = transform.TransformDirection(moveDirection);
-                        moveDirection *= speed;
-                    }
-                    else
-                    {
-                        transform.Rotate(transform.up, xSensitivity * Input.GetAxis("Horizontal"));
-                        if (Input.GetAxis("Vertical") == 0)
+                        reloadTime -= Time.deltaTime;
+                        if (reloadTime < 0)
                         {
-                            moveDirection = new Vector3(0, 0, Input.GetAxis("Vertical"));
+                            reloadTime = 0.8f;
+                            reloading = false;
                         }
-                        else
+                    }
+
+                    /*if ((Input.GetAxis("Fire1") == 1) && bulletSize == 1 && reloading == false)
+                    {
+                        chargeTime -= Time.deltaTime;
+                        if (chargeTime < 0)
                         {
-                            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                            halo.enabled = true;
+                            bulletSize = 2;
+                            bulletSpeed -= 4;
                         }
-                        moveDirection = transform.TransformDirection(moveDirection) + (transform.right * Input.GetAxis("Strafe1"));
-                        moveDirection *= speed;
-                    }
-                }
-                moveDirection.y -= gravity * Time.deltaTime;
-                controller.Move(moveDirection * Time.deltaTime);
-            }
-            if (isMelee == false)
-            {
-                if (reloading)
-                {
-                    reloadTime -= Time.deltaTime;
-                    if (reloadTime < 0)
-                    {
-                        reloadTime = 0.8f;
-                        reloading = false;
-                    }
-                }
+                    }*/
 
-                /*if ((Input.GetAxis("Fire1") == 1) && bulletSize == 1 && reloading == false)
-                {
-                    chargeTime -= Time.deltaTime;
-                    if (chargeTime < 0)
-                    {
-                        halo.enabled = true;
-                        bulletSize = 2;
-                        bulletSpeed -= 4;
-                    }
-                }*/
-
-                if (win == false)
-                {
                     if (Input.GetJoystickNames().Length != 0)
                     {
                         if ((Input.GetAxis("360_RightTrigger1") == 1) && reloading == false)
@@ -199,21 +184,17 @@ public class PlayerControllerTutorial : MonoBehaviour
                         }
                     }
                 }
-            }
-            else
-            {
-                if (swinging)
+                else
                 {
-                    swingTimer -= Time.deltaTime;
-                    if (swingTimer < 0)
+                    if (swinging)
                     {
-                        swingTimer = 0.3f;
-                        swinging = false;
+                        swingTimer -= Time.deltaTime;
+                        if (swingTimer < 0)
+                        {
+                            swingTimer = 0.3f;
+                            swinging = false;
+                        }
                     }
-                }
-
-                if (win == false)
-                {
                     if (Input.GetAxis("360_RightTrigger1") == 1 && swinging == false)
                     {
                         GameObject sword = Instantiate(Sword, transform.position + this.transform.forward, transform.rotation) as GameObject;
@@ -224,17 +205,12 @@ public class PlayerControllerTutorial : MonoBehaviour
                 }
             }
 
-            healthPiece1.GetComponent<Image>().fillAmount = (float)((float)health / 200);
-            healthPiece2.GetComponent<Image>().fillAmount = (float)((float)health / 200);
-            healthPiece3.GetComponent<Image>().fillAmount = (float)((float)health / 200);
-            healthPiece4.GetComponent<Image>().fillAmount = (float)((float)health / 200);
-
-            if (health <= 30)
+            healthPieceGreen1.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
+            healthPieceGreen2.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
+            if ((float)((health * 2) / (MaxHealth * 3)) <= 0.16f)
             {
-                healthPiece1.GetComponent<Image>().color = Color.red;
-                healthPiece2.GetComponent<Image>().color = Color.red;
-                healthPiece3.GetComponent<Image>().color = Color.red;
-                healthPiece4.GetComponent<Image>().color = Color.red;
+                healthPieceGreen1.GetComponent<Image>().sprite = healthPieceRed;
+                healthPieceGreen2.GetComponent<Image>().sprite = healthPieceRed;
             }
             if (win == true)
             {

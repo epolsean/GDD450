@@ -388,6 +388,14 @@ public class EnemyAIForBattle : MonoBehaviour
         }
     }
 
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Laser" && other.GetComponent<LaserController>().shooting)
+        {
+            health -= Time.deltaTime;
+        }
+    }
+
     void ChooseNextTarget()
     {
         prevTarget = currentTarget;

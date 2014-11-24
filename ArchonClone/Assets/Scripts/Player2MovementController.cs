@@ -382,15 +382,18 @@ public class Player2MovementController : MonoBehaviour
         }
         if (win == true)
         {
-            /*if (!printStats)
+            /*if (!Application.isEditor)
             {
-                using (StreamWriter sw = new StreamWriter("Assets/WhoWins.txt", true))
+                if (!printStats)
                 {
-                    sw.WriteLine("Battle between .... " + MoveController.GetComponent<PawnMove>().Player02.name + " with " + MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health + " health  vs   " + enemyName + " with " + enemyStartHealth + " health");
-                    sw.WriteLine("Winner is " + MoveController.GetComponent<PawnMove>().Player02.name);
-                    sw.WriteLine("-------------------");
-                    UpdateStats();
-                    printStats = true;
+                    using (StreamWriter sw = new StreamWriter("Resources/WhoWins.txt", true))
+                    {
+                        sw.WriteLine("Battle between .... " + MoveController.GetComponent<PawnMove>().Player02.name + " with " + MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health + " health  vs   " + enemyName + " with " + enemyStartHealth + " health");
+                        sw.WriteLine("Winner is " + MoveController.GetComponent<PawnMove>().Player02.name);
+                        sw.WriteLine("-------------------");
+                        UpdateStats();
+                        printStats = true;
+                    }
                 }
             }*/
             //win = false; 
@@ -505,6 +508,14 @@ public class Player2MovementController : MonoBehaviour
                     shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
                 }
             }
+        }
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Laser" && other.GetComponent<LaserController>().shooting)
+        {
+            health -= Time.deltaTime;
         }
     }
 

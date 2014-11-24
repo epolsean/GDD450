@@ -37,11 +37,11 @@ public class TutorialTextHints : MonoBehaviour
         {
             if (Input.GetJoystickNames().Length != 0)
             {
-                GetComponent<Text>().text = "Press the right trigger to fire a bullet";
+                GetComponent<Text>().text = "Press the right trigger to attack. Some units are ranged and some are melee. Each unit has a different special that can be used with the left trigger. For this tutorial the special is disabled";
             }
             else
             {
-                GetComponent<Text>().text = "Press the 'Space bar' to fire a bullet";
+                GetComponent<Text>().text = "Press the 'Space bar' to attack. Some units are ranged and some are melee. Each unit has a different special that can be used with the 'F' key. For this tutorial the special is disabled";
             }
         }
         else if (curTutorialStep == 2)
@@ -63,7 +63,5 @@ public class TutorialTextHints : MonoBehaviour
         {
             transform.parent.gameObject.SetActive(false);
         }
-
-        
 	}
 }

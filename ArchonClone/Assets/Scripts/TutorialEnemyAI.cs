@@ -24,11 +24,9 @@ public class TutorialEnemyAI : MonoBehaviour
     public bool isMelee = false;
     public int bulletSpeed = 10;
 
-    public GameObject healthPiece1;
-    public GameObject healthPiece2;
-
-    public GameObject healthPiece3;
-    public GameObject healthPiece4;
+    public GameObject healthPieceGreen1;
+    public GameObject healthPieceGreen2;
+    public Sprite healthPieceRed;
 
     public bool swinging = false;
 
@@ -36,14 +34,16 @@ public class TutorialEnemyAI : MonoBehaviour
 
     public GameObject death;
 
-    int health;
+    float health;
+    float MaxHealth;
 
     public bool win = false;
 
     void Start()
     {
         currentTarget = target3.position;
-        health = 100;
+        health = 80;
+        MaxHealth = 80;
     }
 	
 	// Update is called once per frame
@@ -54,22 +54,19 @@ public class TutorialEnemyAI : MonoBehaviour
             Vector3 moveDirection = Vector3.Normalize(currentTarget - transform.position); // Get direction of current target
             GetComponent<CharacterController>().Move(moveDirection * speed * Time.deltaTime); //move towards target
 
-            healthPiece1.GetComponent<Image>().fillAmount = (float)((float)health / 200);
-            healthPiece2.GetComponent<Image>().fillAmount = (float)((float)health / 200);
-            healthPiece3.GetComponent<Image>().fillAmount = (float)((float)health / 200);
-            healthPiece4.GetComponent<Image>().fillAmount = (float)((float)health / 200);
+            healthPieceGreen1.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
+            healthPieceGreen2.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
 
-            if (health <= 55 && TutorialTextHints.curTutorialStep == 3)
+            if (health <= 40 && TutorialTextHints.curTutorialStep == 3)
             {
                 TutorialTextHints.curTutorialStep++;
             }
 
-            if (health <= 30)
+            
+            if ((float)((health * 2) / (MaxHealth * 3)) <= 0.16f)
             {
-                healthPiece1.GetComponent<Image>().color = Color.red;
-                healthPiece2.GetComponent<Image>().color = Color.red;
-                healthPiece3.GetComponent<Image>().color = Color.red;
-                healthPiece4.GetComponent<Image>().color = Color.red;
+                healthPieceGreen1.GetComponent<Image>().sprite = healthPieceRed;
+                healthPieceGreen2.GetComponent<Image>().sprite = healthPieceRed;
             }
             if (health <= 0 && win == false)
             {

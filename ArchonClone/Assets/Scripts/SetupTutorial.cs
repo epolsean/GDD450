@@ -6,11 +6,9 @@ public class SetupTutorial : MonoBehaviour
     public GameObject player1;
 
     public GameObject p1Health3rd;
-    public GameObject p1HealthTopDown1;
-    public GameObject p1HealthTopDown2;
+    public GameObject p1HealthTopDown;
     public GameObject p2Health3rd;
-    public GameObject p2HealthTopDown1;
-    public GameObject p2HealthTopDown2;
+    public GameObject p2HealthTopDown;
     public GameObject p2Text;
     public GameObject p1Text;
 
@@ -41,10 +39,8 @@ public class SetupTutorial : MonoBehaviour
 
         if (player1.GetComponent<PlayerControllerTutorial>().topDownView == false)
         {
-            p1HealthTopDown1.SetActive(false);
-            p1HealthTopDown2.SetActive(false);
-            p2HealthTopDown1.SetActive(false);
-            p2HealthTopDown2.SetActive(false);
+            p1HealthTopDown.SetActive(false);
+            p2HealthTopDown.SetActive(false);
 
             p1Health3rd.SetActive(true);
             p2Health3rd.SetActive(true);
@@ -53,10 +49,8 @@ public class SetupTutorial : MonoBehaviour
         }
         else
         {
-            p1HealthTopDown1.SetActive(true);
-            p1HealthTopDown2.SetActive(true);
-            p2HealthTopDown1.SetActive(true);
-            p2HealthTopDown2.SetActive(true);
+            p1HealthTopDown.SetActive(true);
+            p2HealthTopDown.SetActive(true);
 
             p1Health3rd.SetActive(false);
             p2Health3rd.SetActive(false);
