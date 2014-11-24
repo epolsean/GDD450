@@ -1,0 +1,156 @@
+fileFormatVersion: 2
+guid: 7cdcc4f69d9440746803d66a8785b61a
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: ammoBattery
+    100002: arm
+    100004: armRight
+    100006: ballJoint
+    100008: base
+    100010: extendingBarrel
+    100012: eye5
+    100014: eye6
+    100016: head
+    100018: head 1
+    100020: hoverRotation
+    100022: hoverSection
+    100024: neck
+    100026: neckAndHead
+    100028: nurbsToSubd1
+    100030: nurbsToSubd2
+    100032: nurbsToSubd3
+    100034: nurbsToSubd4
+    100036: rifle
+    100038: rifle 1
+    100040: scoutBody
+    100042: //RootNode
+    100044: torso
+    100046: tubes
+    400000: ammoBattery
+    400002: arm
+    400004: armRight
+    400006: ballJoint
+    400008: base
+    400010: extendingBarrel
+    400012: eye5
+    400014: eye6
+    400016: head
+    400018: head 1
+    400020: hoverRotation
+    400022: hoverSection
+    400024: neck
+    400026: neckAndHead
+    400028: nurbsToSubd1
+    400030: nurbsToSubd2
+    400032: nurbsToSubd3
+    400034: nurbsToSubd4
+    400036: rifle
+    400038: rifle 1
+    400040: scoutBody
+    400042: //RootNode
+    400044: torso
+    400046: tubes
+    2300000: ammoBattery
+    2300002: arm
+    2300004: ballJoint
+    2300006: base
+    2300008: extendingBarrel
+    2300010: eye5
+    2300012: eye6
+    2300014: head 1
+    2300016: hoverSection
+    2300018: neck
+    2300020: nurbsToSubd1
+    2300022: nurbsToSubd2
+    2300024: nurbsToSubd3
+    2300026: nurbsToSubd4
+    2300028: rifle 1
+    2300030: scoutBody
+    3300000: ammoBattery
+    3300002: arm
+    3300004: ballJoint
+    3300006: base
+    3300008: extendingBarrel
+    3300010: eye5
+    3300012: eye6
+    3300014: head 1
+    3300016: hoverSection
+    3300018: neck
+    3300020: nurbsToSubd1
+    3300022: nurbsToSubd2
+    3300024: nurbsToSubd3
+    3300026: nurbsToSubd4
+    3300028: rifle 1
+    3300030: scoutBody
+    4300000: scoutBody
+    4300002: neck
+    4300004: eye5
+    4300006: eye6
+    4300008: head
+    4300010: hoverSection
+    4300012: ballJoint
+    4300014: base
+    4300016: ammoBattery
+    4300018: arm
+    4300020: rifle
+    4300022: extendingBarrel
+    4300024: nurbsToSubd4
+    4300026: nurbsToSubd3
+    4300028: nurbsToSubd2
+    4300030: nurbsToSubd1
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1.5
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
