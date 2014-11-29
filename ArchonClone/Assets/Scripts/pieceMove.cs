@@ -16,6 +16,7 @@ public class pieceMove : MonoBehaviour {
     public GameObject MoveController;
     public Animator PieceAnim;
     public double MaxPieceMove;
+    public float MaxMove;
     public GameObject datTile;
     public GameObject datSprite; 
 
@@ -33,18 +34,22 @@ public class pieceMove : MonoBehaviour {
         if (name == "WhiteTank(Clone)" || name == "BlackTank(Clone)")
         {
             MaxPieceMove = 5 * 2;
+            MaxMove = 8;
         }
         else if (name == "WhiteGrunt(Clone)" || name == "BlackGrunt(Clone)")
         {
             MaxPieceMove = 5 * 2.75;
+            MaxMove = 11;
         }
         else if (name == "WhiteRunner(Clone)" || name == "BlackRunner(Clone)")
         {
             MaxPieceMove = 5 * 3.5;
+            MaxMove = 16;
         }
         else if (name == "WhiteScout(Clone)" || name == "BlackScout(Clone)")
         {
             MaxPieceMove = 5 * 2.75;
+            MaxMove = 11;
         }
 
         //assign pieces to their sprites

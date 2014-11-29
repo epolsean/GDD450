@@ -16,6 +16,8 @@ public class TileProperties : MonoBehaviour {
     public bool Occupied = false;
     public bool canPlace;
     public static bool pieceSelected = false;
+    public bool withinMove = false;
+    public GameObject[] AllTiles;
 
     public Animator PieceAnim;
 
@@ -41,6 +43,7 @@ public class TileProperties : MonoBehaviour {
                 PieceAnim = UnitOnTile.GetComponentInChildren<Animator>();
             }
         }
+        AllTiles = GameObject.FindGameObjectsWithTag("WhiteTile");
 	}
 	
 	// Update is called once per frame
@@ -343,13 +346,16 @@ public class TileProperties : MonoBehaviour {
         {
             GameObject.Find("SpecialText").GetComponent<Text>().text = "";
         }
-        if(this.tag == "WhiteTile")
+        if(this.tag == "WhiteTile" || this.tag == "BlackTile")
         {
-            renderer.material.color = Color.white;
-        }
-        if (this.tag == "BlackTile")
-        {
-            renderer.material.color = Color.black;
+            if (withinMove == false)
+            {
+                renderer.material.color = Color.white;
+            }
+            else
+            {
+                renderer.material.color = Color.cyan;
+            }
         }
         canPlace = false;
         //UnitMoveController.GetComponent<PawnMove>().MoveToTile = null;
@@ -383,6 +389,7 @@ public class TileProperties : MonoBehaviour {
     }
     void SetTarget()
     {
+        resetTilesToBaseColor();
         TileProperties.pieceSelected = false; 
         UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.SetActive(true);
         GridManager.rescan = true;
@@ -444,7 +451,34 @@ public class TileProperties : MonoBehaviour {
             {
                 GridManager.rescan = true;
             }
+            highlightTilesWithinRange();
+
         }
+    }
+
+    public void resetTilesToBaseColor()
+    {
+        for (int i = 0; i < AllTiles.Length; i++)
+        {
+            AllTiles[i].GetComponent<TileProperties>().withinMove = false;
+            AllTiles[i].renderer.material.color = Color.white;
+        }
+    }
+
+    public void highlightTilesWithinRange()
+    {
+        resetTilesToBaseColor();
+        Collider[] TilesWithinRange = Physics.OverlapSphere(this.transform.position, UnitOnTile.GetComponent<pieceMove>().MaxMove);
+        for(int i = 0; i<TilesWithinRange.Length; i++)
+        {
+            if(TilesWithinRange[i].tag == "WhiteTile")
+            {
+                TilesWithinRange[i].GetComponent<TileProperties>().withinMove = true;
+                TilesWithinRange[i].renderer.material.color = Color.cyan;
+            }
+        }
+        withinMove = false;
+        this.renderer.material.color = Color.white; 
     }
 
     public void MouseDownCall()

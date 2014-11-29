@@ -10,6 +10,7 @@ public class PawnMove : MonoBehaviour {
     public GameObject Player01;
     public GameObject Player02;
     public double MaxMove;
+    public float MoveRange;
 
     public GameObject StatPan;
     public GameObject BlackGruntPan;
@@ -39,18 +40,22 @@ public class PawnMove : MonoBehaviour {
             if (SelectedPiece.name == "WhiteTank(Clone)" || SelectedPiece.name == "BlackTank(Clone)")
             {
                 MaxMove = 5 * 2;
+                MoveRange = 8;
             }
             else if(SelectedPiece.name == "WhiteGrunt(Clone)"|| SelectedPiece.name == "BlackGrunt(Clone)")
             {
                 MaxMove = 5 * 2.75;
+                MoveRange = 11;
             }
-            else if(SelectedPiece.name == "WhiteRunner(Clone)" || SelectedPiece.name == "BlackRunner(Clone)")
+            else if (SelectedPiece.name == "WhiteRunner(Clone)" || SelectedPiece.name == "BlackRunner(Clone)")
             {
-                MaxMove = 5 * 3.5; 
+                MaxMove = 5 * 3.5;
+                MoveRange = 16;
             }
             else if(SelectedPiece.name == "WhiteScout(Clone)" || SelectedPiece.name == "BlackScout(Clone)")
             {
                 MaxMove = 5 * 2.75;
+                MoveRange = 11;
             }
                 
         }

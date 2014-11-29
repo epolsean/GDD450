@@ -155,10 +155,10 @@ public class EnemyAI : MonoBehaviour {
         Collider[] TilesWithinRange = Physics.OverlapSphere(AIPiece.transform.position, 3);
         int pieceIndex = 0;
         Debug.Log("ObjectWithinRange length: " + TilesWithinRange.Length);
-        for (int i = 0; i < TilesWithinRange.Length; i++)
+        /*for (int i = 0; i < TilesWithinRange.Length; i++)
         {
             Debug.Log("[" + i + "] name: " + TilesWithinRange[i].name);
-        }
+        }*/
 
             do
             {
