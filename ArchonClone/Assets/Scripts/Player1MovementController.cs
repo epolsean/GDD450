@@ -47,10 +47,11 @@ public class Player1MovementController : MonoBehaviour
     public Camera camEnemy;
 
     public float specialTimer = 5.0f;
-    bool specialAvailable = false;
+    bool specialAvailable = true;
     public bool usingShield = false;
     float shieldPower = 100f;
     bool shieldOverheat = false;
+    bool boost = false;
 
     GameObject enemy;
 
@@ -153,7 +154,7 @@ public class Player1MovementController : MonoBehaviour
         healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
         enemyName = MoveController.GetComponent<PawnMove>().Player02.name;
         enemyStartHealth = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health;
-        Debug.Log("Player 1 damage and speed  : " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage +"  "+ MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement);
+        Debug.Log("Player 1 damage and speed  : " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage + "  " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement);
         Debug.Log("Player 2 damage and speed  : " + MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage + "  " + MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement);
 
     }
@@ -360,7 +361,7 @@ public class Player1MovementController : MonoBehaviour
                         }
                         else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteScout(Clone)" && win == false)
                         {
-                            RobotScoutSpecial();
+                            //RobotScoutSpecial();
                         }
                         else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteRunner(Clone)" && win == false)
                         {
@@ -376,7 +377,7 @@ public class Player1MovementController : MonoBehaviour
                         }
                         else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackScout(Clone)" && win == false)
                         {
-                            AlienScoutSpecial();
+                            //AlienScoutSpecial();
                         }
                         else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackRunner(Clone)" && win == false)
                         {
@@ -398,7 +399,7 @@ public class Player1MovementController : MonoBehaviour
                         }
                         else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteScout(Clone)" && win == false)
                         {
-                            RobotScoutSpecial();
+                            //RobotScoutSpecial();
                         }
                         else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteRunner(Clone)" && win == false)
                         {
@@ -414,7 +415,7 @@ public class Player1MovementController : MonoBehaviour
                         }
                         else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackScout(Clone)" && win == false)
                         {
-                            AlienScoutSpecial();
+                            //AlienScoutSpecial();
                         }
                         else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackRunner(Clone)" && win == false)
                         {
@@ -610,10 +611,14 @@ public class Player1MovementController : MonoBehaviour
         {
             special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
+        else
+        {
+            shieldPower = 0.001f;
+        }
         Behaviour h = (Behaviour)GetComponent("Halo");
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
-            shieldPower += Time.deltaTime;
+            shieldPower += Time.deltaTime * 4;
             if (shieldPower > 100)
             {
                 shieldPower = 100;
@@ -622,7 +627,7 @@ public class Player1MovementController : MonoBehaviour
         }
         else if (usingShield)
         {
-            shieldPower -= Time.deltaTime * 5;
+            shieldPower -= Time.deltaTime * 10;
             if (shieldPower <= 1)
             {
                 shieldOverheat = true;
@@ -666,31 +671,25 @@ public class Player1MovementController : MonoBehaviour
             }
         }
     }
-    void RobotScoutSpecial()
+
+    /*void RobotScoutSpecial()
     {
         if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
         {
             if (Input.GetAxis("360_LeftTrigger1") == 1)
             {
-                usingShield = true;
-            }
-            else
-            {
-                usingShield = false;
+                
             }
         }
         else
         {
             if (Input.GetAxis("Special1") == 1)
             {
-                usingShield = true;
-            }
-            else
-            {
-                usingShield = false;
+                
             }
         }
-    }
+    }*/
+
     void RobotTankSpecial()
     {
         if (specialAvailable == false)
@@ -698,8 +697,8 @@ public class Player1MovementController : MonoBehaviour
             specialTimer -= Time.deltaTime;
             if (specialTimer < 0)
             {
-                specialTimer = 5.0f;
-                special.GetComponent<Image>().fillAmount = 1;
+                specialTimer = 10.0f;
+                special.GetComponent<Image>().fillAmount = 1.0f;
                 specialAvailable = true;
             }
         }
@@ -715,7 +714,7 @@ public class Player1MovementController : MonoBehaviour
                 Destroy(missileClone.gameObject, 20);
                 audio.Play();
                 audio.Play();
-                special.GetComponent<Image>().fillAmount = 0;
+                special.GetComponent<Image>().fillAmount = 0.001f;
                 specialAvailable = false;
             }
         }
@@ -731,14 +730,61 @@ public class Player1MovementController : MonoBehaviour
                 Destroy(missileClone.gameObject, 20);
                 audio.Play();
                 audio.Play();
-                special.GetComponent<Image>().fillAmount = 0;
+                special.GetComponent<Image>().fillAmount = 0.001f;
                 specialAvailable = false;
             }
         }
     }
+
     void RobotRunnerSpecial()
     {
-
+        if (specialAvailable)
+        {
+            if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
+            {
+                if (Input.GetAxis("360_LeftTrigger1") == 1)
+                {
+                    if (moveDirection.magnitude != 0)
+                    {
+                        controller.Move(moveDirection * 3);
+                    }
+                    else
+                    {
+                        controller.Move(lastLooking * 3);
+                    }
+                    boost = true;
+                    specialAvailable = false;
+                    special.GetComponent<Image>().fillAmount = 0.001f;
+                }
+            }
+            else
+            {
+                if (Input.GetAxis("Special1") == 1)
+                {
+                    if (moveDirection.magnitude != 0)
+                    {
+                        controller.Move(moveDirection * 3);
+                    }
+                    else
+                    {
+                        controller.Move(lastLooking * 3);
+                    }
+                    boost = true;
+                    specialAvailable = false;
+                    special.GetComponent<Image>().fillAmount = 0.001f;
+                }
+            }
+        }
+        else
+        {
+            specialTimer -= Time.deltaTime;
+            if (specialTimer < 0)
+            {
+                specialTimer = 8.0f;
+                special.GetComponent<Image>().fillAmount = 1.0f;
+                specialAvailable = true;
+            }
+        }
     }
 
     void AlienGruntSpecial()
@@ -747,10 +793,14 @@ public class Player1MovementController : MonoBehaviour
         {
             special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
+        else
+        {
+            shieldPower = 0.001f;
+        }
         Behaviour h = (Behaviour)GetComponent("Halo");
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
-            shieldPower += Time.deltaTime;
+            shieldPower += Time.deltaTime * 4;
             if (shieldPower > 100)
             {
                 shieldPower = 100;
@@ -759,7 +809,7 @@ public class Player1MovementController : MonoBehaviour
         }
         else if (usingShield)
         {
-            shieldPower -= Time.deltaTime * 5;
+            shieldPower -= Time.deltaTime * 10;
             if (shieldPower <= 1)
             {
                 shieldOverheat = true;
@@ -800,10 +850,25 @@ public class Player1MovementController : MonoBehaviour
             }
         }
     }
-    void AlienScoutSpecial()
-    {
 
-    }
+    /*void AlienScoutSpecial()
+    {
+        if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
+        {
+            if (Input.GetAxis("360_LeftTrigger1") == 1)
+            {
+
+            }
+        }
+        else
+        {
+            if (Input.GetAxis("Special1") == 1)
+            {
+
+            }
+        }
+    }*/
+
     void AlienTankSpecial()
     {
         if (specialAvailable == false)
@@ -811,8 +876,8 @@ public class Player1MovementController : MonoBehaviour
             specialTimer -= Time.deltaTime;
             if (specialTimer < 0)
             {
-                specialTimer = 5.0f;
-                special.GetComponent<Image>().fillAmount = 1;
+                specialTimer = 10.0f;
+                special.GetComponent<Image>().fillAmount = 1.0f;
                 specialAvailable = true;
             }
         }
@@ -828,7 +893,7 @@ public class Player1MovementController : MonoBehaviour
                 Destroy(missileClone.gameObject, 20);
                 audio.Play();
                 audio.Play();
-                special.GetComponent<Image>().fillAmount = 0;
+                special.GetComponent<Image>().fillAmount = 0.001f;
                 specialAvailable = false;
             }
         }
@@ -844,14 +909,62 @@ public class Player1MovementController : MonoBehaviour
                 Destroy(missileClone.gameObject, 20);
                 audio.Play();
                 audio.Play();
-                special.GetComponent<Image>().fillAmount = 0;
+                special.GetComponent<Image>().fillAmount = 0.001f;
                 specialAvailable = false;
             }
         }
     }
     void AlienRunnerSpecial()
     {
-
+        if (specialAvailable)
+        {
+            Debug.Log("PLayer 1 alien runner can use special");
+            if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
+            {
+                if (Input.GetAxis("360_LeftTrigger1") == 1)
+                {
+                    if (moveDirection.magnitude != 0)
+                    {
+                        controller.Move(moveDirection * 3);
+                    }
+                    else
+                    {
+                        controller.Move(lastLooking * 3);
+                    }
+                    boost = true;
+                    specialAvailable = false;
+                    special.GetComponent<Image>().fillAmount = 0.001f;
+                }
+            }
+            else
+            {
+                if (Input.GetAxis("Special1") == 1)
+                {
+                    Debug.Log("PLayer 1 alien runner use boost");
+                    if (moveDirection.magnitude != 0)
+                    {
+                        controller.Move(moveDirection * 3);
+                    }
+                    else
+                    {
+                        controller.Move(lastLooking * 3);
+                    }
+                    boost = true;
+                    specialAvailable = false;
+                    special.GetComponent<Image>().fillAmount = 0.001f;
+                }
+            }
+        }
+        else
+        {
+            specialTimer -= Time.deltaTime;
+            if (specialTimer < 0)
+            {
+                specialTimer = 8.0f;
+                special.GetComponent<Image>().fillAmount = 1.0f;
+                specialAvailable = true;
+            }
+        }
     }
 
     void UpdateStats()

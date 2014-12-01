@@ -46,6 +46,7 @@ public class EnemyAIForBattle : MonoBehaviour
     public bool usingShield = false;
     float shieldPower = 100f;
     bool shieldOverheat = false;
+    bool boost = false;
 
     Player1MovementController enemyController;
 
@@ -61,6 +62,10 @@ public class EnemyAIForBattle : MonoBehaviour
 
     public bool isAlien;
     GameObject enemy;
+
+    string enemyName;
+    int enemyStartHealth;
+    bool printStats = false;
 
     void Start()
     {
@@ -129,6 +134,8 @@ public class EnemyAIForBattle : MonoBehaviour
             isAlien = true;
         }
         healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
+        enemyName = MoveController.GetComponent<PawnMove>().Player01.name;
+        enemyStartHealth = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health;
     }
 
     // Update is called once per frame
@@ -226,7 +233,7 @@ public class EnemyAIForBattle : MonoBehaviour
                     }
                     else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteScout(Clone)" && win == false && enemyController.win == false)
                     {
-                        RobotScoutSpecial();
+                        //RobotScoutSpecial();
                     }
                     else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteRunner(Clone)" && win == false && enemyController.win == false)
                     {
@@ -242,7 +249,7 @@ public class EnemyAIForBattle : MonoBehaviour
                     }
                     else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)" && win == false && enemyController.win == false)
                     {
-                        AlienScoutSpecial();
+                        //AlienScoutSpecial();
                     }
                     else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)" && win == false && enemyController.win == false)
                     {
@@ -278,6 +285,22 @@ public class EnemyAIForBattle : MonoBehaviour
         }
         if (win == true)
         {
+            /*if (!Application.isEditor)
+            {
+                if (!printStats)
+                {
+                    path = Application.dataPath;
+                    path += "Resources/WhoWins.txt";
+                    using (StreamWriter sw = new StreamWriter(path, true))
+                    {
+                        sw.WriteLine("Battle between .... " + MoveController.GetComponent<PawnMove>().Player02.name + " with " + MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health + " health  vs   " + enemyName + " with " + enemyStartHealth + " health");
+                        sw.WriteLine("Winner is " + MoveController.GetComponent<PawnMove>().Player02.name);
+                        sw.WriteLine("-------------------");
+                        UpdateStats();
+                        printStats = true;
+                    }
+                }
+            }*/
             if (endTimer <= 3)
             {
                 endTimer += Time.deltaTime;
@@ -411,10 +434,15 @@ public class EnemyAIForBattle : MonoBehaviour
         {
             special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
+        else
+        {
+            shieldPower = 0.001f;
+        }
         Behaviour h = (Behaviour)GetComponent("Halo");
+        //Debug.Log("shield power : " + shieldPower);
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
-            shieldPower += Time.deltaTime;
+            shieldPower += Time.deltaTime * 4;
             if (shieldPower > 100)
             {
                 shieldPower = 100;
@@ -423,7 +451,7 @@ public class EnemyAIForBattle : MonoBehaviour
         }
         else if (usingShield)
         {
-            shieldPower -= Time.deltaTime * 5;
+            shieldPower -= Time.deltaTime * 10;
             if (shieldPower <= 1)
             {
                 shieldOverheat = true;
@@ -443,41 +471,52 @@ public class EnemyAIForBattle : MonoBehaviour
 
         if (shieldPower >= 1 && !shieldOverheat)
         {
-            if (Input.GetAxis("360_LeftTrigger2") == 1)
+            if (Input.GetJoystickNames().Length == 2) // If there is a controller connected
             {
-                usingShield = true;
+                if (Input.GetAxis("360_LeftTrigger2") == 1)
+                {
+                    usingShield = true;
+                }
+                else
+                {
+                    usingShield = false;
+                }
             }
             else
             {
-                usingShield = false;
+                if (Input.GetAxis("Special2") == 1)
+                {
+                    usingShield = true;
+                }
+                else
+                {
+                    usingShield = false;
+                }
             }
         }
     }
-    void RobotScoutSpecial()
+
+    /*void RobotScoutSpecial()
     {
-        if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
+        if (specialAvailable)
         {
-            if (Input.GetAxis("360_LeftTrigger2") == 1)
+            if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
             {
-                usingShield = true;
+                if (Input.GetAxis("360_LeftTrigger1") == 1)
+                {
+
+                }
             }
             else
             {
-                usingShield = false;
+                if (Input.GetAxis("Special1") == 1)
+                {
+
+                }
             }
         }
-        else
-        {
-            if (Input.GetAxis("Special2") == 1)
-            {
-                usingShield = true;
-            }
-            else
-            {
-                usingShield = false;
-            }
-        }
-    }
+    }*/
+
     void RobotTankSpecial()
     {
         if (specialAvailable == false)
@@ -485,12 +524,12 @@ public class EnemyAIForBattle : MonoBehaviour
             specialTimer -= Time.deltaTime;
             if (specialTimer < 0)
             {
-                specialTimer = 5.0f;
-                special.GetComponent<Image>().fillAmount = 1;
+                specialTimer = 10.0f;
+                special.GetComponent<Image>().fillAmount = 1.0f;
                 specialAvailable = true;
             }
         }
-        if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
+        if (Input.GetJoystickNames().Length == 2) // If there is a controller connected
         {
             if (Input.GetAxis("360_LeftTrigger2") == 1 && specialAvailable)
             {
@@ -502,7 +541,7 @@ public class EnemyAIForBattle : MonoBehaviour
                 Destroy(missileClone.gameObject, 20);
                 audio.Play();
                 audio.Play();
-                special.GetComponent<Image>().fillAmount = 0;
+                special.GetComponent<Image>().fillAmount = 0.001f;
                 specialAvailable = false;
             }
         }
@@ -518,14 +557,61 @@ public class EnemyAIForBattle : MonoBehaviour
                 Destroy(missileClone.gameObject, 20);
                 audio.Play();
                 audio.Play();
-                special.GetComponent<Image>().fillAmount = 0;
+                special.GetComponent<Image>().fillAmount = 0.001f;
                 specialAvailable = false;
             }
         }
     }
+
     void RobotRunnerSpecial()
     {
-
+        if (specialAvailable)
+        {
+            if (Input.GetJoystickNames().Length == 2) // If there is a controller connected
+            {
+                if (Input.GetAxis("360_LeftTrigger2") == 1)
+                {
+                    if (controller.velocity.magnitude != 0)
+                    {
+                        controller.Move(controller.velocity * 3);
+                    }
+                    else
+                    {
+                        controller.Move(controller.velocity * 3);
+                    }
+                    boost = true;
+                    specialAvailable = false;
+                    special.GetComponent<Image>().fillAmount = 0.001f;
+                }
+            }
+            else
+            {
+                if (Input.GetAxis("Special2") == 1)
+                {
+                    if (controller.velocity.magnitude != 0)
+                    {
+                        controller.Move(controller.velocity * 3);
+                    }
+                    else
+                    {
+                        controller.Move(controller.velocity * 3);
+                    }
+                    boost = true;
+                    specialAvailable = false;
+                    special.GetComponent<Image>().fillAmount = 0.001f;
+                }
+            }
+        }
+        else
+        {
+            specialTimer -= Time.deltaTime;
+            if (specialTimer < 0)
+            {
+                specialTimer = 8.0f;
+                special.GetComponent<Image>().fillAmount = 1.0f;
+                specialAvailable = true;
+            }
+        }
     }
 
     void AlienGruntSpecial()
@@ -534,10 +620,16 @@ public class EnemyAIForBattle : MonoBehaviour
         {
             special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
+        else
+        {
+            shieldPower = 0.001f;
+        }
+
         Behaviour h = (Behaviour)GetComponent("Halo");
+        //Debug.Log("shield power : " + shieldPower);
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
-            shieldPower += Time.deltaTime;
+            shieldPower += Time.deltaTime * 4;
             if (shieldPower > 100)
             {
                 shieldPower = 100;
@@ -546,7 +638,7 @@ public class EnemyAIForBattle : MonoBehaviour
         }
         else if (usingShield)
         {
-            shieldPower -= Time.deltaTime * 5;
+            shieldPower -= Time.deltaTime * 10;
             if (shieldPower <= 1)
             {
                 shieldOverheat = true;
@@ -564,33 +656,54 @@ public class EnemyAIForBattle : MonoBehaviour
             }
         }
 
-        if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
+        if (shieldPower >= 1 && !shieldOverheat)
         {
-            if (Input.GetAxis("360_LeftTrigger2") == 1)
+            if (Input.GetJoystickNames().Length == 2) // If there is a controller connected
             {
-                usingShield = true;
+                if (Input.GetAxis("360_LeftTrigger2") == 1)
+                {
+                    usingShield = true;
+                }
+                else
+                {
+                    usingShield = false;
+                }
             }
             else
             {
-                usingShield = false;
-            }
-        }
-        else
-        {
-            if (Input.GetAxis("Special2") == 1)
-            {
-                usingShield = true;
-            }
-            else
-            {
-                usingShield = false;
+                if (Input.GetAxis("Special2") == 1)
+                {
+                    usingShield = true;
+                }
+                else
+                {
+                    usingShield = false;
+                }
             }
         }
     }
-    void AlienScoutSpecial()
-    {
 
-    }
+    /*void AlienScoutSpecial()
+    {
+        if (specialAvailable)
+        {
+            if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
+            {
+                if (Input.GetAxis("360_LeftTrigger1") == 1)
+                {
+
+                }
+            }
+            else
+            {
+                if (Input.GetAxis("Special1") == 1)
+                {
+
+                }
+            }
+        }
+    }*/
+
     void AlienTankSpecial()
     {
         if (specialAvailable == false)
@@ -598,8 +711,8 @@ public class EnemyAIForBattle : MonoBehaviour
             specialTimer -= Time.deltaTime;
             if (specialTimer < 0)
             {
-                specialTimer = 5.0f;
-                special.GetComponent<Image>().fillAmount = 1;
+                specialTimer = 10.0f;
+                special.GetComponent<Image>().fillAmount = 1.0f;
                 specialAvailable = true;
             }
         }
@@ -615,29 +728,216 @@ public class EnemyAIForBattle : MonoBehaviour
                 Destroy(missileClone.gameObject, 20);
                 audio.Play();
                 audio.Play();
-                special.GetComponent<Image>().fillAmount = 0;
-                specialAvailable = false;
-            }
-        }
-        else
-        {
-            if (Input.GetAxis("Special2") == 1 && specialAvailable)
-            {
-                Rigidbody missileClone = Instantiate(alienMissile, transform.position + (1.2f * bulletSize * this.transform.forward) + (1.2f * this.transform.up), transform.rotation) as Rigidbody;
-                missileClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                missileClone.GetComponent<TargetEnemy>().target = enemy.gameObject;
-                missileClone.rigidbody.useGravity = false;
-                missileClone.velocity = transform.TransformDirection(Vector3.forward * 0.75f * bulletSpeed);
-                Destroy(missileClone.gameObject, 20);
-                audio.Play();
-                audio.Play();
-                special.GetComponent<Image>().fillAmount = 0;
+                special.GetComponent<Image>().fillAmount = 0.001f;
                 specialAvailable = false;
             }
         }
     }
+
     void AlienRunnerSpecial()
     {
+        if (specialAvailable)
+        {
+            if (Input.GetJoystickNames().Length == 2) // If there is a controller connected
+            {
+                if (Input.GetAxis("360_LeftTrigger2") == 1)
+                {
+                    if (controller.velocity.magnitude != 0)
+                    {
+                        controller.Move(controller.velocity * 3);
+                    }
+                    else
+                    {
+                        controller.Move(controller.velocity * 3);
+                    }
+                    boost = true;
+                    specialAvailable = false;
+                    special.GetComponent<Image>().fillAmount = 0.001f;
+                }
+            }
+            else
+            {
+                if (Input.GetAxis("Special2") == 1)
+                {
+                    if (controller.velocity.magnitude != 0)
+                    {
+                        controller.Move(controller.velocity * 3);
+                    }
+                    else
+                    {
+                        controller.Move(controller.velocity * 3);
+                    }
+                    boost = true;
+                    specialAvailable = false;
+                    special.GetComponent<Image>().fillAmount = 0.001f;
+                }
+            }
+        }
+        else
+        {
+            specialTimer -= Time.deltaTime;
+            if (specialTimer < 0)
+            {
+                specialTimer = 8.0f;
+                special.GetComponent<Image>().fillAmount = 1.0f;
+                specialAvailable = true;
+            }
+        }
+    }
 
+    void UpdateStats()
+    {
+        if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteGrunt(Clone)")
+        {
+            if (enemyName == "BlackGrunt(Clone)")
+            {
+                BattleStats.RobotGruntWinsVSAlienGrunt++;
+            }
+            else if (enemyName == "BlackTank(Clone)")
+            {
+                BattleStats.RobotGruntWinsVSAlienTank++;
+            }
+            else if (enemyName == "BlackScout(Clone)")
+            {
+                BattleStats.RobotGruntWinsVSAlienScout++;
+            }
+            else if (enemyName == "BlackRunner(Clone)")
+            {
+                BattleStats.RobotGruntWinsVSAlienRunner++;
+            }
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)")
+        {
+            if (enemyName == "BlackGrunt(Clone)")
+            {
+                BattleStats.RobotTankWinsVSAlienGrunt++;
+            }
+            else if (enemyName == "BlackTank(Clone)")
+            {
+                BattleStats.RobotTankWinsVSAlienTank++;
+            }
+            else if (enemyName == "BlackScout(Clone)")
+            {
+                BattleStats.RobotTankWinsVSAlienScout++;
+            }
+            else if (enemyName == "BlackRunner(Clone)")
+            {
+                BattleStats.RobotTankWinsVSAlienRunner++;
+            }
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteScout(Clone)")
+        {
+            if (enemyName == "BlackGrunt(Clone)")
+            {
+                BattleStats.RobotScoutWinsVSAlienGrunt++;
+            }
+            else if (enemyName == "BlackTank(Clone)")
+            {
+                BattleStats.RobotScoutWinsVSAlienTank++;
+            }
+            else if (enemyName == "BlackScout(Clone)")
+            {
+                BattleStats.RobotScoutWinsVSAlienScout++;
+            }
+            else if (enemyName == "BlackRunner(Clone)")
+            {
+                BattleStats.RobotScoutWinsVSAlienRunner++;
+            }
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteRunner(Clone)")
+        {
+            if (enemyName == "BlackGrunt(Clone)")
+            {
+                BattleStats.RobotRunnerWinsVSAlienGrunt++;
+            }
+            else if (enemyName == "BlackTank(Clone)")
+            {
+                BattleStats.RobotRunnerWinsVSAlienTank++;
+            }
+            else if (enemyName == "BlackScout(Clone)")
+            {
+                BattleStats.RobotRunnerWinsVSAlienScout++;
+            }
+            else if (enemyName == "BlackRunner(Clone)")
+            {
+                BattleStats.RobotRunnerWinsVSAlienRunner++;
+            }
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)")
+        {
+            if (enemyName == "WhiteGrunt(Clone)")
+            {
+                BattleStats.AlienGruntWinsVSRobotGrunt++;
+            }
+            else if (enemyName == "WhiteTank(Clone)")
+            {
+                BattleStats.AlienGruntWinsVSRobotTank++;
+            }
+            else if (enemyName == "WhiteScout(Clone)")
+            {
+                BattleStats.AlienGruntWinsVSRobotScout++;
+            }
+            else if (enemyName == "WhiteRunner(Clone)")
+            {
+                BattleStats.AlienGruntWinsVSRobotRunner++;
+            }
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackTank(Clone)")
+        {
+            if (enemyName == "WhiteGrunt(Clone)")
+            {
+                BattleStats.AlienTankWinsVSRobotGrunt++;
+            }
+            else if (enemyName == "WhiteTank(Clone)")
+            {
+                BattleStats.AlienTankWinsVSRobotTank++;
+            }
+            else if (enemyName == "WhiteScout(Clone)")
+            {
+                BattleStats.AlienTankWinsVSRobotScout++;
+            }
+            else if (enemyName == "WhiteRunner(Clone)")
+            {
+                BattleStats.AlienTankWinsVSRobotRunner++;
+            }
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)")
+        {
+            if (enemyName == "WhiteGrunt(Clone)")
+            {
+                BattleStats.AlienScoutWinsVSRobotGrunt++;
+            }
+            else if (enemyName == "WhiteTank(Clone)")
+            {
+                BattleStats.AlienScoutWinsVSRobotTank++;
+            }
+            else if (enemyName == "WhiteScout(Clone)")
+            {
+                BattleStats.AlienScoutWinsVSRobotScout++;
+            }
+            else if (enemyName == "WhiteRunner(Clone)")
+            {
+                BattleStats.AlienScoutWinsVSRobotRunner++;
+            }
+        }
+        else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)")
+        {
+            if (enemyName == "WhiteGrunt(Clone)")
+            {
+                BattleStats.AlienRunnerWinsVSRobotGrunt++;
+            }
+            else if (enemyName == "WhiteTank(Clone)")
+            {
+                BattleStats.AlienRunnerWinsVSRobotTank++;
+            }
+            else if (enemyName == "WhiteScout(Clone)")
+            {
+                BattleStats.AlienRunnerWinsVSRobotScout++;
+            }
+            else if (enemyName == "WhiteRunner(Clone)")
+            {
+                BattleStats.AlienRunnerWinsVSRobotRunner++;
+            }
+        }
     }
 }

@@ -223,7 +223,7 @@ public class EnemyAI : MonoBehaviour {
             SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().UnitOnTile = SelectedPiece;
             TargetPiece.GetComponent<TileProperties>().datNode.SetActive(false);
         }
-        else if (TargetPiece.tag == "White" || TargetPiece.tag == "Black") ;
+        else if (TargetPiece.tag == "White" || TargetPiece.tag == "Black")
         {
             if(AITargetPlayerP != null)
             {

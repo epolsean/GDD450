@@ -21,17 +21,23 @@ public class NetworkLevelLoader : MonoBehaviour {
     {
         if (!Network.isClient && !Network.isServer)
         {
-            GameObject p1 = (GameObject)Instantiate(player1, spawn1.transform.position, spawn1.transform.rotation);
+            GameObject p1 = (GameObject)Instantiate(player1);
+            p1.transform.position = spawn1.transform.position;
+            p1.transform.rotation = spawn1.transform.rotation;
             p1.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
 
             if (BattleStats.singlePlayer)
             {
-                GameObject p2 = (GameObject)Instantiate(EnemyAI, spawn2.transform.position, spawn2.transform.rotation);
+                GameObject p2 = (GameObject)Instantiate(EnemyAI);
+                p2.transform.position = spawn2.transform.position;
+                p2.transform.rotation = spawn2.transform.rotation;
                 p2.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
             }
             else
             {
-                GameObject p2 = (GameObject)Instantiate(player2, spawn2.transform.position, spawn2.transform.rotation);
+                GameObject p2 = (GameObject)Instantiate(player2);
+                p2.transform.position = spawn2.transform.position;
+                p2.transform.rotation = spawn2.transform.rotation;
                 p2.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
             }
         }
