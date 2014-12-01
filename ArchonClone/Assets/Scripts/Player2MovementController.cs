@@ -65,6 +65,9 @@ public class Player2MovementController : MonoBehaviour
 
     public bool isAlien;
 
+    public GameObject myCanvas;
+    Quaternion canvasRotation;
+
     float endTimer;
 
     string enemyName;
@@ -73,6 +76,8 @@ public class Player2MovementController : MonoBehaviour
 
     void Start()
     {
+        canvasRotation = new Quaternion(-1, 0, 0, 1);
+        myCanvas.transform.rotation = canvasRotation;
         printStats = false;
         enemy = GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>();
         MoveController = GameObject.Find("MovementController");
@@ -321,6 +326,7 @@ public class Player2MovementController : MonoBehaviour
                         }
                     }
                 }
+                myCanvas.transform.rotation = canvasRotation;
                 if (enemy.GetComponent<Player1MovementController>().win == false)
                 {
                     if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)" && win == false && enemy.win == false)
@@ -671,34 +677,26 @@ public class Player2MovementController : MonoBehaviour
             {
                 if (Input.GetAxis("360_LeftTrigger2") == 1)
                 {
-                    if (moveDirection.magnitude != 0)
+                    if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(moveDirection * 3);
+                        boost = true;
+                        specialAvailable = false;
+                        special.GetComponent<Image>().fillAmount = 0.001f;
                     }
-                    else
-                    {
-                        controller.Move(lastLooking * 3);
-                    }
-                    boost = true;
-                    specialAvailable = false;
-                    special.GetComponent<Image>().fillAmount = 0.001f;
                 }
             }
             else
             {
                 if (Input.GetAxis("Special2") == 1)
                 {
-                    if (moveDirection.magnitude != 0)
+                    if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(moveDirection * 3);
+                        boost = true;
+                        specialAvailable = false;
+                        special.GetComponent<Image>().fillAmount = 0.001f;
                     }
-                    else
-                    {
-                        controller.Move(lastLooking * 3);
-                    }
-                    boost = true;
-                    specialAvailable = false;
-                    special.GetComponent<Image>().fillAmount = 0.001f;
                 }
             }
         }
@@ -858,34 +856,26 @@ public class Player2MovementController : MonoBehaviour
             {
                 if (Input.GetAxis("360_LeftTrigger2") == 1)
                 {
-                    if (moveDirection.magnitude != 0)
+                    if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(moveDirection * 3);
+                        boost = true;
+                        specialAvailable = false;
+                        special.GetComponent<Image>().fillAmount = 0.001f;
                     }
-                    else
-                    {
-                        controller.Move(lastLooking * 3);
-                    }
-                    boost = true;
-                    specialAvailable = false;
-                    special.GetComponent<Image>().fillAmount = 0.001f;
                 }
             }
             else
             {
                 if (Input.GetAxis("Special2") == 1)
                 {
-                    if (moveDirection.magnitude != 0)
+                    if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(moveDirection * 3);
+                        boost = true;
+                        specialAvailable = false;
+                        special.GetComponent<Image>().fillAmount = 0.001f;
                     }
-                    else
-                    {
-                        controller.Move(lastLooking * 3);
-                    }
-                    boost = true;
-                    specialAvailable = false;
-                    special.GetComponent<Image>().fillAmount = 0.001f;
                 }
             }
         }

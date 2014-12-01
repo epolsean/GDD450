@@ -64,6 +64,8 @@ public class Player1MovementController : MonoBehaviour
     public GameObject MoveController;
 
     public bool isAlien;
+    public GameObject myCanvas;
+    Quaternion canvasRotation;
 
     float endTimer;
 
@@ -73,6 +75,8 @@ public class Player1MovementController : MonoBehaviour
 
     void Start()
     {
+        canvasRotation = new Quaternion(-1,0,0,1);
+        myCanvas.transform.rotation = canvasRotation;
         printStats = false;
         if (BattleStats.singlePlayer)
         {
@@ -350,6 +354,7 @@ public class Player1MovementController : MonoBehaviour
                         }
                     }
                 }
+                myCanvas.transform.rotation = canvasRotation;
                 //Depending on what the player is their specific special will get called
                 if (BattleStats.singlePlayer)
                 {
@@ -744,34 +749,26 @@ public class Player1MovementController : MonoBehaviour
             {
                 if (Input.GetAxis("360_LeftTrigger1") == 1)
                 {
-                    if (moveDirection.magnitude != 0)
+                    if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(moveDirection * 3);
+                        boost = true;
+                        specialAvailable = false;
+                        special.GetComponent<Image>().fillAmount = 0.001f;
                     }
-                    else
-                    {
-                        controller.Move(lastLooking * 3);
-                    }
-                    boost = true;
-                    specialAvailable = false;
-                    special.GetComponent<Image>().fillAmount = 0.001f;
                 }
             }
             else
             {
                 if (Input.GetAxis("Special1") == 1)
                 {
-                    if (moveDirection.magnitude != 0)
+                    if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(moveDirection * 3);
+                        boost = true;
+                        specialAvailable = false;
+                        special.GetComponent<Image>().fillAmount = 0.001f;
                     }
-                    else
-                    {
-                        controller.Move(lastLooking * 3);
-                    }
-                    boost = true;
-                    specialAvailable = false;
-                    special.GetComponent<Image>().fillAmount = 0.001f;
                 }
             }
         }
@@ -923,35 +920,26 @@ public class Player1MovementController : MonoBehaviour
             {
                 if (Input.GetAxis("360_LeftTrigger1") == 1)
                 {
-                    if (moveDirection.magnitude != 0)
+                    if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(moveDirection * 3);
+                        boost = true;
+                        specialAvailable = false;
+                        special.GetComponent<Image>().fillAmount = 0.001f;
                     }
-                    else
-                    {
-                        controller.Move(lastLooking * 3);
-                    }
-                    boost = true;
-                    specialAvailable = false;
-                    special.GetComponent<Image>().fillAmount = 0.001f;
                 }
             }
             else
             {
                 if (Input.GetAxis("Special1") == 1)
                 {
-                    Debug.Log("PLayer 1 alien runner use boost");
-                    if (moveDirection.magnitude != 0)
+                    if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(moveDirection * 3);
+                        boost = true;
+                        specialAvailable = false;
+                        special.GetComponent<Image>().fillAmount = 0.001f;
                     }
-                    else
-                    {
-                        controller.Move(lastLooking * 3);
-                    }
-                    boost = true;
-                    specialAvailable = false;
-                    special.GetComponent<Image>().fillAmount = 0.001f;
                 }
             }
         }

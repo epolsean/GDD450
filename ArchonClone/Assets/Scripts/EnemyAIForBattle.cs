@@ -61,6 +61,10 @@ public class EnemyAIForBattle : MonoBehaviour
     public GameObject MoveController;
 
     public bool isAlien;
+
+    public GameObject myCanvas;
+    Quaternion canvasRotation;
+
     GameObject enemy;
 
     string enemyName;
@@ -69,6 +73,8 @@ public class EnemyAIForBattle : MonoBehaviour
 
     void Start()
     {
+        canvasRotation = new Quaternion(-1, 0, 0, 1);
+        myCanvas.transform.rotation = canvasRotation;
         enemyController = GameObject.Find("Player1(Clone)").GetComponent<Player1MovementController>();
         MoveController = GameObject.Find("MovementController");
         controller = GetComponent<CharacterController>();
@@ -224,6 +230,7 @@ public class EnemyAIForBattle : MonoBehaviour
                         }
                     }
                 }
+                myCanvas.transform.rotation = canvasRotation;
                 if (enemy.GetComponent<Player1MovementController>().win == false)
                 {
                     //Depending on what the player is their specific special will get called
@@ -574,14 +581,10 @@ public class EnemyAIForBattle : MonoBehaviour
                     if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(controller.velocity * 3);
+                        boost = true;
+                        specialAvailable = false;
+                        special.GetComponent<Image>().fillAmount = 0.001f;
                     }
-                    else
-                    {
-                        controller.Move(controller.velocity * 3);
-                    }
-                    boost = true;
-                    specialAvailable = false;
-                    special.GetComponent<Image>().fillAmount = 0.001f;
                 }
             }
             else
@@ -591,14 +594,10 @@ public class EnemyAIForBattle : MonoBehaviour
                     if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(controller.velocity * 3);
+                        boost = true;
+                        specialAvailable = false;
+                        special.GetComponent<Image>().fillAmount = 0.001f;
                     }
-                    else
-                    {
-                        controller.Move(controller.velocity * 3);
-                    }
-                    boost = true;
-                    specialAvailable = false;
-                    special.GetComponent<Image>().fillAmount = 0.001f;
                 }
             }
         }
@@ -745,14 +744,10 @@ public class EnemyAIForBattle : MonoBehaviour
                     if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(controller.velocity * 3);
+                        boost = true;
+                        specialAvailable = false;
+                        special.GetComponent<Image>().fillAmount = 0.001f;
                     }
-                    else
-                    {
-                        controller.Move(controller.velocity * 3);
-                    }
-                    boost = true;
-                    specialAvailable = false;
-                    special.GetComponent<Image>().fillAmount = 0.001f;
                 }
             }
             else
@@ -762,14 +757,10 @@ public class EnemyAIForBattle : MonoBehaviour
                     if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(controller.velocity * 3);
+                        boost = true;
+                        specialAvailable = false;
+                        special.GetComponent<Image>().fillAmount = 0.001f;
                     }
-                    else
-                    {
-                        controller.Move(controller.velocity * 3);
-                    }
-                    boost = true;
-                    specialAvailable = false;
-                    special.GetComponent<Image>().fillAmount = 0.001f;
                 }
             }
         }
