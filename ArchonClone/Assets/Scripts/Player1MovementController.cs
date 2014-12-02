@@ -605,7 +605,15 @@ public class Player1MovementController : MonoBehaviour
                 }
                 else
                 {
-                    shieldPower -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                    if ((shieldPower - MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage) <= 0.1)
+                    {
+                        usingShield = false;
+                        shieldPower = 0.1f;
+                    }
+                    else
+                    {
+                        shieldPower -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                    }
                 }
             }
             else if (isAlien && other.tag == "robotBullet")
@@ -617,7 +625,15 @@ public class Player1MovementController : MonoBehaviour
                 }
                 else
                 {
-                    shieldPower -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                    if ((shieldPower - MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage) <= 0.1)
+                    {
+                        usingShield = false;
+                        shieldPower = 0.1f;
+                    }
+                    else
+                    {
+                        shieldPower -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                    }
                 }
             }
             if (other.tag == "Laser" && other.GetComponent<LaserController>().shooting)
@@ -636,7 +652,15 @@ public class Player1MovementController : MonoBehaviour
                 }
                 else
                 {
-                    shieldPower -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                    if ((shieldPower - MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage) <= 0.1)
+                    {
+                        usingShield = false;
+                        shieldPower = 0.1f;
+                    }
+                    else
+                    {
+                        shieldPower -= MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
+                    }
                 }
             }
         }
@@ -646,19 +670,19 @@ public class Player1MovementController : MonoBehaviour
     {
         if (other.tag == "Laser" && other.GetComponent<LaserController>().shooting)
         {
-            health -= Time.deltaTime;
+            health -= 5*Time.deltaTime;
         }
     }
 
     void RobotGruntSpecial()
     {
-        if (shieldPower >= 0)
+        if (shieldPower >= 0.1)
         {
             special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
         else
         {
-            shieldPower = 0.001f;
+            shieldPower = 0.1f;
         }
         Behaviour h = (Behaviour)GetComponent("Halo");
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
@@ -673,8 +697,9 @@ public class Player1MovementController : MonoBehaviour
         else if (usingShield)
         {
             shieldPower -= Time.deltaTime * 10;
-            if (shieldPower <= 1)
+            if (shieldPower <= 0.1)
             {
+                shieldPower = 0.1f;
                 shieldOverheat = true;
                 usingShield = false;
             }
@@ -690,7 +715,7 @@ public class Player1MovementController : MonoBehaviour
             }
         }
 
-        if (shieldPower >= 1 && !shieldOverheat)
+        if (shieldPower >= 0.1 && !shieldOverheat)
         {
             if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
             {
@@ -826,13 +851,13 @@ public class Player1MovementController : MonoBehaviour
 
     void AlienGruntSpecial()
     {
-        if (shieldPower >= 0)
+        if (shieldPower >= 0.1)
         {
             special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
         else
         {
-            shieldPower = 0.001f;
+            shieldPower = 0.1f;
         }
         Behaviour h = (Behaviour)GetComponent("Halo");
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
@@ -847,8 +872,9 @@ public class Player1MovementController : MonoBehaviour
         else if (usingShield)
         {
             shieldPower -= Time.deltaTime * 10;
-            if (shieldPower <= 1)
+            if (shieldPower <= 0.1)
             {
+                shieldPower = 0.1f;
                 shieldOverheat = true;
                 usingShield = false;
             }
@@ -864,26 +890,29 @@ public class Player1MovementController : MonoBehaviour
             }
         }
 
-        if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
+        if (shieldPower >= 0.1 && !shieldOverheat)
         {
-            if (Input.GetAxis("360_LeftTrigger1") == 1)
+            if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
             {
-                usingShield = true;
+                if (Input.GetAxis("360_LeftTrigger1") == 1)
+                {
+                    usingShield = true;
+                }
+                else
+                {
+                    usingShield = false;
+                }
             }
             else
             {
-                usingShield = false;
-            }
-        }
-        else
-        {
-            if (Input.GetAxis("Special1") == 1)
-            {
-                usingShield = true;
-            }
-            else
-            {
-                usingShield = false;
+                if (Input.GetAxis("Special1") == 1)
+                {
+                    usingShield = true;
+                }
+                else
+                {
+                    usingShield = false;
+                }
             }
         }
     }

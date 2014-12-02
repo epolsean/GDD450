@@ -396,7 +396,15 @@ public class EnemyAIForBattle : MonoBehaviour
                 }
                 else
                 {
-                    shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                    if ((shieldPower - MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage) <= 0.1)
+                    {
+                        usingShield = false;
+                        shieldPower = 0.1f;
+                    }
+                    else
+                    {
+                        shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                    }
                 }
             }
             else if (isAlien && other.tag == "robotBullet")
@@ -408,7 +416,15 @@ public class EnemyAIForBattle : MonoBehaviour
                 }
                 else
                 {
-                    shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                    if ((shieldPower - MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage) <= 0.1)
+                    {
+                        usingShield = false;
+                        shieldPower = 0.1f;
+                    }
+                    else
+                    {
+                        shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                    }
                 }
             }
             if (other.tag == "Laser" && other.GetComponent<LaserController>().shooting)
@@ -427,7 +443,16 @@ public class EnemyAIForBattle : MonoBehaviour
                 }
                 else
                 {
-                    shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                    if ((shieldPower - MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage) <= 0.1)
+                    {
+                        shieldOverheat = true;
+                        usingShield = false;
+                        shieldPower = 0.1f;
+                    }
+                    else
+                    {
+                        shieldPower -= MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
+                    }
                 }
             }
         }
@@ -437,7 +462,7 @@ public class EnemyAIForBattle : MonoBehaviour
     {
         if (other.tag == "Laser" && other.GetComponent<LaserController>().shooting)
         {
-            health -= Time.deltaTime;
+            health -= 5*Time.deltaTime;
         }
     }
 
@@ -451,16 +476,15 @@ public class EnemyAIForBattle : MonoBehaviour
 
     void RobotGruntSpecial()
     {
-        if (shieldPower >= 0)
+        if (shieldPower >= 0.1)
         {
             special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
         else
         {
-            shieldPower = 0.001f;
+            shieldPower = 0.1f;
         }
         Behaviour h = (Behaviour)GetComponent("Halo");
-        //Debug.Log("shield power : " + shieldPower);
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
             shieldPower += Time.deltaTime * 4;
@@ -473,8 +497,9 @@ public class EnemyAIForBattle : MonoBehaviour
         else if (usingShield)
         {
             shieldPower -= Time.deltaTime * 10;
-            if (shieldPower <= 1)
+            if (shieldPower <= 0.1)
             {
+                shieldPower = 0.1f;
                 shieldOverheat = true;
                 usingShield = false;
             }
@@ -490,11 +515,11 @@ public class EnemyAIForBattle : MonoBehaviour
             }
         }
 
-        if (shieldPower >= 1 && !shieldOverheat)
+        if (shieldPower >= 0.1 && !shieldOverheat)
         {
-            if (Input.GetJoystickNames().Length == 2) // If there is a controller connected
+            if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
             {
-                if (Input.GetAxis("360_LeftTrigger2") == 1)
+                if (Input.GetAxis("360_LeftTrigger1") == 1)
                 {
                     usingShield = true;
                 }
@@ -505,7 +530,7 @@ public class EnemyAIForBattle : MonoBehaviour
             }
             else
             {
-                if (Input.GetAxis("Special2") == 1)
+                if (Input.GetAxis("Special1") == 1)
                 {
                     usingShield = true;
                 }
@@ -629,17 +654,15 @@ public class EnemyAIForBattle : MonoBehaviour
 
     void AlienGruntSpecial()
     {
-        if (shieldPower >= 0)
+        if (shieldPower >= 0.1)
         {
             special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
         else
         {
-            shieldPower = 0.001f;
+            shieldPower = 0.1f;
         }
-
         Behaviour h = (Behaviour)GetComponent("Halo");
-        //Debug.Log("shield power : " + shieldPower);
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
             shieldPower += Time.deltaTime * 4;
@@ -652,8 +675,9 @@ public class EnemyAIForBattle : MonoBehaviour
         else if (usingShield)
         {
             shieldPower -= Time.deltaTime * 10;
-            if (shieldPower <= 1)
+            if (shieldPower <= 0.1)
             {
+                shieldPower = 0.1f;
                 shieldOverheat = true;
                 usingShield = false;
             }
@@ -669,11 +693,11 @@ public class EnemyAIForBattle : MonoBehaviour
             }
         }
 
-        if (shieldPower >= 1 && !shieldOverheat)
+        if (shieldPower >= 0.1 && !shieldOverheat)
         {
-            if (Input.GetJoystickNames().Length == 2) // If there is a controller connected
+            if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
             {
-                if (Input.GetAxis("360_LeftTrigger2") == 1)
+                if (Input.GetAxis("360_LeftTrigger1") == 1)
                 {
                     usingShield = true;
                 }
@@ -684,7 +708,7 @@ public class EnemyAIForBattle : MonoBehaviour
             }
             else
             {
-                if (Input.GetAxis("Special2") == 1)
+                if (Input.GetAxis("Special1") == 1)
                 {
                     usingShield = true;
                 }
