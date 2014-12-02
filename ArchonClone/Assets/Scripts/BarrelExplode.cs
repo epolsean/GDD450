@@ -43,11 +43,16 @@ public class BarrelExplode : MonoBehaviour
             explosion.Play();
             smoke.Play();
             transform.parent.gameObject.GetComponent<ItemSpawner>().empty = true;
-            //GameObject.Find("A*Battle").GetComponent<AstarPath>().Scan();
             ItemSpawner.numExplodingBarrels--;
             StartCoroutine("explode");
             Destroy(this.gameObject, 1.1f);
+            Invoke("Rescan",1.09f);
         }
+    }
+
+    void Rescan()
+    {
+        GameObject.Find("A*").GetComponent<AstarPath>().Scan();
     }
 
     IEnumerator explode()

@@ -22,8 +22,8 @@ public class ItemSpawner : MonoBehaviour
         {
             if (ItemSpawner.numExplodingBarrels < 3)
             {
-                //GameObject.Find("A*Battle").GetComponent<AstarPath>().Scan();
                 explodingBarrel.SetActive(true);
+                GameObject.Find("A*").GetComponent<AstarPath>().Scan();
                 empty = false;
                 ItemSpawner.numExplodingBarrels++;
             }
@@ -32,8 +32,8 @@ public class ItemSpawner : MonoBehaviour
         {
             if (ItemSpawner.numRegularBarrels < 3)
             {
-                //GameObject.Find("A*Battle").GetComponent<AstarPath>().Scan();
                 regularBarrel.SetActive(true);
+                GameObject.Find("A*").GetComponent<AstarPath>().Scan();
                 empty = false;
                 ItemSpawner.numRegularBarrels++;
             }
@@ -65,8 +65,8 @@ public class ItemSpawner : MonoBehaviour
                 {
                     if (ItemSpawner.numExplodingBarrels < 3)
                     {
-                        //GameObject.Find("A*Battle").GetComponent<AstarPath>().Scan();
                         explodingBarrel.SetActive(true);
+                        GameObject.Find("A*").GetComponent<AstarPath>().Scan();
                         empty = false;
                         ItemSpawner.numExplodingBarrels++;
                     }

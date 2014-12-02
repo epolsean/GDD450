@@ -147,6 +147,20 @@ public class EnemyAIForBattle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameObject.Find("Fight") == null)
+        {
+            if (GetComponent<AIPath>().enabled == false)
+            {
+                GetComponent<AIPath>().enabled = true;
+            } 
+        }
+        if (win || enemy.GetComponent<Player1MovementController>().win)
+        {
+            if (GetComponent<AIPath>().enabled == true)
+            {
+                GetComponent<AIPath>().enabled = false;
+            }
+        }
         if (MoveController.GetComponent<PawnMove>().Player02 != null && MoveController.GetComponent<PawnMove>().Player01 != null)
         {
             if (GameObject.Find("Fight") == null)

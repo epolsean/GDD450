@@ -294,26 +294,53 @@ public class Player1MovementController : MonoBehaviour
                         }
                         else
                         {
-                            if ((Input.GetAxis("Fire1") == 1) && reloading == false)
+                            if (BattleStats.singlePlayer)
                             {
-                                if (isAlien)
+                                if ((Input.GetMouseButton(0)) && reloading == false)
                                 {
-                                    Rigidbody bulletClone = Instantiate(alienBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                                    bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                                    bulletClone.rigidbody.useGravity = false;
-                                    bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                                    Destroy(bulletClone.gameObject, 3);
+                                    if (isAlien)
+                                    {
+                                        Rigidbody bulletClone = Instantiate(alienBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                                        bulletClone.rigidbody.useGravity = false;
+                                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                                        Destroy(bulletClone.gameObject, 3);
+                                    }
+                                    else
+                                    {
+                                        Rigidbody bulletClone = Instantiate(robotBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                                        bulletClone.rigidbody.useGravity = false;
+                                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                                        Destroy(bulletClone.gameObject, 3);
+                                    }
+                                    audio.Play();
+                                    reloading = true;
                                 }
-                                else
+                            }
+                            else
+                            {
+                                if ((Input.GetAxis("Fire1") == 1) && reloading == false)
                                 {
-                                    Rigidbody bulletClone = Instantiate(robotBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
-                                    bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
-                                    bulletClone.rigidbody.useGravity = false;
-                                    bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                                    Destroy(bulletClone.gameObject, 3);
+                                    if (isAlien)
+                                    {
+                                        Rigidbody bulletClone = Instantiate(alienBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                                        bulletClone.rigidbody.useGravity = false;
+                                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                                        Destroy(bulletClone.gameObject, 3);
+                                    }
+                                    else
+                                    {
+                                        Rigidbody bulletClone = Instantiate(robotBullet, transform.position + 1.2f * bulletSize * this.transform.forward, transform.rotation) as Rigidbody;
+                                        bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
+                                        bulletClone.rigidbody.useGravity = false;
+                                        bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
+                                        Destroy(bulletClone.gameObject, 3);
+                                    }
+                                    audio.Play();
+                                    reloading = true;
                                 }
-                                audio.Play();
-                                reloading = true;
                             }
                         }
                     }
@@ -344,12 +371,25 @@ public class Player1MovementController : MonoBehaviour
                         }
                         else // If no controller connected
                         {
-                            if ((Input.GetAxis("Fire1") == 1) && swinging == false)
+                            if (BattleStats.singlePlayer)
                             {
-                                GameObject sword = Instantiate(Sword, transform.position + 3 * this.transform.forward, transform.rotation) as GameObject;
-                                sword.tag = tag;
-                                swinging = true;
-                                Destroy(sword.gameObject, 0.2f);
+                                if ((Input.GetMouseButton(0)) && swinging == false)
+                                {
+                                    GameObject sword = Instantiate(Sword, transform.position + 3 * this.transform.forward, transform.rotation) as GameObject;
+                                    sword.tag = tag;
+                                    swinging = true;
+                                    Destroy(sword.gameObject, 0.2f);
+                                }
+                            }
+                            else
+                            {
+                                if ((Input.GetAxis("Fire1") == 1) && swinging == false)
+                                {
+                                    GameObject sword = Instantiate(Sword, transform.position + 3 * this.transform.forward, transform.rotation) as GameObject;
+                                    sword.tag = tag;
+                                    swinging = true;
+                                    Destroy(sword.gameObject, 0.2f);
+                                }
                             }
                         }
                     }
