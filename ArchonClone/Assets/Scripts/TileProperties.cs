@@ -18,6 +18,8 @@ public class TileProperties : MonoBehaviour {
     public static bool pieceSelected = false;
     public bool withinMove = false;
     public GameObject[] AllTiles;
+    public enum TileType { Alien, Synth };
+    public TileType TileState;
 
     public Animator PieceAnim;
 
@@ -270,6 +272,7 @@ public class TileProperties : MonoBehaviour {
         {
             TurnStateMachine.OnHoverPiece = this.UnitOnTile;
             renderer.material.color = Color.yellow;
+            //this.GetComponentInChildren<Renderer>().material.color = Color.yellow;
         }
         else if (UnitMoveController.GetComponent<PawnMove>().isMoving == true)
         {
@@ -289,11 +292,13 @@ public class TileProperties : MonoBehaviour {
             if(Vector3.Distance(UnitMoveController.GetComponent<PawnMove>().SelectedPiece.transform.position, this.transform.position) <= UnitMoveController.GetComponent<PawnMove>().MaxMove)
             {
                 renderer.material.color = Color.green;
+                //this.GetComponentInChildren<Renderer>().material.color = Color.green;
                 canPlace = true;
             }
             else
             {
                 renderer.material.color = Color.red;
+                //this.GetComponentInChildren<Renderer>().material.color = Color.red;
                 canPlace = false;
             }
         }
@@ -351,10 +356,12 @@ public class TileProperties : MonoBehaviour {
             if (withinMove == false)
             {
                 renderer.material.color = Color.white;
+                //this.GetComponentInChildren<Renderer>().material.color = Color.white;
             }
             else
             {
                 renderer.material.color = Color.cyan;
+                //this.GetComponentInChildren<Renderer>().material.color = Color.cyan;
             }
         }
         canPlace = false;
@@ -462,6 +469,7 @@ public class TileProperties : MonoBehaviour {
         {
             AllTiles[i].GetComponent<TileProperties>().withinMove = false;
             AllTiles[i].renderer.material.color = Color.white;
+            //AllTiles[i].GetComponentInChildren<Renderer>().material.color = Color.white;
         }
     }
 
@@ -475,10 +483,12 @@ public class TileProperties : MonoBehaviour {
             {
                 TilesWithinRange[i].GetComponent<TileProperties>().withinMove = true;
                 TilesWithinRange[i].renderer.material.color = Color.cyan;
+                //TilesWithinRange[i].GetComponentInChildren<Renderer>().material.color = Color.cyan;
             }
         }
         withinMove = false;
-        this.renderer.material.color = Color.white; 
+        this.renderer.material.color = Color.white;
+        //this.GetComponentInChildren<Renderer>().material.color = Color.white;
     }
 
     public void MouseDownCall()
