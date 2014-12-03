@@ -74,8 +74,11 @@ public class Player2MovementController : MonoBehaviour
     int enemyStartHealth;
     bool printStats = false;
 
+    ParticleSystem ps;
+
     void Start()
     {
+        ps = GetComponent<ParticleSystem>();
         canvasRotation = new Quaternion(-1, 0, 0, 1);
         myCanvas.transform.rotation = canvasRotation;
         printStats = false;
@@ -112,6 +115,7 @@ public class Player2MovementController : MonoBehaviour
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteGrunt(Clone)")
         {
+            ps.startColor = new Color(3f / 255f, 212f / 255f, 177f / 255f, 45f / 255f);
             isMelee = true;
             special.SetActive(true);
             SynthGrunt.SetActive(true);
@@ -139,6 +143,7 @@ public class Player2MovementController : MonoBehaviour
         }
         else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)")
         {
+            ps.startColor = new Color(20f / 255f, 158f / 255f, 15f / 255f, 45f / 255f);
             isMelee = true;
             special.SetActive(true);
             OrganicGrunt.SetActive(true);
@@ -568,7 +573,6 @@ public class Player2MovementController : MonoBehaviour
         {
             shieldPower = 0.1f;
         }
-        Behaviour h = (Behaviour)GetComponent("Halo");
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
             shieldPower += Time.deltaTime * 4;
@@ -576,7 +580,8 @@ public class Player2MovementController : MonoBehaviour
             {
                 shieldPower = 100;
             }
-            h.enabled = false;
+            ps.Stop();
+            ps.Clear();
         }
         else if (usingShield)
         {
@@ -587,11 +592,12 @@ public class Player2MovementController : MonoBehaviour
                 shieldOverheat = true;
                 usingShield = false;
             }
-            h.enabled = true;
+            ps.Play();
         }
         if (shieldOverheat)
         {
-            h.enabled = false;
+            ps.Stop();
+            ps.Clear();
             shieldPower += 2 * Time.deltaTime;
             if (shieldPower >= 30)
             {
@@ -738,17 +744,14 @@ public class Player2MovementController : MonoBehaviour
 
     void AlienGruntSpecial()
     {
-        if (shieldPower >= 0)
+        if (shieldPower >= 0.1)
         {
             special.GetComponent<Image>().fillAmount = shieldPower / 100;
         }
         else
         {
-            shieldPower = 0.001f;
+            shieldPower = 0.1f;
         }
-
-        Behaviour h = (Behaviour)GetComponent("Halo");
-        //Debug.Log("shield power : " + shieldPower);
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
             shieldPower += Time.deltaTime * 4;
@@ -756,21 +759,24 @@ public class Player2MovementController : MonoBehaviour
             {
                 shieldPower = 100;
             }
-            h.enabled = false;
+            ps.Stop();
+            ps.Clear();
         }
         else if (usingShield)
         {
             shieldPower -= Time.deltaTime * 10;
-            if (shieldPower <= 1)
+            if (shieldPower <= 0.1)
             {
+                shieldPower = 0.1f;
                 shieldOverheat = true;
                 usingShield = false;
             }
-            h.enabled = true;
+            ps.Play();
         }
         if (shieldOverheat)
         {
-            h.enabled = false;
+            ps.Stop();
+            ps.Clear();
             shieldPower += 2 * Time.deltaTime;
             if (shieldPower >= 30)
             {
