@@ -333,14 +333,39 @@ public class EnemyAIForBattle : MonoBehaviour
             }
             else
             {
+                if (health <= 0)
+                {
+                    if (MoveController.GetComponent<PawnMove>().Player02.tag == "White")
+                    {
+                        SpawnBasicUnits.WhitePieceCount--;
+                    }
+                    else
+                    {
+                        SpawnBasicUnits.BlackPieceCount--;
+                    }
+                    Destroy(MoveController.GetComponent<PawnMove>().Player02);
+                    MoveController.GetComponent<PawnMove>().Player02.GetComponent<pieceMove>().datSprite.SetActive(false);
+                    MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = null;
+                    MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.SetActive(true);
+                    GameObject.Find("A*").GetComponent<AstarPath>().Scan();
+                }
+                else
+                {
+                    MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
+                    if (health <= 1)
+                    {
+                        health = 1;
+                    }
+                    MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health = (int)health;
+                }
                 TurnStateMachine.fightDone = true;
                 BattleStats.winner = tag;
                 Destroy(GameObject.Find("BattleSceneAdditive"));
                 Destroy(MoveController.GetComponent<PawnMove>().Player01);
-                MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player02;
+                
                 //Application.LoadLevel("TestingHexTiles");
                 //Destroy(this.gameObject);
-                MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health = (int)health;
+                
             }
         }
     }
