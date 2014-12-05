@@ -3,6 +3,22 @@ using System.Collections;
 
 public class GoTo : MonoBehaviour {
 
+    public GameObject MainMenuPanel;
+    public GameObject OptionsPanel;
+    public GameObject SelectModePanel;
+    public GameObject CreditsPanel;
+
+    void Start()
+    {
+        if(MainMenuPanel != null)
+        {
+            MainMenuPanel.SetActive(true);
+            OptionsPanel.SetActive(false);
+            SelectModePanel.SetActive(false);
+            CreditsPanel.SetActive(false);
+        }
+    }
+
     public void Single()
     {
         Application.LoadLevel("TestingHexTiles");
@@ -29,22 +45,34 @@ public class GoTo : MonoBehaviour {
 
     public void StartScreen()
     {
-        Application.LoadLevel("StartScreen");
+        MainMenuPanel.SetActive(true);
+        OptionsPanel.SetActive(false);
+        SelectModePanel.SetActive(false);
+        CreditsPanel.SetActive(false);
     }
 
     public void Credits()
     {
-        Application.LoadLevel("CreditsScene");
+        MainMenuPanel.SetActive(false);
+        OptionsPanel.SetActive(false);
+        SelectModePanel.SetActive(false);
+        CreditsPanel.SetActive(true);
     }
 
     public void Settings()
     {
-        Application.LoadLevel("SettingsScene");
+        MainMenuPanel.SetActive(false);
+        OptionsPanel.SetActive(true);
+        SelectModePanel.SetActive(false);
+        CreditsPanel.SetActive(false);
     }
 
     public void MultiplayerMode()
     {
-        Application.LoadLevel("SelectMode");
+        MainMenuPanel.SetActive(false);
+        OptionsPanel.SetActive(false);
+        SelectModePanel.SetActive(true);
+        CreditsPanel.SetActive(false);
     }
 
     public void Battle()
@@ -52,5 +80,10 @@ public class GoTo : MonoBehaviour {
         Application.LoadLevelAdditive("BattleTest");
         BattleStats.player1Pref = "third";
         Destroy(GameObject.Find("CameraAddative"));
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
