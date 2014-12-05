@@ -73,9 +73,12 @@ public class Player1MovementController : MonoBehaviour
     int enemyStartHealth;
     bool printStats = false;
 
+    ParticleSystem ps;
+
     void Start()
     {
-        canvasRotation = new Quaternion(-1,0,0,1);
+        ps = GetComponent<ParticleSystem>();
+        canvasRotation = new Quaternion(-1, 0, 0, 1);
         myCanvas.transform.rotation = canvasRotation;
         printStats = false;
         if (BattleStats.singlePlayer)
@@ -123,6 +126,7 @@ public class Player1MovementController : MonoBehaviour
         }
         else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteGrunt(Clone)")
         {
+            ps.startColor = new Color(3f / 255f, 212f / 255f, 177f / 255f, 45f / 255f);
             isMelee = true;
             special.SetActive(true);
             SynthGrunt.SetActive(true);
@@ -150,6 +154,7 @@ public class Player1MovementController : MonoBehaviour
         }
         else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackGrunt(Clone)")
         {
+            ps.startColor = new Color(20f / 255f, 158f / 255f, 15f / 255f, 45f / 255f);
             isMelee = true;
             special.SetActive(true);
             OrganicGrunt.SetActive(true);
@@ -531,14 +536,37 @@ public class Player1MovementController : MonoBehaviour
             }
             else
             {
+                if (health <= 0)
+                {
+                    if (MoveController.GetComponent<PawnMove>().Player02.tag == "White")
+                    {
+                        SpawnBasicUnits.WhitePieceCount--;
+                    }
+                    else
+                    {
+                        SpawnBasicUnits.BlackPieceCount--;
+                    }
+                    Destroy(MoveController.GetComponent<PawnMove>().Player02);
+                    MoveController.GetComponent<PawnMove>().Player02.GetComponent<pieceMove>().datSprite.SetActive(false);
+                    MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = null;
+                    MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.SetActive(true);
+                    GameObject.Find("A*").GetComponent<AstarPath>().Scan();
+                }
+                else
+                {
+                    MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player01;
+                    if (health <= 1)
+                    {
+                        health = 1;
+                    }
+                    MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health = (int)health;
+                }
                 TurnStateMachine.fightDone = true;
                 BattleStats.winner = tag;
                 Destroy(GameObject.Find("BattleSceneAdditive"));
                 Destroy(MoveController.GetComponent<PawnMove>().Player02);
-                MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = MoveController.GetComponent<PawnMove>().Player01;
                 //Application.LoadLevel("TestingHexTiles");
                 //Destroy(this.gameObject);
-                MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health = (int)health;
             }
         }
     }
@@ -670,7 +698,7 @@ public class Player1MovementController : MonoBehaviour
     {
         if (other.tag == "Laser" && other.GetComponent<LaserController>().shooting)
         {
-            health -= 5*Time.deltaTime;
+            health -= 5 * Time.deltaTime;
         }
     }
 
@@ -684,7 +712,6 @@ public class Player1MovementController : MonoBehaviour
         {
             shieldPower = 0.1f;
         }
-        Behaviour h = (Behaviour)GetComponent("Halo");
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
             shieldPower += Time.deltaTime * 4;
@@ -692,7 +719,8 @@ public class Player1MovementController : MonoBehaviour
             {
                 shieldPower = 100;
             }
-            h.enabled = false;
+            ps.Stop();
+            ps.Clear();
         }
         else if (usingShield)
         {
@@ -703,11 +731,12 @@ public class Player1MovementController : MonoBehaviour
                 shieldOverheat = true;
                 usingShield = false;
             }
-            h.enabled = true;
+            ps.Play();
         }
         if (shieldOverheat)
         {
-            h.enabled = false;
+            ps.Stop();
+            ps.Clear();
             shieldPower += 2 * Time.deltaTime;
             if (shieldPower >= 30)
             {
@@ -859,7 +888,6 @@ public class Player1MovementController : MonoBehaviour
         {
             shieldPower = 0.1f;
         }
-        Behaviour h = (Behaviour)GetComponent("Halo");
         if (usingShield == false && shieldPower <= 100 && !shieldOverheat)
         {
             shieldPower += Time.deltaTime * 4;
@@ -867,7 +895,8 @@ public class Player1MovementController : MonoBehaviour
             {
                 shieldPower = 100;
             }
-            h.enabled = false;
+            ps.Stop();
+            ps.Clear();
         }
         else if (usingShield)
         {
@@ -878,11 +907,12 @@ public class Player1MovementController : MonoBehaviour
                 shieldOverheat = true;
                 usingShield = false;
             }
-            h.enabled = true;
+            ps.Play();
         }
         if (shieldOverheat)
         {
-            h.enabled = false;
+            ps.Stop();
+            ps.Clear();
             shieldPower += 2 * Time.deltaTime;
             if (shieldPower >= 30)
             {
