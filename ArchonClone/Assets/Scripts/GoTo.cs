@@ -10,10 +10,13 @@ public class GoTo : MonoBehaviour {
 
     void Start()
     {
-        MainMenuPanel.SetActive(true);
-        OptionsPanel.SetActive(false);
-        SelectModePanel.SetActive(false);
-        CreditsPanel.SetActive(false);
+        if(MainMenuPanel != null)
+        {
+            MainMenuPanel.SetActive(true);
+            OptionsPanel.SetActive(false);
+            SelectModePanel.SetActive(false);
+            CreditsPanel.SetActive(false);
+        }
     }
 
     public void Single()
@@ -77,5 +80,10 @@ public class GoTo : MonoBehaviour {
         Application.LoadLevelAdditive("BattleTest");
         BattleStats.player1Pref = "third";
         Destroy(GameObject.Find("CameraAddative"));
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
