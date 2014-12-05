@@ -271,8 +271,8 @@ public class TileProperties : MonoBehaviour {
         if (UnitMoveController.GetComponent<PawnMove>().isMoving == false)
         {
             TurnStateMachine.OnHoverPiece = this.UnitOnTile;
-            renderer.material.color = Color.yellow;
-            //this.GetComponentInChildren<Renderer>().material.color = Color.yellow;
+            renderer.material.color = Color.cyan;
+            //this.GetComponentInChildren<Renderer>().material.color = Color.cyan;
         }
         else if (UnitMoveController.GetComponent<PawnMove>().isMoving == true)
         {
