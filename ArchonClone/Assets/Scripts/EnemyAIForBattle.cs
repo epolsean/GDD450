@@ -157,6 +157,7 @@ public class EnemyAIForBattle : MonoBehaviour
             if (GetComponent<AIPath>().enabled == false)
             {
                 GetComponent<AIPath>().enabled = true;
+                GetComponent<AIPath>().speed = speed;
             } 
         }
         if (win || enemy.GetComponent<Player1MovementController>().win)
@@ -373,14 +374,21 @@ public class EnemyAIForBattle : MonoBehaviour
     IEnumerator DamageBoost(int startDamage)
     {
         yield return new WaitForSeconds(4.0f);
-        MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = startDamage;
+        if (MoveController.GetComponent<PawnMove>().Player02 != null)
+        {
+            MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = startDamage;
+        }
     }
 
     IEnumerator SpeedBoost(int startSpeed)
     {
         yield return new WaitForSeconds(4.0f);
-        MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = startSpeed;
-        speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
+        if (MoveController.GetComponent<PawnMove>().Player02 != null)
+        {
+            MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = startSpeed;
+            speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
+            GetComponent<AIPath>().speed = speed;
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -402,6 +410,7 @@ public class EnemyAIForBattle : MonoBehaviour
                     StartCoroutine("SpeedBoost", MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement);
                     MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement * 2;
                     speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
+                    GetComponent<AIPath>().speed = speed;
                 }
                 else
                 {
