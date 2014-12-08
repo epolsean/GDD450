@@ -51,6 +51,11 @@ public class GoTo : MonoBehaviour {
         CreditsPanel.SetActive(false);
     }
 
+    public void MainMenu()
+    {
+        Application.LoadLevel("StartScreen");
+    }
+
     public void Credits()
     {
         MainMenuPanel.SetActive(false);
