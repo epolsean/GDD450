@@ -668,7 +668,7 @@ public class Player1MovementController : MonoBehaviour
             {
                 health -= 0.5f;
             }
-            if (other.name == "Geyser" && other.GetComponent<Geyser>().erupting)
+            if (other.tag == "Geyser" && other.GetComponent<Geyser>().erupting)
             {
                 health -= 0.5f;
             }
@@ -705,7 +705,7 @@ public class Player1MovementController : MonoBehaviour
         {
             health -= 5f * Time.deltaTime;
         }
-        if (other.name == "Geyser" && other.GetComponent<Geyser>().erupting)
+        if (other.tag == "Geyser" && other.GetComponent<Geyser>().erupting)
         {
             health -= 5f * Time.deltaTime;
         }

@@ -470,7 +470,7 @@ public class EnemyAIForBattle : MonoBehaviour
             {
                 health -= 0.5f;
             }
-            if (other.name == "Geyser" && other.GetComponent<Geyser>().erupting)
+            if (other.tag == "Geyser" && other.GetComponent<Geyser>().erupting)
             {
                 health -= 0.5f;
             }
@@ -507,7 +507,7 @@ public class EnemyAIForBattle : MonoBehaviour
         {
             health -= 5*Time.deltaTime;
         }
-        if (other.name == "Geyser" && other.GetComponent<Geyser>().erupting)
+        if (other.tag == "Geyser" && other.GetComponent<Geyser>().erupting)
         {
             health -= 5f * Time.deltaTime;
         }
