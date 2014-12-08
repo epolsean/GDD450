@@ -94,13 +94,27 @@ public class TileProperties : MonoBehaviour {
                 }
                 else
                 {
-                    if (whatScene <=5)
+                    if (TileState == TileType.Alien)
                     {
-                        Application.LoadLevelAdditive("RobotBattleSmall");
+                        if (whatScene <= 5)
+                        {
+                            Application.LoadLevelAdditive("AlienBattleSmall");
+                        }
+                        else
+                        {
+                            Application.LoadLevelAdditive("AlienBattleMedium");
+                        }
                     }
-                    else
+                    else if (TileState == TileType.Synth)
                     {
-                        Application.LoadLevelAdditive("AlienBattleSmall");
+                        if (whatScene <= 5)
+                        {
+                            Application.LoadLevelAdditive("RobotBattleSmall");
+                        }
+                        else
+                        {
+                            Application.LoadLevelAdditive("RobotBattleMedium");
+                        }
                     }
                 }
             }

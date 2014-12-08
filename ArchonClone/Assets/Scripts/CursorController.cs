@@ -21,6 +21,10 @@ public class CursorController : MonoBehaviour
  
     void Update()
     {
+        if (name == "target" && !BattleStats.singlePlayer)
+        {
+            gameObject.SetActive(false);
+        }
         Screen.showCursor = false;
         if (TurnStateMachine.state == TurnStateMachine.State.playerTurn)
         {

@@ -551,6 +551,10 @@ public class Player2MovementController : MonoBehaviour
             {
                 health -= 0.5f;
             }
+            if (other.name == "Geyser" && other.GetComponent<Geyser>().erupting)
+            {
+                health -= 0.5f;
+            }
             //If the player gets hit with melee
             if (other.name == "Sword(Clone)" && other.tag != tag)
             {
@@ -583,6 +587,10 @@ public class Player2MovementController : MonoBehaviour
         if (other.tag == "Laser" && other.GetComponent<LaserController>().shooting)
         {
             health -= 5*Time.deltaTime;
+        }
+        if (other.name == "Geyser" && other.GetComponent<Geyser>().erupting)
+        {
+            health -= 5f * Time.deltaTime;
         }
     }
 
