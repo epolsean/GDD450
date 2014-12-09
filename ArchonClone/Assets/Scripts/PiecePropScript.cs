@@ -6,8 +6,8 @@ public class PiecePropScript : MonoBehaviour {
 	//Stats of a piece
     public int Health;
     public int MaxHealth;
-    public int Movement;
-    public int Damage;
+    public float Movement;
+    public float Damage;
     public double SpecialStat; 
 
     

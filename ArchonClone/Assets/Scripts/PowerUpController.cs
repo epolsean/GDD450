@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ParticleCirclesSphere : MonoBehaviour 
+public class PowerUpController : MonoBehaviour 
 {
     private ParticleSystem.Particle[] points;
     float[] angleThetaIncreases;
@@ -10,6 +10,14 @@ public class ParticleCirclesSphere : MonoBehaviour
     float[] startAnglePhi;
 
     public Material material;
+
+    public enum PowerupType {Speed, Damage, Health, Mystery };
+    public PowerupType power;
+
+    public Mesh damageBoostMesh;
+    public Mesh speedBoostMesh;
+    public Mesh healthBoostMesh;
+    public Mesh mysteryBoostMesh;
 
     private void CreatePoints()
     {
@@ -32,6 +40,40 @@ public class ParticleCirclesSphere : MonoBehaviour
     }
     void Start()
     {
+        float choicType = Random.Range(0f, 1000f);
+        if (choicType < 180)
+        {
+            power = PowerupType.Damage;
+            GetComponent<MeshFilter>().mesh = damageBoostMesh;
+        }
+        else if (choicType < 400)
+        {
+            power = PowerupType.Health;
+            GetComponent<MeshFilter>().mesh = healthBoostMesh;
+        }
+        else if (choicType < 620)
+        {
+            power = PowerupType.Speed;
+            GetComponent<MeshFilter>().mesh = speedBoostMesh;
+        }
+        else
+        {
+            float secondChoice = Random.Range(0f, 1000f);
+            if (secondChoice < 333)
+            {
+                power = PowerupType.Damage;
+            }
+            else if (secondChoice < 666)
+            {
+                power = PowerupType.Speed;
+            }
+            else
+            {
+                power = PowerupType.Health;
+            }
+            
+            GetComponent<MeshFilter>().mesh = mysteryBoostMesh;
+        }
         CreatePoints();
         particleSystem.SetParticles(points, points.Length);
         particleSystem.renderer.material = material;

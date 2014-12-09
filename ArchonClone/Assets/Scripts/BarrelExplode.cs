@@ -20,7 +20,15 @@ public class BarrelExplode : MonoBehaviour
         if (isExploding)
         {
             GameObject p1 = GameObject.Find("Player1(Clone)");
-            GameObject p2 = GameObject.Find("Player2(Clone)");
+            GameObject p2 = null;
+            if (BattleStats.singlePlayer)
+            {
+                p2 = GameObject.Find("EnemyBattleAI(Clone)");
+            }
+            else
+            {
+                p2 = GameObject.Find("Player2(Clone)");
+            }
             if (p1!= null && p1Hit == false && Vector3.Distance(p1.transform.position, gameObject.transform.position) <= 6)
             {
                 p1Hit = true;
@@ -36,7 +44,7 @@ public class BarrelExplode : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "alienBullet" || other.tag == "robotBullet" || other.name=="Sword(Clone)")
+        if((other.tag == "alienBullet" || other.tag == "robotBullet" || other.name=="Sword(Clone)") && !isExploding)
         {
             isExploding = true;
             GetComponent<AudioSource>().Play();

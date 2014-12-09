@@ -39,6 +39,7 @@ public class EnemyAIForBattle : MonoBehaviour
 
     public GameObject healthPieceGreen;
     public Sprite healthPieceRed;
+    public Sprite HealthPieceGreenSprite;
     public GameObject special;
 
     public float specialTimer = 5.0f;
@@ -75,8 +76,8 @@ public class EnemyAIForBattle : MonoBehaviour
 
     int damagePowerUp = 0;
     int speedPowerUp = 0;
-    int initialSpeed;
-    int initialDamage;
+    float initialSpeed;
+    float initialDamage;
 
     void Start()
     {
@@ -422,26 +423,26 @@ public class EnemyAIForBattle : MonoBehaviour
             if (other.name == "PowerUp")
             {
                 float statBoost = UnityEngine.Random.Range(0, 100);
-                if (statBoost < 40)
+                if (other.GetComponent<PowerUpController>().power == PowerUpController.PowerupType.Damage)
                 {
                     if (damagePowerUp == 0)
                     {
                         StartCoroutine("DamageBoost");
                         damagePowerUp++;
-                        MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage * 2;
+                        MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage * 1.5f;
                     }
                     else
                     {
                         damagePowerUp++;
                     }
                 }
-                else if (statBoost < 70)
+                else if (other.GetComponent<PowerUpController>().power == PowerUpController.PowerupType.Speed)
                 {
                     if (speedPowerUp == 0)
                     {
                         StartCoroutine("SpeedBoost");
                         speedPowerUp++;
-                        MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement * 2;
+                        MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement * 1.5f;
                         speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
                     }
                     else
@@ -449,12 +450,16 @@ public class EnemyAIForBattle : MonoBehaviour
                         speedPowerUp++;
                     }
                 }
-                else
+                else if (other.GetComponent<PowerUpController>().power == PowerUpController.PowerupType.Health)
                 {
                     health += UnityEngine.Random.Range(5, 15);
                     if (health > MaxHealth)
                     {
                         health = MaxHealth;
+                    }
+                    if ((float)((health * 2) / (MaxHealth * 3)) >= 0.16f)
+                    {
+                        healthPieceGreen.GetComponent<Image>().sprite = HealthPieceGreenSprite;
                     }
                 }
                 ItemSpawner.numPowerUps--;
