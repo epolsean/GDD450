@@ -17,7 +17,7 @@ public class Accelerator : MonoBehaviour
         player1 = GameObject.Find("Player1(Clone)");
         if (BattleStats.singlePlayer)
         {
-            player2 = GameObject.Find("EnemyAI(Clone)");
+            player2 = GameObject.Find("EnemyBattleAI(Clone)");
         }
         else
         {
@@ -38,7 +38,7 @@ public class Accelerator : MonoBehaviour
             {
                 if (player2 == null)
                 {
-                    player2 = GameObject.Find("EnemyAI(Clone)");
+                    player2 = GameObject.Find("EnemyBattleAI(Clone)");
                 }
             }
             else

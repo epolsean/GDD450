@@ -75,6 +75,11 @@ public class Player1MovementController : MonoBehaviour
 
     ParticleSystem ps;
 
+    int damagePowerUp = 0;
+    int speedPowerUp = 0;
+    int initialSpeed;
+    int initialDamage;
+
     void Start()
     {
         ps = GetComponent<ParticleSystem>();
@@ -99,6 +104,8 @@ public class Player1MovementController : MonoBehaviour
 
         //health = 100;
         speed = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement;
+        initialSpeed = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement;
+        initialDamage = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage;
         health = (float)MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health;
         MaxHealth = (float)MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().MaxHealth;
         attackRate = 2;//MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().AttackRate;
@@ -163,8 +170,8 @@ public class Player1MovementController : MonoBehaviour
         healthPieceGreen.GetComponent<Image>().fillAmount = (float)((health * 2) / (MaxHealth * 3));
         enemyName = MoveController.GetComponent<PawnMove>().Player02.name;
         enemyStartHealth = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health;
-        Debug.Log("Player 1 damage and speed  : " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage + "  " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement);
-        Debug.Log("Player 2 damage and speed  : " + MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage + "  " + MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement);
+        //Debug.Log("Player 1 damage and speed  : " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage + "  " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement);
+        //Debug.Log("Player 2 damage and speed  : " + MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage + "  " + MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement);
 
     }
     void Update()
@@ -571,22 +578,40 @@ public class Player1MovementController : MonoBehaviour
         }
     }
 
-    IEnumerator DamageBoost(int startDamage)
+    IEnumerator DamageBoost()
     {
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(5f);
         if (MoveController.GetComponent<PawnMove>().Player01 != null)
         {
-            MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage = startDamage;
+            if (damagePowerUp == 1)
+            {
+                MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage = initialDamage;
+                damagePowerUp--;
+            }
+            else
+            {
+                StartCoroutine("DamageBoost");
+                damagePowerUp--;
+            }
         }
     }
 
-    IEnumerator SpeedBoost(int startSpeed)
+    IEnumerator SpeedBoost()
     {
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(UnityEngine.Random.Range(2.5f,5f));
         if (MoveController.GetComponent<PawnMove>().Player01 != null)
         {
-            MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement = startSpeed;
-            speed = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement;
+            if (speedPowerUp == 1)
+            {
+                MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement = initialSpeed;
+                speed = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement;
+                speedPowerUp--;
+            }
+            else
+            {
+                StartCoroutine("SpeedBoost");
+                speedPowerUp--;
+            }
         }
     }
 
@@ -599,29 +624,43 @@ public class Player1MovementController : MonoBehaviour
                 float statBoost = UnityEngine.Random.Range(0, 100);
                 if (statBoost < 40)
                 {
-                    Debug.Log("Damage Boost p1");
-                    StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage);
-                    MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage * 2;
+                    if (damagePowerUp == 0)
+                    {
+                        StartCoroutine("DamageBoost");
+                        damagePowerUp++;
+                        MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage * 2;
+                    }
+                    else
+                    {
+                        damagePowerUp++;
+                    }
                 }
                 else if (statBoost < 70)
                 {
-                    Debug.Log("Speed Boost p1");
-                    StartCoroutine("SpeedBoost", MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement);
-                    MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement * 2;
-                    speed = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement;
+                    if (speedPowerUp == 0)
+                    {
+                        StartCoroutine("SpeedBoost");
+                        speedPowerUp++;
+                        MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement * 2;
+                        speed = MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Movement;
+                    }
+                    else
+                    {
+                        speedPowerUp++;
+                    }
                 }
                 else
                 {
-                    health += 10;
+                    health += UnityEngine.Random.Range(5,15);
                     if (health > MaxHealth)
                     {
                         health = MaxHealth;
                     }
-                    Debug.Log("increase health p1");
                 }
                 ItemSpawner.numPowerUps--;
                 other.transform.parent.gameObject.GetComponent<ItemSpawner>().empty = true;
                 other.gameObject.SetActive(false);
+                
             }
             //If the player gets shot
             if (!isAlien && other.tag == "alienBullet")
@@ -1023,7 +1062,6 @@ public class Player1MovementController : MonoBehaviour
     {
         if (specialAvailable)
         {
-            Debug.Log("PLayer 1 alien runner can use special");
             if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
             {
                 if (Input.GetAxis("360_LeftTrigger1") == 1)

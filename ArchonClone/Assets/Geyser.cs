@@ -11,6 +11,7 @@ public class Geyser : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
+        Geyser.curEruptions = 0;
 	}
 	
 	// Update is called once per frame

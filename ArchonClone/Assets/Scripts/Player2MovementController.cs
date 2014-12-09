@@ -76,6 +76,11 @@ public class Player2MovementController : MonoBehaviour
 
     ParticleSystem ps;
 
+    int damagePowerUp = 0;
+    int speedPowerUp = 0;
+    int initialSpeed;
+    int initialDamage;
+
     void Start()
     {
         ps = GetComponent<ParticleSystem>();
@@ -88,6 +93,8 @@ public class Player2MovementController : MonoBehaviour
 
         //health = 100;
         speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
+        initialSpeed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
+        initialDamage = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage;
         health = (float)MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health;
         MaxHealth = (float)MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().MaxHealth;
         attackRate = 2;//MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().AttackRate;
@@ -454,22 +461,40 @@ public class Player2MovementController : MonoBehaviour
         }
     }
 
-    IEnumerator DamageBoost(int startDamage)
+    IEnumerator DamageBoost()
     {
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(5f);
         if (MoveController.GetComponent<PawnMove>().Player02 != null)
         {
-            MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = startDamage;
+            if (damagePowerUp == 1)
+            {
+                MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = initialDamage;
+                damagePowerUp--;
+            }
+            else
+            {
+                StartCoroutine("DamageBoost");
+                damagePowerUp--;
+            }
         }
     }
 
-    IEnumerator SpeedBoost(int startSpeed)
+    IEnumerator SpeedBoost()
     {
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(UnityEngine.Random.Range(2.5f, 5f));
         if (MoveController.GetComponent<PawnMove>().Player02 != null)
         {
-            MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = startSpeed;
-            speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
+            if (speedPowerUp == 1)
+            {
+                MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = initialSpeed;
+                speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
+                speedPowerUp--;
+            }
+            else
+            {
+                StartCoroutine("SpeedBoost");
+                speedPowerUp--;
+            }
         }
     }
 
@@ -482,25 +507,38 @@ public class Player2MovementController : MonoBehaviour
                 float statBoost = UnityEngine.Random.Range(0, 100);
                 if (statBoost < 40)
                 {
-                    Debug.Log("Damage Boost p2");
-                    StartCoroutine("DamageBoost", MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage);
-                    MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage * 2;
+                    if (damagePowerUp == 0)
+                    {
+                        StartCoroutine("DamageBoost");
+                        damagePowerUp++;
+                        MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage * 2;
+                    }
+                    else
+                    {
+                        damagePowerUp++;
+                    }
                 }
                 else if (statBoost < 70)
                 {
-                    Debug.Log("Speed Boost p2");
-                    StartCoroutine("SpeedBoost", MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement);
-                    MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement * 2;
-                    speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
+                    if (speedPowerUp == 0)
+                    {
+                        StartCoroutine("SpeedBoost");
+                        speedPowerUp++;
+                        MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement * 2;
+                        speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
+                    }
+                    else
+                    {
+                        speedPowerUp++;
+                    }
                 }
                 else
                 {
-                    health += 10;
+                    health += UnityEngine.Random.Range(5, 15);
                     if (health > MaxHealth)
                     {
                         health = MaxHealth;
                     }
-                    Debug.Log("increase health p2");
                 }
                 ItemSpawner.numPowerUps--;
                 other.transform.parent.gameObject.GetComponent<ItemSpawner>().empty = true;
@@ -558,7 +596,6 @@ public class Player2MovementController : MonoBehaviour
             //If the player gets hit with melee
             if (other.name == "Sword(Clone)" && other.tag != tag)
             {
-                Debug.Log("hit by sword");
                 Destroy(other.gameObject);
                 Vector3 this2That = new Vector3(this.transform.position.x - enemy.transform.position.x, 0, this.transform.position.z - enemy.transform.position.z);
                 controller.SimpleMove(MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Damage * (Vector3.Normalize(this2That)));
