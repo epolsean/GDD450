@@ -32,12 +32,19 @@ public class BarrelExplode : MonoBehaviour
             if (p1!= null && p1Hit == false && Vector3.Distance(p1.transform.position, gameObject.transform.position) <= 6)
             {
                 p1Hit = true;
-                p1.GetComponent<Player1MovementController>().health -= 40;
+                p1.GetComponent<Player1MovementController>().health -= 20;
             }
             if (p2!= null && p2Hit == false && Vector3.Distance(p2.transform.position, gameObject.transform.position) <= 6)
             {
                 p2Hit = true;
-                p2.GetComponent<Player2MovementController>().health -= 40;
+                if (BattleStats.singlePlayer)
+                {
+                    p2.GetComponent<EnemyAIForBattle>().health -= 20;
+                }
+                else
+                {
+                    p2.GetComponent<Player2MovementController>().health -= 20;
+                }
             }
         }
 	}
