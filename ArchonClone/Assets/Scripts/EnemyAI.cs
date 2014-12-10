@@ -12,11 +12,16 @@ public class EnemyAI : MonoBehaviour {
     public GameObject AIFinalTurnTarget;
     public GameObject AIpieceOldTile;
     public int TurnCount = 0;
+    public GameObject MovementController;
 
     
     // Use this for initialization
 	void Start () {
         NextState();
+        if (GameObject.Find("MovementController") != null)
+        {
+            MovementController = GameObject.Find("MovementController");
+        }
 	}
 	
 	// Update is called once per frame
@@ -213,6 +218,8 @@ public class EnemyAI : MonoBehaviour {
         //this sets the target for the AI Opponent and moves initiates combat...
         SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().datNode.SetActive(true);
         Vector3 targetPos = TargetPiece.transform.position;
+        MovementController.GetComponent<PawnMove>().MoveToTile = SelectedPiece.GetComponent<pieceMove>().datTile;
+        MovementController.GetComponent<PawnMove>().SelectedPiece = SelectedPiece;
         SelectedPiece.GetComponent<pieceMove>().targetPosition = targetPos;
         SelectedPiece.GetComponent<pieceMove>().GetNewPath();
         SelectedPiece.GetComponent<pieceMove>().isMoving = true;

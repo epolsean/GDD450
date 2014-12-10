@@ -303,6 +303,12 @@ public class TileProperties : MonoBehaviour {
             UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().GenNewPath();
             //print("new path generated!!!!!");
 
+            /*assign all variables for making piece move
+            GameObject newTarget = Instantiate(datTarget, transform.position, transform.rotation) as GameObject;
+            UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().targetPosition = newTarget.transform.position;
+            UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().GetNewPath();
+             * */
+
             if(Vector3.Distance(UnitMoveController.GetComponent<PawnMove>().SelectedPiece.transform.position, this.transform.position) <= UnitMoveController.GetComponent<PawnMove>().MaxMove)
             {
                 renderer.material.color = Color.green;
@@ -420,20 +426,24 @@ public class TileProperties : MonoBehaviour {
         UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().GetNewPath();
         UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().isMoving = true;
         Destroy(newTarget.gameObject);
-        this.UnitOnTile = UnitMoveController.GetComponent<PawnMove>().SelectedPiece;
-        UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().datTile = this.gameObject;
+        
         //this.datNode.gameObject.SetActive(true);
         UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
         if (UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile != null)
         {
             UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(false);
         }
-        
-        UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().UnitOnTile = null;
-        UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().Occupied = false;
-        UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().Occupied = false;
-        UnitMoveController.GetComponent<PawnMove>().isMoving = false;
-        canPlace = false;
+
+        if(UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().canMove2Tile)
+        {
+            this.UnitOnTile = UnitMoveController.GetComponent<PawnMove>().SelectedPiece;
+            UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().datTile = this.gameObject;
+            UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().UnitOnTile = null;
+            UnitMoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().Occupied = false;
+            UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().Occupied = false;
+            UnitMoveController.GetComponent<PawnMove>().isMoving = false;
+            canPlace = false;
+        }
 
     }
 
@@ -565,7 +575,7 @@ public class TileProperties : MonoBehaviour {
                     else
                     {
                         //ReplaceWhitePiece(UnitMoveController.GetComponent<PawnMove>().SelectedPiece);
-                        SetTarget();
+                        SetTarget();   //this sets the empy hex tile if player is synthetic
                         if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.name == "WhiteTank(Clone)")
                         {
                             PiecePlaceScript.White01Tile = UnitMoveController.GetComponent<PawnMove>().MoveToTile;
@@ -630,6 +640,7 @@ public class TileProperties : MonoBehaviour {
                     SetTarget();
                 }
             }
+            UnitMoveController.GetComponent<PawnMove>().isMoving = false;
         }
         else if(canPlace == true && UnitOnTile.tag == UnitMoveController.GetComponent<PawnMove>().SelectedPiece.tag)
         {

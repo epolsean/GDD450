@@ -13,10 +13,13 @@ public class pieceMove : MonoBehaviour {
     public float nextWaypointDistance = 2f;
     int currentWaypoint = 0;
     public bool isMoving = false;
+    public bool startedPath = false; 
     public GameObject MoveController;
     public Animator PieceAnim;
     public double MaxPieceMove;
     public float MaxMove;
+    public int MaxPathNodes;
+    public bool canMove2Tile = false; 
     public GameObject datTile;
     public GameObject datSprite; 
 
@@ -35,21 +38,25 @@ public class pieceMove : MonoBehaviour {
         {
             MaxPieceMove = 5 * 2;
             MaxMove = 8;
+            MaxPathNodes = 3;
         }
         else if (name == "WhiteGrunt(Clone)" || name == "BlackGrunt(Clone)")
         {
             MaxPieceMove = 5 * 2.75;
             MaxMove = 11;
+            MaxPathNodes = 4;
         }
         else if (name == "WhiteRunner(Clone)" || name == "BlackRunner(Clone)")
         {
             MaxPieceMove = 5 * 3.5;
             MaxMove = 16;
+            MaxPathNodes = 5;
         }
         else if (name == "WhiteScout(Clone)" || name == "BlackScout(Clone)")
         {
             MaxPieceMove = 5 * 2.75;
             MaxMove = 11;
+            MaxPathNodes = 4;
         }
 
         //assign pieces to their sprites
@@ -290,6 +297,7 @@ public class pieceMove : MonoBehaviour {
     {
         Debug.Log("Generating Path");
         seeker.StartPath(transform.position, targetPosition, OnPathComplete);
+        
         if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)")
         {
             //PieceAnim.SetTrigger("WalkOnce");
@@ -300,7 +308,7 @@ public class pieceMove : MonoBehaviour {
     public int CalcNewPathDist()
     {
         Path p = seeker.GetNewPath(transform.position, targetPosition);
-        print("PathNodeCopacity: " + p.vectorPath.Capacity);
+        print("PathNodeCompacity: " + p.vectorPath.Capacity);
         return p.vectorPath.Capacity;
 
         
@@ -326,6 +334,13 @@ public class pieceMove : MonoBehaviour {
         {
             return;
         }
+        else
+        {
+            if(isMoving)
+            {
+
+            }
+        }
         if (currentWaypoint >= path.vectorPath.Count)
         {
             if(isMoving)
@@ -338,6 +353,14 @@ public class pieceMove : MonoBehaviour {
                     PieceAnim.SetBool("isWalking", false);
                 } 
                 Debug.Log("DA END");
+                canMove2Tile = false;
+                MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = this.gameObject;
+                MoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().UnitOnTile = null;
+                
+                this.datTile = MoveController.GetComponent<PawnMove>().MoveToTile;
+                MoveController.GetComponent<PawnMove>().isMoving = false;
+                datTile.GetComponent<TileProperties>().canPlace = false;
+                //MoveController.GetComponent<PawnMove>().MoveToTile = null;
                 GridManager.rescan = true;
                 //Debug.Log("Setting piece transform to target transform!");
                 //transform.position = targetPosition;
@@ -365,12 +388,23 @@ public class pieceMove : MonoBehaviour {
             
             return;
         }
-
         Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
 
         dir *= speed * Time.fixedDeltaTime;
+        if(path.vectorPath.Count <= MaxPathNodes)
+        {
+            controller.SimpleMove(dir);
+            canMove2Tile = true; 
+        }
+        else
+        {
+            path = null;
+            //play error sound & reset turn piece is being assinged to the selected tile no matter what reset the tile that the unit is on 
+            TurnStateMachine.canSelectPiece = true;
+            TileProperties.pieceSelected = false;
+            MoveController.GetComponent<PawnMove>().isMoving = false; 
 
-        controller.SimpleMove(dir);
+        }
 
         if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance - 1)
         {
@@ -380,7 +414,7 @@ public class pieceMove : MonoBehaviour {
 
     void Update()
     {
-        if(isMoving)
+        if(isMoving && canMove2Tile)
         {
             var rotationAngle = Quaternion.LookRotation(targetPosition - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotationAngle, Time.deltaTime*5);
