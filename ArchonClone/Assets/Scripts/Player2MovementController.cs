@@ -402,22 +402,20 @@ public class Player2MovementController : MonoBehaviour
         }
         if (win == true)
         {
-            /*if (!Application.isEditor)
+            if (!printStats)
             {
-                if (!printStats)
+                string path = Application.streamingAssetsPath;
+
+                path += "/WhoWins.txt";
+                using (StreamWriter sw = new StreamWriter(path, true))
                 {
-                    path = Application.dataPath;
-                    path += "Resources/WhoWins.txt";
-                    using (StreamWriter sw = new StreamWriter(path, true))
-                    {
-                        sw.WriteLine("Battle between .... " + MoveController.GetComponent<PawnMove>().Player02.name + " with " + MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Health + " health  vs   " + enemyName + " with " + enemyStartHealth + " health");
-                        sw.WriteLine("Winner is " + MoveController.GetComponent<PawnMove>().Player02.name);
-                        sw.WriteLine("-------------------");
-                        UpdateStats();
-                        printStats = true;
-                    }
+                    sw.WriteLine("Battle between .... " + MoveController.GetComponent<PawnMove>().Player01.name + " with " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health + " health  vs   " + enemyName + " with " + enemyStartHealth + " health");
+                    sw.WriteLine("Winner is " + MoveController.GetComponent<PawnMove>().Player01.name);
+                    sw.WriteLine("-------------------");
+                    UpdateStats();
+                    printStats = true;
                 }
-            }*/
+            }
             //win = false; 
             //TurnStateMachine.fightDone = true; 
 
