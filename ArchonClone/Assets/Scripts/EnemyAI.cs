@@ -217,8 +217,17 @@ public class EnemyAI : MonoBehaviour {
     {
         //this sets the target for the AI Opponent and moves initiates combat...
         SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().datNode.SetActive(true);
+        MovementController.GetComponent<PawnMove>().currentTile = AIpieceOldTile; 
         Vector3 targetPos = TargetPiece.transform.position;
-        MovementController.GetComponent<PawnMove>().MoveToTile = SelectedPiece.GetComponent<pieceMove>().datTile;
+        //MovementController.GetComponent<PawnMove>().MoveToTile = SelectedPiece.GetComponent<pieceMove>().datTile;
+        if(TargetPiece.tag == "WhiteTile")
+        {
+            MovementController.GetComponent<PawnMove>().MoveToTile = TargetPiece;
+        }
+        else if(TargetPiece.tag == "White" || TargetPiece.tag == "Black")
+        {
+            MovementController.GetComponent<PawnMove>().MoveToTile = TargetPiece.GetComponent<pieceMove>().datTile;
+        }
         MovementController.GetComponent<PawnMove>().SelectedPiece = SelectedPiece;
         SelectedPiece.GetComponent<pieceMove>().targetPosition = targetPos;
         SelectedPiece.GetComponent<pieceMove>().GetNewPath();
@@ -229,6 +238,7 @@ public class EnemyAI : MonoBehaviour {
             SelectedPiece.GetComponent<pieceMove>().datTile = TargetPiece;
             SelectedPiece.GetComponent<pieceMove>().datTile.GetComponent<TileProperties>().UnitOnTile = SelectedPiece;
             TargetPiece.GetComponent<TileProperties>().datNode.SetActive(false);
+
         }
         else if (TargetPiece.tag == "White" || TargetPiece.tag == "Black")
         {

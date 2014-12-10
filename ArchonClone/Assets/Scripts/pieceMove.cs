@@ -352,10 +352,15 @@ public class pieceMove : MonoBehaviour {
                     //GetComponentInChildren<Animator>().SetBool("isWalking", false);
                     PieceAnim.SetBool("isWalking", false);
                 } 
-                Debug.Log("DA END");
+                //Debug.Log("DA END");
                 canMove2Tile = false;
                 MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = this.gameObject;
+                print("b4 old tile reset");
                 MoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().UnitOnTile = null;
+                print("after old tile reset");
+                MoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.SetActive(true);
+                //MoveController.GetComponent<PawnMove>().MoveToTile.renderer.material.color = Color.magenta;
+                //MoveController.GetComponent<PawnMove>().currentTile.renderer.material.color = Color.blue;
                 
                 this.datTile = MoveController.GetComponent<PawnMove>().MoveToTile;
                 MoveController.GetComponent<PawnMove>().isMoving = false;

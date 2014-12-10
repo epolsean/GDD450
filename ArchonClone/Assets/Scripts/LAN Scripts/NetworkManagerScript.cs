@@ -146,10 +146,10 @@ public class NetworkManagerScript : MonoBehaviour {
 
     public void startServer()
     {
-        if (serverNameInput.text != "Input")
-            serverName = serverNameInput.text;
-        if (serverDesInput.text != "Input")
-            serverDes = serverDesInput.text;
+        if (serverNameInput.text.text != "Input")
+            serverName = serverNameInput.text.text;
+        if (serverDesInput.text.text != "Input")
+            serverDes = serverDesInput.text.text;
         Network.InitializeServer(2, 25000, !Network.HavePublicAddress());
         MasterServer.RegisterHost(gameName, serverName, serverDes);
         inputPanel.SetActive(false);
