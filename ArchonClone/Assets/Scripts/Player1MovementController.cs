@@ -531,8 +531,11 @@ public class Player1MovementController : MonoBehaviour
                     sw.WriteLine("-------------------");
                     UpdateStats();
                     printStats = true;
+                    BattleStats.GameOver = true;
+                    BattleStats.UpdateStats();
                 }
             }
+            
             //win = false; 
             //TurnStateMachine.fightDone = true; 
 
@@ -575,7 +578,6 @@ public class Player1MovementController : MonoBehaviour
                 //Destroy(this.gameObject);
             }
         }
-        Debug.Log("Path for streams  : " +Application.streamingAssetsPath);
     }
 
     IEnumerator DamageBoost()

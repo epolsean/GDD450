@@ -8,6 +8,13 @@ public class TargetEnemy : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        GetComponent<Rigidbody>().velocity = (10 * Vector3.Normalize(target.transform.position - transform.position));
+        if (target != null)
+        {
+            GetComponent<Rigidbody>().velocity = (10 * Vector3.Normalize(target.transform.position - transform.position));
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
 	}
 }

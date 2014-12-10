@@ -414,6 +414,8 @@ public class Player2MovementController : MonoBehaviour
                     sw.WriteLine("-------------------");
                     UpdateStats();
                     printStats = true;
+                    BattleStats.GameOver = true;
+                    BattleStats.UpdateStats();
                 }
             }
             //win = false; 

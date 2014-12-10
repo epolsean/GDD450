@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.IO;
+using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class BattleStats : MonoBehaviour {
@@ -15,6 +18,8 @@ public class BattleStats : MonoBehaviour {
     public static string player1Pref = "top";
     public static string player2Pref = "top";
     public static bool hotSeat = true;
+
+    public static bool GameOver = false;
 
     public static int AlienGruntWinsVSRobotGrunt = 0;
     public static int AlienGruntWinsVSRobotScout = 0;
@@ -56,13 +61,61 @@ public class BattleStats : MonoBehaviour {
     public static int RobotRunnerWinsVSAlienTank = 0;
     public static int RobotRunnerWinsVSAlienRunner = 0;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
 	// Update is called once per frame
-	void Update () {
+	public static void UpdateStats () 
+    {
+        if (GameOver)
+        {
+            string path = Application.streamingAssetsPath;
+
+            path += "/TotalWins.txt";
+            using (StreamWriter sw = new StreamWriter(path, false))
+            {
+                sw.WriteLine("ROBOTS:");
+                sw.WriteLine("Number of wins Robot Runner vs Alien Grunt .... " +RobotRunnerWinsVSAlienGrunt);
+                sw.WriteLine("Number of wins Robot Runner vs Alien Runner .... " + RobotRunnerWinsVSAlienRunner);
+                sw.WriteLine("Number of wins Robot Runner vs Alien Tank .... " + RobotRunnerWinsVSAlienTank);
+                sw.WriteLine("Number of wins Robot Runner vs Alien Scout .... " + RobotRunnerWinsVSAlienScout);
+                sw.WriteLine("-------------------");
+                sw.WriteLine("Number of wins Robot Grunt vs Alien Grunt .... " + RobotGruntWinsVSAlienGrunt);
+                sw.WriteLine("Number of wins Robot Grunt vs Alien Runner .... " + RobotGruntWinsVSAlienRunner);
+                sw.WriteLine("Number of wins Robot Grunt vs Alien Tank .... " + RobotGruntWinsVSAlienTank);
+                sw.WriteLine("Number of wins Robot Grunt vs Alien Scout .... " + RobotGruntWinsVSAlienScout);
+                sw.WriteLine("-------------------");
+                sw.WriteLine("Number of wins Robot Scout vs Alien Grunt .... " + RobotScoutWinsVSAlienGrunt);
+                sw.WriteLine("Number of wins Robot Scout vs Alien Runner .... " + RobotScoutWinsVSAlienRunner);
+                sw.WriteLine("Number of wins Robot Scout vs Alien Tank .... " + RobotScoutWinsVSAlienTank);
+                sw.WriteLine("Number of wins Robot Scout vs Alien Scout .... " + RobotScoutWinsVSAlienScout);
+                sw.WriteLine("-------------------");
+                sw.WriteLine("Number of wins Robot Tank vs Alien Grunt .... " + RobotTankWinsVSAlienGrunt);
+                sw.WriteLine("Number of wins Robot Tank vs Alien Runner .... " + RobotTankWinsVSAlienRunner);
+                sw.WriteLine("Number of wins Robot Tank vs Alien Tank .... " + RobotTankWinsVSAlienTank);
+                sw.WriteLine("Number of wins Robot Tank vs Alien Scout .... " + RobotTankWinsVSAlienScout);
+                sw.WriteLine("-------------------");
+                sw.WriteLine("ALIENS:");
+                sw.WriteLine("Number of wins Alien Runner vs Robot Grunt .... " + AlienRunnerWinsVSRobotGrunt);
+                sw.WriteLine("Number of wins Alien Runner vs Robot Runner .... " + AlienRunnerWinsVSRobotRunner);
+                sw.WriteLine("Number of wins Alien Runner vs Robot Tank .... " + AlienRunnerWinsVSRobotTank);
+                sw.WriteLine("Number of wins Alien Runner vs Robot Scout .... " + AlienRunnerWinsVSRobotScout);
+                sw.WriteLine("-------------------");
+                sw.WriteLine("Number of wins Alien Grunt vs Robot Grunt .... " + AlienGruntWinsVSRobotGrunt);
+                sw.WriteLine("Number of wins Alien Grunt vs Robot Runner .... " + AlienGruntWinsVSRobotRunner);
+                sw.WriteLine("Number of wins Alien Grunt vs Robot Tank .... " + AlienGruntWinsVSRobotTank);
+                sw.WriteLine("Number of wins Alien Grunt vs Robot Scout .... " + AlienGruntWinsVSRobotScout);
+                sw.WriteLine("-------------------");
+                sw.WriteLine("Number of wins Alien Scout vs Robot Grunt .... " + AlienScoutWinsVSRobotGrunt);
+                sw.WriteLine("Number of wins Alien Scout vs Robot Runner .... " + AlienScoutWinsVSRobotRunner);
+                sw.WriteLine("Number of wins Alien Scout vs Robot Tank .... " + AlienScoutWinsVSRobotTank);
+                sw.WriteLine("Number of wins Alien Scout vs Robot Scout .... " + AlienScoutWinsVSRobotScout);
+                sw.WriteLine("-------------------");
+                sw.WriteLine("Number of wins Alien Tank vs Robot Grunt .... " + AlienTankWinsVSRobotGrunt);
+                sw.WriteLine("Number of wins Alien Tank vs Robot Runner .... " + AlienTankWinsVSRobotRunner);
+                sw.WriteLine("Number of wins Alien Tank vs Robot Tank .... " + AlienTankWinsVSRobotTank);
+                sw.WriteLine("Number of wins Alien Tank vs Robot Scout .... " + AlienTankWinsVSRobotScout);
+                sw.WriteLine("-------------------");
+            }
+            GameOver = false;
+        }
         
 	
 	}

@@ -332,6 +332,8 @@ public class EnemyAIForBattle : MonoBehaviour
                     sw.WriteLine("-------------------");
                     UpdateStats();
                     printStats = true;
+                    BattleStats.GameOver = true;
+                    BattleStats.UpdateStats();
                 }
             }*/
             if (endTimer <= 3)

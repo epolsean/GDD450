@@ -5,7 +5,7 @@ public class DestroyIfHitWalls : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "wall" || other.tag == "Geyser")
+        if (other.tag == "wall" || (other.tag == "Geyser" && other.GetComponent<Geyser>().erupting))
         {
             if (!Network.isClient && !Network.isServer)
                 Destroy(gameObject);
