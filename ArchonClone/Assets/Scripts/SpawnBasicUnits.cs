@@ -20,10 +20,18 @@ public class SpawnBasicUnits : MonoBehaviour {
     public GameObject WTank01Tile;
     public GameObject BTank02Tile;
     public GameObject WTank02Tile;
+    public GameObject BTank03Tile;
+    public GameObject WTank03Tile;
+    public GameObject BTank04Tile;
+    public GameObject WTank04Tile;
     public GameObject BRunner01Tile;
     public GameObject WRunner01Tile;
     public GameObject BRunner02Tile;
     public GameObject WRunner02Tile;
+    public GameObject BRunner03Tile;
+    public GameObject WRunner03Tile;
+    public GameObject BRunner04Tile;
+    public GameObject WRunner04Tile;
     public GameObject BGrunt01Tile;
     public GameObject WGrunt01Tile;
     public GameObject BGrunt02Tile;
@@ -100,7 +108,7 @@ public class SpawnBasicUnits : MonoBehaviour {
 
     void StartSpawn()
     {
-        //Spawn 2 SynthTanks
+        //Spawn 4 SynthTanks
         if(WTank01Tile != null)
         {
             SpawnWhitePiece(WhiteTank, WTank01Tile);
@@ -109,7 +117,15 @@ public class SpawnBasicUnits : MonoBehaviour {
         {
             SpawnWhitePiece(WhiteTank, WTank02Tile);
         }
-        //Spawn 2 SynthScout
+        if (WTank03Tile != null)
+        {
+            SpawnWhitePiece(WhiteTank, WTank03Tile);
+        }
+        if (WTank04Tile != null)
+        {
+            SpawnWhitePiece(WhiteTank, WTank04Tile);
+        }
+        //Spawn 4 SynthScout
         if(WScout01Tile != null)
         {
             SpawnWhitePiece(WhiteScout, WScout01Tile);
@@ -117,6 +133,14 @@ public class SpawnBasicUnits : MonoBehaviour {
         if (WScout02Tile != null)
         {
             SpawnWhitePiece(WhiteScout, WScout02Tile);
+        }
+        if (WScout03Tile != null)
+        {
+            SpawnWhitePiece(WhiteScout, WScout03Tile);
+        }
+        if (WScout04Tile != null)
+        {
+            SpawnWhitePiece(WhiteScout, WScout04Tile);
         }
         //Spawn 2 SynthRunner
         if (WRunner01Tile != null)
@@ -126,6 +150,14 @@ public class SpawnBasicUnits : MonoBehaviour {
         if (WRunner02Tile != null)
         {
             SpawnWhitePiece(WhiteRunner, WRunner02Tile);
+        }
+        if (WRunner03Tile != null)
+        {
+            SpawnWhitePiece(WhiteRunner, WRunner03Tile);
+        }
+        if (WRunner04Tile != null)
+        {
+            SpawnWhitePiece(WhiteRunner, WRunner04Tile);
         }
         //Spawn 4 SynthGrunts
         if (WGrunt01Tile != null)
@@ -154,7 +186,15 @@ public class SpawnBasicUnits : MonoBehaviour {
         {
             SpawnBlackPiece(BlackTank, BTank02Tile);
         }
-        //Spawn 2 AlienScout
+        if (BTank03Tile != null)
+        {
+            SpawnBlackPiece(BlackTank, BTank03Tile);
+        }
+        if (BTank04Tile != null)
+        {
+            SpawnBlackPiece(BlackTank, BTank04Tile);
+        }
+        //Spawn 4 AlienScout
         if (BScout01Tile != null)
         {
             SpawnBlackPiece(BlackScout, BScout01Tile);
@@ -163,7 +203,15 @@ public class SpawnBasicUnits : MonoBehaviour {
         {
             SpawnBlackPiece(BlackScout, BScout02Tile);
         }
-        //Spawn 2 AlienRunner
+        if (BScout03Tile != null)
+        {
+            SpawnBlackPiece(BlackScout, BScout03Tile);
+        }
+        if (BScout04Tile != null)
+        {
+            SpawnBlackPiece(BlackScout, BScout04Tile);
+        }
+        //Spawn 4 AlienRunner
         if (BRunner01Tile != null)
         {
             SpawnBlackPiece(BlackRunner, BRunner01Tile);
@@ -171,6 +219,14 @@ public class SpawnBasicUnits : MonoBehaviour {
         if (BRunner02Tile != null)
         {
             SpawnBlackPiece(BlackRunner, BRunner02Tile);
+        }
+        if (BRunner03Tile != null)
+        {
+            SpawnBlackPiece(BlackRunner, BRunner03Tile);
+        }
+        if (BRunner04Tile != null)
+        {
+            SpawnBlackPiece(BlackRunner, BRunner04Tile);
         }
         //Spawn 4 AlienGrunts
         if (BGrunt01Tile != null)
