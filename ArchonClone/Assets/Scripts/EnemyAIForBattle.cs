@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.IO;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -211,7 +213,7 @@ public class EnemyAIForBattle : MonoBehaviour
                                         bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
                                         bulletClone.rigidbody.useGravity = false;
                                         bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                                        Destroy(bulletClone.gameObject, 3);
+                                        Destroy(bulletClone.gameObject, 1.5f);
                                     }
                                     else
                                     {
@@ -219,7 +221,7 @@ public class EnemyAIForBattle : MonoBehaviour
                                         bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
                                         bulletClone.rigidbody.useGravity = false;
                                         bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                                        Destroy(bulletClone.gameObject, 3);
+                                        Destroy(bulletClone.gameObject, 1.5f);
                                     }
                                     audio.Play();
                                     reloading = true;
@@ -305,6 +307,7 @@ public class EnemyAIForBattle : MonoBehaviour
                 }
                 if (health <= 0 && win == false)
                 {
+                    MoveController.GetComponent<PawnMove>().Player02.GetComponent<pieceMove>().datSprite.SetActive(false);
                     if (MoveController.GetComponent<PawnMove>().Player02.tag == "White")
                     {
                         SpawnBasicUnits.WhitePieceCount--;
@@ -322,14 +325,14 @@ public class EnemyAIForBattle : MonoBehaviour
         }
         if (win == true)
         {
-            /*if (!printStats)
+            if (!printStats)
             {
                 string path = Application.streamingAssetsPath;
 
                 path += "/WhoWins.txt";
                 using (StreamWriter sw = new StreamWriter(path, true))
                 {
-                    sw.WriteLine("Battle between .... " + MoveController.GetComponent<PawnMove>().Player01.name + " with " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health + " health  vs   " + enemyName + " with " + enemyStartHealth + " health");
+                    sw.WriteLine("Battle vs ENEMY AI between .... " + MoveController.GetComponent<PawnMove>().Player01.name + " with " + MoveController.GetComponent<PawnMove>().Player01.GetComponent<PiecePropScript>().Health + " health  vs   " + enemyName + " with " + enemyStartHealth + " health");
                     sw.WriteLine("Winner is " + MoveController.GetComponent<PawnMove>().Player01.name);
                     sw.WriteLine("-------------------");
                     UpdateStats();
@@ -337,7 +340,7 @@ public class EnemyAIForBattle : MonoBehaviour
                     BattleStats.GameOver = true;
                     BattleStats.UpdateStats();
                 }
-            }*/
+            }
             if (endTimer <= 3)
             {
                 endTimer += Time.deltaTime;

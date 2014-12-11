@@ -265,7 +265,7 @@ public class Player2MovementController : MonoBehaviour
                                     bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
                                     bulletClone.rigidbody.useGravity = false;
                                     bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                                    Destroy(bulletClone.gameObject, 3);
+                                    Destroy(bulletClone.gameObject, 1.5f);
                                 }
                                 else
                                 {
@@ -273,7 +273,7 @@ public class Player2MovementController : MonoBehaviour
                                     bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
                                     bulletClone.rigidbody.useGravity = false;
                                     bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                                    Destroy(bulletClone.gameObject, 3);
+                                    Destroy(bulletClone.gameObject, 1.5f);
                                 }
                                 audio.Play();
                                 reloading = true;
@@ -289,7 +289,7 @@ public class Player2MovementController : MonoBehaviour
                                     bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
                                     bulletClone.rigidbody.useGravity = false;
                                     bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                                    Destroy(bulletClone.gameObject, 3);
+                                    Destroy(bulletClone.gameObject, 1.5f);
                                 }
                                 else
                                 {
@@ -297,7 +297,7 @@ public class Player2MovementController : MonoBehaviour
                                     bulletClone.gameObject.transform.localScale = new Vector3(bulletSize, bulletSize, bulletSize);
                                     bulletClone.rigidbody.useGravity = false;
                                     bulletClone.velocity = transform.TransformDirection(Vector3.forward * bulletSpeed);
-                                    Destroy(bulletClone.gameObject, 3);
+                                    Destroy(bulletClone.gameObject, 1.5f);
                                 }
                                 audio.Play();
                                 reloading = true;

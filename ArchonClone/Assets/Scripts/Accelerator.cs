@@ -13,7 +13,7 @@ public class Accelerator : MonoBehaviour
     void Start()
     {
         MoveController = GameObject.Find("MovementController");
-        countdownTimer = 35f;
+        countdownTimer = 60f;
         player1 = GameObject.Find("Player1(Clone)");
         if (BattleStats.singlePlayer)
         {
