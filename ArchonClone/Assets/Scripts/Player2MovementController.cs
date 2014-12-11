@@ -76,6 +76,7 @@ public class Player2MovementController : MonoBehaviour
     bool printStats = false;
 
     ParticleSystem ps;
+    public ParticleSystem powerUpParticles;
 
     int damagePowerUp = 0;
     int speedPowerUp = 0;
@@ -85,6 +86,7 @@ public class Player2MovementController : MonoBehaviour
     void Start()
     {
         ps = GetComponent<ParticleSystem>();
+        powerUpParticles.enableEmission = true;
         canvasRotation = new Quaternion(-1, 0, 0, 1);
         myCanvas.transform.rotation = canvasRotation;
         printStats = false;
@@ -470,6 +472,8 @@ public class Player2MovementController : MonoBehaviour
             if (damagePowerUp == 1)
             {
                 MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = initialDamage;
+                powerUpParticles.Stop();
+                powerUpParticles.Clear();
                 damagePowerUp--;
             }
             else
@@ -489,6 +493,8 @@ public class Player2MovementController : MonoBehaviour
             {
                 MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = initialSpeed;
                 speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
+                powerUpParticles.Stop();
+                powerUpParticles.Clear();
                 speedPowerUp--;
             }
             else
@@ -513,6 +519,8 @@ public class Player2MovementController : MonoBehaviour
                         StartCoroutine("DamageBoost");
                         damagePowerUp++;
                         MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Damage * 1.5f;
+                        powerUpParticles.startColor = Color.red;
+                        powerUpParticles.Play();
                     }
                     else
                     {
@@ -527,6 +535,8 @@ public class Player2MovementController : MonoBehaviour
                         speedPowerUp++;
                         MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement * 1.5f;
                         speed = MoveController.GetComponent<PawnMove>().Player02.GetComponent<PiecePropScript>().Movement;
+                        powerUpParticles.startColor = Color.blue;
+                        powerUpParticles.Play();
                     }
                     else
                     {
@@ -590,13 +600,13 @@ public class Player2MovementController : MonoBehaviour
                     }
                 }
             }
-            if (other.tag == "Laser" && other.GetComponent<LaserController>().shooting)
+            if (other.tag == "Laser" && other.GetComponent<LaserController>().shooting && usingShield == false)
             {
-                health -= 0.5f;
+                health -= 5f * Time.deltaTime;
             }
-            if (other.tag == "Geyser" && other.GetComponent<Geyser>().erupting)
+            if (other.tag == "Geyser" && other.GetComponent<Geyser>().erupting && usingShield == false)
             {
-                health -= 0.5f;
+                health -= 5f * Time.deltaTime;
             }
             //If the player gets hit with melee
             if (other.name == "Sword(Clone)" && other.tag != tag)
@@ -626,11 +636,11 @@ public class Player2MovementController : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Laser" && other.GetComponent<LaserController>().shooting)
+        if (other.tag == "Laser" && other.GetComponent<LaserController>().shooting && usingShield == false)
         {
             health -= 5*Time.deltaTime;
         }
-        if (other.tag == "Geyser" && other.GetComponent<Geyser>().erupting)
+        if (other.tag == "Geyser" && other.GetComponent<Geyser>().erupting && usingShield == false)
         {
             health -= 5f * Time.deltaTime;
         }
@@ -653,8 +663,8 @@ public class Player2MovementController : MonoBehaviour
             {
                 shieldPower = 100;
             }
-            ps.Stop();
-            ps.Clear();
+            ps.Stop(false);
+            ps.Clear(false);
         }
         else if (usingShield)
         {
@@ -665,12 +675,12 @@ public class Player2MovementController : MonoBehaviour
                 shieldOverheat = true;
                 usingShield = false;
             }
-            ps.Play();
+            ps.Play(false);
         }
         if (shieldOverheat)
         {
-            ps.Stop();
-            ps.Clear();
+            ps.Stop(false);
+            ps.Clear(false);
             shieldPower += 2 * Time.deltaTime;
             if (shieldPower >= 30)
             {
@@ -832,8 +842,8 @@ public class Player2MovementController : MonoBehaviour
             {
                 shieldPower = 100;
             }
-            ps.Stop();
-            ps.Clear();
+            ps.Stop(false);
+            ps.Clear(false);
         }
         else if (usingShield)
         {
@@ -844,12 +854,12 @@ public class Player2MovementController : MonoBehaviour
                 shieldOverheat = true;
                 usingShield = false;
             }
-            ps.Play();
+            ps.Play(false);
         }
         if (shieldOverheat)
         {
-            ps.Stop();
-            ps.Clear();
+            ps.Stop(false);
+            ps.Clear(false);
             shieldPower += 2 * Time.deltaTime;
             if (shieldPower >= 30)
             {

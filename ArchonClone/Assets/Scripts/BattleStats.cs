@@ -21,45 +21,88 @@ public class BattleStats : MonoBehaviour {
 
     public static bool GameOver = false;
 
-    public static int AlienGruntWinsVSRobotGrunt = 0;
-    public static int AlienGruntWinsVSRobotScout = 0;
-    public static int AlienGruntWinsVSRobotTank = 0;
-    public static int AlienGruntWinsVSRobotRunner = 0;
+    public static int AlienGruntWinsVSRobotGrunt;
+    public static int AlienGruntWinsVSRobotScout;
+    public static int AlienGruntWinsVSRobotTank;
+    public static int AlienGruntWinsVSRobotRunner;
 
-    public static int AlienTankWinsVSRobotGrunt = 0;
-    public static int AlienTankWinsVSRobotScout = 0;
-    public static int AlienTankWinsVSRobotTank = 0;
-    public static int AlienTankWinsVSRobotRunner = 0;
+    public static int AlienTankWinsVSRobotGrunt;
+    public static int AlienTankWinsVSRobotScout;
+    public static int AlienTankWinsVSRobotTank;
+    public static int AlienTankWinsVSRobotRunner;
 
-    public static int AlienScoutWinsVSRobotGrunt = 0;
-    public static int AlienScoutWinsVSRobotScout = 0;
-    public static int AlienScoutWinsVSRobotTank = 0;
-    public static int AlienScoutWinsVSRobotRunner = 0;
+    public static int AlienScoutWinsVSRobotGrunt;
+    public static int AlienScoutWinsVSRobotScout;
+    public static int AlienScoutWinsVSRobotTank;
+    public static int AlienScoutWinsVSRobotRunner;
 
-    public static int AlienRunnerWinsVSRobotGrunt = 0;
-    public static int AlienRunnerWinsVSRobotScout = 0;
-    public static int AlienRunnerWinsVSRobotTank = 0;
-    public static int AlienRunnerWinsVSRobotRunner = 0;
+    public static int AlienRunnerWinsVSRobotGrunt;
+    public static int AlienRunnerWinsVSRobotScout;
+    public static int AlienRunnerWinsVSRobotTank;
+    public static int AlienRunnerWinsVSRobotRunner;
 
-    public static int RobotGruntWinsVSAlienGrunt = 0;
-    public static int RobotGruntWinsVSAlienScout = 0;
-    public static int RobotGruntWinsVSAlienTank = 0;
-    public static int RobotGruntWinsVSAlienRunner = 0;
+    public static int RobotGruntWinsVSAlienGrunt;
+    public static int RobotGruntWinsVSAlienScout;
+    public static int RobotGruntWinsVSAlienTank;
+    public static int RobotGruntWinsVSAlienRunner;
 
-    public static int RobotTankWinsVSAlienGrunt = 0;
-    public static int RobotTankWinsVSAlienScout = 0;
-    public static int RobotTankWinsVSAlienTank = 0;
-    public static int RobotTankWinsVSAlienRunner = 0;
+    public static int RobotTankWinsVSAlienGrunt;
+    public static int RobotTankWinsVSAlienScout;
+    public static int RobotTankWinsVSAlienTank;
+    public static int RobotTankWinsVSAlienRunner;
 
-    public static int RobotScoutWinsVSAlienGrunt = 0;
-    public static int RobotScoutWinsVSAlienScout = 0;
-    public static int RobotScoutWinsVSAlienTank = 0;
-    public static int RobotScoutWinsVSAlienRunner = 0;
+    public static int RobotScoutWinsVSAlienGrunt;
+    public static int RobotScoutWinsVSAlienScout;
+    public static int RobotScoutWinsVSAlienTank;
+    public static int RobotScoutWinsVSAlienRunner;
 
-    public static int RobotRunnerWinsVSAlienGrunt = 0;
-    public static int RobotRunnerWinsVSAlienScout = 0;
-    public static int RobotRunnerWinsVSAlienTank = 0;
-    public static int RobotRunnerWinsVSAlienRunner = 0;
+    public static int RobotRunnerWinsVSAlienGrunt;
+    public static int RobotRunnerWinsVSAlienScout;
+    public static int RobotRunnerWinsVSAlienTank;
+    public static int RobotRunnerWinsVSAlienRunner;
+
+    void Awake()
+    {
+        AlienGruntWinsVSRobotGrunt = PlayerPrefs.GetInt("AlienGruntWinsVSRobotGrunt");
+        AlienGruntWinsVSRobotScout = PlayerPrefs.GetInt("AlienGruntWinsVSRobotScout");
+        AlienGruntWinsVSRobotTank = PlayerPrefs.GetInt("AlienGruntWinsVSRobotTank");
+        AlienGruntWinsVSRobotRunner = PlayerPrefs.GetInt("AlienGruntWinsVSRobotRunner");
+
+        AlienTankWinsVSRobotGrunt = PlayerPrefs.GetInt("AlienTankWinsVSRobotGrunt");
+        AlienTankWinsVSRobotScout = PlayerPrefs.GetInt("AlienTankWinsVSRobotScout");
+        AlienTankWinsVSRobotTank = PlayerPrefs.GetInt("AlienTankWinsVSRobotTank");
+        AlienTankWinsVSRobotRunner = PlayerPrefs.GetInt("AlienTankWinsVSRobotRunner");
+
+        AlienScoutWinsVSRobotGrunt = PlayerPrefs.GetInt("AlienScoutWinsVSRobotGrunt");
+        AlienScoutWinsVSRobotScout = PlayerPrefs.GetInt("AlienScoutWinsVSRobotScout");
+        AlienScoutWinsVSRobotTank = PlayerPrefs.GetInt("AlienScoutWinsVSRobotTank");
+        AlienScoutWinsVSRobotRunner = PlayerPrefs.GetInt("AlienScoutWinsVSRobotRunner");
+
+        AlienRunnerWinsVSRobotGrunt = PlayerPrefs.GetInt("AlienRunnerWinsVSRobotGrunt");
+        AlienRunnerWinsVSRobotScout = PlayerPrefs.GetInt("AlienRunnerWinsVSRobotScout");
+        AlienRunnerWinsVSRobotTank = PlayerPrefs.GetInt("AlienRunnerWinsVSRobotTank");
+        AlienRunnerWinsVSRobotRunner = PlayerPrefs.GetInt("AlienRunnerWinsVSRobotRunner");
+
+        RobotGruntWinsVSAlienGrunt = PlayerPrefs.GetInt("RobotGruntWinsVSAlienGrunt");
+        RobotGruntWinsVSAlienScout = PlayerPrefs.GetInt("RobotGruntWinsVSAlienScout");
+        RobotGruntWinsVSAlienTank = PlayerPrefs.GetInt("RobotGruntWinsVSAlienTank");
+        RobotGruntWinsVSAlienRunner = PlayerPrefs.GetInt("RobotGruntWinsVSAlienRunner");
+
+        RobotTankWinsVSAlienGrunt = PlayerPrefs.GetInt("RobotTankWinsVSAlienGrunt");
+        RobotTankWinsVSAlienScout = PlayerPrefs.GetInt("RobotTankWinsVSAlienScout");
+        RobotTankWinsVSAlienTank = PlayerPrefs.GetInt("RobotTankWinsVSAlienTank");
+        RobotTankWinsVSAlienRunner = PlayerPrefs.GetInt("RobotTankWinsVSAlienRunner");
+
+        RobotScoutWinsVSAlienGrunt = PlayerPrefs.GetInt("RobotScoutWinsVSAlienGrunt");
+        RobotScoutWinsVSAlienScout = PlayerPrefs.GetInt("RobotScoutWinsVSAlienScout");
+        RobotScoutWinsVSAlienTank = PlayerPrefs.GetInt("RobotScoutWinsVSAlienTank");
+        RobotScoutWinsVSAlienRunner = PlayerPrefs.GetInt("RobotScoutWinsVSAlienRunner");
+
+        RobotRunnerWinsVSAlienGrunt = PlayerPrefs.GetInt("RobotRunnerWinsVSAlienGrunt");
+        RobotRunnerWinsVSAlienScout = PlayerPrefs.GetInt("RobotRunnerWinsVSAlienScout");
+        RobotRunnerWinsVSAlienTank = PlayerPrefs.GetInt("RobotRunnerWinsVSAlienTank");
+        RobotRunnerWinsVSAlienRunner = PlayerPrefs.GetInt("RobotRunnerWinsVSAlienRunner");
+    }
 
 	// Update is called once per frame
 	public static void UpdateStats () 
@@ -114,6 +157,47 @@ public class BattleStats : MonoBehaviour {
                 sw.WriteLine("Number of wins Alien Tank vs Robot Scout .... " + AlienTankWinsVSRobotScout);
                 sw.WriteLine("-------------------");
             }
+
+            PlayerPrefs.SetInt("AlienGruntWinsVSRobotGrunt",AlienGruntWinsVSRobotGrunt);
+            PlayerPrefs.SetInt("AlienGruntWinsVSRobotScout",AlienGruntWinsVSRobotScout);
+            PlayerPrefs.SetInt("AlienGruntWinsVSRobotTank",AlienGruntWinsVSRobotTank);
+            PlayerPrefs.SetInt("AlienGruntWinsVSRobotRunner",AlienGruntWinsVSRobotRunner);
+
+            PlayerPrefs.SetInt("AlienTankWinsVSRobotGrunt",AlienTankWinsVSRobotGrunt);
+            PlayerPrefs.SetInt("AlienTankWinsVSRobotScout",AlienTankWinsVSRobotScout);
+            PlayerPrefs.SetInt("AlienTankWinsVSRobotTank",AlienTankWinsVSRobotTank);
+            PlayerPrefs.SetInt("AlienTankWinsVSRobotRunner",AlienTankWinsVSRobotRunner);
+
+            PlayerPrefs.SetInt("AlienScoutWinsVSRobotGrunt",AlienScoutWinsVSRobotGrunt);
+            PlayerPrefs.SetInt("AlienScoutWinsVSRobotScout",AlienScoutWinsVSRobotScout);
+            PlayerPrefs.SetInt("AlienScoutWinsVSRobotTank",AlienScoutWinsVSRobotTank);
+            PlayerPrefs.SetInt("AlienScoutWinsVSRobotRunner",AlienScoutWinsVSRobotRunner);
+
+            PlayerPrefs.SetInt("AlienRunnerWinsVSRobotGrunt",AlienRunnerWinsVSRobotGrunt);
+            PlayerPrefs.SetInt("AlienRunnerWinsVSRobotScout",AlienRunnerWinsVSRobotScout);
+            PlayerPrefs.SetInt("AlienRunnerWinsVSRobotTank",AlienRunnerWinsVSRobotTank);
+            PlayerPrefs.SetInt("AlienRunnerWinsVSRobotRunner",AlienRunnerWinsVSRobotRunner);
+
+            PlayerPrefs.SetInt("RobotGruntWinsVSAlienGrunt",RobotGruntWinsVSAlienGrunt);
+            PlayerPrefs.SetInt("RobotGruntWinsVSAlienScout",RobotGruntWinsVSAlienScout);
+            PlayerPrefs.SetInt("RobotGruntWinsVSAlienTank",RobotGruntWinsVSAlienTank);
+            PlayerPrefs.SetInt("RobotGruntWinsVSAlienRunner",RobotGruntWinsVSAlienRunner);
+
+            PlayerPrefs.SetInt("RobotTankWinsVSAlienGrunt",RobotTankWinsVSAlienGrunt);
+            PlayerPrefs.SetInt("RobotTankWinsVSAlienScout",RobotTankWinsVSAlienScout);
+            PlayerPrefs.SetInt("RobotTankWinsVSAlienTank",RobotTankWinsVSAlienTank);
+            PlayerPrefs.SetInt("RobotTankWinsVSAlienRunner",RobotTankWinsVSAlienRunner);
+
+            PlayerPrefs.SetInt("RobotScoutWinsVSAlienGrunt",RobotScoutWinsVSAlienGrunt);
+            PlayerPrefs.SetInt("RobotScoutWinsVSAlienScout",RobotScoutWinsVSAlienScout);
+            PlayerPrefs.SetInt("RobotScoutWinsVSAlienTank",RobotScoutWinsVSAlienTank);
+            PlayerPrefs.SetInt("RobotScoutWinsVSAlienRunner",RobotScoutWinsVSAlienRunner);
+
+            PlayerPrefs.SetInt("RobotRunnerWinsVSAlienGrunt",RobotRunnerWinsVSAlienGrunt);
+            PlayerPrefs.SetInt("RobotRunnerWinsVSAlienScout",RobotRunnerWinsVSAlienScout);
+            PlayerPrefs.SetInt("RobotRunnerWinsVSAlienTank",RobotRunnerWinsVSAlienTank);
+            PlayerPrefs.SetInt("RobotRunnerWinsVSAlienRunner",RobotRunnerWinsVSAlienRunner);
+
             GameOver = false;
         }
         
