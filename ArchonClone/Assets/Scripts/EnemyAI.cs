@@ -17,6 +17,10 @@ public class EnemyAI : MonoBehaviour {
     
     // Use this for initialization
 	void Start () {
+        if (!BattleStats.singlePlayer)
+        {
+            gameObject.SetActive(false);
+        }
         NextState();
         if (GameObject.Find("MovementController") != null)
         {

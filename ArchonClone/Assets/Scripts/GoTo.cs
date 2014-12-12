@@ -27,13 +27,45 @@ public class GoTo : MonoBehaviour {
 
     public void Single()
     {
-        Application.LoadLevel("TestingHexTiles");
+        float sceneSelect = Random.Range(0f,1000f);
+        if (sceneSelect < 250)
+        {
+            Application.LoadLevel("TestingHexTiles");
+        }
+        else if (sceneSelect < 500)
+        {
+            Application.LoadLevel("LargeTileBoard");
+        }
+        else if (sceneSelect < 750)
+        {
+            Application.LoadLevel("LargeTileBoard02");
+        }
+        else
+        {
+            Application.LoadLevel("MediumHexBoard02");
+        }
         BattleStats.singlePlayer = true;
     }
 
 	public void Local() 
     {
-        Application.LoadLevel("LargeTileBoard");
+        float sceneSelect = Random.Range(0f, 1000f);
+        if (sceneSelect < 250)
+        {
+            Application.LoadLevel("TestingHexTiles");
+        }
+        else if (sceneSelect < 500)
+        {
+            Application.LoadLevel("LargeTileBoard");
+        }
+        else if (sceneSelect < 750)
+        {
+            Application.LoadLevel("LargeTileBoard02");
+        }
+        else
+        {
+            Application.LoadLevel("MediumHexBoard02");
+        }
         BattleStats.singlePlayer = false;
 	}
 
