@@ -19,7 +19,8 @@ public class pieceMove : MonoBehaviour {
     public double MaxPieceMove;
     public float MaxMove;
     public int MaxPathNodes;
-    public bool canMove2Tile = false; 
+    public bool canMove2Tile = false;
+    public bool canFight = false; 
     public GameObject datTile;
     public GameObject datSprite; 
 
@@ -400,6 +401,10 @@ public class pieceMove : MonoBehaviour {
         {
             controller.SimpleMove(dir);
             canMove2Tile = true; 
+            if(canFight)
+            {
+                MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().fighting = true; 
+            }
         }
         else
         {
@@ -407,7 +412,8 @@ public class pieceMove : MonoBehaviour {
             //play error sound & reset turn piece is being assinged to the selected tile no matter what reset the tile that the unit is on 
             TurnStateMachine.canSelectPiece = true;
             TileProperties.pieceSelected = false;
-            MoveController.GetComponent<PawnMove>().isMoving = false; 
+            MoveController.GetComponent<PawnMove>().isMoving = false;
+            canFight = false; 
 
         }
 

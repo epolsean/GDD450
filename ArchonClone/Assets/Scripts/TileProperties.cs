@@ -622,7 +622,14 @@ public class TileProperties : MonoBehaviour {
                         GridManager.rescan = true;
                         UnitMoveController.GetComponent<PawnMove>().Player01 = UnitMoveController.GetComponent<PawnMove>().SelectedPiece;
                         UnitMoveController.GetComponent<PawnMove>().Player02 = UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile;
-                        fighting = true;
+                        if(UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().canMove2Tile)
+                        {
+                            fighting = true;
+                        }
+                        else
+                        {
+                            UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().canFight = true;
+                        }
                         SetTarget();
                     }
                 }
@@ -636,7 +643,14 @@ public class TileProperties : MonoBehaviour {
                     GridManager.rescan = true;
                     UnitMoveController.GetComponent<PawnMove>().Player02 = UnitMoveController.GetComponent<PawnMove>().SelectedPiece;
                     UnitMoveController.GetComponent<PawnMove>().Player01 = UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile;
-                    fighting = true;
+                    if (UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().canMove2Tile)
+                    {
+                        fighting = true;
+                    }
+                    else
+                    {
+                        UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().canFight = true; 
+                    }
                     SetTarget();
                 }
             }
