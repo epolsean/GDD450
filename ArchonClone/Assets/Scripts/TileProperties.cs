@@ -123,7 +123,7 @@ public class TileProperties : MonoBehaviour {
 
     public void OnMouseOver()
     {
-        if(this.UnitOnTile != null)
+        if (this.UnitOnTile != null)
         {
             if (this.UnitOnTile.name == "BlackTank(Clone)")
             {
@@ -131,16 +131,22 @@ public class TileProperties : MonoBehaviour {
                 {
                     UnitMoveController.GetComponent<PawnMove>().BlackTankPan.SetActive(true);
                 }
-                
-                if (GameObject.Find("PieceNameText") != null)
+                if (GameObject.Find("OrgTank") != null)
                 {
-                    GameObject.Find("PieceNameText").GetComponent<Text>().text = "Organic Tank";
+                    GameObject.Find("OrgTank").GetComponent<Image>().enabled = true;
+                    GameObject.Find("OrgGrunt").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgScout").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgRunner").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynTank").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynScout").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynGrunt").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynRunner").GetComponent<Image>().enabled = false;
                 }
                 if (GameObject.Find("SpecialText") != null)
                 {
-                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Heat Seeking Missile(F Key)";
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Heat Seeking Missile";
                 }
-                
+
             }
             else if (this.UnitOnTile.name == "BlackGrunt(Clone)")
             {
@@ -148,14 +154,20 @@ public class TileProperties : MonoBehaviour {
                 {
                     UnitMoveController.GetComponent<PawnMove>().BlackGruntPan.SetActive(true);
                 }
-                
-                if (GameObject.Find("PieceNameText") != null)
+                if (GameObject.Find("OrgGrunt") != null)
                 {
-                    GameObject.Find("PieceNameText").GetComponent<Text>().text = "Organic Grunt";
+                    GameObject.Find("OrgGrunt").GetComponent<Image>().enabled = true;
+                    GameObject.Find("OrgTank").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgScout").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgRunner").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynTank").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynScout").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynGrunt").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynRunner").GetComponent<Image>().enabled = false;
                 }
                 if (GameObject.Find("SpecialText") != null)
                 {
-                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Shield(F Key)";
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Shield";
                 }
             }
             else if (this.UnitOnTile.name == "BlackScout(Clone)")
@@ -164,13 +176,18 @@ public class TileProperties : MonoBehaviour {
                 {
                     UnitMoveController.GetComponent<PawnMove>().BlackScoutPan.SetActive(true);
                 }
-                
-                if (GameObject.Find("PieceNameText") != null)
+                if (GameObject.Find("OrgScout") != null)
                 {
-                    GameObject.Find("PieceNameText").GetComponent<Text>().text = "Organic Scout";
+                    GameObject.Find("OrgScout").GetComponent<Image>().enabled = true;
+                    GameObject.Find("OrgTank").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgGrunt").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgRunner").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynTank").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynScout").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynGrunt").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynRunner").GetComponent<Image>().enabled = false;
                 }
-
-                if(GameObject.Find("SpecialText") != null)
+                if (GameObject.Find("SpecialText") != null)
                 {
                     GameObject.Find("SpecialText").GetComponent<Text>().text = "";
                 }
@@ -182,10 +199,16 @@ public class TileProperties : MonoBehaviour {
                 {
                     UnitMoveController.GetComponent<PawnMove>().BlackRunnerPan.SetActive(true);
                 }
-                
-                if (GameObject.Find("PieceNameText") != null)
+                if (GameObject.Find("OrgRunner") != null)
                 {
-                    GameObject.Find("PieceNameText").GetComponent<Text>().text = "Organic Runner";
+                    GameObject.Find("OrgRunner").GetComponent<Image>().enabled = true;
+                    GameObject.Find("OrgTank").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgGrunt").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgScout").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynTank").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynScout").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynGrunt").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynRunner").GetComponent<Image>().enabled = false;
                 }
                 if (GameObject.Find("SpecialText") != null)
                 {
@@ -198,14 +221,20 @@ public class TileProperties : MonoBehaviour {
                 {
                     UnitMoveController.GetComponent<PawnMove>().WhiteTankPan.SetActive(true);
                 }
-                
-                if (GameObject.Find("PieceNameText") != null)
+                if (GameObject.Find("SynTank") != null)
                 {
-                    GameObject.Find("PieceNameText").GetComponent<Text>().text = "Synthetic Tank";
+                    GameObject.Find("SynTank").GetComponent<Image>().enabled = true;
+                    GameObject.Find("OrgTank").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgGrunt").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgScout").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgRunner").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynScout").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynGrunt").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynRunner").GetComponent<Image>().enabled = false;
                 }
                 if (GameObject.Find("SpecialText") != null)
                 {
-                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Heat Seeking Missile(F Key)";
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Heat Seeking Missile";
                 }
             }
             else if (this.UnitOnTile.name == "WhiteScout(Clone)")
@@ -214,12 +243,17 @@ public class TileProperties : MonoBehaviour {
                 {
                     UnitMoveController.GetComponent<PawnMove>().WhiteScoutPan.SetActive(true);
                 }
-                
-                if (GameObject.Find("PieceNameText") != null)
+                if (GameObject.Find("SynScout") != null)
                 {
-                    GameObject.Find("PieceNameText").GetComponent<Text>().text = "Synthetic Scout";
+                    GameObject.Find("SynScout").GetComponent<Image>().enabled = true;
+                    GameObject.Find("OrgTank").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgGrunt").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgScout").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgRunner").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynTank").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynGrunt").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynRunner").GetComponent<Image>().enabled = false;
                 }
-
                 if (GameObject.Find("SpecialText") != null)
                 {
                     GameObject.Find("SpecialText").GetComponent<Text>().text = "";
@@ -232,13 +266,20 @@ public class TileProperties : MonoBehaviour {
                 {
                     UnitMoveController.GetComponent<PawnMove>().WhiteGruntPan.SetActive(true);
                 }
-                if (GameObject.Find("PieceNameText") != null)
+                if (GameObject.Find("SynGrunt") != null)
                 {
-                    GameObject.Find("PieceNameText").GetComponent<Text>().text = "Synthetic Grunt";
+                    GameObject.Find("SynGrunt").GetComponent<Image>().enabled = true;
+                    GameObject.Find("OrgTank").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgGrunt").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgScout").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgRunner").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynTank").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynScout").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynRunner").GetComponent<Image>().enabled = false;
                 }
                 if (GameObject.Find("SpecialText") != null)
                 {
-                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Shield(F Key)";
+                    GameObject.Find("SpecialText").GetComponent<Text>().text = "Shield";
                 }
             }
             else if (this.UnitOnTile.name == "WhiteRunner(Clone)")
@@ -247,17 +288,24 @@ public class TileProperties : MonoBehaviour {
                 {
                     UnitMoveController.GetComponent<PawnMove>().WhiteRunnerPan.SetActive(true);
                 }
-                if (GameObject.Find("PieceNameText") != null)
+                if (GameObject.Find("SynRunner") != null)
                 {
-                    GameObject.Find("PieceNameText").GetComponent<Text>().text = "Synthetic Runner";
+                    GameObject.Find("SynRunner").GetComponent<Image>().enabled = true;
+                    GameObject.Find("OrgTank").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgGrunt").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgScout").GetComponent<Image>().enabled = false;
+                    GameObject.Find("OrgRunner").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynTank").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynScout").GetComponent<Image>().enabled = false;
+                    GameObject.Find("SynGrunt").GetComponent<Image>().enabled = false;
                 }
                 if (GameObject.Find("SpecialText") != null)
                 {
                     GameObject.Find("SpecialText").GetComponent<Text>().text = "";
                 }
             }
-            
-            if(UnitMoveController.GetComponent<PawnMove>().StatPan != null)
+
+            if (UnitMoveController.GetComponent<PawnMove>().StatPan != null)
             {
                 UnitMoveController.GetComponent<PawnMove>().StatPan.SetActive(true);
             }
@@ -270,7 +318,7 @@ public class TileProperties : MonoBehaviour {
             {
                 GameObject.Find("healthText").GetComponent<Text>().text = this.UnitOnTile.GetComponent<PiecePropScript>().Health.ToString();
             }
-            if(GameObject.Find("DamageSlider") != null)
+            if (GameObject.Find("DamageSlider") != null)
             {
                 GameObject.Find("DamageSlider").GetComponent<Slider>().value = this.UnitOnTile.GetComponent<PiecePropScript>().Damage;
             }
@@ -278,9 +326,6 @@ public class TileProperties : MonoBehaviour {
             {
                 GameObject.Find("SpeedSlider").GetComponent<Slider>().value = this.UnitOnTile.GetComponent<PiecePropScript>().Movement;
             }
-            
-            
-            
         }
         if (UnitMoveController.GetComponent<PawnMove>().isMoving == false)
         {
@@ -362,10 +407,6 @@ public class TileProperties : MonoBehaviour {
         if (UnitMoveController.GetComponent<PawnMove>().WhiteGruntPan != null)
         {
             UnitMoveController.GetComponent<PawnMove>().WhiteGruntPan.SetActive(false);
-        }
-        if (GameObject.Find("PieceNameText") != null)
-        {
-            GameObject.Find("PieceNameText").GetComponent<Text>().text = "";
         }
         if (GameObject.Find("SpecialText") != null)
         {
