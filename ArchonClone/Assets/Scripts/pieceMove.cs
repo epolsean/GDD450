@@ -31,11 +31,15 @@ public class pieceMove : MonoBehaviour {
         //plays animation if it is implemented/made yet
         MoveController = GameObject.Find("MovementController");
         SoundController = GameObject.Find("UISoundController");
-        if(name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)")
+        if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)" || name == "BlackRunner(Clone)")
         {
             print("Set Piece Animator");
             PieceAnim = GetComponentInChildren<Animator>();
             print("Animator Set = true");
+            if(name == "BlackRunner(Clone)" && PieceAnim != null)
+            {
+                print("Runner Passed Anim Assignment");
+            }
         }
         //set pieces maxMove variable
         if (name == "WhiteTank(Clone)" || name == "BlackTank(Clone)")
@@ -301,11 +305,15 @@ public class pieceMove : MonoBehaviour {
     {
         Debug.Log("Generating Path");
         seeker.StartPath(transform.position, targetPosition, OnPathComplete);
-        
-        if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)")
+
+        if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)" || name == "BlackRunner(Clone)")
         {
             //PieceAnim.SetTrigger("WalkOnce");
             PieceAnim.SetBool("isWalking", true);
+            if(name == "BlackRunner(Clone)")
+            {
+                print("Runner passed bool send------------------------------------------------------------------");
+            }
         }
     }
 
@@ -351,7 +359,7 @@ public class pieceMove : MonoBehaviour {
             {
 
                 isMoving = false;
-                if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)")
+                if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)" || name == "BlackRunner(Clone)")
                 {
                     //GetComponentInChildren<Animator>().SetBool("isWalking", false);
                     PieceAnim.SetBool("isWalking", false);
