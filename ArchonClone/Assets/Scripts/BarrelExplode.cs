@@ -69,13 +69,15 @@ public class BarrelExplode : MonoBehaviour
             transform.parent.gameObject.GetComponent<ItemSpawner>().empty = true;
             ItemSpawner.numExplodingBarrels--;
             StartCoroutine("explode");
-            Destroy(this.gameObject, 1.1f);
+            //Destroy(this.gameObject, 1.1f);
             Invoke("Rescan",1.09f);
         }
     }
 
     void Rescan()
     {
+        gameObject.SetActive(false);
+        this.renderer.enabled = true;
         GameObject.Find("A*").GetComponent<AstarPath>().Scan();
     }
 
