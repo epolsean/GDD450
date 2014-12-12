@@ -387,6 +387,17 @@ public class pieceMove : MonoBehaviour {
                         EnemyAI.AIstate = EnemyAI.State.Idle;
                     }
                 }
+                if(GameObject.Find("EnemyTurnController") != null)
+                {
+                    if (TurnStateMachine.state == TurnStateMachine.State.playerTurn)
+                    {
+                        TurnStateMachine.state = TurnStateMachine.State.otherTurn;
+                    }
+                    else
+                    {
+                        TurnStateMachine.state = TurnStateMachine.State.playerTurn;
+                    }
+                }
                 transform.position = targetPosition;
                 Debug.Log("Setting piece transform to target transform!");
                 
