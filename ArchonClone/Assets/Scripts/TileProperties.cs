@@ -443,6 +443,7 @@ public class TileProperties : MonoBehaviour {
             UnitMoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().Occupied = false;
             UnitMoveController.GetComponent<PawnMove>().isMoving = false;
             canPlace = false;
+            UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().UIShouldGo = true; 
         }
 
     }
@@ -629,6 +630,8 @@ public class TileProperties : MonoBehaviour {
                         else
                         {
                             UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().canFight = true;
+                            UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().UIShouldGo = true; 
+
                         }
                         SetTarget();
                     }
@@ -649,7 +652,8 @@ public class TileProperties : MonoBehaviour {
                     }
                     else
                     {
-                        UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().canFight = true; 
+                        UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().canFight = true;
+                        UnitMoveController.GetComponent<PawnMove>().SelectedPiece.GetComponent<pieceMove>().UIShouldGo = true; 
                     }
                     SetTarget();
                 }

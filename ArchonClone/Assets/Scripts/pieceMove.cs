@@ -20,14 +20,17 @@ public class pieceMove : MonoBehaviour {
     public float MaxMove;
     public int MaxPathNodes;
     public bool canMove2Tile = false;
-    public bool canFight = false; 
+    public bool canFight = false;
+    public bool UIShouldGo = false; 
     public GameObject datTile;
-    public GameObject datSprite; 
+    public GameObject datSprite;
+    public GameObject SoundController; 
 
     void Start()
     {
         //plays animation if it is implemented/made yet
         MoveController = GameObject.Find("MovementController");
+        SoundController = GameObject.Find("UISoundController");
         if(name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)")
         {
             print("Set Piece Animator");
@@ -403,11 +406,25 @@ public class pieceMove : MonoBehaviour {
             canMove2Tile = true; 
             if(canFight)
             {
+                if(UIShouldGo)
+                {
+                    UIShouldGo = false; 
+                    SoundController.GetComponent<UISoundsScript>().playFight(); 
+                }
                 MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().fighting = true; 
+            }
+            else
+            {
+                if(UIShouldGo)
+                {
+                    UIShouldGo = false;
+                    SoundController.GetComponent<UISoundsScript>().playMovePiece();
+                }
             }
         }
         else
         {
+            SoundController.GetComponent<UISoundsScript>().playError();
             path = null;
             //play error sound & reset turn piece is being assinged to the selected tile no matter what reset the tile that the unit is on 
             TurnStateMachine.canSelectPiece = true;
