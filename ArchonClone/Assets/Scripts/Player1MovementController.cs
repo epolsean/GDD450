@@ -496,7 +496,7 @@ public class Player1MovementController : MonoBehaviour
                 }
                 if (health <= 0 && win == false)
                 {
-                    MoveController.GetComponent<PawnMove>().Player01.GetComponent<pieceMove>().datSprite.SetActive(false);
+                    //MoveController.GetComponent<PawnMove>().Player01.GetComponent<pieceMove>().datSprite.SetActive(false);
                     if (MoveController.GetComponent<PawnMove>().Player01.tag == "White")
                     {
                         SpawnBasicUnits.WhitePieceCount--;
@@ -504,6 +504,38 @@ public class Player1MovementController : MonoBehaviour
                     else
                     {
                         SpawnBasicUnits.BlackPieceCount--;
+                    }
+                    if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteGrunt(Clone)")
+                    {
+                        SpawnBasicUnits.SynthGruntCount--;
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteScout(Clone)")
+                    {
+                        SpawnBasicUnits.SynthScoutCount--;
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteTank(Clone)")
+                    {
+                        SpawnBasicUnits.SynthTankCount--;
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "WhiteRunner(Clone)")
+                    {
+                        SpawnBasicUnits.SynthRunnerCount--;
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackGrunt(Clone)")
+                    {
+                        SpawnBasicUnits.AlienGruntCount--;
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackScout(Clone)")
+                    {
+                        SpawnBasicUnits.AlienScoutCount--;
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackTank(Clone)")
+                    {
+                        SpawnBasicUnits.AlienTankCount--;
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player01.name == "BlackRunner(Clone)")
+                    {
+                        SpawnBasicUnits.AlienRunnerCount--;
                     }
                     Destroy(MoveController.GetComponent<PawnMove>().Player01);
                     if (BattleStats.singlePlayer)
@@ -558,7 +590,39 @@ public class Player1MovementController : MonoBehaviour
                         SpawnBasicUnits.BlackPieceCount--;
                     }
                     Destroy(MoveController.GetComponent<PawnMove>().Player02);
-                    MoveController.GetComponent<PawnMove>().Player02.GetComponent<pieceMove>().datSprite.SetActive(false);
+                    //MoveController.GetComponent<PawnMove>().Player02.GetComponent<pieceMove>().datSprite.SetActive(false);
+                    if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteGrunt(Clone)")
+                    {
+                        SpawnBasicUnits.SynthGruntCount--;
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteScout(Clone)")
+                    {
+                        SpawnBasicUnits.SynthScoutCount--;
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteTank(Clone)")
+                    {
+                        SpawnBasicUnits.SynthTankCount--;
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player02.name == "WhiteRunner(Clone)")
+                    {
+                        SpawnBasicUnits.SynthRunnerCount--;
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackGrunt(Clone)")
+                    {
+                        SpawnBasicUnits.AlienGruntCount--;
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackScout(Clone)")
+                    {
+                        SpawnBasicUnits.AlienScoutCount--;
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackTank(Clone)")
+                    {
+                        SpawnBasicUnits.AlienTankCount--;
+                    }
+                    else if (MoveController.GetComponent<PawnMove>().Player02.name == "BlackRunner(Clone)")
+                    {
+                        SpawnBasicUnits.AlienRunnerCount--;
+                    }
                     MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = null;
                     MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.SetActive(true);
                     GameObject.Find("A*").GetComponent<AstarPath>().Scan();

@@ -1,10 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class SpawnBasicUnits : MonoBehaviour {
 
     public static int BlackPieceCount;
     public static int WhitePieceCount;
+
+    public static int SynthGruntCount;
+    public static int SynthScoutCount;
+    public static int SynthTankCount;
+    public static int SynthRunnerCount;
+
+    public static int AlienGruntCount;
+    public static int AlienScoutCount;
+    public static int AlienTankCount;
+    public static int AlienRunnerCount;
+
+    public GameObject SGtext;
+    public GameObject SStext;
+    public GameObject STtext;
+    public GameObject SRtext;
+
+    public GameObject AGtext;
+    public GameObject AStext;
+    public GameObject ATtext;
+    public GameObject ARtext;
+
     
     public GameObject WhiteTank;
     public GameObject WhiteScout;
@@ -88,12 +110,34 @@ public class SpawnBasicUnits : MonoBehaviour {
         EndControllerScript.OrgVic = false;
         EndControllerScript.SynthVic = false;
         StartSpawn();
+
+        SGtext = GameObject.Find("SynthGruntCountText");
+        SStext = GameObject.Find("SynthScoutCountText");
+        STtext = GameObject.Find("SynthTankCountText");
+        SRtext = GameObject.Find("SynthRunnerCountText");
+
+        AGtext = GameObject.Find("AlienGruntCountText");
+        AStext = GameObject.Find("AlienScoutCountText");
+        ATtext = GameObject.Find("AlienTankCountText");
+        ARtext = GameObject.Find("AlienRunnerCountText");
 	}
 	
 	// Update is called once per frame
 	void Update () {
         //Debug.Log("BlackCount: " + BlackPieceCount);
         //Debug.Log("WhiteCount: " + WhitePieceCount);
+
+        //assign values to the text.text
+        SGtext.GetComponent<Text>().text = SynthGruntCount.ToString();
+        SStext.GetComponent<Text>().text = SynthScoutCount.ToString();
+        STtext.GetComponent<Text>().text = SynthTankCount.ToString();
+        SRtext.GetComponent<Text>().text = SynthRunnerCount.ToString();
+
+        AGtext.GetComponent<Text>().text = AlienGruntCount.ToString();
+        AStext.GetComponent<Text>().text = AlienScoutCount.ToString();
+        ATtext.GetComponent<Text>().text = AlienTankCount.ToString();
+        ARtext.GetComponent<Text>().text = AlienRunnerCount.ToString();
+
         if(BlackPieceCount <= 0)
         {
             EndControllerScript.SynthVic = true; 
@@ -112,138 +156,170 @@ public class SpawnBasicUnits : MonoBehaviour {
         if(WTank01Tile != null)
         {
             SpawnWhitePiece(WhiteTank, WTank01Tile);
+            SynthTankCount++;
         }
         if (WTank02Tile != null)
         {
             SpawnWhitePiece(WhiteTank, WTank02Tile);
+            SynthTankCount++;
         }
         if (WTank03Tile != null)
         {
             SpawnWhitePiece(WhiteTank, WTank03Tile);
+            SynthTankCount++;
         }
         if (WTank04Tile != null)
         {
             SpawnWhitePiece(WhiteTank, WTank04Tile);
+            SynthTankCount++;
         }
         //Spawn 4 SynthScout
         if(WScout01Tile != null)
         {
             SpawnWhitePiece(WhiteScout, WScout01Tile);
+            SynthScoutCount++;
         }
         if (WScout02Tile != null)
         {
             SpawnWhitePiece(WhiteScout, WScout02Tile);
+            SynthScoutCount++;
         }
         if (WScout03Tile != null)
         {
             SpawnWhitePiece(WhiteScout, WScout03Tile);
+            SynthScoutCount++;
         }
         if (WScout04Tile != null)
         {
             SpawnWhitePiece(WhiteScout, WScout04Tile);
+            SynthScoutCount++;
         }
-        //Spawn 2 SynthRunner
+        //Spawn 4 SynthRunner
         if (WRunner01Tile != null)
         {
             SpawnWhitePiece(WhiteRunner, WRunner01Tile);
+            SynthRunnerCount++;
         }
         if (WRunner02Tile != null)
         {
             SpawnWhitePiece(WhiteRunner, WRunner02Tile);
+            SynthRunnerCount++;
         }
         if (WRunner03Tile != null)
         {
             SpawnWhitePiece(WhiteRunner, WRunner03Tile);
+            SynthRunnerCount++;
         }
         if (WRunner04Tile != null)
         {
             SpawnWhitePiece(WhiteRunner, WRunner04Tile);
+            SynthRunnerCount++;
         }
         //Spawn 4 SynthGrunts
         if (WGrunt01Tile != null)
         {
             SpawnWhitePiece(WhiteGrunt, WGrunt01Tile);
+            SynthGruntCount++;
         }
         if (WGrunt02Tile != null)
         {
             SpawnWhitePiece(WhiteGrunt, WGrunt02Tile);
+            SynthGruntCount++;
         }
         if (WGrunt03Tile != null)
         {
             SpawnWhitePiece(WhiteGrunt, WGrunt03Tile);
+            SynthGruntCount++;
         }
         if (WGrunt04Tile != null)
         {
             SpawnWhitePiece(WhiteGrunt, WGrunt04Tile);
+            SynthGruntCount++;
         }
 
         //Spawn 2 AlienTanks
         if (BTank01Tile != null)
         {
             SpawnBlackPiece(BlackTank, BTank01Tile);
+            AlienTankCount++;
         }
         if (BTank02Tile != null)
         {
             SpawnBlackPiece(BlackTank, BTank02Tile);
+            AlienTankCount++;
         }
         if (BTank03Tile != null)
         {
             SpawnBlackPiece(BlackTank, BTank03Tile);
+            AlienTankCount++;
         }
         if (BTank04Tile != null)
         {
             SpawnBlackPiece(BlackTank, BTank04Tile);
+            AlienTankCount++;
         }
         //Spawn 4 AlienScout
         if (BScout01Tile != null)
         {
             SpawnBlackPiece(BlackScout, BScout01Tile);
+            AlienScoutCount++;
         }
         if (BScout02Tile != null)
         {
             SpawnBlackPiece(BlackScout, BScout02Tile);
+            AlienScoutCount++;
         }
         if (BScout03Tile != null)
         {
             SpawnBlackPiece(BlackScout, BScout03Tile);
+            AlienScoutCount++;
         }
         if (BScout04Tile != null)
         {
             SpawnBlackPiece(BlackScout, BScout04Tile);
+            AlienScoutCount++;
         }
         //Spawn 4 AlienRunner
         if (BRunner01Tile != null)
         {
             SpawnBlackPiece(BlackRunner, BRunner01Tile);
+            AlienRunnerCount++;
         }
         if (BRunner02Tile != null)
         {
             SpawnBlackPiece(BlackRunner, BRunner02Tile);
+            AlienRunnerCount++;
         }
         if (BRunner03Tile != null)
         {
             SpawnBlackPiece(BlackRunner, BRunner03Tile);
+            AlienRunnerCount++;
         }
         if (BRunner04Tile != null)
         {
             SpawnBlackPiece(BlackRunner, BRunner04Tile);
+            AlienRunnerCount++;
         }
         //Spawn 4 AlienGrunts
         if (BGrunt01Tile != null)
         {
             SpawnBlackPiece(BlackGrunt, BGrunt01Tile);
+            AlienGruntCount++;
         }
         if (BGrunt02Tile != null)
         {
             SpawnBlackPiece(BlackGrunt, BGrunt02Tile);
+            AlienGruntCount++;
         }
         if (BGrunt03Tile != null)
         {
             SpawnBlackPiece(BlackGrunt, BGrunt03Tile);
+            AlienGruntCount++;
         }
         if (BGrunt04Tile != null)
         {
             SpawnBlackPiece(BlackGrunt, BGrunt04Tile);
+            AlienGruntCount++;
         }
         
     }
