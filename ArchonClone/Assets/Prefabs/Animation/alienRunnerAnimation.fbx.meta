@@ -1,0 +1,303 @@
+fileFormatVersion: 2
+guid: 4ba163368f75c9741965160c575264ce
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: group1
+    100004: joint1
+    100006: joint2
+    100008: joint3
+    100010: joint4
+    100012: joint5
+    100014: joint6
+    100016: joint7
+    100018: left001
+    100020: left002
+    100022: left003
+    100024: leftRoot
+    100026: nurbsCircle1
+    100028: pCube10
+    100030: right001
+    100032: right002
+    100034: right003
+    100036: rightRoot
+    100038: root1
+    400000: //RootNode
+    400002: group1
+    400004: joint1
+    400006: joint2
+    400008: joint3
+    400010: joint4
+    400012: joint5
+    400014: joint6
+    400016: joint7
+    400018: left001
+    400020: left002
+    400022: left003
+    400024: leftRoot
+    400026: nurbsCircle1
+    400028: pCube10
+    400030: right001
+    400032: right002
+    400034: right003
+    400036: rightRoot
+    400038: root1
+    4300000: pCube10
+    7400000: AlienRunnerIdle
+    7400002: AlienRunnerWalk
+    7400004: AlienRunnerDeath
+    9500000: //RootNode
+    13700000: pCube10
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: AlienRunnerIdle
+      takeName: Take 001
+      firstFrame: 40
+      lastFrame: 75
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/nurbsCircle1
+        weight: 1
+      - path: pCube10
+        weight: 1
+      - path: root1
+        weight: 1
+      - path: root1/joint1
+        weight: 1
+      - path: root1/joint1/joint2
+        weight: 1
+      - path: root1/joint1/joint2/joint3
+        weight: 1
+      - path: root1/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: root1/joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: root1/joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: root1/joint1/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: root1/left001
+        weight: 1
+      - path: root1/left001/left002
+        weight: 1
+      - path: root1/left001/left002/left003
+        weight: 1
+      - path: root1/left001/left002/left003/leftRoot
+        weight: 1
+      - path: root1/right001
+        weight: 1
+      - path: root1/right001/right002
+        weight: 1
+      - path: root1/right001/right002/right003
+        weight: 1
+      - path: root1/right001/right002/right003/rightRoot
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: AlienRunnerWalk
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/nurbsCircle1
+        weight: 1
+      - path: pCube10
+        weight: 1
+      - path: root1
+        weight: 1
+      - path: root1/joint1
+        weight: 1
+      - path: root1/joint1/joint2
+        weight: 1
+      - path: root1/joint1/joint2/joint3
+        weight: 1
+      - path: root1/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: root1/joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: root1/joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: root1/joint1/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: root1/left001
+        weight: 1
+      - path: root1/left001/left002
+        weight: 1
+      - path: root1/left001/left002/left003
+        weight: 1
+      - path: root1/left001/left002/left003/leftRoot
+        weight: 1
+      - path: root1/right001
+        weight: 1
+      - path: root1/right001/right002
+        weight: 1
+      - path: root1/right001/right002/right003
+        weight: 1
+      - path: root1/right001/right002/right003/rightRoot
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: AlienRunnerDeath
+      takeName: Take 001
+      firstFrame: 220
+      lastFrame: 240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: group1/nurbsCircle1
+        weight: 1
+      - path: pCube10
+        weight: 1
+      - path: root1
+        weight: 1
+      - path: root1/joint1
+        weight: 1
+      - path: root1/joint1/joint2
+        weight: 1
+      - path: root1/joint1/joint2/joint3
+        weight: 1
+      - path: root1/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: root1/joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: root1/joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: root1/joint1/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: root1/left001
+        weight: 1
+      - path: root1/left001/left002
+        weight: 1
+      - path: root1/left001/left002/left003
+        weight: 1
+      - path: root1/left001/left002/left003/leftRoot
+        weight: 1
+      - path: root1/right001
+        weight: 1
+      - path: root1/right001/right002
+        weight: 1
+      - path: root1/right001/right002/right003
+        weight: 1
+      - path: root1/right001/right002/right003/rightRoot
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .5
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

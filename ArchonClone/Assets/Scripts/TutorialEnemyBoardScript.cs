@@ -108,6 +108,7 @@ public class TutorialEnemyBoardScript : MonoBehaviour {
         {
             //select your tank
             StepText.GetComponent<Text>().text = "Now it is your turn! Select your Tank unit, you may notice that the tile you hover over will change colors depending if the move is possible; Green for good, Red for bad.";
+            TurnStateMachine.state = TurnStateMachine.State.playerTurn;
             StepButton.SetActive(true);
         }
         else if(enemyTurn == 3.5)
