@@ -7,6 +7,9 @@ public class GoTo : MonoBehaviour {
     public GameObject OptionsPanel;
     public GameObject SelectModePanel;
     public GameObject CreditsPanel;
+    public GameObject ControlsPanel;
+    public GameObject BackToOptionsButton;
+    public GameObject SettingsPanel;
 
     void Start()
     {
@@ -16,6 +19,9 @@ public class GoTo : MonoBehaviour {
             OptionsPanel.SetActive(false);
             SelectModePanel.SetActive(false);
             CreditsPanel.SetActive(false);
+            ControlsPanel.SetActive(false);
+            BackToOptionsButton.SetActive(false);
+            SettingsPanel.SetActive(false);
         }
     }
 
@@ -49,6 +55,9 @@ public class GoTo : MonoBehaviour {
         OptionsPanel.SetActive(false);
         SelectModePanel.SetActive(false);
         CreditsPanel.SetActive(false);
+        ControlsPanel.SetActive(false);
+        BackToOptionsButton.SetActive(false);
+        SettingsPanel.SetActive(false);
     }
 
     public void MainMenu()
@@ -62,6 +71,9 @@ public class GoTo : MonoBehaviour {
         OptionsPanel.SetActive(false);
         SelectModePanel.SetActive(false);
         CreditsPanel.SetActive(true);
+        ControlsPanel.SetActive(false);
+        BackToOptionsButton.SetActive(false);
+        SettingsPanel.SetActive(false);
     }
 
     public void Settings()
@@ -70,6 +82,9 @@ public class GoTo : MonoBehaviour {
         OptionsPanel.SetActive(true);
         SelectModePanel.SetActive(false);
         CreditsPanel.SetActive(false);
+        ControlsPanel.SetActive(false);
+        BackToOptionsButton.SetActive(false);
+        SettingsPanel.SetActive(false);
     }
 
     public void MultiplayerMode()
@@ -78,6 +93,9 @@ public class GoTo : MonoBehaviour {
         OptionsPanel.SetActive(false);
         SelectModePanel.SetActive(true);
         CreditsPanel.SetActive(false);
+        ControlsPanel.SetActive(false);
+        BackToOptionsButton.SetActive(false);
+        SettingsPanel.SetActive(false);
     }
 
     public void Battle()

@@ -10,6 +10,7 @@ public class Options : MonoBehaviour {
     public GameObject ControlsPanel;
     public GameObject SettingsPanel;
     public GameObject OptionsPanel;
+    public GameObject CreditsPanel;
 
     public GameObject ControllerPanel;
     public GameObject LocalPanel;
@@ -46,6 +47,7 @@ public class Options : MonoBehaviour {
         OptionsPanel.SetActive(true);
         ControlsPanel.SetActive(false);
         SettingsPanel.SetActive(false);
+        CreditsPanel.SetActive(false);
     }
 
     public void toControls()
