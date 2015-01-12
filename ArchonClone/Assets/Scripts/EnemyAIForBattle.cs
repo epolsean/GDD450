@@ -683,28 +683,7 @@ public class EnemyAIForBattle : MonoBehaviour
 
         if (shieldPower >= 0.1 && !shieldOverheat)
         {
-            if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
-            {
-                if (Input.GetAxis("360_LeftTrigger1") == 1)
-                {
-                    usingShield = true;
-                }
-                else
-                {
-                    usingShield = false;
-                }
-            }
-            else
-            {
-                if (Input.GetAxis("Special1") == 1)
-                {
-                    usingShield = true;
-                }
-                else
-                {
-                    usingShield = false;
-                }
-            }
+            //Add someway to tell the EnemyAI to use a shield sometimes
         }
     }
 
@@ -862,28 +841,7 @@ public class EnemyAIForBattle : MonoBehaviour
 
         if (shieldPower >= 0.1 && !shieldOverheat)
         {
-            if (Input.GetJoystickNames().Length != 0) // If there is a controller connected
-            {
-                if (Input.GetAxis("360_LeftTrigger1") == 1)
-                {
-                    usingShield = true;
-                }
-                else
-                {
-                    usingShield = false;
-                }
-            }
-            else
-            {
-                if (Input.GetAxis("Special1") == 1)
-                {
-                    usingShield = true;
-                }
-                else
-                {
-                    usingShield = false;
-                }
-            }
+            //Add someway to tell the EnemyAI to use a shield sometimes
         }
     }
 
