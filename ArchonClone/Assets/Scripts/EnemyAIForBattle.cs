@@ -245,7 +245,7 @@ public class EnemyAIForBattle : MonoBehaviour
 
                     if (win == false)
                     {
-                        if (Vector3.Distance(enemy.transform.position, transform.position) < 10 && reloading == false)
+                        if (Vector3.Distance(enemy.transform.position, transform.position) < 10 && swinging == false)
                         {
                             if (Physics.Raycast(transform.position, Vector3.Normalize(enemy.transform.position - transform.position), out hit))
                             {

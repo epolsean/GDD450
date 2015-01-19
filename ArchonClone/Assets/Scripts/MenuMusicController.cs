@@ -23,7 +23,8 @@ public class MenuMusicController : MonoBehaviour {
     }
     void Update()
     {
-        if (Application.loadedLevelName == "TestingHexTiles" || Application.loadedLevelName == "LargeTileBoard" || Application.loadedLevelName=="TutorialTestGrid")
+        if (Application.loadedLevelName == "TestingHexTiles" || Application.loadedLevelName == "LargeTileBoard" || Application.loadedLevelName=="TutorialTestGrid"
+            || Application.loadedLevelName == "LargeTileBoard02" || Application.loadedLevelName == "MediumHexBoard02" || Application.loadedLevelName == "LargeTileBoard")
         {
             Destroy(this.gameObject);
         }

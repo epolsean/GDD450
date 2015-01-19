@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class GoTo : MonoBehaviour {
 
+    public EventSystem es; 
     public GameObject MainMenuPanel;
     public GameObject OptionsPanel;
     public GameObject SelectModePanel;
@@ -11,10 +14,16 @@ public class GoTo : MonoBehaviour {
     public GameObject BackToOptionsButton;
     public GameObject SettingsPanel;
 
+    public GameObject firstButtonStartPage;
+    public GameObject firstButtonCreditsPage;
+    public GameObject firstButtonOptionsPage;
+    public GameObject firstButtonSelectModePage;
+
     void Start()
     {
         if(MainMenuPanel != null)
         {
+            es.SetSelectedGameObject(firstButtonStartPage);
             MainMenuPanel.SetActive(true);
             OptionsPanel.SetActive(false);
             SelectModePanel.SetActive(false);
@@ -83,6 +92,7 @@ public class GoTo : MonoBehaviour {
 
     public void StartScreen()
     {
+        es.SetSelectedGameObject(firstButtonStartPage);
         MainMenuPanel.SetActive(true);
         OptionsPanel.SetActive(false);
         SelectModePanel.SetActive(false);
@@ -99,6 +109,7 @@ public class GoTo : MonoBehaviour {
 
     public void Credits()
     {
+        es.SetSelectedGameObject(firstButtonCreditsPage);
         MainMenuPanel.SetActive(false);
         OptionsPanel.SetActive(false);
         SelectModePanel.SetActive(false);
@@ -110,6 +121,7 @@ public class GoTo : MonoBehaviour {
 
     public void Settings()
     {
+        es.SetSelectedGameObject(firstButtonOptionsPage);
         MainMenuPanel.SetActive(false);
         OptionsPanel.SetActive(true);
         SelectModePanel.SetActive(false);
@@ -121,6 +133,7 @@ public class GoTo : MonoBehaviour {
 
     public void MultiplayerMode()
     {
+        es.SetSelectedGameObject(firstButtonSelectModePage);
         MainMenuPanel.SetActive(false);
         OptionsPanel.SetActive(false);
         SelectModePanel.SetActive(true);

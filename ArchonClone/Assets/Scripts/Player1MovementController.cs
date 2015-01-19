@@ -211,6 +211,7 @@ public class Player1MovementController : MonoBehaviour
                                     Debug.DrawLine(GameObject.Find("Hotseat Top Down Camera").transform.position, hit.point, Color.red);
                                     transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
                                 }
+                                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
                             }
                             else
                             {
@@ -222,8 +223,8 @@ public class Player1MovementController : MonoBehaviour
                                 {
                                     transform.forward = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
                                 }
+                                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
                             }
-                            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) + transform.right * Input.GetAxis("Strafe1");
                             moveDirection *= speed;
                         }
 

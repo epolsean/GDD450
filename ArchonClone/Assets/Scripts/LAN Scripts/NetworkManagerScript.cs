@@ -225,6 +225,6 @@ public class NetworkManagerScript : MonoBehaviour {
 
     public void BackToMode()
     {
-        Application.LoadLevel("SelectMode");
+        Application.LoadLevel("StartScreen");
     }
 }

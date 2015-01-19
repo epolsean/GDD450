@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class Options : MonoBehaviour {
+
+    public EventSystem es; 
 
     public GameObject BackToMenuButton;
     public GameObject BackToOptionsButton;
@@ -20,6 +23,10 @@ public class Options : MonoBehaviour {
 
     public Toggle TopDownMark;
     public Toggle ThirdPersonMark;
+
+    public GameObject firstButtonControlsPage;
+    public GameObject firstButtonSettingsPage;
+    public GameObject firstButtonOptionsPage;
 
     void Awake()
     {
@@ -41,6 +48,7 @@ public class Options : MonoBehaviour {
 
     public void backToOptions()
     {
+        es.SetSelectedGameObject(firstButtonOptionsPage);
         BackToMenuButton.SetActive(true);
         BackToOptionsButton.SetActive(false);
 
@@ -52,6 +60,7 @@ public class Options : MonoBehaviour {
 
     public void toControls()
     {
+        es.SetSelectedGameObject(firstButtonControlsPage);
         BackToMenuButton.SetActive(false);
         BackToOptionsButton.SetActive(true);
 
@@ -66,6 +75,7 @@ public class Options : MonoBehaviour {
 
     public void toSettings()
     {
+        es.SetSelectedGameObject(firstButtonSettingsPage);
         BackToMenuButton.SetActive(false);
         BackToOptionsButton.SetActive(true);
 
