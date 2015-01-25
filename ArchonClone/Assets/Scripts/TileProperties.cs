@@ -81,7 +81,7 @@ public class TileProperties : MonoBehaviour {
             }
             else
             {
-                whatScene = Random.Range(1, 10);
+                whatScene = Random.Range(1, 100);
                 Debug.Log("GOTO fight Scene!!!");
                 fighting = false; 
                 fightTimer = 0;
@@ -96,24 +96,32 @@ public class TileProperties : MonoBehaviour {
                 {
                     if (TileState == TileType.Alien)
                     {
-                        if (whatScene <= 5)
+                        if (whatScene <= 33)
                         {
                             Application.LoadLevelAdditive("AlienBattleSmall");
                         }
-                        else
+                        else if (whatScene <= 66)
                         {
                             Application.LoadLevelAdditive("AlienBattleMedium");
+                        }
+                        else
+                        {
+                            Application.LoadLevelAdditive("AlienBattleLarge");
                         }
                     }
                     else if (TileState == TileType.Synth)
                     {
-                        if (whatScene <= 5)
+                        if (whatScene <= 33)
                         {
                             Application.LoadLevelAdditive("RobotBattleSmall");
                         }
-                        else
+                        else if (whatScene <= 66)
                         {
                             Application.LoadLevelAdditive("RobotBattleMedium");
+                        }
+                        else
+                        {
+                            Application.LoadLevelAdditive("RobotBattleLarge");
                         }
                     }
                 }

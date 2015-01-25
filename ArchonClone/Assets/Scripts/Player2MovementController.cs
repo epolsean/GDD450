@@ -52,7 +52,6 @@ public class Player2MovementController : MonoBehaviour
     public bool usingShield = false;
     float shieldPower = 100f;
     bool shieldOverheat = false;
-    bool boost = false;
 
     Player1MovementController enemy;
 
@@ -576,7 +575,7 @@ public class Player2MovementController : MonoBehaviour
         {
             if (other.name == "PowerUp")
             {
-                float statBoost = UnityEngine.Random.Range(0, 100);
+                //float statBoost = UnityEngine.Random.Range(0, 100);
                 if (other.GetComponent<PowerUpController>().power == PowerUpController.PowerupType.Damage)
                 {
                     if (damagePowerUp == 0)
@@ -673,6 +672,10 @@ public class Player2MovementController : MonoBehaviour
             {
                 health -= 5f * Time.deltaTime;
             }
+            if (other.tag == "Lava" && !isAlien && usingShield == false)
+            {
+                health -= 5f * Time.deltaTime;
+            }
             //If the player gets hit with melee
             if (other.name == "Sword(Clone)" && other.tag != tag)
             {
@@ -706,6 +709,10 @@ public class Player2MovementController : MonoBehaviour
             health -= 5*Time.deltaTime;
         }
         if (other.tag == "Geyser" && other.GetComponent<Geyser>().erupting && usingShield == false)
+        {
+            health -= 5f * Time.deltaTime;
+        }
+        if (other.tag == "Lava" && !isAlien && usingShield == false)
         {
             health -= 5f * Time.deltaTime;
         }
@@ -858,7 +865,6 @@ public class Player2MovementController : MonoBehaviour
                     if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(moveDirection * 3);
-                        boost = true;
                         specialAvailable = false;
                         special.GetComponent<Image>().fillAmount = 0.001f;
                     }
@@ -871,7 +877,6 @@ public class Player2MovementController : MonoBehaviour
                     if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(moveDirection * 3);
-                        boost = true;
                         specialAvailable = false;
                         special.GetComponent<Image>().fillAmount = 0.001f;
                     }
@@ -1037,7 +1042,6 @@ public class Player2MovementController : MonoBehaviour
                     if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(moveDirection * 3);
-                        boost = true;
                         specialAvailable = false;
                         special.GetComponent<Image>().fillAmount = 0.001f;
                     }
@@ -1050,7 +1054,6 @@ public class Player2MovementController : MonoBehaviour
                     if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(moveDirection * 3);
-                        boost = true;
                         specialAvailable = false;
                         special.GetComponent<Image>().fillAmount = 0.001f;
                     }

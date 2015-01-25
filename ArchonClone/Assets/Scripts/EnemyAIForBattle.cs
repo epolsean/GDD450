@@ -6,10 +6,6 @@ using System.Collections;
 
 public class EnemyAIForBattle : MonoBehaviour
 {
-    Vector3 currentTarget;
-    Vector3 nextTarget;
-    Vector3 prevTarget;
-
     public GameObject SynthTank;
     public GameObject SynthScout;
     public GameObject SynthRunner;
@@ -49,7 +45,6 @@ public class EnemyAIForBattle : MonoBehaviour
     public bool usingShield = false;
     float shieldPower = 100f;
     bool shieldOverheat = false;
-    bool boost = false;
 
     Player1MovementController enemyController;
 
@@ -495,7 +490,7 @@ public class EnemyAIForBattle : MonoBehaviour
         {
             if (other.name == "PowerUp")
             {
-                float statBoost = UnityEngine.Random.Range(0, 100);
+                //float statBoost = UnityEngine.Random.Range(0, 100);
                 if (other.GetComponent<PowerUpController>().power == PowerUpController.PowerupType.Damage)
                 {
                     if (damagePowerUp == 0)
@@ -592,6 +587,10 @@ public class EnemyAIForBattle : MonoBehaviour
             {
                 health -= 5f * Time.deltaTime;
             }
+            if (other.tag == "Lava" && !isAlien && usingShield == false)
+            {
+                health -= 5f * Time.deltaTime;
+            }
             //If the player gets hit with melee
             if (other.name == "Sword(Clone)" && other.tag != tag)
             {
@@ -629,14 +628,10 @@ public class EnemyAIForBattle : MonoBehaviour
         {
             health -= 5f * Time.deltaTime;
         }
-    }
-
-    void ChooseNextTarget()
-    {
-        prevTarget = currentTarget;
-        currentTarget = nextTarget;
-        Vector3 moveDirection = Vector3.Normalize(currentTarget - transform.position); // Get direction of current target
-        transform.forward = new Vector3(moveDirection.x, 0, moveDirection.z);
+        if (other.tag == "Lava" && !isAlien && usingShield == false)
+        {
+            health -= 5f * Time.deltaTime;
+        }
     }
 
     void RobotGruntSpecial()
@@ -765,7 +760,6 @@ public class EnemyAIForBattle : MonoBehaviour
                     if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(controller.velocity * 3);
-                        boost = true;
                         specialAvailable = false;
                         special.GetComponent<Image>().fillAmount = 0.001f;
                     }
@@ -778,7 +772,6 @@ public class EnemyAIForBattle : MonoBehaviour
                     if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(controller.velocity * 3);
-                        boost = true;
                         specialAvailable = false;
                         special.GetComponent<Image>().fillAmount = 0.001f;
                     }
@@ -907,7 +900,6 @@ public class EnemyAIForBattle : MonoBehaviour
                     if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(controller.velocity * 3);
-                        boost = true;
                         specialAvailable = false;
                         special.GetComponent<Image>().fillAmount = 0.001f;
                     }
@@ -920,7 +912,6 @@ public class EnemyAIForBattle : MonoBehaviour
                     if (controller.velocity.magnitude != 0)
                     {
                         controller.Move(controller.velocity * 3);
-                        boost = true;
                         specialAvailable = false;
                         special.GetComponent<Image>().fillAmount = 0.001f;
                     }
