@@ -14,8 +14,8 @@ Number of wins Robot Scout vs Alien Runner .... 0
 Number of wins Robot Scout vs Alien Tank .... 0
 Number of wins Robot Scout vs Alien Scout .... 0
 -------------------
-Number of wins Robot Tank vs Alien Grunt .... 0
-Number of wins Robot Tank vs Alien Runner .... 0
+Number of wins Robot Tank vs Alien Grunt .... 1
+Number of wins Robot Tank vs Alien Runner .... 1
 Number of wins Robot Tank vs Alien Tank .... 0
 Number of wins Robot Tank vs Alien Scout .... 0
 -------------------
