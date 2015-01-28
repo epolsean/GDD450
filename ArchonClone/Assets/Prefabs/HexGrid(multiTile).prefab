@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &103968
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 403968}
+  m_Layer: 8
+  m_Name: Node
+  m_TagString: node
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &103970
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 403970}
+  - 33: {fileID: 3303968}
+  - 23: {fileID: 2303968}
+  - 64: {fileID: 6403968}
+  - 114: {fileID: 11403968}
+  m_Layer: 8
+  m_Name: HexGrid(multiTile)
+  m_TagString: Tile
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &403968
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103968}
+  m_LocalRotation: {x: 0, y: -.258819044, z: 0, w: .965925813}
+  m_LocalPosition: {x: 0, y: 500.000031, z: 0}
+  m_LocalScale: {x: 100, y: 1641.32568, z: 100}
+  m_Children: []
+  m_Father: {fileID: 403970}
+  m_RootOrder: 0
+--- !u!4 &403970
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103970}
+  m_LocalRotation: {x: 0, y: .258819044, z: 0, w: .965925813}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: .00999999978, y: .000609263603, z: .0100000007}
+  m_Children:
+  - {fileID: 403968}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!23 &2303968
+Renderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103970}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 4410860074ef4db459cf9f991bbf921a, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &3303968
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103970}
+  m_Mesh: {fileID: 4300000, guid: f695f41034c8c244c893d2648f789c53, type: 3}
+--- !u!64 &6403968
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103970}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: 1102e5a8f2f65e140aa6344d126c8f3a, type: 3}
+--- !u!114 &11403968
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bbff2edd1cac3499b404970aa8ea95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PieceOnTile: {fileID: 0}
+  AtkPiece: {fileID: 0}
+  TileNode: {fileID: 103968}
+  TurnController: {fileID: 0}
+  AlienTexture: {fileID: 2800000, guid: c994546ae66309b46ac4fb46c18f8163, type: 3}
+  SynthTexture: {fileID: 2800000, guid: 0d759595292e8a04e9fafd552f221b96, type: 3}
+  NuturalTexture: {fileID: 0}
+  TilePowerBooster: 0
+  TileState: 0
+  IsNutural: 0
+  isSelected: 0
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 103970}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1
