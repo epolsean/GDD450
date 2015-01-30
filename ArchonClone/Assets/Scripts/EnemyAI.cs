@@ -21,10 +21,13 @@ public class EnemyAI : MonoBehaviour {
         {
             gameObject.SetActive(false);
         }
-        NextState();
-        if (GameObject.Find("MovementController") != null)
+        else
         {
-            MovementController = GameObject.Find("MovementController");
+            NextState();
+            if (GameObject.Find("MovementController") != null)
+            {
+                MovementController = GameObject.Find("MovementController");
+            }
         }
 	}
 	
@@ -47,10 +50,6 @@ public class EnemyAI : MonoBehaviour {
             yield return 0;
         }
         Debug.Log("EnemyIdle: Exit");
-        if (Network.isClient || Network.isServer)
-            networkView.RPC("NextState", RPCMode.AllBuffered);
-        else
-            NextState();
     }
 
     IEnumerator SelectingPieceState()//this state will determine if the enemy will attack a player or just select a random tile to move to
@@ -85,11 +84,6 @@ public class EnemyAI : MonoBehaviour {
             yield return 0;
         }
         //Debug.Log("Enemy" + AIstate.ToString() + ": Exit");
-        Debug.Log("Enemy SelectingPieceState: Exit");
-        if (Network.isClient || Network.isServer)
-            networkView.RPC("NextState", RPCMode.AllBuffered);
-        else
-            NextState();
     }
 
     IEnumerator DaMoveState()//this state will determine if the enemy will attack a player or just select a random tile to move to
@@ -102,10 +96,6 @@ public class EnemyAI : MonoBehaviour {
             yield return 0;
         }
         Debug.Log("Enemy DaMoveState: Exit");
-        if (Network.isClient || Network.isServer)
-            networkView.RPC("NextState", RPCMode.AllBuffered);
-        else
-            NextState();
     }
 
     IEnumerator EndingState()//this state will determine if the enemy will attack a player or just select a random tile to move to
@@ -118,13 +108,8 @@ public class EnemyAI : MonoBehaviour {
             yield return 0;
         }
         Debug.Log("Enemy EndingState: Exit");
-        if (Network.isClient || Network.isServer)
-            networkView.RPC("NextState", RPCMode.AllBuffered);
-        else
-            NextState();
     }
 
-    [RPC]
     void NextState()
     {
         string methodName = AIstate.ToString() + "State";

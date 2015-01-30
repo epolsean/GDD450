@@ -5948,8 +5948,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f8c0e2e4288944bbfcaec54264b964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player2: 0
-  x_Sens: 1
 --- !u!114 &1725221677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6135,8 +6133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f8c0e2e4288944bbfcaec54264b964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player2: 1
-  x_Sens: 1
 --- !u!114 &1754348118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7869,7 +7865,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2146288166}
-  - 114: {fileID: 2146288165}
   - 82: {fileID: 2146288163}
   - 81: {fileID: 2146288164}
   m_Layer: 0
@@ -7944,17 +7939,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2146288162}
   m_Enabled: 1
---- !u!114 &2146288165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2146288162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b27f767959dd7c040b4a5ad2e73a619f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2146288166
 Transform:
   m_ObjectHideFlags: 0

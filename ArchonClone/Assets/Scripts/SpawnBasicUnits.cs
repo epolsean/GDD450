@@ -334,9 +334,10 @@ public class SpawnBasicUnits : MonoBehaviour {
             //tile.GetComponent<TileProperties>().Occupied = true;
             WhitePieceCount++;
         }
-        else
+        else if (Network.isServer && !Network.isClient)
         {
             tile.GetComponent<TileProperties>().UnitOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0), 1) as GameObject;
+            tile.GetComponent<TileProperties>().UnitOnTile.GetComponent<pieceMove>().datTile = tile;
             networkView.RPC("addPieceCount", RPCMode.AllBuffered, WhitePieceCount, 0);
         }
     }
@@ -350,9 +351,10 @@ public class SpawnBasicUnits : MonoBehaviour {
             //tile.GetComponent<TileProperties>().Occupied = true;
             BlackPieceCount++;
         }
-        else
+        else if (!Network.isServer && Network.isClient)
         {
             tile.GetComponent<TileProperties>().UnitOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0), 1) as GameObject;
+            tile.GetComponent<TileProperties>().UnitOnTile.GetComponent<pieceMove>().datTile = tile;
             networkView.RPC("addPieceCount", RPCMode.AllBuffered, BlackPieceCount, 1);
         }
     }
