@@ -59,7 +59,15 @@ public class OnTurnActions : MonoBehaviour {
                     }
                     else
                     {
-                        SetTarget(OnHoverTile); 
+                        if (SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes-1)
+                        {
+                            SetTarget(OnHoverTile);
+                        }
+                        else
+                        {
+                            SoundController.GetComponent<UISoundsScript>().playError();
+                            ResetController(); 
+                        }
                     }
                 }
             }
@@ -88,13 +96,18 @@ public class OnTurnActions : MonoBehaviour {
      * fresh settings this will be called after you move 
      * your piece or when you deselect your piece
      */ 
-    void ResetController()
+    public void ResetController()
     {
         print("ResetController Called");
+        CurrentTile.GetComponent<OnTileActions>().PieceOnTile = null;
         CurrentTile.renderer.material.color = Color.white;
-        CurrentTile.GetComponent<OnTileActions>().isSelected = false; 
+        CurrentTile.GetComponent<OnTileActions>().isSelected = false;
+        MoveToTile.GetComponent<OnTileActions>().PieceOnTile = SelectedPiece;
+        MoveToTile.renderer.material.color = Color.white;
+        MoveToTile.GetComponent<OnTileActions>().isSelected = false; 
         SelectedPiece = null;
-        CurrentTile = null; 
+        CurrentTile = null;
+        MoveToTile = null; 
         MaxMove = 0;
         MaxPathNodes = 0;
         hasSelectedPiece = false;

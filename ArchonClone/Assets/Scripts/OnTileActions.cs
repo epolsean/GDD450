@@ -19,7 +19,7 @@ public class OnTileActions : MonoBehaviour {
     
     // Use this for initialization
 	void Start () {
-        RandomRotation = Random.Range(1, 3); 
+        RandomRotation = Random.Range(1, 4); 
         if(RandomRotation == 1)
         {
             this.transform.eulerAngles = new Vector3(0, 30, 0); 
@@ -31,6 +31,10 @@ public class OnTileActions : MonoBehaviour {
         else if (RandomRotation == 3)
         {
             this.transform.eulerAngles = new Vector3(0, 150, 0);
+        }
+        else if (RandomRotation == 4)
+        {
+            this.transform.eulerAngles = new Vector3(0, 210, 0);
         }
         
         if (TileState == TileType.Alien)

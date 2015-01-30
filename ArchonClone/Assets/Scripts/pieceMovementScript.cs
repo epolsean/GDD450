@@ -30,8 +30,9 @@ public class pieceMovementScript : MonoBehaviour {
     void Start()
     {
         //plays animation if it is implemented/made yet
-        MoveController = GameObject.Find("MovementController");
+        MoveController = GameObject.Find("TurnController");
         SoundController = GameObject.Find("UISoundController");
+        PieceAnim = GetComponentInChildren<Animator>();
     }
 
     public void GetNewPath()
@@ -97,18 +98,19 @@ public class pieceMovementScript : MonoBehaviour {
                     //GetComponentInChildren<Animator>().SetBool("isWalking", false);
                     PieceAnim.SetBool("isWalking", false);
                 } 
-                //Debug.Log("DA END");
+                Debug.Log("DA END");
                 isMoving = false;
                 startMove = false; 
-                MoveController.GetComponent<OnTurnActions>().CurrentTile.GetComponent<OnTileActions>().isSelected = false;
-                MoveController.GetComponent<OnTurnActions>().MoveToTile.GetComponent<OnTileActions>().isSelected = false; 
+                //MoveController.GetComponent<OnTurnActions>().CurrentTile.GetComponent<OnTileActions>().isSelected = false;
+                //MoveController.GetComponent<OnTurnActions>().MoveToTile.GetComponent<OnTileActions>().isSelected = false;
+                MoveController.GetComponent<OnTurnActions>().ResetController(); 
 
                 GridManager.rescan = true;
                 //Debug.Log("Setting piece transform to target transform!");
                 //transform.position = targetPosition;
-                print("Path Waypoint Count: " + path.vectorPath.Count);
+                //print("Path Waypoint Count: " + path.vectorPath.Count);
                 
-                if (datTile.GetComponent<TileProperties>().fighting == false)
+                /*if (datTile.GetComponent<TileProperties>().fighting == false)
                 {
                     if (TurnStateMachine.state == TurnStateMachine.State.playerTurn)
                     {
@@ -130,7 +132,7 @@ public class pieceMovementScript : MonoBehaviour {
                     {
                         TurnStateMachine.state = TurnStateMachine.State.playerTurn;
                     }
-                }
+                }*/
                 transform.position = targetPosition;
                 Debug.Log("Setting piece transform to target transform!");
                 
@@ -182,7 +184,11 @@ public class pieceMovementScript : MonoBehaviour {
         }
         else//else checks for the path distance in nodes when you hover over a tile after selecting a piece
         {
-            print("path Nodes: " + path.vectorPath.Count);
+            print("path Nodes: " + path.vectorPath.Count + " list: " + path.path.Count);
+            /*for(int i = 0; i <= path.path.Count; i++)
+            {
+                path.path[i].
+            }*/
         }
 
         if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance - 1.75)
