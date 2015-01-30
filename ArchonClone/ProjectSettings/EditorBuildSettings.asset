@@ -11,7 +11,7 @@ EditorBuildSettings:
     path: Assets/SettingsScene.unity
   - enabled: 0
     path: Assets/CreditsScene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/TestScenes/BattleTest.unity
   - enabled: 0
     path: Assets/SelectMode.unity
@@ -23,13 +23,13 @@ EditorBuildSettings:
     path: Assets/TestScenes/TestingHexTiles.unity
   - enabled: 0
     path: Assets/LANLobby.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/TestScenes/TutorialTestBattle.unity
   - enabled: 1
     path: Assets/TestScenes/TutorialTestGrid.unity
   - enabled: 1
     path: Assets/TestScenes/EndPlaceHolderScene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/TestScenes/AlienBattleSmall.unity
   - enabled: 1
     path: Assets/TestScenes/RobotBattleSmall.unity

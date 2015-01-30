@@ -27,6 +27,7 @@ public class OnTurnActions : MonoBehaviour {
     public Path path;
     public float nextWaypointDistance = 2f;
     public int currentWaypoint = 0;
+    public bool isGenPath = false; 
 
      
     
@@ -55,6 +56,10 @@ public class OnTurnActions : MonoBehaviour {
                     if (CurrentTile == OnHoverTile)
                     {
                         ResetController();
+                    }
+                    else
+                    {
+                        SetTarget(OnHoverTile); 
                     }
                 }
             }
@@ -96,8 +101,23 @@ public class OnTurnActions : MonoBehaviour {
         
     }
     
-    void SetTarget()
+    void SetTarget(GameObject targetTile)
     {
-        CurrentTile = OnHoverTile;
+        SelectedPiece.GetComponent<pieceMovementScript>().isMoving = true;
+        SelectedPiece.GetComponent<pieceMovementScript>().startMove = true; 
+        targetTile.GetComponent<OnTileActions>().isSelected = true; 
+        MoveToTile = targetTile;
+        OnHoverTile.renderer.material.color = Color.green;
+        hasSelectedPiece = false;
+ 
+    }
+
+    public void GenPath()
+    {
+        print("Generated Path"); 
+        SelectedPiece.GetComponent<pieceMovementScript>().targetPosition = OnHoverTile.transform.position; 
+        //SelectedPiece.GetComponent<pieceMovementScript>().GenNewPath();
+        SelectedPiece.GetComponent<pieceMovementScript>().GetNewPath(); 
+        isGenPath = true; 
     }
 }

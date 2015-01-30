@@ -85,7 +85,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 103970}
-  m_Mesh: {fileID: 4300000, guid: f695f41034c8c244c893d2648f789c53, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 1102e5a8f2f65e140aa6344d126c8f3a, type: 3}
 --- !u!64 &6403968
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -114,13 +114,14 @@ MonoBehaviour:
   AtkPiece: {fileID: 0}
   TileNode: {fileID: 103968}
   TurnController: {fileID: 0}
-  AlienTexture: {fileID: 2800000, guid: c994546ae66309b46ac4fb46c18f8163, type: 3}
-  SynthTexture: {fileID: 2800000, guid: 0d759595292e8a04e9fafd552f221b96, type: 3}
+  AlienTexture: {fileID: 2800000, guid: ff3ba275618408c4b89a5d9f6b6e90fc, type: 3}
+  SynthTexture: {fileID: 2800000, guid: a9adcaab6c744fc4689007488ebad78b, type: 3}
   NuturalTexture: {fileID: 0}
   TilePowerBooster: 0
-  TileState: 0
+  TileState: 1
   IsNutural: 0
   isSelected: 0
+  RandomRotation: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

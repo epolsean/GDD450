@@ -14,10 +14,25 @@ public class OnTileActions : MonoBehaviour {
     public enum TileType { Alien, Synth, Nutural };
     public TileType TileState; 
     public bool IsNutural = false;
-    public bool isSelected = false; 
+    public bool isSelected = false;
+    public int RandomRotation; 
     
     // Use this for initialization
 	void Start () {
+        RandomRotation = Random.Range(1, 3); 
+        if(RandomRotation == 1)
+        {
+            this.transform.eulerAngles = new Vector3(0, 30, 0); 
+        }
+        else if (RandomRotation == 2)
+        {
+            this.transform.eulerAngles = new Vector3(0, 90, 0);
+        }
+        else if (RandomRotation == 3)
+        {
+            this.transform.eulerAngles = new Vector3(0, 150, 0);
+        }
+        
         if (TileState == TileType.Alien)
         {
             this.renderer.material.mainTexture = AlienTexture;
@@ -65,6 +80,10 @@ public class OnTileActions : MonoBehaviour {
         if(isSelected == false)
         {
             this.renderer.material.color = Color.cyan; 
+            if(TurnController.GetComponent<OnTurnActions>().hasSelectedPiece && TurnController.GetComponent<OnTurnActions>().isGenPath == false)
+            {
+                TurnController.GetComponent<OnTurnActions>().GenPath();
+            }
         }
     }
 
@@ -74,11 +93,17 @@ public class OnTileActions : MonoBehaviour {
      */ 
     void OnMouseExit()
     {
+        TurnController.GetComponent<OnTurnActions>().isGenPath = false; 
         TurnController.GetComponent<OnTurnActions>().OnHoverTile = null;
         TurnController.GetComponent<OnTurnActions>().OnHoverPiece = null;
         if (isSelected == false)
         {
             this.renderer.material.color = Color.white;
         } 
+    }
+
+    public void ResetTile()
+    {
+        this.renderer.material.color = Color.white; 
     }
 }

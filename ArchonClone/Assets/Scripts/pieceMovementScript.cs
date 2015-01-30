@@ -21,284 +21,17 @@ public class pieceMovementScript : MonoBehaviour {
     public int MaxPathNodes;
     public bool canMove2Tile = false;
     public bool canFight = false;
+    public bool startMove = false; 
     public bool UIShouldGo = false; 
     public GameObject datTile;
     public GameObject datSprite;
-    public GameObject SoundController; 
+    public GameObject SoundController;
 
     void Start()
     {
         //plays animation if it is implemented/made yet
         MoveController = GameObject.Find("MovementController");
         SoundController = GameObject.Find("UISoundController");
-        if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)" || name == "BlackRunner(Clone)")
-        {
-            print("Set Piece Animator");
-            PieceAnim = GetComponentInChildren<Animator>();
-            print("Animator Set = true");
-            if(name == "BlackRunner(Clone)" && PieceAnim != null)
-            {
-                print("Runner Passed Anim Assignment");
-            }
-        }
-        //set pieces maxMove variable
-        if (name == "WhiteTank(Clone)" || name == "BlackTank(Clone)")
-        {
-            MaxPieceMove = 5 * 2;
-            MaxMove = 8;
-            MaxPathNodes = 3;
-        }
-        else if (name == "WhiteGrunt(Clone)" || name == "BlackGrunt(Clone)")
-        {
-            MaxPieceMove = 5 * 2.75;
-            MaxMove = 11;
-            MaxPathNodes = 4;
-        }
-        else if (name == "WhiteRunner(Clone)" || name == "BlackRunner(Clone)")
-        {
-            MaxPieceMove = 5 * 3.5;
-            MaxMove = 16;
-            MaxPathNodes = 5;
-        }
-        else if (name == "WhiteScout(Clone)" || name == "BlackScout(Clone)")
-        {
-            MaxPieceMove = 5 * 2.75;
-            MaxMove = 11;
-            MaxPathNodes = 4;
-        }
-
-        //assign pieces to their sprites
-        if(datTile.name == "HexGrid(WGrunt01Tile)")
-        {
-            if (GameObject.Find("SynthGrunt01Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthGrunt01Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(WGrunt02Tile)")
-        {
-            if (GameObject.Find("SynthGrunt02Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthGrunt02Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(WGrunt03Tile)")
-        {
-            if (GameObject.Find("SynthGrunt03Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthGrunt03Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(WGrunt04Tile)")
-        {
-            if (GameObject.Find("SynthGrunt04Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthGrunt04Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(WTank01Tile)")
-        {
-            if (GameObject.Find("SynthTank01Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthTank01Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(WTank02Tile)")
-        {
-            if (GameObject.Find("SynthTank02Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthTank02Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(WTank03Tile)")
-        {
-            if (GameObject.Find("SynthTank03Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthTank03Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(WTank04Tile)")
-        {
-            if (GameObject.Find("SynthTank04Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthTank04Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(WScout01Tile)")
-        {
-            if (GameObject.Find("SynthScout01Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthScout01Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(WScout02Tile)")
-        {
-            if (GameObject.Find("SynthScout02Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthScout02Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(WScout03Tile)")
-        {
-            if (GameObject.Find("SynthScout03Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthScout03Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(WScout04Tile)")
-        {
-            if (GameObject.Find("SynthScout04Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthScout04Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(WRunner01Tile)")
-        {
-            if (GameObject.Find("SynthRunner01Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthRunner01Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(WRunner02Tile)")
-        {
-            if (GameObject.Find("SynthRunner02Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthRunner02Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(WRunner03Tile)")
-        {
-            if (GameObject.Find("SynthRunner03Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthRunner03Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(WRunner04Tile)")
-        {
-            if (GameObject.Find("SynthRunner04Sprite") != null)
-            {
-                datSprite = GameObject.Find("SynthRunner04Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BGrunt01Tile)")//assign all Alien piece sprites
-        {
-            if (GameObject.Find("AlienGrunt01Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienGrunt01Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BGrunt02Tile)")
-        {
-            if (GameObject.Find("AlienGrunt02Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienGrunt02Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BGrunt03Tile)")
-        {
-            if (GameObject.Find("AlienGrunt03Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienGrunt03Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BGrunt04Tile)")
-        {
-            if (GameObject.Find("AlienGrunt04Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienGrunt04Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BTank01Tile)")
-        {
-            if (GameObject.Find("AlienTank01Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienTank01Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BTank02Tile)")
-        {
-            if (GameObject.Find("AlienTank02Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienTank02Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BTank03Tile)")
-        {
-            if (GameObject.Find("AlienTank03Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienTank03Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BTank04Tile)")
-        {
-            if (GameObject.Find("AlienTank04Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienTank04Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BScout01Tile)")
-        {
-            if (GameObject.Find("AlienScout01Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienScout01Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BScout02Tile)")
-        {
-            if (GameObject.Find("AlienScout02Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienScout02Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BScout03Tile)")
-        {
-            if (GameObject.Find("AlienScout03Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienScout03Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BScout04Tile)")
-        {
-            if (GameObject.Find("AlienScout04Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienScout04Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BRunner01Tile)")
-        {
-            if (GameObject.Find("AlienRunner01Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienRunner01Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BRunner02Tile)")
-        {
-            if (GameObject.Find("AlienRunner02Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienRunner02Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BRunner03Tile)")
-        {
-            if (GameObject.Find("AlienRunner03Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienRunner03Sprite");
-            }
-        }
-        else if (datTile.name == "HexGrid(BRunner04Tile)")
-        {
-            if (GameObject.Find("AlienRunner04Sprite") != null)
-            {
-                datSprite = GameObject.Find("AlienRunner04Sprite");
-            }
-        }
-
-        //turn on sprite if assigned one
-        if(datSprite != null)
-        {
-            datSprite.SetActive(true);
-        }
-               
     }
 
     public void GetNewPath()
@@ -365,19 +98,11 @@ public class pieceMovementScript : MonoBehaviour {
                     PieceAnim.SetBool("isWalking", false);
                 } 
                 //Debug.Log("DA END");
-                canMove2Tile = false;
-                MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().UnitOnTile = this.gameObject;
-                print("b4 old tile reset");
-                MoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().UnitOnTile = null;
-                print("after old tile reset");
-                MoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.SetActive(true);
-                //MoveController.GetComponent<PawnMove>().MoveToTile.renderer.material.color = Color.magenta;
-                //MoveController.GetComponent<PawnMove>().currentTile.renderer.material.color = Color.blue;
-                
-                this.datTile = MoveController.GetComponent<PawnMove>().MoveToTile;
-                MoveController.GetComponent<PawnMove>().isMoving = false;
-                datTile.GetComponent<TileProperties>().canPlace = false;
-                //MoveController.GetComponent<PawnMove>().MoveToTile = null;
+                isMoving = false;
+                startMove = false; 
+                MoveController.GetComponent<OnTurnActions>().CurrentTile.GetComponent<OnTileActions>().isSelected = false;
+                MoveController.GetComponent<OnTurnActions>().MoveToTile.GetComponent<OnTileActions>().isSelected = false; 
+
                 GridManager.rescan = true;
                 //Debug.Log("Setting piece transform to target transform!");
                 //transform.position = targetPosition;
@@ -419,41 +144,48 @@ public class pieceMovementScript : MonoBehaviour {
         Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
 
         dir *= speed * Time.fixedDeltaTime;
-        if(path.vectorPath.Count <= MaxPathNodes)
+        if(startMove)
         {
-            controller.SimpleMove(dir);
-            canMove2Tile = true; 
-            if(canFight)
+            if (path.vectorPath.Count <= MaxPathNodes)
             {
-                if(UIShouldGo)
+                controller.SimpleMove(dir);
+                canMove2Tile = true;
+                if (canFight)
                 {
-                    UIShouldGo = false; 
-                    SoundController.GetComponent<UISoundsScript>().playFight(); 
+                    if (UIShouldGo)
+                    {
+                        UIShouldGo = false;
+                        SoundController.GetComponent<UISoundsScript>().playFight();
+                    }
+                    MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().fighting = true;
                 }
-                MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().fighting = true; 
+                else
+                {
+                    if (UIShouldGo)
+                    {
+                        UIShouldGo = false;
+                        SoundController.GetComponent<UISoundsScript>().playMovePiece();
+                    }
+                }
             }
             else
             {
-                if(UIShouldGo)
-                {
-                    UIShouldGo = false;
-                    SoundController.GetComponent<UISoundsScript>().playMovePiece();
-                }
+                SoundController.GetComponent<UISoundsScript>().playError();
+                path = null;
+                //play error sound & reset turn piece is being assinged to the selected tile no matter what reset the tile that the unit is on 
+                TurnStateMachine.canSelectPiece = true;
+                TileProperties.pieceSelected = false;
+                MoveController.GetComponent<PawnMove>().isMoving = false;
+                canFight = false;
+
             }
         }
-        else
+        else//else checks for the path distance in nodes when you hover over a tile after selecting a piece
         {
-            SoundController.GetComponent<UISoundsScript>().playError();
-            path = null;
-            //play error sound & reset turn piece is being assinged to the selected tile no matter what reset the tile that the unit is on 
-            TurnStateMachine.canSelectPiece = true;
-            TileProperties.pieceSelected = false;
-            MoveController.GetComponent<PawnMove>().isMoving = false;
-            canFight = false; 
-
+            print("path Nodes: " + path.vectorPath.Count);
         }
 
-        if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance - 1)
+        if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance - 1.75)
         {
             currentWaypoint++;
         }
