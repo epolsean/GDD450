@@ -20,9 +20,9 @@ public class NetworkManagerScript : MonoBehaviour {
 
     float startTime = 0;
     int count = 3;
-    string gameName = "GDD450_Test_LAN_Game";
+    string gameName = "Strategix_LAN_Game";
     string serverName = "Default Server Name";
-    string serverDes = "This is a 'Insert-Final-Game-Name-Here' LAN game";
+    string serverDes = "This is a Strategix LAN game";
     bool refreshing;
     bool secondPlayerConnected;
     HostData[] hostData;
@@ -111,7 +111,7 @@ public class NetworkManagerScript : MonoBehaviour {
                             count--;
                         }
                         else
-                            Application.LoadLevel("AlienBattleSmall");
+                            Application.LoadLevel("TestingHexTiles");
                         startTime = Time.time + 1f;
                     }
                 }

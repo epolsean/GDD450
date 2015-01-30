@@ -5,52 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/StartScreen.unity
-  - enabled: 0
-    path: Assets/SettingsScene.unity
-  - enabled: 0
-    path: Assets/CreditsScene.unity
-  - enabled: 0
-    path: Assets/TestScenes/BattleTest.unity
-  - enabled: 0
-    path: Assets/SelectMode.unity
-  - enabled: 0
-    path: Assets/SelectCamera.unity
-  - enabled: 0
-    path: Assets/TestScenes/SpaceShipBattle.unity
-  - enabled: 1
-    path: Assets/TestScenes/TestingHexTiles.unity
-  - enabled: 0
-    path: Assets/LANLobby.unity
-  - enabled: 0
-    path: Assets/TestScenes/TutorialTestBattle.unity
-  - enabled: 1
-    path: Assets/TestScenes/TutorialTestGrid.unity
-  - enabled: 1
-    path: Assets/TestScenes/EndPlaceHolderScene.unity
-  - enabled: 0
-    path: Assets/TestScenes/AlienBattleSmall.unity
-  - enabled: 1
-    path: Assets/TestScenes/RobotBattleSmall.unity
-  - enabled: 1
-    path: Assets/TestScenes/LargeTileBoard.unity
-  - enabled: 0
-    path: Assets/SyntheticVictory.unity
-  - enabled: 0
-    path: Assets/OrganicsVictoryScreen.unity
-  - enabled: 0
-    path: Assets/TestTrans1.unity
-  - enabled: 0
-    path: Assets/TestTrans2.unity
-  - enabled: 1
-    path: Assets/TestScenes/AlienBattleMedium.unity
-  - enabled: 1
-    path: Assets/TestScenes/RobotBattleMedium.unity
-  - enabled: 1
-    path: Assets/TestScenes/LargeTileBoard02.unity
-  - enabled: 1
-    path: Assets/TestScenes/MediumHexBoard02.unity
   - enabled: 1
     path: Assets/TestScenes/StartScreen.unity
   - enabled: 1
@@ -58,10 +12,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TestScenes/ChooseSide.unity
   - enabled: 1
+    path: Assets/TestScenes/TestingHexTiles.unity
+  - enabled: 1
+    path: Assets/TestScenes/TutorialTestGrid.unity
+  - enabled: 1
+    path: Assets/TestScenes/LargeTileBoard.unity
+  - enabled: 1
+    path: Assets/TestScenes/LargeTileBoard02.unity
+  - enabled: 1
+    path: Assets/TestScenes/MediumHexBoard02.unity
+  - enabled: 1
+    path: Assets/TestScenes/EndPlaceHolderScene.unity
+  - enabled: 1
     path: Assets/TestScenes/SyntheticVictory.unity
   - enabled: 1
     path: Assets/TestScenes/OrganicsVictoryScreen.unity
-  - enabled: 1
-    path: Assets/TestScenes/RobotBattleLarge.unity
-  - enabled: 1
-    path: Assets/TestScenes/AlienBattleLarge.unity

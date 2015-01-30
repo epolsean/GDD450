@@ -11,7 +11,7 @@ public class NetworkLevelLoader : MonoBehaviour {
 
     bool player1Created = false;
     bool player2Created = false;
-    string loadedLevel = "AlienBattleSmall";
+    string loadedLevel = "TestingHexTiles";
     static bool player1Connected = false;
     static bool player2Connected = false;
     bool bothConnected = false;
@@ -21,29 +21,15 @@ public class NetworkLevelLoader : MonoBehaviour {
     {
         if (!Network.isClient && !Network.isServer)
         {
-            GameObject p1 = (GameObject)Instantiate(player1);
-            p1.transform.position = spawn1.transform.position;
-            p1.transform.rotation = spawn1.transform.rotation;
-            p1.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
-
-            if (BattleStats.singlePlayer)
-            {
-                GameObject p2 = (GameObject)Instantiate(EnemyAI);
-                p2.transform.position = spawn2.transform.position;
-                p2.transform.rotation = spawn2.transform.rotation;
-                p2.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
-            }
-            else
-            {
-                GameObject p2 = (GameObject)Instantiate(player2);
-                p2.transform.position = spawn2.transform.position;
-                p2.transform.rotation = spawn2.transform.rotation;
-                p2.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
-            }
+            
         }
         else
         {
             onLine = true;
+            if (Network.isClient && !Network.isServer)
+                networkView.RPC("playerConnect", RPCMode.AllBuffered, 2, true);
+            else if (!Network.isClient && Network.isServer)
+                networkView.RPC("playerConnect", RPCMode.AllBuffered, 1, true);
         }
     }
 
@@ -53,26 +39,8 @@ public class NetworkLevelLoader : MonoBehaviour {
         {
             if (bothConnected != true)
                 networkView.RPC("checkClientLevels", RPCMode.AllBuffered);
-            else
-                networkView.RPC("loadPlayers", RPCMode.AllBuffered);
         }
     }
-
-    [RPC]
-	void loadPlayers () {
-        if (Network.isServer && player1Created == false)
-        {
-            GameObject newPlayer1 = (GameObject)Network.Instantiate(player1, spawn1.transform.position, player1.transform.rotation, 1);
-            newPlayer1.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
-            player1Created = true;
-        }
-        else if (Network.isClient && player2Created == false)
-        {
-            GameObject newPlayer2 = (GameObject)Network.Instantiate(player2, spawn2.transform.position, player2.transform.rotation, 1);
-            newPlayer2.transform.parent = GameObject.Find("BattleSceneAdditive").transform;
-            player2Created = true;
-        }
-	}
 
     [RPC]
     void checkClientLevels()
