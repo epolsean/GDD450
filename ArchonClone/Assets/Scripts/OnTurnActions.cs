@@ -27,13 +27,16 @@ public class OnTurnActions : MonoBehaviour {
     public Path path;
     public float nextWaypointDistance = 2f;
     public int currentWaypoint = 0;
-    public bool isGenPath = false; 
+    public bool isGenPath = false;
+    public bool drawnPath = false;
+    public GameObject[] allTiles; 
 
      
     
     // Use this for initialization
 	void Start () {
-	
+        allTiles = GameObject.FindGameObjectsWithTag("Tile");
+        SoundController = GameObject.Find("UISoundController"); 
 	}
 	
 	// Update is called once per frame
@@ -59,7 +62,7 @@ public class OnTurnActions : MonoBehaviour {
                     }
                     else
                     {
-                        if (SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes-1)
+                        if (SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes)
                         {
                             SetTarget(OnHoverTile);
                         }
@@ -89,6 +92,10 @@ public class OnTurnActions : MonoBehaviour {
         //MaxPathNodes = SelectedPiece.GetComponent<PiecePropScript>()
         OnHoverTile.GetComponent<OnTileActions>().isSelected = true; 
         OnHoverTile.renderer.material.color = Color.yellow; 
+        if(SoundController != false)
+        {
+            SoundController.GetComponent<UISoundsScript>().playSelectPiece(); 
+        }
 
         
     }
@@ -111,6 +118,7 @@ public class OnTurnActions : MonoBehaviour {
         MaxMove = 0;
         MaxPathNodes = 0;
         hasSelectedPiece = false;
+        resetAllTiles(); 
         
     }
     
@@ -122,6 +130,12 @@ public class OnTurnActions : MonoBehaviour {
         MoveToTile = targetTile;
         OnHoverTile.renderer.material.color = Color.green;
         hasSelectedPiece = false;
+        SelectedPiece.transform.position = new Vector3(SelectedPiece.transform.position.x, 0.1f, SelectedPiece.transform.position.z);//this is a quick fix for a weird bug where pice was being clocked from movng
+        if (SoundController != false)
+        {
+            SoundController.GetComponent<UISoundsScript>().playMovePiece(); 
+        }
+
  
     }
 
@@ -133,4 +147,13 @@ public class OnTurnActions : MonoBehaviour {
         SelectedPiece.GetComponent<pieceMovementScript>().GetNewPath(); 
         isGenPath = true; 
     }
+
+    public void resetAllTiles()//primarily used to reset the highlighted tiles in a path, it sets all tiles on the board to a base color of white
+    {
+        for(int i = 0; i<allTiles.Length; i++)
+        {
+            allTiles[i].renderer.material.color = Color.white; 
+        }
+    }
+ 
 }

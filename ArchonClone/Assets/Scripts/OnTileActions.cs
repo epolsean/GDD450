@@ -72,6 +72,7 @@ public class OnTileActions : MonoBehaviour {
         {
             this.renderer.material.mainTexture = null;
         }
+
 	}
     /*called when you hover over a tile, it will assign the tile 
      * to the TurnController's OnHoverTile and OnHoverPiece variables
@@ -83,10 +84,30 @@ public class OnTileActions : MonoBehaviour {
         TurnController.GetComponent<OnTurnActions>().OnHoverPiece = this.PieceOnTile;
         if(isSelected == false)
         {
-            this.renderer.material.color = Color.cyan; 
-            if(TurnController.GetComponent<OnTurnActions>().hasSelectedPiece && TurnController.GetComponent<OnTurnActions>().isGenPath == false)
+            if(TurnController.GetComponent<OnTurnActions>().hasSelectedPiece == false)
             {
-                TurnController.GetComponent<OnTurnActions>().GenPath();
+                this.renderer.material.color = Color.cyan; 
+            }
+            
+            if(TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
+            {
+                if(TurnController.GetComponent<OnTurnActions>().isGenPath == false)
+                {
+                    TurnController.GetComponent<OnTurnActions>().GenPath();
+                }
+                else
+                {
+                    TurnController.GetComponent<OnTurnActions>().drawnPath = false; 
+                    if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes)
+                    {
+                        this.renderer.material.color = Color.green;
+                    }
+                    else
+                    {
+                        this.renderer.material.color = Color.red;
+                    }
+                }
+                
             }
         }
     }
@@ -104,6 +125,10 @@ public class OnTileActions : MonoBehaviour {
         {
             this.renderer.material.color = Color.white;
         } 
+        if(TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
+        {
+            TurnController.GetComponent<OnTurnActions>().resetAllTiles(); 
+        }
     }
 
     public void ResetTile()
