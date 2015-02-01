@@ -22,7 +22,7 @@ public class pieceMovementScript : MonoBehaviour {
     public bool canMove2Tile = false;
     public bool canFight = false;
     public bool startMove = false; 
-    public bool UIShouldGo = false; 
+    public bool UIShouldGo = false;
     public GameObject datTile;
     public GameObject datSprite;
     public GameObject SoundController;
@@ -98,11 +98,9 @@ public class pieceMovementScript : MonoBehaviour {
                     //GetComponentInChildren<Animator>().SetBool("isWalking", false);
                     PieceAnim.SetBool("isWalking", false);
                 } 
-                Debug.Log("DA END");
+                //Debug.Log("DA END");
                 isMoving = false;
                 startMove = false; 
-                //MoveController.GetComponent<OnTurnActions>().CurrentTile.GetComponent<OnTileActions>().isSelected = false;
-                //MoveController.GetComponent<OnTurnActions>().MoveToTile.GetComponent<OnTileActions>().isSelected = false;
                 MoveController.GetComponent<OnTurnActions>().ResetController(); 
 
                 GridManager.rescan = true;
@@ -137,10 +135,6 @@ public class pieceMovementScript : MonoBehaviour {
                 Debug.Log("Setting piece transform to target transform!");
                 
             }
-            
-            //MoveController.GetComponent<PawnMove>().currentTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(true);
-            //MoveController.GetComponent<PawnMove>().MoveToTile.GetComponent<TileProperties>().datNode.gameObject.SetActive(false);
-            
             return;
         }
         Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
@@ -177,7 +171,7 @@ public class pieceMovementScript : MonoBehaviour {
                 //play error sound & reset turn piece is being assinged to the selected tile no matter what reset the tile that the unit is on 
                 TurnStateMachine.canSelectPiece = true;
                 TileProperties.pieceSelected = false;
-                MoveController.GetComponent<PawnMove>().isMoving = false;
+                //MoveController.GetComponent<PawnMove>().isMoving = false;
                 canFight = false;
 
             }
@@ -185,10 +179,23 @@ public class pieceMovementScript : MonoBehaviour {
         else//else checks for the path distance in nodes when you hover over a tile after selecting a piece
         {
             print("path Nodes: " + path.vectorPath.Count + " list: " + path.path.Count);
-            /*for(int i = 0; i <= path.path.Count; i++)
+            if(MoveController.GetComponent<OnTurnActions>().drawnPath == false)
             {
-                path.path[i].
-            }*/
+                MoveController.GetComponent<OnTurnActions>().drawnPath = true; 
+                Vector3[] tileNodes = path.vectorPath.ToArray();
+                for (int i = 0; i < path.vectorPath.Count; i++)
+                {
+                    Collider[] NodeTile = Physics.OverlapSphere(new Vector3(tileNodes[i].x, tileNodes[i].y, tileNodes[i].z), 1);
+                    print("NodeTile Size: " + NodeTile.Length + "at TileNodes: " + i);
+                    for (int j = 0; j < NodeTile.Length; j++)
+                    {
+                        if (NodeTile[j].tag == "Tile")
+                        {
+                            NodeTile[j].renderer.material.color = Color.blue;
+                        }
+                    }
+                }
+            }
         }
 
         if (Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]) < nextWaypointDistance - 1.75)
