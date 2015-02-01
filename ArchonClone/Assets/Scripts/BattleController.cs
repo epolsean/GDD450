@@ -8,8 +8,8 @@ public class BattleController : MonoBehaviour {
     public GameObject defenderIcon;
     public GameObject vsText;
 
-    GameObject attacker;
-    GameObject defender;
+    GameObject attackerTile;
+    GameObject defenderTile;
 
     string Loser;
     bool BattleOver = false;
@@ -18,28 +18,71 @@ public class BattleController : MonoBehaviour {
     enum BattleState {PreBattle,Battle,PostBattle};
     BattleState partOfBattle;
 
+    int starting = 1;
+
+    float attackerLevel;
+    float defenderLevel;
+
 	// Use this for initialization
 	void Start () 
     {
+        attackerLevel = attackerTile.GetComponent<OnTileActions>().TilePowerBooster + attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
+        defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerBooster + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
+        
+        starting = 1;
         partOfBattle = BattleState.PreBattle;
         attackerIcon.GetComponent<RectTransform>().anchoredPosition = new Vector2(GetComponent<RectTransform>().sizeDelta.x / -4, GetComponent<RectTransform>().sizeDelta.y / 2 + attackerIcon.GetComponent<RectTransform>().sizeDelta.y/2);
         defenderIcon.GetComponent<RectTransform>().anchoredPosition = new Vector2(GetComponent<RectTransform>().sizeDelta.x / 4, -1*GetComponent<RectTransform>().sizeDelta.y / 2 - defenderIcon.GetComponent<RectTransform>().sizeDelta.y/2);
 	}
+
+    void OnEnable()
+    {
+        attackerLevel = attackerTile.GetComponent<OnTileActions>().TilePowerBooster + attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
+        defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerBooster + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
+
+        starting = 1;
+        partOfBattle = BattleState.PreBattle;
+        attackerIcon.GetComponent<RectTransform>().anchoredPosition = new Vector2(GetComponent<RectTransform>().sizeDelta.x / -4, GetComponent<RectTransform>().sizeDelta.y / 2 + attackerIcon.GetComponent<RectTransform>().sizeDelta.y / 2);
+        defenderIcon.GetComponent<RectTransform>().anchoredPosition = new Vector2(GetComponent<RectTransform>().sizeDelta.x / 4, -1 * GetComponent<RectTransform>().sizeDelta.y / 2 - defenderIcon.GetComponent<RectTransform>().sizeDelta.y / 2);
+    }
 	
 	// Update is called once per frame
 	void Update () 
     {
-
         if (partOfBattle == BattleState.PreBattle)
         {
-            if (Vector2.Distance(attackerIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(attackerIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)GetComponent<RectTransform>().sizeDelta.y / 4)) > 1)
-                attackerIcon.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(attackerIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(attackerIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)GetComponent<RectTransform>().sizeDelta.y / 4), Time.deltaTime);
-            if (Vector2.Distance(defenderIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(defenderIcon.GetComponent<RectTransform>().anchoredPosition.x, -(int)GetComponent<RectTransform>().sizeDelta.y / 4)) > 1)
-                defenderIcon.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(defenderIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(defenderIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)-GetComponent<RectTransform>().sizeDelta.y / 4), Time.deltaTime);
+            if (starting == 1)
+            {
+                if (Vector2.Distance(attackerIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(attackerIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)GetComponent<RectTransform>().sizeDelta.y / 4)) > 1)
+                {
+                    vsText.GetComponent<Text>().fontSize += 1;
+                    defenderIcon.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(defenderIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(defenderIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)-GetComponent<RectTransform>().sizeDelta.y / 4), Time.deltaTime);
+                    attackerIcon.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(attackerIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(attackerIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)GetComponent<RectTransform>().sizeDelta.y / 4), Time.deltaTime);
+                }
+                else
+                {
+                    starting++;
+                }
+            }
+            else if(starting == 2)
+            {
+                if (Vector2.Distance(attackerIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(attackerIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)-GetComponent<RectTransform>().sizeDelta.y )) > 10)
+                {
+                    defenderIcon.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(defenderIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(defenderIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)GetComponent<RectTransform>().sizeDelta.y ), Time.deltaTime);
+                    attackerIcon.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(attackerIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(attackerIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)-GetComponent<RectTransform>().sizeDelta.y ), Time.deltaTime);
+                }
+                else
+                {
+                    starting++;
+                }
+            }
             else
+            {
                 attackerIcon.SetActive(false);
                 defenderIcon.SetActive(false);
                 vsText.SetActive(false);
+                partOfBattle = BattleState.Battle;
+            }
         }
         else if (partOfBattle == BattleState.Battle)
         {
@@ -49,66 +92,61 @@ public class BattleController : MonoBehaviour {
         {
             if (Loser == "attacker")
             {
-
+                Destroy(attackerTile.GetComponent<OnTileActions>().PieceOnTile);
+                attackerTile.GetComponent<OnTileActions>().PieceOnTile = null;
             }
             else if (Loser == "defender")
             {
-
+                Destroy(defenderTile.GetComponent<OnTileActions>().PieceOnTile);
+                defenderTile.GetComponent<OnTileActions>().PieceOnTile = attackerTile.GetComponent<OnTileActions>().PieceOnTile;
             }
             else if (Loser == "both")
             {
-
+                Destroy(attackerTile.GetComponent<OnTileActions>().PieceOnTile);
+                Destroy(defenderTile.GetComponent<OnTileActions>().PieceOnTile);
+                attackerTile.GetComponent<OnTileActions>().PieceOnTile = null;
+                defenderTile.GetComponent<OnTileActions>().PieceOnTile = null;
             }
+            this.enabled = false;
         }
     }
 
     void SimulateBattle()
     {
-        if (BattleOver)
+        //Add code to simulate battle and determine winner
+        if (Random.Range(0, 10000/attackerLevel) < attackerLevel) //This will be if the player who is attacking the tile wins on the attack
         {
-            attackerIcon.SetActive(false);
-            defenderIcon.SetActive(false);
-            vsText.SetActive(false);
-        }
-        else
-        {
-            /*Add code to simulate battle and determine winner
-            if (Random.Range(0, 1000/attacker power) > attacker power) //This will be if the player who is attacking the tile wins on the attack
+            if (Random.Range(0, 10000 / defenderLevel) < defenderLevel/2) //This will be if the player who is defending the tile wins on the attack
             {
-                if (Random.Range(0, 1000/defender power) > defender power) //This will be if the player who is defending the tile wins on the attack
-                {
-                    BattleOver = true;
-                    Loser = "both";
-                }
-                else
-                {
-                    BattleOver = true;
-                    Loser = "defender";
-                }
+                Loser = "both";
             }
-            else if (Random.Range(0, 1000/defender power) > defender power) //This will be if the player who is attacking the tile wins on the attack
+            else
             {
-                if (Random.Range(0, 1000/attacker power) > attacker power) //This will be if the player who is defending the tile wins on the attack
-                {
-                    BattleOver = true;
-                    Loser = "both";
-                }
-                else
-                {
-                    BattleOver = true;
-                    Loser = "attacker";
-                }
-            }*/
+                Loser = "defender";
+            }
+            partOfBattle = BattleState.PostBattle;
+        }
+        else if (Random.Range(0, 10000 / defenderLevel) < defenderLevel) //This will be if the player who is attacking the tile wins on the attack
+        {
+            if (Random.Range(0, 10000/attackerLevel) < attackerLevel/2) //This will be if the player who is defending the tile wins on the attack
+            {
+                Loser = "both";
+            }
+            else
+            {
+                Loser = "attacker";
+            }
+            partOfBattle = BattleState.PostBattle;
         }
     }
 
-    public void SetAttacker(GameObject datAttacker)
+    public void SetAttackerTile(GameObject datAttacker)
     {
-        attacker = datAttacker;
+        attackerTile = datAttacker;
     }
 
-    public void SetDefender(GameObject datDefender)
+    public void SetDefenderTile(GameObject datDefender)
     {
-        defender = datDefender;
+        defenderTile = datDefender;
     }
 }
