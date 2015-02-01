@@ -105,10 +105,15 @@ public class SpawnBasicUnits : MonoBehaviour {
     public GameObject RobotRunner1StartTile;
     public GameObject RobotRunner2StartTile;
 
+    float startTime;
+
 	// Use this for initialization
 	void Start () {
+        startTime = Time.time;
+
         EndControllerScript.OrgVic = false;
         EndControllerScript.SynthVic = false;
+
         StartSpawn();
 
         SGtext = GameObject.Find("SynthGruntCountText");
@@ -138,12 +143,12 @@ public class SpawnBasicUnits : MonoBehaviour {
         ATtext.GetComponent<Text>().text = AlienTankCount.ToString();
         ARtext.GetComponent<Text>().text = AlienRunnerCount.ToString();
 
-        if(BlackPieceCount <= 0)
+        if(BlackPieceCount <= 0 && (Time.time - startTime) > 2)
         {
             EndControllerScript.SynthVic = true; 
             EndControllerScript.isEnd = true; 
         }
-        else if(WhitePieceCount <= 0)
+        else if (WhitePieceCount <= 0 && (Time.time - startTime) > 2)
         {
             EndControllerScript.OrgVic = true;
             EndControllerScript.isEnd = true; 
@@ -334,11 +339,15 @@ public class SpawnBasicUnits : MonoBehaviour {
             //tile.GetComponent<TileProperties>().Occupied = true;
             WhitePieceCount++;
         }
-        else if (Network.isServer && !Network.isClient)
+        else if (Network.isServer)
         {
             tile.GetComponent<TileProperties>().UnitOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0), 1) as GameObject;
             tile.GetComponent<TileProperties>().UnitOnTile.GetComponent<pieceMove>().datTile = tile;
             networkView.RPC("addPieceCount", RPCMode.AllBuffered, WhitePieceCount, 0);
+        }
+        else if (Network.isClient)
+        {
+            tile.GetComponent<TileProperties>().UnitOnTile.GetComponent<pieceMove>().datTile = tile;
         }
     }
 
@@ -351,11 +360,15 @@ public class SpawnBasicUnits : MonoBehaviour {
             //tile.GetComponent<TileProperties>().Occupied = true;
             BlackPieceCount++;
         }
-        else if (!Network.isServer && Network.isClient)
+        else if (Network.isServer)
         {
             tile.GetComponent<TileProperties>().UnitOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0), 1) as GameObject;
             tile.GetComponent<TileProperties>().UnitOnTile.GetComponent<pieceMove>().datTile = tile;
             networkView.RPC("addPieceCount", RPCMode.AllBuffered, BlackPieceCount, 1);
+        }
+        else if(Network.isClient)
+        {
+            tile.GetComponent<TileProperties>().UnitOnTile.GetComponent<pieceMove>().datTile = tile;
         }
     }
 

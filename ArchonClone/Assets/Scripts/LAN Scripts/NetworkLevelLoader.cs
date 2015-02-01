@@ -2,13 +2,7 @@
 using System.Collections;
 
 public class NetworkLevelLoader : MonoBehaviour {
-
-    public GameObject spawn1;
-    public GameObject spawn2;
-    public GameObject player1;
-    public GameObject player2;
-    public GameObject EnemyAI;
-
+    
     bool player1Created = false;
     bool player2Created = false;
     string loadedLevel = "TestingHexTiles";

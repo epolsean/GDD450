@@ -21,7 +21,7 @@ public class NetworkManagerScript : MonoBehaviour {
     float startTime = 0;
     int count = 3;
     string gameName = "Strategix_LAN_Game";
-    string serverName = "Default Server Name";
+    string serverName = "Default Server";
     string serverDes = "This is a Strategix LAN game";
     bool refreshing;
     bool secondPlayerConnected;
@@ -146,9 +146,9 @@ public class NetworkManagerScript : MonoBehaviour {
 
     public void startServer()
     {
-        if (serverNameInput.text != "Input")
+        if (serverNameInput.text != "")
             serverName = serverNameInput.text;
-        if (serverDesInput.text != "Input")
+        if (serverDesInput.text != "")
             serverDes = serverDesInput.text;
         Network.InitializeServer(2, 25000, !Network.HavePublicAddress());
         MasterServer.RegisterHost(gameName, serverName, serverDes);

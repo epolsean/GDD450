@@ -33,7 +33,7 @@ public class TurnStateMachine : MonoBehaviour {
             yield return 0;
         }
         Debug.Log("PlayerTurn: Exit");
-        if (Network.isClient || Network.isServer)
+        if (Network.isServer)
             networkView.RPC("NextState", RPCMode.AllBuffered);
         else
             NextState();
@@ -48,7 +48,7 @@ public class TurnStateMachine : MonoBehaviour {
             yield return 0;
         }
         Debug.Log("DaSwitch: Exit");
-        if (Network.isClient || Network.isServer)
+        if (Network.isServer)
             networkView.RPC("NextState", RPCMode.AllBuffered);
         else
             NextState();
@@ -60,12 +60,12 @@ public class TurnStateMachine : MonoBehaviour {
         canSelectPiece = true;
         while (state == State.otherTurn)
         {
+
             SetText();
-             
             yield return 0;
         }
         Debug.Log("OtherTurn: Exit");
-        if (Network.isClient || Network.isServer)
+        if (Network.isServer)
             networkView.RPC("NextState", RPCMode.AllBuffered);
         else
             NextState();
@@ -73,7 +73,7 @@ public class TurnStateMachine : MonoBehaviour {
     
     // Use this for initialization
 	void Start () {
-        if(Network.isClient || Network.isServer)
+        if(Network.isServer)
             networkView.RPC("NextState", RPCMode.AllBuffered);
         else
             NextState();
@@ -90,6 +90,8 @@ public class TurnStateMachine : MonoBehaviour {
                                 System.Reflection.BindingFlags.Instance);
         StartCoroutine((IEnumerator)info.Invoke(this, null));
     }
+
+    [RPC]
     void SetText()
     {
         if(TurnStateMachine.state == State.playerTurn)
@@ -112,7 +114,10 @@ public class TurnStateMachine : MonoBehaviour {
         else
         {
             TurnStateMachine.state = TurnStateMachine.State.playerTurn;
-            EnemyAI.AIstate = EnemyAI.State.Idle;
+            if (GameObject.Find("EnemyAI").activeInHierarchy)
+            {
+                EnemyAI.AIstate = EnemyAI.State.Idle;
+            }
         }
     }
 }
