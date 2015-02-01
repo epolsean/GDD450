@@ -111,7 +111,7 @@ public class OnTurnActions : MonoBehaviour {
         MaxMove = 0;
         MaxPathNodes = 0;
         hasSelectedPiece = false;
-        
+        Camera.main.GetComponent<CameraZoomController>().ResetTransform();
     }
     
     void SetTarget(GameObject targetTile)
@@ -122,7 +122,7 @@ public class OnTurnActions : MonoBehaviour {
         MoveToTile = targetTile;
         OnHoverTile.renderer.material.color = Color.green;
         hasSelectedPiece = false;
- 
+        Camera.main.GetComponent<CameraZoomController>().FollowTarget(SelectedPiece);
     }
 
     public void GenPath()
