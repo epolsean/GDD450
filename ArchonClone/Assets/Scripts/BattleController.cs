@@ -47,10 +47,18 @@ public class BattleController : MonoBehaviour {
         }
         else if (partOfBattle == BattleState.PostBattle)
         {
-            if (Vector2.Distance(attackerIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(attackerIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)GetComponent<RectTransform>().sizeDelta.y / 4)) > 1)
-                attackerIcon.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(attackerIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(attackerIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)GetComponent<RectTransform>().sizeDelta.y / 4), Time.deltaTime);
-            if (Vector2.Distance(defenderIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(defenderIcon.GetComponent<RectTransform>().anchoredPosition.x, -(int)GetComponent<RectTransform>().sizeDelta.y / 4)) > 1)
-                defenderIcon.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(defenderIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(defenderIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)-GetComponent<RectTransform>().sizeDelta.y / 4), Time.deltaTime);
+            if (Loser == "attacker")
+            {
+
+            }
+            else if (Loser == "defender")
+            {
+
+            }
+            else if (Loser == "both")
+            {
+
+            }
         }
     }
 
@@ -65,22 +73,42 @@ public class BattleController : MonoBehaviour {
         else
         {
             /*Add code to simulate battle and determine winner
-            if (Random.Range(0, 100/attacker power) > attacker power) //This will be if the player who is attacking the tile wins on the attack
+            if (Random.Range(0, 1000/attacker power) > attacker power) //This will be if the player who is attacking the tile wins on the attack
             {
-                
+                if (Random.Range(0, 1000/defender power) > defender power) //This will be if the player who is defending the tile wins on the attack
+                {
+                    BattleOver = true;
+                    Loser = "both";
+                }
+                else
+                {
+                    BattleOver = true;
+                    Loser = "defender";
+                }
             }
-            else
+            else if (Random.Range(0, 1000/defender power) > defender power) //This will be if the player who is attacking the tile wins on the attack
             {
-                
-            }
-            if (Random.Range(0, 100/defender power) > defender power) //This will be if the player who is defending the tile wins on the attack
-            {
-                
-            }
-            else
-            {
-                
+                if (Random.Range(0, 1000/attacker power) > attacker power) //This will be if the player who is defending the tile wins on the attack
+                {
+                    BattleOver = true;
+                    Loser = "both";
+                }
+                else
+                {
+                    BattleOver = true;
+                    Loser = "attacker";
+                }
             }*/
         }
+    }
+
+    public void SetAttacker(GameObject datAttacker)
+    {
+        attacker = datAttacker;
+    }
+
+    public void SetDefender(GameObject datDefender)
+    {
+        defender = datDefender;
     }
 }

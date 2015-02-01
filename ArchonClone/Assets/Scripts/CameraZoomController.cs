@@ -7,6 +7,9 @@ public class CameraZoomController : MonoBehaviour
     Vector3 startPosition;
     bool following = false;
 
+    public int minZoomLevel = 10; //How far the camera can zoom out
+    public int maxZoomLevel = 10; //How far the camera can zoom in
+
     // Use this for initialization
     void Start()
     {
@@ -17,27 +20,34 @@ public class CameraZoomController : MonoBehaviour
     // Update is called once per frame
     void Update() 
     {
+        Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
         if (!following)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            transform.Translate(Input.GetAxis("Mouse ScrollWheel") * ray.direction);
+            if (transform.position.y < (startPosition.y + minZoomLevel) && Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                transform.Translate(Input.GetAxis("Mouse ScrollWheel") * 10 * transform.forward, Space.World);
+            }
+            else if (transform.position.y > (startPosition.y - maxZoomLevel) && Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                transform.Translate(Input.GetAxis("Mouse ScrollWheel") * 10 * transform.forward, Space.World);
+            }
 
-            if ((Input.mousePosition.x > Screen.width - 50) || Input.GetAxis("Horizontal") > 0)
+            if ((((Input.mousePosition.x > Screen.width - 50) && (Input.mousePosition.x < Screen.width)) || Input.GetAxis("Horizontal") > 0) && transform.position.x < startPosition.x + 20)
             {
                 MoveCameraRight();
             }
 
-            if ((Input.mousePosition.x < 0 + 50)|| Input.GetAxis("Horizontal") < 0)
+            if ((((Input.mousePosition.x < 0 + 50) && (Input.mousePosition.x > 0)) || Input.GetAxis("Horizontal") < 0) && transform.position.x > startPosition.x - 20)
             {
                 MoveCameraLeft();
             }
 
-            if ((Input.mousePosition.y > Screen.height - 50)|| Input.GetAxis("Vertical") > 0)
+            if ((((Input.mousePosition.y > Screen.height - 50) && (Input.mousePosition.y < Screen.height)) || Input.GetAxis("Vertical") > 0) && transform.position.z < startPosition.z + 20)
             {
                 MoveCameraUp();
             }
 
-            if ((Input.mousePosition.y < 0 + 50) || Input.GetAxis("Vertical") < 0)
+            if ((((Input.mousePosition.y < 0 + 50) && (Input.mousePosition.y > 0)) || Input.GetAxis("Vertical") < 0) && transform.position.z > startPosition.z - 20)
             {
                 MoveCameraDown();
             }
@@ -50,7 +60,7 @@ public class CameraZoomController : MonoBehaviour
         following = true;
         transform.position = startPosition;
         transform.rotation = startRotation;
-        transform.position = new Vector3(transform.position.x, transform.position.y, target.transform.position.z);
+        //transform.position = new Vector3(transform.position.x, transform.position.y, target.transform.position.z);
         transform.forward = Vector3.Normalize(target.transform.position - transform.position);
         transform.Translate((Vector3.Distance(transform.position, target.transform.position) - 15) * transform.forward, Space.World);
         transform.SetParent(target.transform);
