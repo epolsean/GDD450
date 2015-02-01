@@ -122,7 +122,7 @@ public class OnTurnActions : MonoBehaviour {
         
     }
     
-    void SetTarget(GameObject targetTile)
+    void SetTarget(GameObject targetTile)//called when you select a tile to move to
     {
         SelectedPiece.GetComponent<pieceMovementScript>().isMoving = true;
         SelectedPiece.GetComponent<pieceMovementScript>().startMove = true; 
@@ -139,7 +139,7 @@ public class OnTurnActions : MonoBehaviour {
  
     }
 
-    public void GenPath()
+    public void GenPath()//called to generated a path from the selectedPiece in the TurnController and the OnHoverTile(the tile you are hovering over)
     {
         print("Generated Path"); 
         SelectedPiece.GetComponent<pieceMovementScript>().targetPosition = OnHoverTile.transform.position; 
