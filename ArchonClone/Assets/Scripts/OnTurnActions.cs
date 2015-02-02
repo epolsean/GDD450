@@ -22,6 +22,10 @@ public class OnTurnActions : MonoBehaviour
     public GameObject OnHoverPiece;
     public GameObject CurrentTile;
     public GameObject SelectedPiece;
+    public GameObject PieceStatPanel;
+    public GameObject HealthPanel;
+    public GameObject DamagePanel;
+    public GameObject SpeedPanel; 
     public bool hasSelectedPiece = false;
     //Pathfinder variables
     public Seeker seeker;
@@ -39,6 +43,11 @@ public class OnTurnActions : MonoBehaviour
     {
         allTiles = GameObject.FindGameObjectsWithTag("Tile");
         SoundController = GameObject.Find("UISoundController");
+        PieceStatPanel = GameObject.Find("PieceStatPan2.0");
+        PieceStatPanel.SetActive(false);
+        HealthPanel = GameObject.Find("HealthSlider");
+        DamagePanel = GameObject.Find("DamageSlider");
+        SpeedPanel = GameObject.Find("SpeedSlider"); 
     }
 
     // Update is called once per frame
@@ -48,13 +57,25 @@ public class OnTurnActions : MonoBehaviour
         {
             if (OnHoverTile != null)
             {
-                if (hasSelectedPiece == false)
+                if (hasSelectedPiece == false)//before player has selected a piece
                 {
                     //check if piece is current players
 
                     if (OnHoverTile != null && OnHoverTile.GetComponent<OnTileActions>().PieceOnTile != null)
                     {
-                        SelectPiece(OnHoverPiece);
+                        if (TurnStateMachine.state == TurnStateMachine.State.playerTurn && OnHoverTile.GetComponent<OnTileActions>().PieceOnTile.tag == "White")
+                        {
+                            SelectPiece(OnHoverPiece);
+                        }
+                        else if (TurnStateMachine.state == TurnStateMachine.State.otherTurn && OnHoverTile.GetComponent<OnTileActions>().PieceOnTile.tag == "Black")
+                        {
+                            SelectPiece(OnHoverPiece); 
+                        }
+                        else
+                        {
+                            SoundController.GetComponent<UISoundsScript>().playError(); 
+                        }
+                        
                     }
                 }
                 else
@@ -62,25 +83,52 @@ public class OnTurnActions : MonoBehaviour
                     if (CurrentTile == OnHoverTile)
                     {
                         ResetController();
+                        SoundController.GetComponent<UISoundsScript>().playDeselect();  
                     }
                     else
                     {
                         if (SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes)
                         {
-                            SetTarget(OnHoverTile);
+                            if(OnHoverTile.GetComponent<OnTileActions>().PieceOnTile == null)
+                            {
+                                SetTarget(OnHoverTile);
+                            }
+                            else//brackets check when you are initiating combat
+                            {
+                                if(OnHoverTile.GetComponent<OnTileActions>().PieceOnTile.tag != SelectedPiece.tag)//this check initiates combat
+                                {
+                                    SoundController.GetComponent<UISoundsScript>().playFight();
+                                    OnHoverTile.GetComponent<OnTileActions>().AtkPiece = SelectedPiece; 
+                                }
+                            }
+                            
                         }
                         else
                         {
                             SoundController.GetComponent<UISoundsScript>().playError();
-                            ResetController();
+                            //ResetController();
                         }
                     }
                 }
             }
         }
+        /*if(OnHoverPiece != null)
+        {
+            //print("there's something there!!!"); 
+            //if(PieceStatPanel != null)
+            //{
+                
+                PieceStatPanel.SetActive(true); 
+            //}
+        }
+        else
+        {
+            PieceStatPanel.SetActive(false); 
+        }*/
     }
 
-    /* called when you assign a selected piece to move
+    /* 
+     * called when you assign a selected piece to move
      * it assigns the selectedPiece, MaxMove, CurrentTile, 
      * MaxPathNodes
      */
@@ -91,6 +139,7 @@ public class OnTurnActions : MonoBehaviour
         print("bool set to true");
         SelectedPiece = Piece;
         CurrentTile = OnHoverTile;
+        MaxPathNodes = Piece.GetComponent<pieceMovementScript>().MaxPathNodes; 
         //MaxMove = SelectedPiece.GetComponent<PiecePropScript>()
         //MaxPathNodes = SelectedPiece.GetComponent<PiecePropScript>()
         OnHoverTile.GetComponent<OnTileActions>().isSelected = true;
@@ -102,19 +151,30 @@ public class OnTurnActions : MonoBehaviour
 
 
     }
-    /*when called the TurnController is reset to factory 
+
+    /*
+     * called when you move a piece to an opponent tile with a piece
+     * occupying it, this will start combat and show the player which
+     * piece won that battle.
+     */
+    public void StartCombat()
+    {
+
+    }
+
+    /*
+     * when called the TurnController is reset to factory 
      * fresh settings this will be called after you move 
      * your piece or when you deselect your piece
      */
     public void ResetController()
     {
         print("ResetController Called");
-        CurrentTile.GetComponent<OnTileActions>().PieceOnTile = null;
+        
         CurrentTile.renderer.material.color = Color.white;
         CurrentTile.GetComponent<OnTileActions>().isSelected = false;
-        MoveToTile.GetComponent<OnTileActions>().PieceOnTile = SelectedPiece;
-        MoveToTile.renderer.material.color = Color.white;
-        MoveToTile.GetComponent<OnTileActions>().isSelected = false;
+        //MoveToTile.renderer.material.color = Color.white;
+        //MoveToTile.GetComponent<OnTileActions>().isSelected = false;
         SelectedPiece = null;
         CurrentTile = null;
         MoveToTile = null;
@@ -126,6 +186,35 @@ public class OnTurnActions : MonoBehaviour
 
     }
 
+    /*
+     * EndOfTurn is obviously called at the end of a turn, it sets the 
+     * variables for the tiles like if there is a piece on it and which 
+     * piece is on it. It also resets the oldTile to a plain old tile.
+     * This also calls NextTurn() to change who's turn it is anyway!
+     */ 
+    public void EndOfTurn()
+    {
+        CurrentTile.GetComponent<OnTileActions>().PieceOnTile = null;
+        MoveToTile.GetComponent<OnTileActions>().PieceOnTile = SelectedPiece;
+        MoveToTile.GetComponent<OnTileActions>().isSelected = false;
+        NextTurn(); 
+    }
+
+    /*
+     * called to progress to the next players turn and that's pretty much it!
+     */ 
+    public void NextTurn()
+    {
+        if(TurnStateMachine.state == TurnStateMachine.State.playerTurn)
+        {
+            TurnStateMachine.state = TurnStateMachine.State.otherTurn; 
+        }
+        else
+        {
+            TurnStateMachine.state = TurnStateMachine.State.playerTurn; 
+        }
+    }
+
     void SetTarget(GameObject targetTile)//called when you select a tile to move to
     {
         SelectedPiece.GetComponent<pieceMovementScript>().isMoving = true;
@@ -134,7 +223,7 @@ public class OnTurnActions : MonoBehaviour
         MoveToTile = targetTile;
         OnHoverTile.renderer.material.color = Color.green;
         hasSelectedPiece = false;
-        SelectedPiece.transform.position = new Vector3(SelectedPiece.transform.position.x, 0.1f, SelectedPiece.transform.position.z);//this is a quick fix for a weird bug where pice was being clocked from movng
+        SelectedPiece.transform.position = new Vector3(SelectedPiece.transform.position.x, 0.5f, SelectedPiece.transform.position.z);//this is a quick fix for a weird bug where pice was being clocked from movng
         if (SoundController != false)
         {
             SoundController.GetComponent<UISoundsScript>().playMovePiece();

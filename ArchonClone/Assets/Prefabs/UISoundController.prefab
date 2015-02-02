@@ -102,6 +102,7 @@ MonoBehaviour:
   MovePiece: {fileID: 8300000, guid: bbc2224d20e94f34f82c5d4149e72506, type: 3}
   Fight: {fileID: 8300000, guid: 2c00f81e881a8fe4da1a6a0b3d2285eb, type: 3}
   Error: {fileID: 8300000, guid: 49148fc9d244c90419e21d53f91f0614, type: 3}
+  deselectPiece: {fileID: 8300000, guid: 2613a3fbafb5cf644a831a05965208b9, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

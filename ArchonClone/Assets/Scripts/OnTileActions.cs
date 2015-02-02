@@ -10,7 +10,7 @@ public class OnTileActions : MonoBehaviour {
     public Texture AlienTexture;
     public Texture SynthTexture;
     public Texture NuturalTexture = null; 
-    public int TilePowerBooster = 0;
+    public int TilePowerLevel = 0;
     public enum TileType { Alien, Synth, Nutural };
     public TileType TileState; 
     public bool IsNutural = false;

@@ -367,7 +367,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1953ec57253917049acf44a98edee850, type: 3}
+  m_Script: {fileID: 11500000, guid: 4926792137675fd43b4b7d45e96726f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetPosition: {x: 0, y: 0, z: 0}
@@ -385,6 +385,7 @@ MonoBehaviour:
   MaxPathNodes: 0
   canMove2Tile: 0
   canFight: 0
+  startMove: 0
   UIShouldGo: 0
   datTile: {fileID: 0}
   datSprite: {fileID: 0}
@@ -415,7 +416,7 @@ MonoBehaviour:
   MaxHealth: 0
   Movement: 0
   Damage: 0
-  SpecialStat: 0
+  PowerLevel: 0
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

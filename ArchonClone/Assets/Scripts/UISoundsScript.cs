@@ -7,6 +7,7 @@ public class UISoundsScript : MonoBehaviour {
     public AudioClip MovePiece;
     public AudioClip Fight;
     public AudioClip Error;
+    public AudioClip deselectPiece; 
     
     // Use this for initialization
 	void Start () {
@@ -38,6 +39,11 @@ public class UISoundsScript : MonoBehaviour {
     public void playError()
     {
         this.GetComponent<AudioSource>().clip = Error;
+        this.audio.Play();
+    }
+    public void playDeselect()
+    {
+        this.GetComponent<AudioSource>().clip = deselectPiece;
         this.audio.Play();
     }
 }

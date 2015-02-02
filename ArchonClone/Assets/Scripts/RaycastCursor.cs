@@ -47,14 +47,14 @@ public class RaycastCursor : MonoBehaviour {
                 if (currentHex != hit.transform.gameObject && lastHex != null)
                 {
                     lastHex = currentHex;
-                    lastHex.GetComponent<TileProperties>().OnMouseExit();
+                    //lastHex.GetComponent<TileProperties>().OnMouseExit();
                     currentHex = hit.transform.gameObject;
-                    currentHex.GetComponent<TileProperties>().OnMouseOver();
+                    //currentHex.GetComponent<TileProperties>().OnMouseOver();
                 }
                 else if (currentHex != hit.transform.gameObject && lastHex == null)
                 {
                     currentHex = hit.transform.gameObject;
-                    currentHex.GetComponent<TileProperties>().OnMouseOver();
+                    //currentHex.GetComponent<TileProperties>().OnMouseOver();
                     lastHex = currentHex;
 
                 }
@@ -90,9 +90,9 @@ public class RaycastCursor : MonoBehaviour {
                 if (currentHex != hit.transform.gameObject && lastHex != null)
                 {
                     lastHex = currentHex;
-                    lastHex.GetComponent<TileProperties>().OnMouseExit();
+                    //lastHex.GetComponent<TileProperties>().OnMouseExit();
                     currentHex = hit.transform.gameObject;
-                    currentHex.GetComponent<TileProperties>().OnMouseOver();
+                    //currentHex.GetComponent<TileProperties>().OnMouseOver();
                 }
                 else if (currentHex != hit.transform.gameObject && lastHex == null)
                 {

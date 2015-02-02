@@ -33,6 +33,31 @@ public class pieceMovementScript : MonoBehaviour {
         MoveController = GameObject.Find("TurnController");
         SoundController = GameObject.Find("UISoundController");
         PieceAnim = GetComponentInChildren<Animator>();
+        //set all piece variables that need to be set(e.g. MaxPathNodes)
+        if (name == "WhiteTank(Clone)" || name == "BlackTank(Clone)")
+        {
+            MaxPieceMove = 5 * 2;
+            MaxMove = 8;
+            MaxPathNodes = 3;
+        }
+        else if (name == "WhiteGrunt(Clone)" || name == "BlackGrunt(Clone)")
+        {
+            MaxPieceMove = 5 * 2.75;
+            MaxMove = 11;
+            MaxPathNodes = 4;
+        }
+        else if (name == "WhiteRunner(Clone)" || name == "BlackRunner(Clone)")
+        {
+            MaxPieceMove = 5 * 3.5;
+            MaxMove = 16;
+            MaxPathNodes = 6;
+        }
+        else if (name == "WhiteScout(Clone)" || name == "BlackScout(Clone)")
+        {
+            MaxPieceMove = 5 * 2.75;
+            MaxMove = 11;
+            MaxPathNodes = 5;
+        }
     }
 
     public void GetNewPath()
@@ -100,9 +125,9 @@ public class pieceMovementScript : MonoBehaviour {
                 } 
                 //Debug.Log("DA END");
                 isMoving = false;
-                startMove = false; 
-                MoveController.GetComponent<OnTurnActions>().ResetController(); 
-
+                startMove = false;
+                MoveController.GetComponent<OnTurnActions>().EndOfTurn();
+                MoveController.GetComponent<OnTurnActions>().ResetController();
                 GridManager.rescan = true;
                 //Debug.Log("Setting piece transform to target transform!");
                 //transform.position = targetPosition;
@@ -133,6 +158,7 @@ public class pieceMovementScript : MonoBehaviour {
                 }*/
                 transform.position = targetPosition;
                 Debug.Log("Setting piece transform to target transform!");
+                //MoveController.GetComponent<OnTurnActions>().NextTurn(); 
                 
             }
             return;

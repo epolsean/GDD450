@@ -334,15 +334,14 @@ public class SpawnBasicUnits : MonoBehaviour {
 
         if (!Network.isServer && !Network.isClient)
         {
-            tile.GetComponent<TileProperties>().UnitOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-            tile.GetComponent<TileProperties>().UnitOnTile.GetComponent<pieceMove>().datTile = tile;
-            //tile.GetComponent<TileProperties>().Occupied = true;
+            tile.GetComponent<OnTileActions>().PieceOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+            tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile; 
             WhitePieceCount++;
         }
         else if (Network.isServer)
         {
-            tile.GetComponent<TileProperties>().UnitOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0), 1) as GameObject;
-            tile.GetComponent<TileProperties>().UnitOnTile.GetComponent<pieceMove>().datTile = tile;
+            tile.GetComponent<OnTileActions>().PieceOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0), 1) as GameObject;
+            tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile;
             networkView.RPC("addPieceCount", RPCMode.AllBuffered, WhitePieceCount, 0);
         }
         else if (Network.isClient)
@@ -355,15 +354,15 @@ public class SpawnBasicUnits : MonoBehaviour {
     {
         if (!Network.isServer && !Network.isClient)
         {
-            tile.GetComponent<TileProperties>().UnitOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;
-            tile.GetComponent<TileProperties>().UnitOnTile.GetComponent<pieceMove>().datTile = tile;
+            tile.GetComponent<OnTileActions>().PieceOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;
+            tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile;
             //tile.GetComponent<TileProperties>().Occupied = true;
             BlackPieceCount++;
         }
         else if (Network.isServer)
         {
-            tile.GetComponent<TileProperties>().UnitOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0), 1) as GameObject;
-            tile.GetComponent<TileProperties>().UnitOnTile.GetComponent<pieceMove>().datTile = tile;
+            tile.GetComponent<OnTileActions>().PieceOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0), 1) as GameObject;
+            tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile;
             networkView.RPC("addPieceCount", RPCMode.AllBuffered, BlackPieceCount, 1);
         }
         else if(Network.isClient)

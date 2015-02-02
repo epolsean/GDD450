@@ -8,7 +8,7 @@ public class PiecePropScript : MonoBehaviour {
     public int MaxHealth;
     public float Movement;
     public float Damage;
-    public double SpecialStat; 
+    public double PowerLevel; 
 
     
     // Use this for initialization
@@ -19,6 +19,7 @@ public class PiecePropScript : MonoBehaviour {
             Health = 50;
             Movement = 10;
             Damage = 15;
+            PowerLevel = 150;
         }
         else if(this.name == "BlackTank(Clone)" || this.name == "WhiteTank(Clone)")//stats for Tank
         {
@@ -26,6 +27,7 @@ public class PiecePropScript : MonoBehaviour {
             Health = 100;
             Movement = 6;
             Damage = 20;
+            PowerLevel = 250;
         }
         else if(this.name == "BlackRunner(Clone)" || this.name == "WhiteRunner(Clone)")//stats for Runner
         {
@@ -33,6 +35,7 @@ public class PiecePropScript : MonoBehaviour {
             Health = 40;
             Movement = 12;
             Damage = 6;
+            PowerLevel = 80;
         }
         else//stats for Grunt
         {
@@ -40,6 +43,7 @@ public class PiecePropScript : MonoBehaviour {
             Health = 70;
             Movement = 8;
             Damage = 8;
+            PowerLevel = 100; 
         }
 
 
