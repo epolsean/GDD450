@@ -26,8 +26,8 @@ public class BattleController : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        attackerLevel = attackerTile.GetComponent<OnTileActions>().TilePowerBooster + attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
-        defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerBooster + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
+        attackerLevel = attackerTile.GetComponent<OnTileActions>().TilePowerLevel + attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
+        defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerLevel + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
         
         starting = 1;
         partOfBattle = BattleState.PreBattle;
@@ -37,8 +37,8 @@ public class BattleController : MonoBehaviour {
 
     void OnEnable()
     {
-        attackerLevel = attackerTile.GetComponent<OnTileActions>().TilePowerBooster + attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
-        defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerBooster + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
+        attackerLevel = attackerTile.GetComponent<OnTileActions>().TilePowerLevel + attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
+        defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerLevel + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
 
         starting = 1;
         partOfBattle = BattleState.PreBattle;

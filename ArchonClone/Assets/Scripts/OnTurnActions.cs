@@ -44,7 +44,7 @@ public class OnTurnActions : MonoBehaviour
         allTiles = GameObject.FindGameObjectsWithTag("Tile");
         SoundController = GameObject.Find("UISoundController");
         PieceStatPanel = GameObject.Find("PieceStatPan2.0");
-        PieceStatPanel.SetActive(false);
+        //PieceStatPanel.SetActive(false);
         HealthPanel = GameObject.Find("HealthSlider");
         DamagePanel = GameObject.Find("DamageSlider");
         SpeedPanel = GameObject.Find("SpeedSlider"); 

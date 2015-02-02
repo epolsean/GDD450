@@ -346,7 +346,7 @@ public class SpawnBasicUnits : MonoBehaviour {
         }
         else if (Network.isClient)
         {
-            tile.GetComponent<TileProperties>().UnitOnTile.GetComponent<pieceMove>().datTile = tile;
+            tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile;
         }
     }
 
@@ -367,7 +367,7 @@ public class SpawnBasicUnits : MonoBehaviour {
         }
         else if(Network.isClient)
         {
-            tile.GetComponent<TileProperties>().UnitOnTile.GetComponent<pieceMove>().datTile = tile;
+            tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile;
         }
     }
 

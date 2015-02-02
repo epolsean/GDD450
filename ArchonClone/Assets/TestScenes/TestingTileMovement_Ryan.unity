@@ -208,6 +208,10 @@ MonoBehaviour:
   OnHoverPiece: {fileID: 0}
   CurrentTile: {fileID: 0}
   SelectedPiece: {fileID: 0}
+  PieceStatPanel: {fileID: 0}
+  HealthPanel: {fileID: 0}
+  DamagePanel: {fileID: 0}
+  SpeedPanel: {fileID: 0}
   hasSelectedPiece: 0
   seeker: {fileID: 0}
   nextWaypointDistance: 2
@@ -1709,7 +1713,7 @@ GameObject:
   - 64: {fileID: 321119146}
   - 114: {fileID: 321119145}
   m_Layer: 8
-  m_Name: HexGrid05(multiTile)
+  m_Name: HexGrid05(multiTile)(BTank)
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3500,7 +3504,7 @@ GameObject:
   - 64: {fileID: 623481166}
   - 114: {fileID: 623481165}
   m_Layer: 8
-  m_Name: HexGrid07(multiTile)
+  m_Name: HexGrid07(multiTile)(WScout)
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5628,6 +5632,132 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1932073147}
   m_GameObject: {fileID: 916533198}
   m_Mesh: {fileID: 4300000, guid: 1102e5a8f2f65e140aa6344d126c8f3a, type: 3}
+--- !u!1 &952641981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+  m_PrefabInternal: {fileID: 1604133562}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 952641984}
+  - 114: {fileID: 952641983}
+  - 148: {fileID: 952641982}
+  m_Layer: 0
+  m_Name: PieceSpwnController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!148 &952641982
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 14800000, guid: cbbf5d209ec292f46b4246000e11e200,
+    type: 2}
+  m_PrefabInternal: {fileID: 1604133562}
+  m_GameObject: {fileID: 952641981}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 952641984}
+  m_ViewID:
+    m_ID: 6
+    m_Type: 1
+--- !u!114 &952641983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: cbbf5d209ec292f46b4246000e11e200,
+    type: 2}
+  m_PrefabInternal: {fileID: 1604133562}
+  m_GameObject: {fileID: 952641981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bda55904d01b294a98ec9e03057e6b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SGtext: {fileID: 0}
+  SStext: {fileID: 0}
+  STtext: {fileID: 0}
+  SRtext: {fileID: 0}
+  AGtext: {fileID: 0}
+  AStext: {fileID: 0}
+  ATtext: {fileID: 0}
+  ARtext: {fileID: 0}
+  WhiteTank: {fileID: 100004, guid: 74bdba594c3e6a540b0cfe050ae2f1d4, type: 2}
+  WhiteScout: {fileID: 100004, guid: f7e3e65fe904fb44aa2880b2df433a97, type: 2}
+  WhiteGrunt: {fileID: 100006, guid: 8e0de15c935126f4fb81f510c654b836, type: 2}
+  WhiteRunner: {fileID: 100008, guid: 12d71996f75f344459d9545e0b771d8f, type: 2}
+  BlackTank: {fileID: 100000, guid: def383d6525ba544bb134c5312278b78, type: 2}
+  BlackGrunt: {fileID: 100004, guid: 23a21d2d3e1cdfd45813e773769dacff, type: 2}
+  BlackRunner: {fileID: 100008, guid: eb4b247c75f48db4793e42fdaa00fee5, type: 2}
+  BlackScout: {fileID: 100006, guid: 418f5e91e219624458b77459047b0132, type: 2}
+  BTank01Tile: {fileID: 321119144}
+  WTank01Tile: {fileID: 0}
+  BTank02Tile: {fileID: 0}
+  WTank02Tile: {fileID: 0}
+  BTank03Tile: {fileID: 0}
+  WTank03Tile: {fileID: 0}
+  BTank04Tile: {fileID: 0}
+  WTank04Tile: {fileID: 0}
+  BRunner01Tile: {fileID: 0}
+  WRunner01Tile: {fileID: 0}
+  BRunner02Tile: {fileID: 0}
+  WRunner02Tile: {fileID: 0}
+  BRunner03Tile: {fileID: 0}
+  WRunner03Tile: {fileID: 0}
+  BRunner04Tile: {fileID: 0}
+  WRunner04Tile: {fileID: 0}
+  BGrunt01Tile: {fileID: 0}
+  WGrunt01Tile: {fileID: 0}
+  BGrunt02Tile: {fileID: 0}
+  WGrunt02Tile: {fileID: 0}
+  BGrunt03Tile: {fileID: 0}
+  WGrunt03Tile: {fileID: 0}
+  BGrunt04Tile: {fileID: 0}
+  WGrunt04Tile: {fileID: 0}
+  BScout01Tile: {fileID: 0}
+  WScout01Tile: {fileID: 623481163}
+  BScout02Tile: {fileID: 0}
+  WScout02Tile: {fileID: 0}
+  BScout03Tile: {fileID: 0}
+  WScout03Tile: {fileID: 0}
+  BScout04Tile: {fileID: 0}
+  WScout04Tile: {fileID: 0}
+  AlienGrunt1StartTile: {fileID: 0}
+  AlienGrunt2StartTile: {fileID: 0}
+  AlienGrunt3StartTile: {fileID: 0}
+  AlienGrunt4StartTile: {fileID: 0}
+  AlienGrunt5StartTile: {fileID: 0}
+  AlienGrunt6StartTile: {fileID: 0}
+  AlienTank1StartTile: {fileID: 0}
+  AlienTank2StartTile: {fileID: 0}
+  AlienScout1StartTile: {fileID: 0}
+  AlienScout2StartTile: {fileID: 0}
+  AlienRunner1StartTile: {fileID: 0}
+  AlienRunner2StartTile: {fileID: 0}
+  RobotGrunt1StartTile: {fileID: 0}
+  RobotGrunt2StartTile: {fileID: 0}
+  RobotGrunt3StartTile: {fileID: 0}
+  RobotGrunt4StartTile: {fileID: 0}
+  RobotGrunt5StartTile: {fileID: 0}
+  RobotGrunt6StartTile: {fileID: 0}
+  RobotTank1StartTile: {fileID: 0}
+  RobotTank2StartTile: {fileID: 0}
+  RobotScout1StartTile: {fileID: 0}
+  RobotScout2StartTile: {fileID: 0}
+  RobotRunner1StartTile: {fileID: 0}
+  RobotRunner2StartTile: {fileID: 0}
+--- !u!4 &952641984
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+  m_PrefabInternal: {fileID: 1604133562}
+  m_GameObject: {fileID: 952641981}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.43471479, y: -3.69820976, z: 10.2841072}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 42
 --- !u!1001 &972837815
 Prefab:
   m_ObjectHideFlags: 0
@@ -8853,7 +8983,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 103970, guid: e83352beeb9d8ce42b97400687a16e51, type: 2}
       propertyPath: m_Name
-      value: HexGrid07(multiTile)
+      value: HexGrid07(multiTile)(WScout)
       objectReference: {fileID: 0}
     - target: {fileID: 3303968, guid: e83352beeb9d8ce42b97400687a16e51, type: 2}
       propertyPath: m_Mesh
@@ -9208,6 +9338,10 @@ MonoBehaviour:
   OnHoverPiece: {fileID: 0}
   CurrentTile: {fileID: 0}
   SelectedPiece: {fileID: 0}
+  PieceStatPanel: {fileID: 0}
+  HealthPanel: {fileID: 0}
+  DamagePanel: {fileID: 0}
+  SpeedPanel: {fileID: 0}
   hasSelectedPiece: 0
   seeker: {fileID: 0}
   nextWaypointDistance: 2
@@ -9488,6 +9622,66 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2028564478}
   m_GameObject: {fileID: 1602242146}
   m_Mesh: {fileID: 4300000, guid: 1102e5a8f2f65e140aa6344d126c8f3a, type: 3}
+--- !u!1001 &1604133562
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -4.43471479
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -3.69820976
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 10.2841072
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+      propertyPath: m_RootOrder
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 14800000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+      propertyPath: m_ViewID.m_ID
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 14800000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+      propertyPath: m_ViewID.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+      propertyPath: BTank01Tile
+      value: 
+      objectReference: {fileID: 321119144}
+    - target: {fileID: 11400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+      propertyPath: WScout01Tile
+      value: 
+      objectReference: {fileID: 623481163}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+  m_RootGameObject: {fileID: 952641981}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &1605366815
 GameObject:
   m_ObjectHideFlags: 0
@@ -10526,7 +10720,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 103970, guid: e83352beeb9d8ce42b97400687a16e51, type: 2}
       propertyPath: m_Name
-      value: HexGrid05(multiTile)
+      value: HexGrid05(multiTile)(BTank)
       objectReference: {fileID: 0}
     - target: {fileID: 3303968, guid: e83352beeb9d8ce42b97400687a16e51, type: 2}
       propertyPath: m_Mesh
@@ -11479,6 +11673,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cfeba859b1ac6548863ad98ab8645ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minZoomLevel: 10
+  maxZoomLevel: 10
 --- !u!1 &1945865431
 GameObject:
   m_ObjectHideFlags: 0
