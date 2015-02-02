@@ -21,7 +21,7 @@ public class BattleStats : MonoBehaviour {
 
     public static bool GameOver = false;
 
-    public enum GameType { Elimination, Domination };
+    public enum GameType { Elimination, Domination, ControlPoints };
 
-    public GameType currentGameType;
+    public static GameType currentGameType;
 }

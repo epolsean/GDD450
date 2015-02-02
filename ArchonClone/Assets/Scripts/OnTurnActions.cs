@@ -34,7 +34,7 @@ public class OnTurnActions : MonoBehaviour
     public int currentWaypoint = 0;
     public bool isGenPath = false;
     public bool drawnPath = false;
-    public GameObject[] allTiles;
+    public static GameObject[] allTiles;
 
 
 
@@ -47,7 +47,11 @@ public class OnTurnActions : MonoBehaviour
         //PieceStatPanel.SetActive(false);
         HealthPanel = GameObject.Find("HealthSlider");
         DamagePanel = GameObject.Find("DamageSlider");
-        SpeedPanel = GameObject.Find("SpeedSlider"); 
+        SpeedPanel = GameObject.Find("SpeedSlider");
+        if (BattleStats.currentGameType == BattleStats.GameType.Domination)
+        {
+            GameObject.Find("Canvas").GetComponent<DominationController>().UpdatePercentUI();
+        }
     }
 
     // Update is called once per frame
@@ -183,7 +187,10 @@ public class OnTurnActions : MonoBehaviour
         hasSelectedPiece = false;
         resetAllTiles();
         Camera.main.GetComponent<CameraZoomController>().ResetTransform();
-
+        if (BattleStats.currentGameType == BattleStats.GameType.Domination)
+        {
+            GameObject.Find("Canvas").GetComponent<DominationController>().UpdatePercentUI();
+        }
     }
 
     /*
@@ -217,8 +224,8 @@ public class OnTurnActions : MonoBehaviour
 
     void SetTarget(GameObject targetTile)//called when you select a tile to move to
     {
-        SelectedPiece.GetComponent<pieceMovementScript>().isMoving = true;
-        SelectedPiece.GetComponent<pieceMovementScript>().startMove = true;
+        //SelectedPiece.GetComponent<pieceMovementScript>().isMoving = true;
+        //SelectedPiece.GetComponent<pieceMovementScript>().startMove = true;
         targetTile.GetComponent<OnTileActions>().isSelected = true;
         MoveToTile = targetTile;
         OnHoverTile.renderer.material.color = Color.green;
@@ -228,7 +235,7 @@ public class OnTurnActions : MonoBehaviour
         {
             SoundController.GetComponent<UISoundsScript>().playMovePiece();
         }
-        Camera.main.GetComponent<CameraZoomController>().FollowTarget(SelectedPiece);
+        Camera.main.GetComponent<CameraZoomController>().SetTarget(SelectedPiece);
     }
 
     public void GenPath()//called to generated a path from the selectedPiece in the TurnController and the OnHoverTile(the tile you are hovering over)
