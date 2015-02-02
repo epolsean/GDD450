@@ -6,10 +6,13 @@ public class CameraZoomController : MonoBehaviour
     Quaternion startRotation;
     Vector3 startPosition;
     bool following = false;
+    bool zooming = false;
+    bool resetting = false;
 
     public int minZoomLevel = 10; //How far the camera can zoom out
     public int maxZoomLevel = 10; //How far the camera can zoom in
 
+    GameObject targetTile;
     // Use this for initialization
     void Start()
     {
@@ -21,7 +24,7 @@ public class CameraZoomController : MonoBehaviour
     void Update() 
     {
         Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
-        if (!following)
+        if (!following && !zooming)
         {
             if (transform.position.y < (startPosition.y + minZoomLevel) && Input.GetAxis("Mouse ScrollWheel") < 0)
             {
@@ -52,17 +55,41 @@ public class CameraZoomController : MonoBehaviour
                 MoveCameraDown();
             }
         }
+        if (zooming && !following)
+        {
+            ZoomToTarget();
+        }
+        else if (resetting)
+        {
+            ResettingCamera();
+        }
 	}
 
-    // Method to set the target gameobject for the camera to zoom in on and follow
-    public void FollowTarget(GameObject target)
+    //Zooms in on target before the target starts to move
+    void ZoomToTarget()
     {
-        following = true;
+        if (Vector3.Distance(transform.position, targetTile.transform.position) < 10)
+        {
+            following = true;
+            zooming = false;
+            targetTile.GetComponent<pieceMovementScript>().isMoving = true;
+            targetTile.GetComponent<pieceMovementScript>().startMove = true;
+        }
+        else
+        {
+            transform.forward = Vector3.Lerp(transform.forward,Vector3.Normalize(targetTile.transform.position - transform.position),Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, targetTile.transform.position, Time.deltaTime);
+        }
+    }
+
+    //Sets the target for the camera to follow
+    public void SetTarget(GameObject target)
+    {
+        targetTile = target;
+        zooming = true;
         transform.position = startPosition;
         transform.rotation = startRotation;
-        //transform.position = new Vector3(transform.position.x, transform.position.y, target.transform.position.z);
-        transform.forward = Vector3.Normalize(target.transform.position - transform.position);
-        transform.Translate((Vector3.Distance(transform.position, target.transform.position) - 15) * transform.forward, Space.World);
+        //transform.forward = Vector3.Normalize(target.transform.position - transform.position);
         transform.SetParent(target.transform);
     }
 
@@ -70,9 +97,22 @@ public class CameraZoomController : MonoBehaviour
     public void ResetTransform()
     {
         following = false;
+        zooming = false;
         transform.SetParent(null);
-        transform.position = startPosition;
-        transform.rotation = startRotation;
+        resetting = true;
+    }
+
+    void ResettingCamera()
+    {
+        transform.position = Vector3.Lerp(transform.position, startPosition,Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, startRotation, Time.deltaTime);
+
+        if (Vector3.Distance(transform.position, startPosition) < 1)
+        {
+            resetting = false;
+            transform.position = startPosition;
+            transform.rotation = startRotation;
+        }
     }
 
     public void MoveCameraLeft()
