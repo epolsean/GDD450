@@ -37,6 +37,14 @@ public class PiecePropScript : MonoBehaviour {
             Damage = 6;
             PowerLevel = 80;
         }
+        else if (this.name == "BlackBomber(Clone)" || this.name == "WhiteBomber(Clone)")//stats for Bomber
+        {
+            MaxHealth = 35;
+            Health = 40;
+            Movement = 5;
+            Damage = 10;
+            PowerLevel = 125;
+        }
         else//stats for Grunt
         {
             MaxHealth = 70;

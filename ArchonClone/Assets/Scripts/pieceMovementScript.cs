@@ -58,6 +58,12 @@ public class pieceMovementScript : MonoBehaviour {
             MaxMove = 11;
             MaxPathNodes = 5;
         }
+        else if (name == "WhiteBomber(Clone)" || name == "BlackBomber(Clone)")
+        {
+            MaxPieceMove = 5 * 2;
+            MaxMove = 6;
+            MaxPathNodes = 3;
+        }
     }
 
     public void GetNewPath()
