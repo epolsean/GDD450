@@ -11,32 +11,38 @@ public class SpawnBasicUnits : MonoBehaviour {
     public static int SynthScoutCount;
     public static int SynthTankCount;
     public static int SynthRunnerCount;
+    public static int SynthBomberCount; 
 
     public static int AlienGruntCount;
     public static int AlienScoutCount;
     public static int AlienTankCount;
     public static int AlienRunnerCount;
+    public static int AlienBomberCount; 
 
     public GameObject SGtext;
     public GameObject SStext;
     public GameObject STtext;
     public GameObject SRtext;
+    public GameObject SBtext; 
 
     public GameObject AGtext;
     public GameObject AStext;
     public GameObject ATtext;
     public GameObject ARtext;
+    public GameObject ABtext; 
 
     
     public GameObject WhiteTank;
     public GameObject WhiteScout;
     public GameObject WhiteGrunt;
-    public GameObject WhiteRunner; 
+    public GameObject WhiteRunner;
+    public GameObject WhiteBomber; 
 
     public GameObject BlackTank;
     public GameObject BlackGrunt;
     public GameObject BlackRunner;
-    public GameObject BlackScout; 
+    public GameObject BlackScout;
+    public GameObject BlackBomber; 
 
     public GameObject BTank01Tile;
     public GameObject WTank01Tile;
@@ -70,6 +76,14 @@ public class SpawnBasicUnits : MonoBehaviour {
     public GameObject WScout03Tile;
     public GameObject BScout04Tile;
     public GameObject WScout04Tile;
+    public GameObject BBomber01Tile;
+    public GameObject BBomber02Tile;
+    public GameObject BBomber03Tile;
+    public GameObject BBomber04Tile;
+    public GameObject WBomber01Tile;
+    public GameObject WBomber02Tile;
+    public GameObject WBomber03Tile;
+    public GameObject WBomber04Tile;
 
     //Set up all the alien Tiles
     public GameObject AlienGrunt1StartTile;
@@ -242,6 +256,28 @@ public class SpawnBasicUnits : MonoBehaviour {
             SynthGruntCount++;
         }
 
+        //Spawn 4 SynthBombers
+        if (WBomber01Tile != null)
+        {
+            SpawnWhitePiece(WhiteBomber, WBomber01Tile);
+            SynthBomberCount++;
+        }
+        if (WBomber02Tile != null)
+        {
+            SpawnWhitePiece(WhiteBomber, WBomber02Tile);
+            SynthBomberCount++;
+        }
+        if (WBomber03Tile != null)
+        {
+            SpawnWhitePiece(WhiteBomber, WBomber03Tile);
+            SynthBomberCount++;
+        }
+        if (WBomber04Tile != null)
+        {
+            SpawnWhitePiece(WhiteBomber, WBomber04Tile);
+            SynthBomberCount++;
+        }
+
         //Spawn 2 AlienTanks
         if (BTank01Tile != null)
         {
@@ -326,6 +362,27 @@ public class SpawnBasicUnits : MonoBehaviour {
             SpawnBlackPiece(BlackGrunt, BGrunt04Tile);
             AlienGruntCount++;
         }
+        //Spawn 4 AlienBombers
+        if (BBomber01Tile != null)
+        {
+            SpawnBlackPiece(BlackBomber, BBomber01Tile);
+            AlienBomberCount++;
+        }
+        if (BBomber02Tile != null)
+        {
+            SpawnBlackPiece(BlackBomber, BBomber02Tile);
+            AlienBomberCount++;
+        }
+        if (BBomber03Tile != null)
+        {
+            SpawnBlackPiece(BlackBomber, BBomber03Tile);
+            AlienBomberCount++;
+        }
+        if (BBomber04Tile != null)
+        {
+            SpawnBlackPiece(BlackBomber, BBomber04Tile);
+            AlienBomberCount++;
+        }
         
     }
 
@@ -334,13 +391,13 @@ public class SpawnBasicUnits : MonoBehaviour {
 
         if (!Network.isServer && !Network.isClient)
         {
-            tile.GetComponent<OnTileActions>().PieceOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+            tile.GetComponent<OnTileActions>().PieceOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;
             tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile; 
             WhitePieceCount++;
         }
         else if (Network.isServer)
         {
-            tile.GetComponent<OnTileActions>().PieceOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0), 1) as GameObject;
+            tile.GetComponent<OnTileActions>().PieceOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 90, 0), 1) as GameObject;
             tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile;
             networkView.RPC("addPieceCount", RPCMode.AllBuffered, WhitePieceCount, 0);
         }
@@ -354,14 +411,14 @@ public class SpawnBasicUnits : MonoBehaviour {
     {
         if (!Network.isServer && !Network.isClient)
         {
-            tile.GetComponent<OnTileActions>().PieceOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 180, 0)) as GameObject;
+            tile.GetComponent<OnTileActions>().PieceOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 270, 0)) as GameObject;
             tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile;
             //tile.GetComponent<TileProperties>().Occupied = true;
             BlackPieceCount++;
         }
         else if (Network.isServer)
         {
-            tile.GetComponent<OnTileActions>().PieceOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 0, 0), 1) as GameObject;
+            tile.GetComponent<OnTileActions>().PieceOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 270, 0), 1) as GameObject;
             tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile;
             networkView.RPC("addPieceCount", RPCMode.AllBuffered, BlackPieceCount, 1);
         }

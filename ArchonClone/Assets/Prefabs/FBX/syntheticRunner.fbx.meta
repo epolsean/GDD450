@@ -1,0 +1,167 @@
+fileFormatVersion: 2
+guid: 9e8f1b4cb85a6674380f0b045c7ccb96
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: baseLight
+    100002: eye1
+    100004: eye10
+    100006: eye10 1
+    100008: eye2
+    100010: eyeRotation
+    100012: eyeRotation 1
+    100014: face
+    100016: fuelPack
+    100018: head
+    100020: neck
+    100022: nozzle1
+    100024: pyroBase
+    100026: pyroTorso
+    100028: rotationBottom
+    100030: //RootNode
+    100032: tank
+    100034: tank1
+    100036: tankHolder
+    100038: tankHolder1
+    100040: tankHolder2
+    100042: thrusters
+    100044: tube
+    100046: tube1
+    100048: weaponBase
+    400000: baseLight
+    400002: eye1
+    400004: eye10
+    400006: eye10 1
+    400008: eye2
+    400010: eyeRotation
+    400012: eyeRotation 1
+    400014: face
+    400016: fuelPack
+    400018: head
+    400020: neck
+    400022: nozzle1
+    400024: pyroBase
+    400026: pyroTorso
+    400028: rotationBottom
+    400030: //RootNode
+    400032: tank
+    400034: tank1
+    400036: tankHolder
+    400038: tankHolder1
+    400040: tankHolder2
+    400042: thrusters
+    400044: tube
+    400046: tube1
+    400048: weaponBase
+    2300000: baseLight
+    2300002: eye10
+    2300004: eye10 1
+    2300006: eyeRotation
+    2300008: eyeRotation 1
+    2300010: face
+    2300012: neck
+    2300014: nozzle1
+    2300016: pyroBase
+    2300018: pyroTorso
+    2300020: tank
+    2300022: tank1
+    2300024: tankHolder
+    2300026: tankHolder1
+    2300028: tankHolder2
+    2300030: thrusters
+    2300032: tube
+    2300034: tube1
+    2300036: weaponBase
+    3300000: baseLight
+    3300002: eye10
+    3300004: eye10 1
+    3300006: eyeRotation
+    3300008: eyeRotation 1
+    3300010: face
+    3300012: neck
+    3300014: nozzle1
+    3300016: pyroBase
+    3300018: pyroTorso
+    3300020: tank
+    3300022: tank1
+    3300024: tankHolder
+    3300026: tankHolder1
+    3300028: tankHolder2
+    3300030: thrusters
+    3300032: tube
+    3300034: tube1
+    3300036: weaponBase
+    4300000: eyeRotation
+    4300002: eye10
+    4300004: eyeRotation
+    4300006: eye10
+    4300008: face
+    4300010: neck
+    4300012: pyroTorso
+    4300014: thrusters
+    4300016: weaponBase
+    4300018: nozzle1
+    4300020: pyroBase
+    4300022: baseLight
+    4300024: tank
+    4300026: tank1
+    4300028: tankHolder
+    4300030: tankHolder1
+    4300032: tankHolder2
+    4300034: tube
+    4300036: tube1
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 2
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
