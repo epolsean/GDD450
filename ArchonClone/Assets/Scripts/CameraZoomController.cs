@@ -34,22 +34,22 @@ public class CameraZoomController : MonoBehaviour
                 transform.Translate(Input.GetAxis("Mouse ScrollWheel") * 10 * transform.forward, Space.World);
             }
 
-            if ((((Input.mousePosition.x > Screen.width - 50) && (Input.mousePosition.x < Screen.width)) || Input.GetAxis("Horizontal") > 0) && transform.position.x < startPosition.x + 20)
+            if ((((Input.mousePosition.x > Screen.width - 50) && (Input.mousePosition.x < Screen.width) && (Input.mousePosition.y > 0) && (Input.mousePosition.y < Screen.height)) || Input.GetAxis("Horizontal") > 0) && transform.position.x < startPosition.x + 20)
             {
                 MoveCameraRight();
             }
 
-            if ((((Input.mousePosition.x < 0 + 50) && (Input.mousePosition.x > 0)) || Input.GetAxis("Horizontal") < 0) && transform.position.x > startPosition.x - 20)
+            if ((((Input.mousePosition.x < 0 + 50) && (Input.mousePosition.x > 0) && (Input.mousePosition.y > 0) && (Input.mousePosition.y < Screen.height)) || Input.GetAxis("Horizontal") < 0) && transform.position.x > startPosition.x - 20)
             {
                 MoveCameraLeft();
             }
 
-            if ((((Input.mousePosition.y > Screen.height - 50) && (Input.mousePosition.y < Screen.height)) || Input.GetAxis("Vertical") > 0) && transform.position.z < startPosition.z + 20)
+            if ((((Input.mousePosition.y > Screen.height - 50) && (Input.mousePosition.y < Screen.height) && (Input.mousePosition.x > 0) && (Input.mousePosition.x < Screen.width)) || Input.GetAxis("Vertical") > 0) && transform.position.z < startPosition.z + 20)
             {
                 MoveCameraUp();
             }
 
-            if ((((Input.mousePosition.y < 0 + 50) && (Input.mousePosition.y > 0)) || Input.GetAxis("Vertical") < 0) && transform.position.z > startPosition.z - 20)
+            if ((((Input.mousePosition.y < 0 + 50) && (Input.mousePosition.y > 0) && (Input.mousePosition.x > 0) && (Input.mousePosition.x < Screen.width)) || Input.GetAxis("Vertical") < 0) && transform.position.z > startPosition.z - 20)
             {
                 MoveCameraDown();
             }

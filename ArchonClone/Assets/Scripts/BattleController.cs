@@ -55,7 +55,7 @@ public class BattleController : MonoBehaviour {
             {
                 if (Vector2.Distance(attackerIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(attackerIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)GetComponent<RectTransform>().sizeDelta.y / 4)) > 1)
                 {
-                    vsText.GetComponent<Text>().fontSize += 1;
+                    //vsText.GetComponent<Text>().fontSize += 1;
                     defenderIcon.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(defenderIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(defenderIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)-GetComponent<RectTransform>().sizeDelta.y / 4), Time.deltaTime);
                     attackerIcon.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(attackerIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(attackerIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)GetComponent<RectTransform>().sizeDelta.y / 4), Time.deltaTime);
                 }
@@ -80,7 +80,7 @@ public class BattleController : MonoBehaviour {
             {
                 attackerIcon.SetActive(false);
                 defenderIcon.SetActive(false);
-                vsText.SetActive(false);
+                //vsText.SetActive(false);
                 partOfBattle = BattleState.Battle;
             }
         }
@@ -92,22 +92,31 @@ public class BattleController : MonoBehaviour {
         {
             if (Loser == "attacker")
             {
+                Debug.Log("attacker lost the fight");
                 Destroy(attackerTile.GetComponent<OnTileActions>().PieceOnTile);
                 attackerTile.GetComponent<OnTileActions>().PieceOnTile = null;
             }
             else if (Loser == "defender")
             {
+                Debug.Log("defender lost the fight");
                 Destroy(defenderTile.GetComponent<OnTileActions>().PieceOnTile);
                 defenderTile.GetComponent<OnTileActions>().PieceOnTile = attackerTile.GetComponent<OnTileActions>().PieceOnTile;
+                attackerTile.GetComponent<OnTileActions>().PieceOnTile = null;
             }
             else if (Loser == "both")
             {
+                Debug.Log("both lost the fight, everyone is dead");
                 Destroy(attackerTile.GetComponent<OnTileActions>().PieceOnTile);
                 Destroy(defenderTile.GetComponent<OnTileActions>().PieceOnTile);
                 attackerTile.GetComponent<OnTileActions>().PieceOnTile = null;
                 defenderTile.GetComponent<OnTileActions>().PieceOnTile = null;
             }
             this.enabled = false;
+            GameObject.Find("TurnController").GetComponent<OnTurnActions>().isFighting = false;
+            //GameObject.Find("TurnController").GetComponent<OnTurnActions>().ResetController();
+            GameObject.Find("TurnController").GetComponent<OnTurnActions>().EndOfTurn();
+            GameObject.Find("TurnController").GetComponent<OnTurnActions>().ResetController();
+
         }
     }
 

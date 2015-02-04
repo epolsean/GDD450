@@ -36,6 +36,8 @@ public class OnTurnActions : MonoBehaviour
     public bool drawnPath = false;
     public static GameObject[] allTiles;
 
+    public bool isFighting = false;
+
 
 
     // Use this for initialization
@@ -102,7 +104,10 @@ public class OnTurnActions : MonoBehaviour
                                 if(OnHoverTile.GetComponent<OnTileActions>().PieceOnTile.tag != SelectedPiece.tag)//this check initiates combat
                                 {
                                     SoundController.GetComponent<UISoundsScript>().playFight();
-                                    OnHoverTile.GetComponent<OnTileActions>().AtkPiece = SelectedPiece; 
+                                    isFighting = true;
+                                    //OnHoverTile.GetComponent<OnTileActions>().AtkPiece = SelectedPiece;
+                                    StartCombat(OnHoverTile,CurrentTile);
+                                    SetTarget(OnHoverTile);
                                 }
                             }
                             
@@ -161,9 +166,13 @@ public class OnTurnActions : MonoBehaviour
      * occupying it, this will start combat and show the player which
      * piece won that battle.
      */
-    public void StartCombat()
+    public void StartCombat(GameObject target, GameObject current)
     {
-
+        hasSelectedPiece = false;
+        GameObject canvas = GameObject.Find("Canvas");
+        canvas.GetComponent<BattleController>().SetAttackerTile(current);
+        canvas.GetComponent<BattleController>().SetDefenderTile(target);
+        canvas.GetComponent<BattleController>().enabled = true;
     }
 
     /*
@@ -174,18 +183,20 @@ public class OnTurnActions : MonoBehaviour
     public void ResetController()
     {
         print("ResetController Called");
-        
-        CurrentTile.renderer.material.color = Color.white;
-        CurrentTile.GetComponent<OnTileActions>().isSelected = false;
-        //MoveToTile.renderer.material.color = Color.white;
-        //MoveToTile.GetComponent<OnTileActions>().isSelected = false;
-        SelectedPiece = null;
-        CurrentTile = null;
-        MoveToTile = null;
-        MaxMove = 0;
-        MaxPathNodes = 0;
-        hasSelectedPiece = false;
-        resetAllTiles();
+        if (isFighting == false)
+        {
+            CurrentTile.renderer.material.color = Color.white;
+            CurrentTile.GetComponent<OnTileActions>().isSelected = false;
+            //MoveToTile.renderer.material.color = Color.white;
+            //MoveToTile.GetComponent<OnTileActions>().isSelected = false;
+            SelectedPiece = null;
+            CurrentTile = null;
+            MoveToTile = null;
+            MaxMove = 0;
+            MaxPathNodes = 0;
+            hasSelectedPiece = false;
+            resetAllTiles();
+        }
         Camera.main.GetComponent<CameraZoomController>().ResetTransform();
         if (BattleStats.currentGameType == BattleStats.GameType.Domination)
         {
@@ -201,10 +212,21 @@ public class OnTurnActions : MonoBehaviour
      */ 
     public void EndOfTurn()
     {
-        CurrentTile.GetComponent<OnTileActions>().PieceOnTile = null;
-        MoveToTile.GetComponent<OnTileActions>().PieceOnTile = SelectedPiece;
-        MoveToTile.GetComponent<OnTileActions>().isSelected = false;
-        NextTurn(); 
+        if (isFighting == false)
+        {
+            CurrentTile.GetComponent<OnTileActions>().PieceOnTile = null;
+            MoveToTile.GetComponent<OnTileActions>().PieceOnTile = SelectedPiece;
+            MoveToTile.GetComponent<OnTileActions>().isSelected = false;
+            NextTurn();
+        }
+    }
+
+    public void EndOfBattle()
+    {
+        //CurrentTile.GetComponent<OnTileActions>().PieceOnTile = null;
+        //MoveToTile.GetComponent<OnTileActions>().PieceOnTile = SelectedPiece;
+        //MoveToTile.GetComponent<OnTileActions>().isSelected = false;
+        //NextTurn(); 
     }
 
     /*
@@ -212,6 +234,8 @@ public class OnTurnActions : MonoBehaviour
      */ 
     public void NextTurn()
     {
+        if (isFighting == true)
+            isFighting = false;
         if(TurnStateMachine.state == TurnStateMachine.State.playerTurn)
         {
             TurnStateMachine.state = TurnStateMachine.State.otherTurn; 
@@ -236,6 +260,7 @@ public class OnTurnActions : MonoBehaviour
             SoundController.GetComponent<UISoundsScript>().playMovePiece();
         }
         Camera.main.GetComponent<CameraZoomController>().SetTarget(SelectedPiece);
+        
     }
 
     public void GenPath()//called to generated a path from the selectedPiece in the TurnController and the OnHoverTile(the tile you are hovering over)
