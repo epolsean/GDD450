@@ -44,6 +44,7 @@ public class OnTurnActions : MonoBehaviour
     void Start()
     {
         allTiles = GameObject.FindGameObjectsWithTag("Tile");
+        MixUpTiles();
         SoundController = GameObject.Find("UISoundController");
         PieceStatPanel = GameObject.Find("PieceStatPan2.0");
         //PieceStatPanel.SetActive(false);
@@ -280,4 +281,19 @@ public class OnTurnActions : MonoBehaviour
         }
     }
 
+    public void MixUpTiles()
+    {
+        for (int i = 0; i < allTiles.Length; i++)
+        {
+            int randNum = Random.Range(0, 2);
+            if (randNum < 1)
+            {
+                allTiles[i].GetComponent<OnTileActions>().TileState = OnTileActions.TileType.Alien;
+            }
+            else
+            {
+                allTiles[i].GetComponent<OnTileActions>().TileState = OnTileActions.TileType.Synth;
+            }
+        }
+    }
 }
