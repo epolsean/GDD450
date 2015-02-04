@@ -23,7 +23,6 @@ public class CameraZoomController : MonoBehaviour
     // Update is called once per frame
     void Update() 
     {
-        Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
         if (!following && !zooming)
         {
             if (transform.position.y < (startPosition.y + minZoomLevel) && Input.GetAxis("Mouse ScrollWheel") < 0)

@@ -2,18 +2,20 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class DominationController : MonoBehaviour {
-
+public class DominationController : MonoBehaviour 
+{
     public GameObject alienPercent;
     public GameObject robotPercent;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+    {
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
 	
 	}
 
