@@ -134,11 +134,13 @@ public class SpawnBasicUnits : MonoBehaviour {
         SStext = GameObject.Find("SynthScoutCountText");
         STtext = GameObject.Find("SynthTankCountText");
         SRtext = GameObject.Find("SynthRunnerCountText");
+        SBtext = GameObject.Find("SynthBomberCountText");
 
         AGtext = GameObject.Find("AlienGruntCountText");
         AStext = GameObject.Find("AlienScoutCountText");
         ATtext = GameObject.Find("AlienTankCountText");
         ARtext = GameObject.Find("AlienRunnerCountText");
+        ABtext = GameObject.Find("AlienBomberCountText");
 	}
 	
 	// Update is called once per frame
@@ -151,11 +153,13 @@ public class SpawnBasicUnits : MonoBehaviour {
         SStext.GetComponent<Text>().text = SynthScoutCount.ToString();
         STtext.GetComponent<Text>().text = SynthTankCount.ToString();
         SRtext.GetComponent<Text>().text = SynthRunnerCount.ToString();
+        SBtext.GetComponent<Text>().text = SynthBomberCount.ToString();
 
         AGtext.GetComponent<Text>().text = AlienGruntCount.ToString();
         AStext.GetComponent<Text>().text = AlienScoutCount.ToString();
         ATtext.GetComponent<Text>().text = AlienTankCount.ToString();
         ARtext.GetComponent<Text>().text = AlienRunnerCount.ToString();
+        ABtext.GetComponent<Text>().text = AlienBomberCount.ToString();
 
         if(BlackPieceCount <= 0 && (Time.time - startTime) > 2)
         {
