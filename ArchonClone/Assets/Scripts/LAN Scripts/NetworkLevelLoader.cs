@@ -5,7 +5,7 @@ public class NetworkLevelLoader : MonoBehaviour {
     
     bool player1Created = false;
     bool player2Created = false;
-    string loadedLevel = "TestingHexTiles";
+    string loadedLevel = "TestingTileMovement_Ryan";
     static bool player1Connected = false;
     static bool player2Connected = false;
     bool bothConnected = false;

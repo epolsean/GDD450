@@ -27,3 +27,5 @@ EditorBuildSettings:
     path: Assets/TestScenes/SyntheticVictory.unity
   - enabled: 1
     path: Assets/TestScenes/OrganicsVictoryScreen.unity
+  - enabled: 1
+    path: Assets/TestScenes/TestingTileMovement_Ryan.unity
