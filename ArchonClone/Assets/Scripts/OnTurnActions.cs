@@ -224,10 +224,8 @@ public class OnTurnActions : MonoBehaviour
 
     public void EndOfBattle()
     {
-        //CurrentTile.GetComponent<OnTileActions>().PieceOnTile = null;
-        //MoveToTile.GetComponent<OnTileActions>().PieceOnTile = SelectedPiece;
-        //MoveToTile.GetComponent<OnTileActions>().isSelected = false;
-        //NextTurn(); 
+        MoveToTile.GetComponent<OnTileActions>().isSelected = false;
+        NextTurn();
     }
 
     /*

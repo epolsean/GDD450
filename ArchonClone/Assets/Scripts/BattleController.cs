@@ -20,14 +20,14 @@ public class BattleController : MonoBehaviour {
 
     int starting = 1;
 
-    float attackerLevel;
-    float defenderLevel;
+    double attackerLevel;
+    double defenderLevel;
 
 	// Use this for initialization
 	void Start () 
     {
-        attackerLevel = attackerTile.GetComponent<OnTileActions>().TilePowerLevel + attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
-        defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerLevel + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
+        attackerLevel = attackerTile.GetComponent<OnTileActions>().TilePowerLevel + attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
+        defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerLevel + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
         
         starting = 1;
         partOfBattle = BattleState.PreBattle;
@@ -37,8 +37,8 @@ public class BattleController : MonoBehaviour {
 
     void OnEnable()
     {
-        attackerLevel = attackerTile.GetComponent<OnTileActions>().TilePowerLevel + attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
-        defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerLevel + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().Damage;
+        attackerLevel = attackerTile.GetComponent<OnTileActions>().TilePowerLevel + attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
+        defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerLevel + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
 
         starting = 1;
         partOfBattle = BattleState.PreBattle;
@@ -113,8 +113,7 @@ public class BattleController : MonoBehaviour {
             }
             this.enabled = false;
             GameObject.Find("TurnController").GetComponent<OnTurnActions>().isFighting = false;
-            //GameObject.Find("TurnController").GetComponent<OnTurnActions>().ResetController();
-            GameObject.Find("TurnController").GetComponent<OnTurnActions>().EndOfTurn();
+            GameObject.Find("TurnController").GetComponent<OnTurnActions>().EndOfBattle();
             GameObject.Find("TurnController").GetComponent<OnTurnActions>().ResetController();
         }
     }
@@ -122,9 +121,9 @@ public class BattleController : MonoBehaviour {
     void SimulateBattle()
     {
         //Add code to simulate battle and determine winner
-        if (Random.Range(0, 10000/attackerLevel) < attackerLevel) //This will be if the player who is attacking the tile wins on the attack
+        if (Random.Range(0, (int)(10000/attackerLevel)) < attackerLevel) //This will be if the player who is attacking the tile wins on the attack
         {
-            if (Random.Range(0, 10000 / defenderLevel) < defenderLevel/2) //This will be if the player who is defending the tile wins on the attack
+            if (Random.Range(0, (int)(10000 / defenderLevel)) < defenderLevel/2) //This will be if the player who is defending the tile wins on the attack
             {
                 Loser = "both";
             }
@@ -135,9 +134,9 @@ public class BattleController : MonoBehaviour {
             }
             partOfBattle = BattleState.PostBattle;
         }
-        else if (Random.Range(0, 10000 / defenderLevel) < defenderLevel) //This will be if the player who is defending the tile wins on the attack
+        else if (Random.Range(0, (int)(10000 / defenderLevel)) < defenderLevel) //This will be if the player who is defending the tile wins on the attack
         {
-            if (Random.Range(0, 10000/attackerLevel) < attackerLevel/2) //This will be if the player who is attcking the tile wins on the attack
+            if (Random.Range(0, (int)(10000/attackerLevel)) < attackerLevel/2) //This will be if the player who is attcking the tile wins on the attack
             {
                 Loser = "both";
             }
