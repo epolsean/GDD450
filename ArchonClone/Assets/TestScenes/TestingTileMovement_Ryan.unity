@@ -1139,9 +1139,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 10
+  m_MaxValue: 125
   m_WholeNumbers: 0
-  m_Value: 10
+  m_Value: 70
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1395,7 +1395,7 @@ MonoBehaviour:
   AlienTexture: {fileID: 2800000, guid: ff3ba275618408c4b89a5d9f6b6e90fc, type: 3}
   SynthTexture: {fileID: 2800000, guid: a9adcaab6c744fc4689007488ebad78b, type: 3}
   NuturalTexture: {fileID: 0}
-  TilePowerLevel: 0
+  TilePowerLevel: 2
   TileState: 0
   IsNutural: 0
   isSelected: 0
@@ -3671,6 +3671,14 @@ Prefab:
     - target: {fileID: 146980, guid: 7a65a760b1cd87a468246a14579b9a5b, type: 2}
       propertyPath: m_Name
       value: TileBoostText
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446968, guid: 7a65a760b1cd87a468246a14579b9a5b, type: 2}
+      propertyPath: m_MaxValue
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446968, guid: 7a65a760b1cd87a468246a14579b9a5b, type: 2}
+      propertyPath: m_Value
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a65a760b1cd87a468246a14579b9a5b, type: 2}
@@ -10626,6 +10634,10 @@ Prefab:
       propertyPath: TileState
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11403968, guid: e83352beeb9d8ce42b97400687a16e51, type: 2}
+      propertyPath: TilePowerLevel
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e83352beeb9d8ce42b97400687a16e51, type: 2}
   m_RootGameObject: {fileID: 1557774615}
@@ -10689,6 +10701,10 @@ Prefab:
     - target: {fileID: 11403968, guid: e83352beeb9d8ce42b97400687a16e51, type: 2}
       propertyPath: TileState
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11403968, guid: e83352beeb9d8ce42b97400687a16e51, type: 2}
+      propertyPath: TilePowerLevel
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e83352beeb9d8ce42b97400687a16e51, type: 2}
@@ -11528,7 +11544,7 @@ MonoBehaviour:
   AlienTexture: {fileID: 2800000, guid: ff3ba275618408c4b89a5d9f6b6e90fc, type: 3}
   SynthTexture: {fileID: 2800000, guid: a9adcaab6c744fc4689007488ebad78b, type: 3}
   NuturalTexture: {fileID: 0}
-  TilePowerLevel: 0
+  TilePowerLevel: 5
   TileState: 0
   IsNutural: 0
   isSelected: 0

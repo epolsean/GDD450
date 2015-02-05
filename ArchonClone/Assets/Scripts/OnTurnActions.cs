@@ -391,7 +391,16 @@ public class OnTurnActions : MonoBehaviour
             {
                 if(TileFactionPan != null)
                 {
-                    TileFactionPan.GetComponent<Text>().text = "Tile Faction: DatFaction";
+                    TileFactionPan.GetComponent<Text>().text = "Tile Faction: " + OnHoverTile.GetComponent<OnTileActions>().TileState.ToString();
+                }
+                if(TileLvlPan != null)
+                {
+                    TileLvlPan.GetComponent<Slider>().value = OnHoverTile.GetComponent<OnTileActions>().TilePowerLevel;
+                }
+                if(TileBoostPan != null && TileBoostText != null)
+                {
+                    TileBoostPan.GetComponent<Slider>().value = OnHoverTile.GetComponent<OnTileActions>().TilePowerLevel * 25;
+                    TileBoostText.GetComponent<Text>().text = TileBoostPan.GetComponent<Slider>().value.ToString();
                 }
             }
 
