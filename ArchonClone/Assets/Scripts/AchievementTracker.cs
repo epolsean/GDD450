@@ -26,9 +26,23 @@ public class AchievementTracker : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
-        Debug.Log(PlayerPrefs.GetInt("KillsWithAlienGrunt"));
         SetAchievements();
 	}
+
+    public void ClearStats()
+    {
+            PlayerPrefs.SetInt("KillsWithAlienGrunt", 0);
+            PlayerPrefs.SetInt("KillsWithAlienTank", 0);
+            PlayerPrefs.SetInt("KillsWithAlienRunner", 0);
+            PlayerPrefs.SetInt("KillsWithAlienScout", 0);
+            PlayerPrefs.SetInt("KillsWithAlienBomber", 0);
+            PlayerPrefs.SetInt("KillsWithRobotGrunt", 0);
+            PlayerPrefs.SetInt("KillsWithRobotTank", 0);
+            PlayerPrefs.SetInt("KillsWithRobotRunner", 0);
+            PlayerPrefs.SetInt("KillsWithRobotScout", 0);
+            PlayerPrefs.SetInt("KillsWithRobotBomber", 0);
+            PlayerPrefs.SetInt("TutorialComplete", 0);
+    }
 
 
     void SetAchievements()

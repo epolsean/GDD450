@@ -23,9 +23,13 @@ public class BattleController : MonoBehaviour {
     double attackerLevel;
     double defenderLevel;
 
+    
 	// Use this for initialization
 	void Start () 
     {
+        attackerIcon.SetActive(true);
+        defenderIcon.SetActive(true);
+        //vsText.SetActive(true);
         attackerLevel = attackerTile.GetComponent<OnTileActions>().TilePowerLevel + attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
         defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerLevel + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
         
@@ -37,6 +41,9 @@ public class BattleController : MonoBehaviour {
 
     void OnEnable()
     {
+        attackerIcon.SetActive(true);
+        defenderIcon.SetActive(true);
+        //vsText.SetActive(true);
         attackerLevel = attackerTile.GetComponent<OnTileActions>().TilePowerLevel + attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
         defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerLevel + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
 
@@ -130,7 +137,8 @@ public class BattleController : MonoBehaviour {
             else
             {
                 Loser = "defender";
-                PlayerPrefs.SetInt("KillsWithAlienGrunt", PlayerPrefs.GetInt("KillsWithAlienGrunt") + 1);
+                string playerPrefString = DetermineWhatUnitWon();
+                PlayerPrefs.SetInt(playerPrefString, PlayerPrefs.GetInt(playerPrefString) + 1);
             }
             partOfBattle = BattleState.PostBattle;
         }
@@ -156,5 +164,22 @@ public class BattleController : MonoBehaviour {
     public void SetDefenderTile(GameObject datDefender)
     {
         defenderTile = datDefender;
+    }
+
+    public string DetermineWhatUnitWon()
+    {
+        string winner = "KillsWith";
+
+        if (attackerTile.GetComponent<OnTileActions>().PieceOnTile.tag == "White")
+        {
+            winner += "Robot";
+        }
+        else
+        {
+            winner += "Alien";
+        }
+
+        winner += attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().unitType;
+        return winner;
     }
 }
