@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Pathfinding;
+using UnityEngine.UI;
 
 /* this script will contain all methods and variables 
  * used when moving pieces and attacking during a turn, 
@@ -25,8 +26,14 @@ public class OnTurnActions : MonoBehaviour
     public GameObject PieceStatPanel;
     public GameObject HealthPanel;
     public GameObject DamagePanel;
-    public GameObject SpeedPanel; 
+    public GameObject SpeedPanel;
+    public GameObject TileStatPanel;
+    public GameObject TileFactionPan;
+    public GameObject TileLvlPan;
+    public GameObject TileBoostPan;
+    public GameObject TileBoostText;
     public bool hasSelectedPiece = false;
+    public bool CanClick = true; 
     //Pathfinder variables
     public Seeker seeker;
     public Path path;
@@ -45,12 +52,58 @@ public class OnTurnActions : MonoBehaviour
     {
         allTiles = GameObject.FindGameObjectsWithTag("Tile");
         MixUpTiles();
-        SoundController = GameObject.Find("UISoundController");
-        PieceStatPanel = GameObject.Find("PieceStatPan2.0");
-        //PieceStatPanel.SetActive(false);
-        HealthPanel = GameObject.Find("HealthSlider");
-        DamagePanel = GameObject.Find("DamageSlider");
-        SpeedPanel = GameObject.Find("SpeedSlider");
+        if(PieceStatPanel != null)
+        {
+            PieceStatPanel.SetActive(false);
+        }
+        if(TileStatPanel != null)
+        {
+            TileStatPanel.SetActive(false);
+        }
+        /*if(GameObject.Find("UISoundController") != null)
+        {
+            SoundController = GameObject.Find("UISoundController");
+        }
+        //PieceStatPan Vars Setup----------------------------------------
+        if(GameObject.Find("PieceStatPan2.0") != null)
+        {
+            PieceStatPanel = GameObject.Find("PieceStatPan2.0");
+            PieceStatPanel.SetActive(false);
+        }
+        if(GameObject.Find("HealthSlider") != null)
+        {
+            HealthPanel = GameObject.Find("HealthSlider");
+        }
+        if(GameObject.Find("DamageSlider") != null)
+        {
+            DamagePanel = GameObject.Find("DamageSlider");
+        }
+        if(GameObject.Find("SpeedSlider") != null)
+        {
+            SpeedPanel = GameObject.Find("SpeedSlider");
+        }
+        //TileStatPan Vars Setup-------------------------------------------
+        if(GameObject.Find("TileStatPan") != null)
+        {
+            TileStatPanel = GameObject.Find("TileStatPan");
+        }
+        if (GameObject.Find("FactionPan") != null)
+        {
+            TileFactionPan = GameObject.Find("FactionPan");
+        }
+        if (GameObject.Find("TileLevelSlider") != null)
+        {
+            TileLvlPan = GameObject.Find("TileLevelSlider");
+        }
+        if (GameObject.Find("TileBoostSlider") != null)
+        {
+            TileBoostPan = GameObject.Find("TileBoostSlider");
+        } 
+        if (GameObject.Find("TileBoostText") != null)
+        {
+            TileBoostText = GameObject.Find("TileBoostText");
+        }*/
+        
         if (BattleStats.currentGameType == BattleStats.GameType.Domination)
         {
             GameObject.Find("Canvas").GetComponent<DominationController>().UpdatePercentUI();
@@ -62,79 +115,104 @@ public class OnTurnActions : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (OnHoverTile != null)
+            if(CanClick)
             {
-                if (hasSelectedPiece == false)//before player has selected a piece
+                if (OnHoverTile != null)
                 {
-                    //check if piece is current players
+                    if (hasSelectedPiece == false)//before player has selected a piece
+                    {
+                        //check if piece is current players
 
-                    if (OnHoverTile != null && OnHoverTile.GetComponent<OnTileActions>().PieceOnTile != null)
-                    {
-                        if (TurnStateMachine.state == TurnStateMachine.State.playerTurn && OnHoverTile.GetComponent<OnTileActions>().PieceOnTile.tag == "White")
+                        if (OnHoverTile != null && OnHoverTile.GetComponent<OnTileActions>().PieceOnTile != null)
                         {
-                            SelectPiece(OnHoverPiece);
+                            if (TurnStateMachine.state == TurnStateMachine.State.playerTurn && OnHoverTile.GetComponent<OnTileActions>().PieceOnTile.tag == "White")
+                            {
+                                SelectPiece(OnHoverPiece);
+                            }
+                            else if (TurnStateMachine.state == TurnStateMachine.State.otherTurn && OnHoverTile.GetComponent<OnTileActions>().PieceOnTile.tag == "Black")
+                            {
+                                SelectPiece(OnHoverPiece);
+                            }
+                            else
+                            {
+                                SoundController.GetComponent<UISoundsScript>().playError();
+                            }
+
                         }
-                        else if (TurnStateMachine.state == TurnStateMachine.State.otherTurn && OnHoverTile.GetComponent<OnTileActions>().PieceOnTile.tag == "Black")
-                        {
-                            SelectPiece(OnHoverPiece); 
-                        }
-                        else
-                        {
-                            SoundController.GetComponent<UISoundsScript>().playError(); 
-                        }
-                        
-                    }
-                }
-                else
-                {
-                    if (CurrentTile == OnHoverTile)
-                    {
-                        ResetController();
-                        SoundController.GetComponent<UISoundsScript>().playDeselect();  
                     }
                     else
                     {
-                        if (SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes)
+                        if (CurrentTile == OnHoverTile)
                         {
-                            if(OnHoverTile.GetComponent<OnTileActions>().PieceOnTile == null)
-                            {
-                                SetTarget(OnHoverTile);
-                            }
-                            else//brackets check when you are initiating combat
-                            {
-                                if(OnHoverTile.GetComponent<OnTileActions>().PieceOnTile.tag != SelectedPiece.tag)//this check initiates combat
-                                {
-                                    SoundController.GetComponent<UISoundsScript>().playFight();
-                                    isFighting = true;
-                                    //OnHoverTile.GetComponent<OnTileActions>().AtkPiece = SelectedPiece;
-                                    StartCombat(OnHoverTile,CurrentTile);
-                                    SetTarget(OnHoverTile);
-                                }
-                            }
-                            
+                            ResetController();
+                            SoundController.GetComponent<UISoundsScript>().playDeselect();
                         }
                         else
                         {
-                            SoundController.GetComponent<UISoundsScript>().playError();
-                            //ResetController();
+                            if (SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes)
+                            {
+                                if (OnHoverTile.GetComponent<OnTileActions>().PieceOnTile == null)
+                                {
+                                    SetTarget(OnHoverTile);
+                                }
+                                else//brackets check when you are initiating combat
+                                {
+                                    if (OnHoverTile.GetComponent<OnTileActions>().PieceOnTile.tag != SelectedPiece.tag)//this check initiates combat
+                                    {
+                                        SoundController.GetComponent<UISoundsScript>().playFight();
+                                        isFighting = true;
+                                        //OnHoverTile.GetComponent<OnTileActions>().AtkPiece = SelectedPiece;
+                                        StartCombat(OnHoverTile, CurrentTile);
+                                        SetTarget(OnHoverTile);
+                                    }
+                                }
+
+                            }
+                            else
+                            {
+                                SoundController.GetComponent<UISoundsScript>().playError();
+                                //ResetController();
+                            }
                         }
                     }
                 }
             }
+            else//will play an error sound when you try to click on a tile while a piece is moving
+            {
+                SoundController.GetComponent<UISoundsScript>().playError(); 
+            }
         }
-        /*if(OnHoverPiece != null)
+        if(OnHoverTile != null)
         {
-            //print("there's something there!!!"); 
-            //if(PieceStatPanel != null)
-            //{
-                
-                PieceStatPanel.SetActive(true); 
-            //}
+            UpdateStatPan();
+            if(OnHoverTile.GetComponent<OnTileActions>().PieceOnTile != null)
+            {
+                if(PieceStatPanel != null)
+                {
+                    TileStatPanel.SetActive(false);
+                    PieceStatPanel.SetActive(true);
+                }
+            }
+            else
+            {
+                if(TileStatPanel != null)
+                {
+                    PieceStatPanel.SetActive(false);
+                    TileStatPanel.SetActive(true);
+                }
+            }
         }
         else
         {
-            PieceStatPanel.SetActive(false); 
-        }*/
+            if (PieceStatPanel != null)
+            {
+                PieceStatPanel.SetActive(false);
+            }
+            if (TileStatPanel != null)
+            {
+                TileStatPanel.SetActive(false);
+            }
+        }
     }
 
     /* 
@@ -218,6 +296,7 @@ public class OnTurnActions : MonoBehaviour
             CurrentTile.GetComponent<OnTileActions>().PieceOnTile = null;
             MoveToTile.GetComponent<OnTileActions>().PieceOnTile = SelectedPiece;
             MoveToTile.GetComponent<OnTileActions>().isSelected = false;
+            CanClick = true; 
             NextTurn();
         }
     }
@@ -226,8 +305,8 @@ public class OnTurnActions : MonoBehaviour
     {
         //CurrentTile.GetComponent<OnTileActions>().PieceOnTile = null;
         //MoveToTile.GetComponent<OnTileActions>().PieceOnTile = SelectedPiece;
-        //MoveToTile.GetComponent<OnTileActions>().isSelected = false;
-        //NextTurn(); 
+        MoveToTile.GetComponent<OnTileActions>().isSelected = false;
+        NextTurn(); 
     }
 
     /*
@@ -251,6 +330,7 @@ public class OnTurnActions : MonoBehaviour
     {
         //SelectedPiece.GetComponent<pieceMovementScript>().isMoving = true;
         //SelectedPiece.GetComponent<pieceMovementScript>().startMove = true;
+        CanClick = false; 
         targetTile.GetComponent<OnTileActions>().isSelected = true;
         MoveToTile = targetTile;
         OnHoverTile.renderer.material.color = Color.green;
@@ -295,5 +375,27 @@ public class OnTurnActions : MonoBehaviour
                 allTiles[i].GetComponent<OnTileActions>().TileState = OnTileActions.TileType.Synth;
             }
         }
+    }
+    public void UpdateStatPan()//called to update the stats on the stat panel prior to showing panel
+    {
+        if(OnHoverTile != null)
+        {
+            if (OnHoverTile.GetComponent<OnTileActions>().PieceOnTile != null)//displaying PieceStatPanel
+            {
+                if(SpeedPanel != null)
+                {
+                    SpeedPanel.GetComponent<Slider>().value = OnHoverPiece.GetComponent<PiecePropScript>().Movement;
+                }
+            }
+            else//displaying TileStatPanel
+            {
+                if(TileFactionPan != null)
+                {
+                    TileFactionPan.GetComponent<Text>().text = "Tile Faction: DatFaction";
+                }
+            }
+
+        }
+
     }
 }
