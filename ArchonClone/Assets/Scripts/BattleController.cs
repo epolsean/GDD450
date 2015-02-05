@@ -116,7 +116,6 @@ public class BattleController : MonoBehaviour {
             //GameObject.Find("TurnController").GetComponent<OnTurnActions>().ResetController();
             GameObject.Find("TurnController").GetComponent<OnTurnActions>().EndOfTurn();
             GameObject.Find("TurnController").GetComponent<OnTurnActions>().ResetController();
-
         }
     }
 
@@ -132,12 +131,13 @@ public class BattleController : MonoBehaviour {
             else
             {
                 Loser = "defender";
+                PlayerPrefs.SetInt("KillsWithAlienGrunt", PlayerPrefs.GetInt("KillsWithAlienGrunt") + 1);
             }
             partOfBattle = BattleState.PostBattle;
         }
-        else if (Random.Range(0, 10000 / defenderLevel) < defenderLevel) //This will be if the player who is attacking the tile wins on the attack
+        else if (Random.Range(0, 10000 / defenderLevel) < defenderLevel) //This will be if the player who is defending the tile wins on the attack
         {
-            if (Random.Range(0, 10000/attackerLevel) < attackerLevel/2) //This will be if the player who is defending the tile wins on the attack
+            if (Random.Range(0, 10000/attackerLevel) < attackerLevel/2) //This will be if the player who is attcking the tile wins on the attack
             {
                 Loser = "both";
             }

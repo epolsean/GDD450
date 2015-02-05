@@ -150,6 +150,11 @@ public class GoTo : MonoBehaviour {
         Destroy(GameObject.Find("CameraAddative"));
     }
 
+    public void Acheivements()
+    {
+        Application.LoadLevel("AchievementsPage");
+    }
+
     public void Quit()
     {
         Application.Quit();
