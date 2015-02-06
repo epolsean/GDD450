@@ -85,7 +85,7 @@ public class pieceMovementScript : MonoBehaviour {
     public int CalcNewPathDist()
     {
         Path p = seeker.GetNewPath(transform.position, targetPosition);
-        print("PathNodeCompacity: " + p.vectorPath.Capacity);
+        //print("PathNodeCompacity: " + p.vectorPath.Capacity);
         return p.vectorPath.Capacity;
 
         
@@ -210,7 +210,7 @@ public class pieceMovementScript : MonoBehaviour {
         }
         else//else checks for the path distance in nodes when you hover over a tile after selecting a piece
         {
-            print("path Nodes: " + path.vectorPath.Count + " list: " + path.path.Count);
+            //print("path Nodes: " + path.vectorPath.Count + " list: " + path.path.Count);
             if(MoveController.GetComponent<OnTurnActions>().drawnPath == false)
             {
                 MoveController.GetComponent<OnTurnActions>().drawnPath = true; 
@@ -218,7 +218,7 @@ public class pieceMovementScript : MonoBehaviour {
                 for (int i = 0; i < path.vectorPath.Count; i++)
                 {
                     Collider[] NodeTile = Physics.OverlapSphere(new Vector3(tileNodes[i].x, tileNodes[i].y, tileNodes[i].z), 1);
-                    print("NodeTile Size: " + NodeTile.Length + "at TileNodes: " + i);
+                    //print("NodeTile Size: " + NodeTile.Length + "at TileNodes: " + i);
                     for (int j = 0; j < NodeTile.Length; j++)
                     {
                         if (NodeTile[j].tag == "Tile")

@@ -33,7 +33,8 @@ public class OnTurnActions : MonoBehaviour
     public GameObject TileBoostPan;
     public GameObject TileBoostText;
     public bool hasSelectedPiece = false;
-    public bool CanClick = true; 
+    public bool CanClick = true;
+    public static bool EndingTurn = false; 
     //Pathfinder variables
     public Seeker seeker;
     public Path path;
@@ -60,12 +61,12 @@ public class OnTurnActions : MonoBehaviour
         {
             TileStatPanel.SetActive(false);
         }
-        /*if(GameObject.Find("UISoundController") != null)
+        if(GameObject.Find("UISoundController") != null)
         {
             SoundController = GameObject.Find("UISoundController");
         }
         //PieceStatPan Vars Setup----------------------------------------
-        if(GameObject.Find("PieceStatPan2.0") != null)
+        /*if(GameObject.Find("PieceStatPan2.0") != null)
         {
             PieceStatPanel = GameObject.Find("PieceStatPan2.0");
             PieceStatPanel.SetActive(false);
@@ -222,9 +223,9 @@ public class OnTurnActions : MonoBehaviour
      */
     void SelectPiece(GameObject Piece)
     {
-        print("SelectPiece Called");
+        //print("SelectPiece Called");
         hasSelectedPiece = true;
-        print("bool set to true");
+        //print("bool set to true");
         SelectedPiece = Piece;
         CurrentTile = OnHoverTile;
         MaxPathNodes = Piece.GetComponent<pieceMovementScript>().MaxPathNodes; 
@@ -261,7 +262,7 @@ public class OnTurnActions : MonoBehaviour
      */
     public void ResetController()
     {
-        print("ResetController Called");
+        //print("ResetController Called");
         if (isFighting == false)
         {
             CurrentTile.renderer.material.color = Color.white;
@@ -324,6 +325,10 @@ public class OnTurnActions : MonoBehaviour
         {
             TurnStateMachine.state = TurnStateMachine.State.playerTurn; 
         }
+        for(int i = 0; i<allTiles.Length; i++)
+        {
+            allTiles[i].GetComponent<OnTileActions>().updateTileLevel();
+        }
     }
 
     void SetTarget(GameObject targetTile)//called when you select a tile to move to
@@ -346,7 +351,7 @@ public class OnTurnActions : MonoBehaviour
 
     public void GenPath()//called to generated a path from the selectedPiece in the TurnController and the OnHoverTile(the tile you are hovering over)
     {
-        print("Generated Path");
+        //print("Generated Path");
         SelectedPiece.GetComponent<pieceMovementScript>().targetPosition = OnHoverTile.transform.position;
         //SelectedPiece.GetComponent<pieceMovementScript>().GenNewPath();
         SelectedPiece.GetComponent<pieceMovementScript>().GetNewPath();
