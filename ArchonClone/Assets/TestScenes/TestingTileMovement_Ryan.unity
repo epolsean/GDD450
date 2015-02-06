@@ -217,6 +217,7 @@ MonoBehaviour:
   TileLvlPan: {fileID: 899298229}
   TileBoostPan: {fileID: 175756153}
   TileBoostText: {fileID: 1775106967}
+  PieceSpawnController: {fileID: 952641981}
   hasSelectedPiece: 0
   CanClick: 1
   seeker: {fileID: 0}
@@ -11791,6 +11792,7 @@ MonoBehaviour:
   TileLvlPan: {fileID: 0}
   TileBoostPan: {fileID: 0}
   TileBoostText: {fileID: 0}
+  PieceSpawnController: {fileID: 0}
   hasSelectedPiece: 0
   CanClick: 1
   seeker: {fileID: 0}
@@ -14985,6 +14987,7 @@ GameObject:
   - 124: {fileID: 1943087340}
   - 81: {fileID: 1943087339}
   - 114: {fileID: 1943087344}
+  - 114: {fileID: 1943087345}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -15070,6 +15073,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minZoomLevel: 10
   maxZoomLevel: 10
+--- !u!114 &1943087345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1943087338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1085cf4c047eab45a9d24d8ccaabfa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  A_Star: {fileID: 1862381173}
+  aStarController: {fileID: 1862381174}
 --- !u!1 &1945865431
 GameObject:
   m_ObjectHideFlags: 0

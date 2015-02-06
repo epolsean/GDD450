@@ -311,6 +311,7 @@ public class OnTurnActions : MonoBehaviour
         //CurrentTile.GetComponent<OnTileActions>().PieceOnTile = null;
         //MoveToTile.GetComponent<OnTileActions>().PieceOnTile = SelectedPiece;
         MoveToTile.GetComponent<OnTileActions>().isSelected = false;
+        CanClick = true;
         NextTurn(); 
     }
 

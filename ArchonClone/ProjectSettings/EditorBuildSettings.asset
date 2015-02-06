@@ -31,3 +31,5 @@ EditorBuildSettings:
     path: Assets/TestScenes/AchievementsPage.unity
   - enabled: 1
     path: Assets/TestScenes/TestingTileMovement_Ryan.unity
+  - enabled: 1
+    path: Assets/TestScenes/TileBoardScene01.unity

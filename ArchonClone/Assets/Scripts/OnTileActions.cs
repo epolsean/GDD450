@@ -80,6 +80,8 @@ public class OnTileActions : MonoBehaviour {
      */ 
     void OnMouseOver()
     {
+        TileNode.SetActive(true);
+        GridManager.rescan = true;
         TurnController.GetComponent<OnTurnActions>().OnHoverTile = this.gameObject;
         TurnController.GetComponent<OnTurnActions>().OnHoverPiece = this.PieceOnTile;
         if(isSelected == false)
@@ -91,9 +93,11 @@ public class OnTileActions : MonoBehaviour {
             
             if(TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
             {
+                 
                 if(TurnController.GetComponent<OnTurnActions>().isGenPath == false)
                 {
-                    TurnController.GetComponent<OnTurnActions>().GenPath();
+                    Invoke("GenHoverPath", 1/100);
+                    
                 }
                 else
                 {
@@ -118,6 +122,14 @@ public class OnTileActions : MonoBehaviour {
      */ 
     void OnMouseExit()
     {
+        if(PieceOnTile != null)
+        {
+            if(isSelected == false)
+            {
+                TileNode.SetActive(false);
+                GridManager.rescan = true;
+            }
+        }
         TurnController.GetComponent<OnTurnActions>().isGenPath = false; 
         TurnController.GetComponent<OnTurnActions>().OnHoverTile = null;
         TurnController.GetComponent<OnTurnActions>().OnHoverPiece = null;
@@ -134,6 +146,11 @@ public class OnTileActions : MonoBehaviour {
     public void ResetTile()
     {
         this.renderer.material.color = Color.white; 
+    }
+
+    public void GenHoverPath()
+    {
+        TurnController.GetComponent<OnTurnActions>().GenPath();
     }
 
     public void updateTileLevel()

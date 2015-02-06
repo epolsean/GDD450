@@ -5253,7 +5253,7 @@ Transform:
   m_LocalScale: {x: 7.61849356, y: 7.61849546, z: 7.61849546}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 235
+  m_RootOrder: 239
 --- !u!1 &303689009
 GameObject:
   m_ObjectHideFlags: 0
@@ -6081,7 +6081,7 @@ GameObject:
   - 64: {fileID: 336066182}
   - 114: {fileID: 336066181}
   m_Layer: 8
-  m_Name: HexGrid01(multiTile)(BTankTile01)
+  m_Name: HexGrid01(multiTile)
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10696,7 +10696,7 @@ Transform:
   m_Children:
   - {fileID: 298566805}
   m_Father: {fileID: 0}
-  m_RootOrder: 237
+  m_RootOrder: 234
 --- !u!1 &584653590
 GameObject:
   m_ObjectHideFlags: 0
@@ -17131,7 +17131,7 @@ GameObject:
   - 64: {fileID: 879734789}
   - 114: {fileID: 879734788}
   m_Layer: 8
-  m_Name: HexGrid01(multiTile)(BTankTile02)
+  m_Name: HexGrid01(multiTile)
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19039,9 +19039,9 @@ MonoBehaviour:
   BlackRunner: {fileID: 100008, guid: eb4b247c75f48db4793e42fdaa00fee5, type: 2}
   BlackScout: {fileID: 100006, guid: 418f5e91e219624458b77459047b0132, type: 2}
   BlackBomber: {fileID: 168708, guid: 95f0fc7a36b89b84db5c3812560e8eeb, type: 2}
-  BTank01Tile: {fileID: 336066179}
+  BTank01Tile: {fileID: 1142585338}
   WTank01Tile: {fileID: 1786245911}
-  BTank02Tile: {fileID: 879734786}
+  BTank02Tile: {fileID: 2075047601}
   WTank02Tile: {fileID: 591179281}
   BTank03Tile: {fileID: 0}
   WTank03Tile: {fileID: 0}
@@ -19114,7 +19114,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 234
+  m_RootOrder: 238
 --- !u!1 &953500635
 GameObject:
   m_ObjectHideFlags: 0
@@ -22885,7 +22885,7 @@ GameObject:
   - 64: {fileID: 1142585340}
   - 114: {fileID: 1142585339}
   m_Layer: 8
-  m_Name: HexGrid01(multiTile)
+  m_Name: HexGrid01(multiTile)(BTankTile01)
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22970,7 +22970,7 @@ Transform:
   m_Children:
   - {fileID: 1228171108}
   m_Father: {fileID: 0}
-  m_RootOrder: 239
+  m_RootOrder: 236
 --- !u!1 &1148625283
 GameObject:
   m_ObjectHideFlags: 0
@@ -25298,7 +25298,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 233
+  m_RootOrder: 237
 --- !u!1 &1271997442
 GameObject:
   m_ObjectHideFlags: 0
@@ -27321,7 +27321,7 @@ Transform:
   m_Children:
   - {fileID: 1585871898}
   m_Father: {fileID: 0}
-  m_RootOrder: 238
+  m_RootOrder: 235
 --- !u!114 &1393316939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31683,7 +31683,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
       propertyPath: m_RootOrder
-      value: 234
+      value: 238
       objectReference: {fileID: 0}
     - target: {fileID: 14800000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
       propertyPath: m_ViewID.m_ID
@@ -31696,7 +31696,7 @@ Prefab:
     - target: {fileID: 11400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
       propertyPath: BTank01Tile
       value: 
-      objectReference: {fileID: 336066179}
+      objectReference: {fileID: 1142585338}
     - target: {fileID: 11400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
       propertyPath: WScout01Tile
       value: 
@@ -31740,7 +31740,7 @@ Prefab:
     - target: {fileID: 11400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
       propertyPath: BTank02Tile
       value: 
-      objectReference: {fileID: 879734786}
+      objectReference: {fileID: 2075047601}
     - target: {fileID: 11400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
       propertyPath: BScout02Tile
       value: 
@@ -39670,7 +39670,7 @@ GameObject:
   - 64: {fileID: 2075047604}
   - 114: {fileID: 2075047603}
   m_Layer: 8
-  m_Name: HexGrid01(multiTile)
+  m_Name: HexGrid01(multiTile)(BTankTile02)
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39688,7 +39688,7 @@ Transform:
   m_Children:
   - {fileID: 1030102071}
   m_Father: {fileID: 0}
-  m_RootOrder: 236
+  m_RootOrder: 233
 --- !u!114 &2075047603
 MonoBehaviour:
   m_ObjectHideFlags: 0
