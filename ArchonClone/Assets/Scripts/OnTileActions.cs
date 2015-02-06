@@ -102,13 +102,16 @@ public class OnTileActions : MonoBehaviour {
                 else
                 {
                     TurnController.GetComponent<OnTurnActions>().drawnPath = false; 
-                    if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes)
+                    if(TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path != null)
                     {
-                        this.renderer.material.color = Color.green;
-                    }
-                    else
-                    {
-                        this.renderer.material.color = Color.red;
+                        if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes)
+                        {
+                            this.renderer.material.color = Color.green;
+                        }
+                        else
+                        {
+                            this.renderer.material.color = Color.red;
+                        }
                     }
                 }
                 
