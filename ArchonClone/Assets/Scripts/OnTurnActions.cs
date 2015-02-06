@@ -32,6 +32,7 @@ public class OnTurnActions : MonoBehaviour
     public GameObject TileLvlPan;
     public GameObject TileBoostPan;
     public GameObject TileBoostText;
+    public GameObject PieceSpawnController; 
     public bool hasSelectedPiece = false;
     public bool CanClick = true;
     public static bool EndingTurn = false; 
@@ -53,6 +54,7 @@ public class OnTurnActions : MonoBehaviour
     {
         allTiles = GameObject.FindGameObjectsWithTag("Tile");
         MixUpTiles();
+        
         if(PieceStatPanel != null)
         {
             PieceStatPanel.SetActive(false);
@@ -226,12 +228,14 @@ public class OnTurnActions : MonoBehaviour
         //print("SelectPiece Called");
         hasSelectedPiece = true;
         //print("bool set to true");
+        OnHoverTile.GetComponent<OnTileActions>().TileNode.SetActive(true);
         SelectedPiece = Piece;
         CurrentTile = OnHoverTile;
         MaxPathNodes = Piece.GetComponent<pieceMovementScript>().MaxPathNodes; 
         //MaxMove = SelectedPiece.GetComponent<PiecePropScript>()
         //MaxPathNodes = SelectedPiece.GetComponent<PiecePropScript>()
         OnHoverTile.GetComponent<OnTileActions>().isSelected = true;
+        GridManager.rescan = true; 
         OnHoverTile.renderer.material.color = Color.yellow;
         if (SoundController != false)
         {
@@ -290,7 +294,7 @@ public class OnTurnActions : MonoBehaviour
      * piece is on it. It also resets the oldTile to a plain old tile.
      * This also calls NextTurn() to change who's turn it is anyway!
      */ 
-    public void EndOfTurn()
+    public void EndOfTurn()//this will set the selectedPiece to the target tile only when you are not initiating combat
     {
         if (isFighting == false)
         {
@@ -341,11 +345,14 @@ public class OnTurnActions : MonoBehaviour
         OnHoverTile.renderer.material.color = Color.green;
         hasSelectedPiece = false;
         SelectedPiece.transform.position = new Vector3(SelectedPiece.transform.position.x, 0.5f, SelectedPiece.transform.position.z);//this is a quick fix for a weird bug where pice was being clocked from movng
+        targetTile.GetComponent<OnTileActions>().TileNode.SetActive(false);
+        GridManager.rescan = true; 
         if (SoundController != false)
         {
             SoundController.GetComponent<UISoundsScript>().playMovePiece();
         }
         Camera.main.GetComponent<CameraZoomController>().SetTarget(SelectedPiece);
+        
         
     }
 
@@ -379,6 +386,13 @@ public class OnTurnActions : MonoBehaviour
             {
                 allTiles[i].GetComponent<OnTileActions>().TileState = OnTileActions.TileType.Synth;
             }
+        }
+        if (PieceSpawnController != null)
+        {
+            
+            PieceSpawnController.GetComponent<SpawnBasicUnits>().StartSpawn();
+            GridManager.rescan = true;
+
         }
     }
     public void UpdateStatPan()//called to update the stats on the stat panel prior to showing panel

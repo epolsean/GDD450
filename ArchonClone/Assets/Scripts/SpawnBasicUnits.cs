@@ -128,7 +128,7 @@ public class SpawnBasicUnits : MonoBehaviour {
         EndControllerScript.OrgVic = false;
         EndControllerScript.SynthVic = false;
 
-        StartSpawn();
+        //StartSpawn();
 
         SGtext = GameObject.Find("SynthGruntCountText");
         SStext = GameObject.Find("SynthScoutCountText");
@@ -173,7 +173,7 @@ public class SpawnBasicUnits : MonoBehaviour {
         }
 	}
 
-    void StartSpawn()
+    public void StartSpawn()
     {
         //Spawn 4 SynthTanks
         if(WTank01Tile != null)
@@ -396,18 +396,27 @@ public class SpawnBasicUnits : MonoBehaviour {
         if (!Network.isServer && !Network.isClient)
         {
             tile.GetComponent<OnTileActions>().PieceOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;
-            tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile; 
+            tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile;
+            tile.GetComponent<OnTileActions>().TileState = OnTileActions.TileType.Synth;
+            tile.GetComponent<OnTileActions>().TileNode.SetActive(false);
+            print("Tile Type Set");
             WhitePieceCount++;
         }
         else if (Network.isServer)
         {
             tile.GetComponent<OnTileActions>().PieceOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 90, 0), 1) as GameObject;
             tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile;
+            tile.GetComponent<OnTileActions>().TileState = OnTileActions.TileType.Synth;
+            tile.GetComponent<OnTileActions>().TileNode.SetActive(false);
+            print("Tile Type Set");
             networkView.RPC("addPieceCount", RPCMode.AllBuffered, WhitePieceCount, 0);
         }
         else if (Network.isClient)
         {
             tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile;
+            tile.GetComponent<OnTileActions>().TileState = OnTileActions.TileType.Synth;
+            tile.GetComponent<OnTileActions>().TileNode.SetActive(false);
+            print("Tile Type Set");
         }
     }
 
@@ -417,6 +426,9 @@ public class SpawnBasicUnits : MonoBehaviour {
         {
             tile.GetComponent<OnTileActions>().PieceOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 270, 0)) as GameObject;
             tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile;
+            tile.GetComponent<OnTileActions>().TileNode.SetActive(false);
+            tile.GetComponent<OnTileActions>().TileState = OnTileActions.TileType.Alien;
+            print("Tile Type Set");
             //tile.GetComponent<TileProperties>().Occupied = true;
             BlackPieceCount++;
         }
@@ -424,11 +436,17 @@ public class SpawnBasicUnits : MonoBehaviour {
         {
             tile.GetComponent<OnTileActions>().PieceOnTile = Network.Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 270, 0), 1) as GameObject;
             tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile;
+            tile.GetComponent<OnTileActions>().TileNode.SetActive(false);
+            tile.GetComponent<OnTileActions>().TileState = OnTileActions.TileType.Alien;
+            print("Tile Type Set");
             networkView.RPC("addPieceCount", RPCMode.AllBuffered, BlackPieceCount, 1);
         }
         else if(Network.isClient)
         {
             tile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<pieceMovementScript>().datTile = tile;
+            tile.GetComponent<OnTileActions>().TileState = OnTileActions.TileType.Alien;
+            tile.GetComponent<OnTileActions>().TileNode.SetActive(false);
+            print("Tile Type Set");
         }
     }
 
