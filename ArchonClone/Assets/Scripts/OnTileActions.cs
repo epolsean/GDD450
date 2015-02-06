@@ -158,7 +158,7 @@ public class OnTileActions : MonoBehaviour {
                 }
                 else
                 {
-                    if (TilePowerLevel >= 1)
+                    if (TilePowerLevel > 1)
                     {
                         TilePowerLevel--;
                         print("alien Tile down");
@@ -182,7 +182,7 @@ public class OnTileActions : MonoBehaviour {
                 }
                 else
                 {
-                    if (TilePowerLevel >= 1)
+                    if (TilePowerLevel > 1)
                     {
                         TilePowerLevel--;
                         print("Robot Tile Down");
