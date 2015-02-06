@@ -24,4 +24,19 @@ public class BattleStats : MonoBehaviour {
     public enum GameType { Elimination, Domination, ControlPoints };
 
     public static GameType currentGameType;
+
+    public void SetGameElimination()
+    {
+        currentGameType = GameType.Elimination;
+    }
+
+    public void SetGameDomination()
+    {
+        currentGameType = GameType.Domination;
+    }
+
+    public void SetGameControlPoints()
+    {
+        currentGameType = GameType.ControlPoints;
+    }
 }

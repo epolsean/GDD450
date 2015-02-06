@@ -13,11 +13,13 @@ public class GoTo : MonoBehaviour {
     public GameObject ControlsPanel;
     public GameObject BackToOptionsButton;
     public GameObject SettingsPanel;
+    public GameObject GameTypePanel;
 
     public GameObject firstButtonStartPage;
     public GameObject firstButtonCreditsPage;
     public GameObject firstButtonOptionsPage;
     public GameObject firstButtonSelectModePage;
+    public GameObject firstButtonGameTypePage;
 
     void Start()
     {
@@ -31,6 +33,7 @@ public class GoTo : MonoBehaviour {
             ControlsPanel.SetActive(false);
             BackToOptionsButton.SetActive(false);
             SettingsPanel.SetActive(false);
+            GameTypePanel.SetActive(false);
         }
     }
 
@@ -59,21 +62,13 @@ public class GoTo : MonoBehaviour {
 	public void Local() 
     {
         float sceneSelect = Random.Range(0f, 1000f);
-        if (sceneSelect < 250)
+        if (sceneSelect < 500)
         {
-            Application.LoadLevel("TestingHexTiles");
-        }
-        else if (sceneSelect < 500)
-        {
-            Application.LoadLevel("LargeTileBoard");
-        }
-        else if (sceneSelect < 750)
-        {
-            Application.LoadLevel("LargeTileBoard02");
+            Application.LoadLevel("TileBoardScene_01");
         }
         else
         {
-            Application.LoadLevel("MediumHexBoard02");
+            Application.LoadLevel("TestingTileMovement_Ryan");
         }
         BattleStats.singlePlayer = false;
 	}
@@ -100,6 +95,7 @@ public class GoTo : MonoBehaviour {
         ControlsPanel.SetActive(false);
         BackToOptionsButton.SetActive(false);
         SettingsPanel.SetActive(false);
+        GameTypePanel.SetActive(false);
     }
 
     public void MainMenu()
@@ -117,6 +113,7 @@ public class GoTo : MonoBehaviour {
         ControlsPanel.SetActive(false);
         BackToOptionsButton.SetActive(false);
         SettingsPanel.SetActive(false);
+        GameTypePanel.SetActive(false);
     }
 
     public void Settings()
@@ -129,6 +126,7 @@ public class GoTo : MonoBehaviour {
         ControlsPanel.SetActive(false);
         BackToOptionsButton.SetActive(false);
         SettingsPanel.SetActive(false);
+        GameTypePanel.SetActive(false);
     }
 
     public void MultiplayerMode()
@@ -141,6 +139,20 @@ public class GoTo : MonoBehaviour {
         ControlsPanel.SetActive(false);
         BackToOptionsButton.SetActive(false);
         SettingsPanel.SetActive(false);
+        GameTypePanel.SetActive(false);
+    }
+
+    public void GameType()
+    {
+        es.SetSelectedGameObject(firstButtonGameTypePage);
+        MainMenuPanel.SetActive(false);
+        OptionsPanel.SetActive(false);
+        SelectModePanel.SetActive(false);
+        CreditsPanel.SetActive(false);
+        ControlsPanel.SetActive(false);
+        BackToOptionsButton.SetActive(false);
+        SettingsPanel.SetActive(false);
+        GameTypePanel.SetActive(true);
     }
 
     public void Battle()
