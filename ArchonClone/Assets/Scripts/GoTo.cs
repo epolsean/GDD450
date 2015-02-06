@@ -61,7 +61,7 @@ public class GoTo : MonoBehaviour {
 
 	public void Local() 
     {
-        float sceneSelect = Random.Range(0f, 1000f);
+        /*float sceneSelect = Random.Range(0f, 1000f);
         if (sceneSelect < 500)
         {
             Application.LoadLevel("TileBoardScene_01");
@@ -69,7 +69,8 @@ public class GoTo : MonoBehaviour {
         else
         {
             Application.LoadLevel("TestingTileMovement_Ryan");
-        }
+        }*/
+        Application.LoadLevel("TestingTileMovement_Ryan");
         BattleStats.singlePlayer = false;
 	}
 
