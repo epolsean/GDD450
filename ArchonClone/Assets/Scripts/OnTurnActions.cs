@@ -150,24 +150,12 @@ public class OnTurnActions : MonoBehaviour
 
                             //SelectedPiece = null;
                             //CurrentTile = null; 
-                            //ResetController();
+                            ResetController();
                             if(SoundController != null)
                             {
                                 SoundController.GetComponent<UISoundsScript>().playDeselect();
 
                             }
-
-                            hasSelectedPiece = false;
-                            //print("bool set to true");
-                            //OnHoverTile.GetComponent<OnTileActions>().TileNode.SetActive(true);
-                            SelectedPiece = null;
-                            CurrentTile = null;
-                            MaxPathNodes = 0;
-                            //MaxMove = SelectedPiece.GetComponent<PiecePropScript>()
-                            //MaxPathNodes = SelectedPiece.GetComponent<PiecePropScript>()
-                            OnHoverTile.GetComponent<OnTileActions>().isSelected = false;
-                            GridManager.rescan = true;
-                            //OnHoverTile.renderer.material.color = Color.yellow;
                         }
                         else
                         {
