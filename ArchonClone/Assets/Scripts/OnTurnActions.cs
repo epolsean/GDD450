@@ -47,6 +47,7 @@ public class OnTurnActions : MonoBehaviour
     public bool isGenPath = false;
     public bool drawnPath = false;
     public static GameObject[] allTiles;
+    public GameObject DummyPiece; 
 
     public bool isFighting = false;
 
@@ -146,13 +147,27 @@ public class OnTurnActions : MonoBehaviour
                     {
                         if (CurrentTile == OnHoverTile)
                         {
-                            
-                            ResetController();
+
+                            //SelectedPiece = null;
+                            //CurrentTile = null; 
+                            //ResetController();
                             if(SoundController != null)
                             {
                                 SoundController.GetComponent<UISoundsScript>().playDeselect();
 
                             }
+
+                            hasSelectedPiece = false;
+                            //print("bool set to true");
+                            //OnHoverTile.GetComponent<OnTileActions>().TileNode.SetActive(true);
+                            SelectedPiece = null;
+                            CurrentTile = null;
+                            MaxPathNodes = 0;
+                            //MaxMove = SelectedPiece.GetComponent<PiecePropScript>()
+                            //MaxPathNodes = SelectedPiece.GetComponent<PiecePropScript>()
+                            OnHoverTile.GetComponent<OnTileActions>().isSelected = false;
+                            GridManager.rescan = true;
+                            //OnHoverTile.renderer.material.color = Color.yellow;
                         }
                         else
                         {
@@ -264,6 +279,7 @@ public class OnTurnActions : MonoBehaviour
         //print("ResetController Called");
         if (isFighting == false)
         {
+            print("ResetController Called");
             CurrentTile.renderer.material.color = Color.white;
             CurrentTile.GetComponent<OnTileActions>().isSelected = false;
             //MoveToTile.renderer.material.color = Color.white;

@@ -223,26 +223,32 @@ public class pieceMovementScript : MonoBehaviour {
         else//else checks for the path distance in nodes when you hover over a tile after selecting a piece
         {
             //print("path Nodes: " + path.vectorPath.Count + " list: " + path.path.Count);
-            if(MoveController.GetComponent<OnTurnActions>().drawnPath == false)
+            if(MoveController.GetComponent<OnTurnActions>().SelectedPiece == this.gameObject)
             {
-                MoveController.GetComponent<OnTurnActions>().drawnPath = true; 
-                Vector3[] tileNodes = path.vectorPath.ToArray();
-                for (int i = 0; i < path.vectorPath.Count; i++)
+                if (MoveController.GetComponent<OnTurnActions>().drawnPath == false)
                 {
-                    Collider[] NodeTile = Physics.OverlapSphere(new Vector3(tileNodes[i].x, tileNodes[i].y, tileNodes[i].z), 1);
-                    //print("NodeTile Size: " + NodeTile.Length + "at TileNodes: " + i);
-                    for (int j = 0; j < NodeTile.Length; j++)
+                    MoveController.GetComponent<OnTurnActions>().drawnPath = true;
+                    Vector3[] tileNodes = path.vectorPath.ToArray();
+                    for (int i = 0; i < path.vectorPath.Count; i++)
                     {
-                        if (NodeTile[j].tag == "Tile")
+                        Collider[] NodeTile = Physics.OverlapSphere(new Vector3(tileNodes[i].x, tileNodes[i].y, tileNodes[i].z), 1);
+                        //print("NodeTile Size: " + NodeTile.Length + "at TileNodes: " + i);
+                        for (int j = 0; j < NodeTile.Length; j++)
                         {
-                            NodeTile[j].renderer.material.color = Color.blue;
-                            if(NodeTile[j].GetComponent<OnTileActions>().isHovered)
+                            if (NodeTile[j].tag == "Tile")
                             {
-                                NodeTile[j].renderer.material.color = Color.green;
-                                print("Tile is in path array");
-                            } 
+                                print("MovingPieceName: " + this.name + "SelectedPiece: " + MoveController.GetComponent<OnTurnActions>().SelectedPiece.name);
+                                NodeTile[j].renderer.material.color = Color.blue;
+                                if (NodeTile[j].GetComponent<OnTileActions>().isHovered)
+                                {
+                                    NodeTile[j].renderer.material.color = Color.green;
+                                    print("Tile is in path array");
+                                }
+                                //NodeTile[j] = null; 
+                            }
                         }
                     }
+                    //path = null; 
                 }
             }
         }

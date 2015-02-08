@@ -273,6 +273,7 @@ MonoBehaviour:
   currentWaypoint: 0
   isGenPath: 0
   drawnPath: 0
+  DummyPiece: {fileID: 0}
   isFighting: 0
 --- !u!4 &16706730
 Transform:
@@ -7206,6 +7207,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 390121673}
   m_Mesh: {fileID: 4300000, guid: 1102e5a8f2f65e140aa6344d126c8f3a, type: 3}
+--- !u!1 &395744094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 395744095}
+  m_Layer: 0
+  m_Name: DummyPiece
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &395744095
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 395744094}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
 --- !u!1 &404285827
 GameObject:
   m_ObjectHideFlags: 0
@@ -31186,6 +31214,7 @@ MonoBehaviour:
   currentWaypoint: 0
   isGenPath: 0
   drawnPath: 0
+  DummyPiece: {fileID: 0}
   isFighting: 0
 --- !u!1 &1575414153
 GameObject:
