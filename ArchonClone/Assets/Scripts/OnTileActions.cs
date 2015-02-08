@@ -16,6 +16,7 @@ public class OnTileActions : MonoBehaviour {
     public string TileFaction; 
     public bool IsNutural = false;
     public bool isSelected = false;
+    public bool isHovered = false; 
     public int RandomRotation; 
     
     // Use this for initialization
@@ -85,6 +86,7 @@ public class OnTileActions : MonoBehaviour {
      */ 
     void OnMouseOver()
     {
+        isHovered = true; 
         TileNode.SetActive(true);
         GridManager.rescan = true;
         TurnController.GetComponent<OnTurnActions>().OnHoverTile = this.gameObject;
@@ -111,15 +113,16 @@ public class OnTileActions : MonoBehaviour {
                     {
                         if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes)
                         {
-                            float dist = Vector3.Distance(TurnController.GetComponent<OnTurnActions>().CurrentTile.transform.position, this.transform.position);
+                            /*float dist = Vector3.Distance(TurnController.GetComponent<OnTurnActions>().CurrentTile.transform.position, this.transform.position);
+                            print("Distance: " + dist);
                             if(dist <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxMove)
                             {
-                                this.renderer.material.color = Color.green;
+                                //this.renderer.material.color = Color.green;
                             }
                             else
                             {
-                                this.renderer.material.color = Color.red; 
-                            }
+                                //this.renderer.material.color = Color.red; 
+                            }*/
                         }
                         else
                         {
@@ -138,6 +141,7 @@ public class OnTileActions : MonoBehaviour {
      */ 
     void OnMouseExit()
     {
+        isHovered = false; 
         if(PieceOnTile != null)
         {
             if(isSelected == false)

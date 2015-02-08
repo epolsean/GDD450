@@ -38,7 +38,7 @@ public class pieceMovementScript : MonoBehaviour {
         if (name == "WhiteTank(Clone)" || name == "BlackTank(Clone)")
         {
             MaxPieceMove = 5 * 2;
-            MaxMove = 8;
+            MaxMove = (float)11.4;
             MaxPathNodes = 3;
         }
         else if (name == "WhiteGrunt(Clone)" || name == "BlackGrunt(Clone)")
@@ -50,13 +50,13 @@ public class pieceMovementScript : MonoBehaviour {
         else if (name == "WhiteRunner(Clone)" || name == "BlackRunner(Clone)")
         {
             MaxPieceMove = 5 * 3.5;
-            MaxMove = 16;
+            MaxMove = (float)22.4;
             MaxPathNodes = 6;
         }
         else if (name == "WhiteScout(Clone)" || name == "BlackScout(Clone)")
         {
             MaxPieceMove = 5 * 2.75;
-            MaxMove = 11;
+            MaxMove = 19;
             MaxPathNodes = 5;
         }
         else if (name == "WhiteBomber(Clone)" || name == "BlackBomber(Clone)")
@@ -236,6 +236,11 @@ public class pieceMovementScript : MonoBehaviour {
                         if (NodeTile[j].tag == "Tile")
                         {
                             NodeTile[j].renderer.material.color = Color.blue;
+                            if(NodeTile[j].GetComponent<OnTileActions>().isHovered)
+                            {
+                                NodeTile[j].renderer.material.color = Color.green;
+                                print("Tile is in path array");
+                            }
                         }
                     }
                 }

@@ -147,11 +147,10 @@ public class OnTurnActions : MonoBehaviour
                         if (CurrentTile == OnHoverTile)
                         {
                             ResetController();
-                            SoundController.GetComponent<UISoundsScript>().playDeselect();
-                            //if(SelectedPiece.name == "WhiteTank(Clone)")
-                            //{
-                            SelectedPiece.GetComponent<pieceMovementScript>().stopWalking();
-                            //}
+                            if(SoundController != null)
+                            {
+                                SoundController.GetComponent<UISoundsScript>().playDeselect();
+                            }
                         }
                         else
                         {

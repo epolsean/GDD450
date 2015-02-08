@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   - 148: {fileID: 14800000}
+  - 114: {fileID: 11449972}
   m_Layer: 0
   m_Name: PieceSpwnController
   m_TagString: Untagged
@@ -44,18 +45,22 @@ MonoBehaviour:
   SStext: {fileID: 0}
   STtext: {fileID: 0}
   SRtext: {fileID: 0}
+  SBtext: {fileID: 0}
   AGtext: {fileID: 0}
   AStext: {fileID: 0}
   ATtext: {fileID: 0}
   ARtext: {fileID: 0}
+  ABtext: {fileID: 0}
   WhiteTank: {fileID: 100004, guid: 74bdba594c3e6a540b0cfe050ae2f1d4, type: 2}
   WhiteScout: {fileID: 100004, guid: f7e3e65fe904fb44aa2880b2df433a97, type: 2}
   WhiteGrunt: {fileID: 100006, guid: 8e0de15c935126f4fb81f510c654b836, type: 2}
   WhiteRunner: {fileID: 100008, guid: 12d71996f75f344459d9545e0b771d8f, type: 2}
+  WhiteBomber: {fileID: 106186, guid: ae45b2aafcc64c6489740155b152a8c0, type: 2}
   BlackTank: {fileID: 100000, guid: def383d6525ba544bb134c5312278b78, type: 2}
   BlackGrunt: {fileID: 100004, guid: 23a21d2d3e1cdfd45813e773769dacff, type: 2}
   BlackRunner: {fileID: 100008, guid: eb4b247c75f48db4793e42fdaa00fee5, type: 2}
   BlackScout: {fileID: 100006, guid: 418f5e91e219624458b77459047b0132, type: 2}
+  BlackBomber: {fileID: 168708, guid: 95f0fc7a36b89b84db5c3812560e8eeb, type: 2}
   BTank01Tile: {fileID: 0}
   WTank01Tile: {fileID: 0}
   BTank02Tile: {fileID: 0}
@@ -88,6 +93,14 @@ MonoBehaviour:
   WScout03Tile: {fileID: 0}
   BScout04Tile: {fileID: 0}
   WScout04Tile: {fileID: 0}
+  BBomber01Tile: {fileID: 0}
+  BBomber02Tile: {fileID: 0}
+  BBomber03Tile: {fileID: 0}
+  BBomber04Tile: {fileID: 0}
+  WBomber01Tile: {fileID: 0}
+  WBomber02Tile: {fileID: 0}
+  WBomber03Tile: {fileID: 0}
+  WBomber04Tile: {fileID: 0}
   AlienGrunt1StartTile: {fileID: 0}
   AlienGrunt2StartTile: {fileID: 0}
   AlienGrunt3StartTile: {fileID: 0}
@@ -112,6 +125,17 @@ MonoBehaviour:
   RobotScout2StartTile: {fileID: 0}
   RobotRunner1StartTile: {fileID: 0}
   RobotRunner2StartTile: {fileID: 0}
+--- !u!114 &11449972
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 036d59f30c53e7b44a7b1aa2158b12be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!148 &14800000
 NetworkView:
   m_ObjectHideFlags: 1

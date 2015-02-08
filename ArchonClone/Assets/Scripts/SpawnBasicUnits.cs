@@ -387,7 +387,7 @@ public class SpawnBasicUnits : MonoBehaviour {
             SpawnBlackPiece(BlackBomber, BBomber04Tile);
             AlienBomberCount++;
         }
-        
+        print("SynthCount: " + WhitePieceCount + " / OrganicCount: " + BlackPieceCount);
     }
 
     public void SpawnWhitePiece(GameObject piece, GameObject tile)
