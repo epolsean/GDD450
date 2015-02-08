@@ -404,7 +404,7 @@ public class OnTurnActions : MonoBehaviour
                 }
                 if(NameText != null)
                 {
-                    NameText.GetComponent<Text>().text = OnHoverPiece.GetComponent<PiecePropScript>().PieceName + "Stats";
+                    NameText.GetComponent<Text>().text = OnHoverPiece.GetComponent<PiecePropScript>().PieceName + " Stats";
                 }
             }
             else
