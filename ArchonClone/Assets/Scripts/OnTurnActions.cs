@@ -146,10 +146,12 @@ public class OnTurnActions : MonoBehaviour
                     {
                         if (CurrentTile == OnHoverTile)
                         {
+                            
                             ResetController();
                             if(SoundController != null)
                             {
                                 SoundController.GetComponent<UISoundsScript>().playDeselect();
+
                             }
                         }
                         else

@@ -72,7 +72,7 @@ public class pieceMovementScript : MonoBehaviour {
         Debug.Log("Generating Path");
         seeker.StartPath(transform.position, targetPosition, OnPathComplete);
 
-        if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)" || name == "BlackRunner(Clone)")
+        if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)" || name == "WhiteBomber(Clone)" || name == "BlackRunner(Clone)")
         {
             //PieceAnim.SetTrigger("WalkOnce");
             startedWalking = true; 
@@ -131,7 +131,7 @@ public class pieceMovementScript : MonoBehaviour {
             {
 
                 isMoving = false;
-                if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)" || name == "BlackRunner(Clone)")
+                if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)" || name == "WhiteBomber(Clone)" || name == "BlackRunner(Clone)")
                 {
                     //GetComponentInChildren<Animator>().SetBool("isWalking", false);
                     PieceAnim.SetBool("isWalking", false);
@@ -240,7 +240,7 @@ public class pieceMovementScript : MonoBehaviour {
                             {
                                 NodeTile[j].renderer.material.color = Color.green;
                                 print("Tile is in path array");
-                            }
+                            } 
                         }
                     }
                 }

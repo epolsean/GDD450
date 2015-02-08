@@ -91,25 +91,25 @@ public class OnTileActions : MonoBehaviour {
         GridManager.rescan = true;
         TurnController.GetComponent<OnTurnActions>().OnHoverTile = this.gameObject;
         TurnController.GetComponent<OnTurnActions>().OnHoverPiece = this.PieceOnTile;
-        if(isSelected == false)
+        if (isSelected == false)
         {
-            if(TurnController.GetComponent<OnTurnActions>().hasSelectedPiece == false)
+            if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece == false)
             {
-                this.renderer.material.color = Color.cyan; 
+                this.renderer.material.color = Color.cyan;
             }
-            
-            if(TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
+
+            if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
             {
-                 
-                if(TurnController.GetComponent<OnTurnActions>().isGenPath == false)
+
+                if (TurnController.GetComponent<OnTurnActions>().isGenPath == false)
                 {
-                    Invoke("GenHoverPath", 1/100);
-                    
+                    Invoke("GenHoverPath", 1 / 100);
+
                 }
                 else
                 {
-                    TurnController.GetComponent<OnTurnActions>().drawnPath = false; 
-                    if(TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path != null)
+                    TurnController.GetComponent<OnTurnActions>().drawnPath = false;
+                    if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path != null)
                     {
                         if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes)
                         {
@@ -130,7 +130,20 @@ public class OnTileActions : MonoBehaviour {
                         }
                     }
                 }
-                
+
+            }
+        }
+        else
+        {
+            if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
+            {
+
+                if (TurnController.GetComponent<OnTurnActions>().isGenPath == false)
+                {
+                    Invoke("GenHoverPath", 1 / 100);
+
+                }
+                this.renderer.material.color = Color.yellow; 
             }
         }
     }
