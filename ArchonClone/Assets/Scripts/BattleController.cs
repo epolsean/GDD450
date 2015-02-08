@@ -30,8 +30,8 @@ public class BattleController : MonoBehaviour {
         attackerIcon.SetActive(true);
         defenderIcon.SetActive(true);
         //vsText.SetActive(true);
-        attackerLevel = attackerTile.GetComponent<OnTileActions>().TilePowerLevel + attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
-        defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerLevel + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
+        attackerLevel = attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
+        defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerLevel*25 + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
         
         starting = 1;
         partOfBattle = BattleState.PreBattle;
@@ -44,8 +44,8 @@ public class BattleController : MonoBehaviour {
         attackerIcon.SetActive(true);
         defenderIcon.SetActive(true);
         //vsText.SetActive(true);
-        attackerLevel = attackerTile.GetComponent<OnTileActions>().TilePowerLevel + attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
-        defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerLevel + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
+        attackerLevel = attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
+        defenderLevel = defenderTile.GetComponent<OnTileActions>().TilePowerLevel*25 + defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PowerLevel;
 
         starting = 1;
         partOfBattle = BattleState.PreBattle;
@@ -133,10 +133,152 @@ public class BattleController : MonoBehaviour {
             if (Random.Range(0, (int)(10000 / defenderLevel)) < defenderLevel/2) //This will be if the player who is defending the tile wins on the attack
             {
                 Loser = "both";
+                SpawnBasicUnits.BlackPieceCount--;
+                SpawnBasicUnits.WhitePieceCount--;
+                switch (attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PieceName)
+                {
+                    case "Organic Grunt":
+                        SpawnBasicUnits.AlienGruntCount--;
+                        break;
+                    case "Organic Runner":
+                        SpawnBasicUnits.AlienRunnerCount--;
+                        break;
+                    case "Organic Tank":
+                        SpawnBasicUnits.AlienTankCount--;
+                        break;
+                    case "Organic Scout":
+                        SpawnBasicUnits.AlienScoutCount--;
+                        break;
+                    case "Organic Bomber":
+                        SpawnBasicUnits.AlienBomberCount--;
+                        break;
+                    case "Synthetic Grunt":
+                        SpawnBasicUnits.SynthGruntCount--;
+                        break;
+                    case "Synthetic Runner":
+                        SpawnBasicUnits.SynthRunnerCount--;
+                        break;
+                    case "Synthetic Tank":
+                        SpawnBasicUnits.SynthTankCount--;
+                        break;
+                    case "Synthetic Scout":
+                        SpawnBasicUnits.SynthScoutCount--;
+                        break;
+                    case "Synthetic Bomber":
+                        SpawnBasicUnits.SynthBomberCount--;
+                        break;
+                }
+                switch (defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PieceName)
+                {
+                    case "Organic Grunt":
+                        SpawnBasicUnits.AlienGruntCount--;
+                        break;
+                    case "Organic Runner":
+                        SpawnBasicUnits.AlienRunnerCount--;
+                        break;
+                    case "Organic Tank":
+                        SpawnBasicUnits.AlienTankCount--;
+                        break;
+                    case "Organic Scout":
+                        SpawnBasicUnits.AlienScoutCount--;
+                        break;
+                    case "Organic Bomber":
+                        SpawnBasicUnits.AlienBomberCount--;
+                        break;
+                    case "Synthetic Grunt":
+                        SpawnBasicUnits.SynthGruntCount--;
+                        break;
+                    case "Synthetic Runner":
+                        SpawnBasicUnits.SynthRunnerCount--;
+                        break;
+                    case "Synthetic Tank":
+                        SpawnBasicUnits.SynthTankCount--;
+                        break;
+                    case "Synthetic Scout":
+                        SpawnBasicUnits.SynthScoutCount--;
+                        break;
+                    case "Synthetic Bomber":
+                        SpawnBasicUnits.SynthBomberCount--;
+                        break;
+                }
             }
             else
             {
                 Loser = "defender";
+                if (defenderTile.GetComponent<OnTileActions>().PieceOnTile.tag == "White")
+                {
+                    SpawnBasicUnits.WhitePieceCount--;
+                    switch (defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PieceName)
+                    {
+                        case "Organic Grunt":
+                            SpawnBasicUnits.AlienGruntCount--;
+                            break;
+                        case "Organic Runner":
+                            SpawnBasicUnits.AlienRunnerCount--;
+                            break;
+                        case "Organic Tank":
+                            SpawnBasicUnits.AlienTankCount--;
+                            break;
+                        case "Organic Scout":
+                            SpawnBasicUnits.AlienScoutCount--;
+                            break;
+                        case "Organic Bomber":
+                            SpawnBasicUnits.AlienBomberCount--;
+                            break;
+                        case "Synthetic Grunt":
+                            SpawnBasicUnits.SynthGruntCount--;
+                            break;
+                        case "Synthetic Runner":
+                            SpawnBasicUnits.SynthRunnerCount--;
+                            break;
+                        case "Synthetic Tank":
+                            SpawnBasicUnits.SynthTankCount--;
+                            break;
+                        case "Synthetic Scout":
+                            SpawnBasicUnits.SynthScoutCount--;
+                            break;
+                        case "Synthetic Bomber":
+                            SpawnBasicUnits.SynthBomberCount--;
+                            break;
+                    }
+                }
+                else
+                {
+                    SpawnBasicUnits.BlackPieceCount--;
+                    switch (attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PieceName)
+                    {
+                        case "Organic Grunt":
+                            SpawnBasicUnits.AlienGruntCount--;
+                            break;
+                        case "Organic Runner":
+                            SpawnBasicUnits.AlienRunnerCount--;
+                            break;
+                        case "Organic Tank":
+                            SpawnBasicUnits.AlienTankCount--;
+                            break;
+                        case "Organic Scout":
+                            SpawnBasicUnits.AlienScoutCount--;
+                            break;
+                        case "Organic Bomber":
+                            SpawnBasicUnits.AlienBomberCount--;
+                            break;
+                        case "Synthetic Grunt":
+                            SpawnBasicUnits.SynthGruntCount--;
+                            break;
+                        case "Synthetic Runner":
+                            SpawnBasicUnits.SynthRunnerCount--;
+                            break;
+                        case "Synthetic Tank":
+                            SpawnBasicUnits.SynthTankCount--;
+                            break;
+                        case "Synthetic Scout":
+                            SpawnBasicUnits.SynthScoutCount--;
+                            break;
+                        case "Synthetic Bomber":
+                            SpawnBasicUnits.SynthBomberCount--;
+                            break;
+                    }
+                }
                 string playerPrefString = DetermineWhatUnitWon();
                 PlayerPrefs.SetInt(playerPrefString, PlayerPrefs.GetInt(playerPrefString) + 1);
             }
@@ -147,10 +289,152 @@ public class BattleController : MonoBehaviour {
             if (Random.Range(0, (int)(10000/attackerLevel)) < attackerLevel/2) //This will be if the player who is attcking the tile wins on the attack
             {
                 Loser = "both";
+                SpawnBasicUnits.BlackPieceCount--;
+                SpawnBasicUnits.WhitePieceCount--;
+                switch (attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PieceName)
+                {
+                    case "Organic Grunt":
+                        SpawnBasicUnits.AlienGruntCount--;
+                        break;
+                    case "Organic Runner":
+                        SpawnBasicUnits.AlienRunnerCount--;
+                        break;
+                    case "Organic Tank":
+                        SpawnBasicUnits.AlienTankCount--;
+                        break;
+                    case "Organic Scout":
+                        SpawnBasicUnits.AlienScoutCount--;
+                        break;
+                    case "Organic Bomber":
+                        SpawnBasicUnits.AlienBomberCount--;
+                        break;
+                    case "Synthetic Grunt":
+                        SpawnBasicUnits.SynthGruntCount--;
+                        break;
+                    case "Synthetic Runner":
+                        SpawnBasicUnits.SynthRunnerCount--;
+                        break;
+                    case "Synthetic Tank":
+                        SpawnBasicUnits.SynthTankCount--;
+                        break;
+                    case "Synthetic Scout":
+                        SpawnBasicUnits.SynthScoutCount--;
+                        break;
+                    case "Synthetic Bomber":
+                        SpawnBasicUnits.SynthBomberCount--;
+                        break;
+                }
+                switch (defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PieceName)
+                {
+                    case "Organic Grunt":
+                        SpawnBasicUnits.AlienGruntCount--;
+                        break;
+                    case "Organic Runner":
+                        SpawnBasicUnits.AlienRunnerCount--;
+                        break;
+                    case "Organic Tank":
+                        SpawnBasicUnits.AlienTankCount--;
+                        break;
+                    case "Organic Scout":
+                        SpawnBasicUnits.AlienScoutCount--;
+                        break;
+                    case "Organic Bomber":
+                        SpawnBasicUnits.AlienBomberCount--;
+                        break;
+                    case "Synthetic Grunt":
+                        SpawnBasicUnits.SynthGruntCount--;
+                        break;
+                    case "Synthetic Runner":
+                        SpawnBasicUnits.SynthRunnerCount--;
+                        break;
+                    case "Synthetic Tank":
+                        SpawnBasicUnits.SynthTankCount--;
+                        break;
+                    case "Synthetic Scout":
+                        SpawnBasicUnits.SynthScoutCount--;
+                        break;
+                    case "Synthetic Bomber":
+                        SpawnBasicUnits.SynthBomberCount--;
+                        break;
+                }
             }
             else
             {
                 Loser = "attacker";
+                if (attackerTile.GetComponent<OnTileActions>().PieceOnTile.tag == "White")
+                {
+                    SpawnBasicUnits.WhitePieceCount--;
+                    switch(attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PieceName)
+                    {
+                        case "Organic Grunt":
+                            SpawnBasicUnits.AlienGruntCount--;
+                            break;
+                        case "Organic Runner":
+                            SpawnBasicUnits.AlienRunnerCount--;
+                            break;
+                        case "Organic Tank":
+                            SpawnBasicUnits.AlienTankCount--;
+                            break;
+                        case "Organic Scout":
+                            SpawnBasicUnits.AlienScoutCount--;
+                            break;
+                        case "Organic Bomber":
+                            SpawnBasicUnits.AlienBomberCount--;
+                            break;
+                        case "Synthetic Grunt":
+                            SpawnBasicUnits.SynthGruntCount--;
+                            break;
+                        case "Synthetic Runner":
+                            SpawnBasicUnits.SynthRunnerCount--;
+                            break;
+                        case "Synthetic Tank":
+                            SpawnBasicUnits.SynthTankCount--;
+                            break;
+                        case "Synthetic Scout":
+                            SpawnBasicUnits.SynthScoutCount--;
+                            break;
+                        case "Synthetic Bomber":
+                            SpawnBasicUnits.SynthBomberCount--;
+                            break;
+                    }
+                }
+                else
+                {
+                    SpawnBasicUnits.BlackPieceCount--;
+                    switch (defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PieceName)
+                    {
+                        case "Organic Grunt":
+                            SpawnBasicUnits.AlienGruntCount--;
+                            break;
+                        case "Organic Runner":
+                            SpawnBasicUnits.AlienRunnerCount--;
+                            break;
+                        case "Organic Tank":
+                            SpawnBasicUnits.AlienTankCount--;
+                            break;
+                        case "Organic Scout":
+                            SpawnBasicUnits.AlienScoutCount--;
+                            break;
+                        case "Organic Bomber":
+                            SpawnBasicUnits.AlienBomberCount--;
+                            break;
+                        case "Synthetic Grunt":
+                            SpawnBasicUnits.SynthGruntCount--;
+                            break;
+                        case "Synthetic Runner":
+                            SpawnBasicUnits.SynthRunnerCount--;
+                            break;
+                        case "Synthetic Tank":
+                            SpawnBasicUnits.SynthTankCount--;
+                            break;
+                        case "Synthetic Scout":
+                            SpawnBasicUnits.SynthScoutCount--;
+                            break;
+                        case "Synthetic Bomber":
+                            SpawnBasicUnits.SynthBomberCount--;
+                            break;
+                    }
+                }
             }
             partOfBattle = BattleState.PostBattle;
         }
