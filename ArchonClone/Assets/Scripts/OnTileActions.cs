@@ -111,7 +111,15 @@ public class OnTileActions : MonoBehaviour {
                     {
                         if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes)
                         {
-                            this.renderer.material.color = Color.green;
+                            float dist = Vector3.Distance(TurnController.GetComponent<OnTurnActions>().CurrentTile.transform.position, this.transform.position);
+                            if(dist <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxMove)
+                            {
+                                this.renderer.material.color = Color.green;
+                            }
+                            else
+                            {
+                                this.renderer.material.color = Color.red; 
+                            }
                         }
                         else
                         {

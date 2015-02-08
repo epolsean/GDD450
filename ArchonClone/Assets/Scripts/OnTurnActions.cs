@@ -148,6 +148,10 @@ public class OnTurnActions : MonoBehaviour
                         {
                             ResetController();
                             SoundController.GetComponent<UISoundsScript>().playDeselect();
+                            //if(SelectedPiece.name == "WhiteTank(Clone)")
+                            //{
+                            SelectedPiece.GetComponent<pieceMovementScript>().stopWalking();
+                            //}
                         }
                         else
                         {
@@ -155,7 +159,14 @@ public class OnTurnActions : MonoBehaviour
                             {
                                 if (OnHoverTile.GetComponent<OnTileActions>().PieceOnTile == null)
                                 {
-                                    SetTarget(OnHoverTile);
+                                    if(OnHoverTile.renderer.material.color == Color.green)
+                                    {
+                                        SetTarget(OnHoverTile);
+                                    }
+                                    else
+                                    {
+                                        SoundController.GetComponent<UISoundsScript>().playError();
+                                    }
                                 }
                                 else//brackets check when you are initiating combat
                                 {

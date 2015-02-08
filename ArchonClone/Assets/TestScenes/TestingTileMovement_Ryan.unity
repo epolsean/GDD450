@@ -14154,6 +14154,7 @@ MonoBehaviour:
   canFight: 0
   startMove: 0
   UIShouldGo: 0
+  startedWalking: 0
   datTile: {fileID: 0}
   datSprite: {fileID: 0}
   SoundController: {fileID: 0}

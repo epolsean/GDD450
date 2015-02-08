@@ -23,6 +23,7 @@ public class pieceMovementScript : MonoBehaviour {
     public bool canFight = false;
     public bool startMove = false; 
     public bool UIShouldGo = false;
+    public bool startedWalking = false;
     public GameObject datTile;
     public GameObject datSprite;
     public GameObject SoundController;
@@ -74,7 +75,7 @@ public class pieceMovementScript : MonoBehaviour {
         if (name == "BlackGrunt(Clone)" || name == "BlackTank(Clone)" || name == "WhiteTank(Clone)" || name == "BlackRunner(Clone)")
         {
             //PieceAnim.SetTrigger("WalkOnce");
-            PieceAnim.SetBool("isWalking", true);
+            startedWalking = true; 
             if(name == "BlackRunner(Clone)")
             {
                 print("Runner passed bool send------------------------------------------------------------------");
@@ -93,6 +94,7 @@ public class pieceMovementScript : MonoBehaviour {
 
     public void GenNewPath()
     {
+        path = null; 
         seeker.GetNewPath(transform.position, targetPosition);
     }
 
@@ -103,6 +105,11 @@ public class pieceMovementScript : MonoBehaviour {
             path = newPath;
             currentWaypoint = 0;
         }
+    }
+
+    public void stopWalking()
+    {
+        PieceAnim.SetBool("isWalking", false);
     }
 
     void FixedUpdate()
@@ -174,6 +181,11 @@ public class pieceMovementScript : MonoBehaviour {
         dir *= speed * Time.fixedDeltaTime;
         if(startMove)
         {
+            if(startedWalking)
+            {
+                startedWalking = false;
+                PieceAnim.SetBool("isWalking", true);
+            }
             if (path.vectorPath.Count <= MaxPathNodes)
             {
                 controller.SimpleMove(dir);
