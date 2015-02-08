@@ -1,0 +1,417 @@
+fileFormatVersion: 2
+guid: 799143ed52184674194c7ff18b1b5737
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: body
+    100002: bodyJoint
+    100004: bomb
+    100006: bombJoint
+    100008: curve1
+    100010: faceJoint
+    100012: head
+    100014: headJoint
+    100016: joint1
+    100018: joint2
+    100020: leftAnkleJoint
+    100022: leftEye
+    100024: leftEye1
+    100026: leftFoot
+    100028: leftFootJoint
+    100030: leftKnee
+    100032: leftKnee1
+    100034: leftLeg
+    100036: leftLeg2
+    100038: leftLegJoint
+    100040: leftToeJoint
+    100042: legKneeJoint
+    100044: neck
+    100046: neckGear2
+    100048: neckGear3
+    100050: neckJoint
+    100052: neckJoint 1
+    100054: neckJoint1
+    100056: neckJoint2
+    100058: neckJoint3
+    100060: rightAnkle
+    100062: rightAnkleJoint
+    100064: rightFoot
+    100066: rightFootJoint
+    100068: rightKnee
+    100070: rightKneeJoint
+    100072: rightLeg
+    100074: rightLeg2
+    100076: rightLegJoint1
+    100078: rightToeJoint
+    100080: //RootNode
+    400000: body
+    400002: bodyJoint
+    400004: bomb
+    400006: bombJoint
+    400008: curve1
+    400010: faceJoint
+    400012: head
+    400014: headJoint
+    400016: joint1
+    400018: joint2
+    400020: leftAnkleJoint
+    400022: leftEye
+    400024: leftEye1
+    400026: leftFoot
+    400028: leftFootJoint
+    400030: leftKnee
+    400032: leftKnee1
+    400034: leftLeg
+    400036: leftLeg2
+    400038: leftLegJoint
+    400040: leftToeJoint
+    400042: legKneeJoint
+    400044: neck
+    400046: neckGear2
+    400048: neckGear3
+    400050: neckJoint
+    400052: neckJoint 1
+    400054: neckJoint1
+    400056: neckJoint2
+    400058: neckJoint3
+    400060: rightAnkle
+    400062: rightAnkleJoint
+    400064: rightFoot
+    400066: rightFootJoint
+    400068: rightKnee
+    400070: rightKneeJoint
+    400072: rightLeg
+    400074: rightLeg2
+    400076: rightLegJoint1
+    400078: rightToeJoint
+    400080: //RootNode
+    2300000: body
+    2300002: head
+    2300004: leftEye
+    2300006: leftEye1
+    2300008: leftKnee
+    2300010: leftKnee1
+    2300012: leftLeg
+    2300014: leftLeg2
+    2300016: neck
+    2300018: neckGear2
+    2300020: neckGear3
+    2300022: neckJoint 1
+    2300024: neckJoint1
+    2300026: rightAnkle
+    2300028: rightKnee
+    2300030: rightLeg
+    2300032: rightLeg2
+    3300000: body
+    3300002: head
+    3300004: leftEye
+    3300006: leftEye1
+    3300008: leftKnee
+    3300010: leftKnee1
+    3300012: leftLeg
+    3300014: leftLeg2
+    3300016: neck
+    3300018: neckGear2
+    3300020: neckGear3
+    3300022: neckJoint 1
+    3300024: neckJoint1
+    3300026: rightAnkle
+    3300028: rightKnee
+    3300030: rightLeg
+    3300032: rightLeg2
+    4300000: bomb
+    4300002: head
+    4300004: leftEye
+    4300006: leftEye1
+    4300008: neckJoint1
+    4300010: neckGear2
+    4300012: neckGear3
+    4300014: neck
+    4300016: neckJoint
+    4300018: rightAnkle
+    4300020: rightKnee
+    4300022: rightLeg2
+    4300024: rightLeg
+    4300026: leftKnee1
+    4300028: leftLeg2
+    4300030: leftKnee
+    4300032: leftLeg
+    4300034: body
+    4300036: rightFoot
+    4300038: leftFoot
+    7400000: SynthBomberIdle
+    7400002: SynthBomberWalking
+    9500000: //RootNode
+    13700000: bomb
+    13700002: leftFoot
+    13700004: rightFoot
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: SynthBomberIdle
+      takeName: Take 001
+      firstFrame: 25
+      lastFrame: 189
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bodyJoint
+        weight: 1
+      - path: bodyJoint/body
+        weight: 1
+      - path: bodyJoint/bombJoint
+        weight: 1
+      - path: bodyJoint/bombJoint/joint1
+        weight: 1
+      - path: bodyJoint/bombJoint/joint1/joint2
+        weight: 1
+      - path: bodyJoint/leftLegJoint
+        weight: 1
+      - path: bodyJoint/leftLegJoint/leftLeg
+        weight: 1
+      - path: bodyJoint/leftLegJoint/legKneeJoint
+        weight: 1
+      - path: bodyJoint/leftLegJoint/legKneeJoint/leftAnkleJoint
+        weight: 1
+      - path: bodyJoint/leftLegJoint/legKneeJoint/leftAnkleJoint/leftFootJoint
+        weight: 1
+      - path: bodyJoint/leftLegJoint/legKneeJoint/leftAnkleJoint/leftFootJoint/leftToeJoint
+        weight: 1
+      - path: bodyJoint/leftLegJoint/legKneeJoint/leftAnkleJoint/leftKnee1
+        weight: 1
+      - path: bodyJoint/leftLegJoint/legKneeJoint/leftKnee
+        weight: 1
+      - path: bodyJoint/leftLegJoint/legKneeJoint/leftLeg2
+        weight: 1
+      - path: bodyJoint/neckJoint
+        weight: 1
+      - path: bodyJoint/neckJoint/neck
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint 1
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckGear2
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckGear3
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckJoint3
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckJoint3/headJoint
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckJoint3/headJoint/faceJoint
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckJoint3/headJoint/head
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckJoint3/headJoint/leftEye
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckJoint3/headJoint/leftEye1
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckJoint3/neckJoint1
+        weight: 1
+      - path: bodyJoint/rightLegJoint1
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightKneeJoint
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightKneeJoint/rightAnkleJoint
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightKneeJoint/rightAnkleJoint/rightAnkle
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightKneeJoint/rightAnkleJoint/rightFootJoint
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightKneeJoint/rightAnkleJoint/rightFootJoint/rightToeJoint
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightKneeJoint/rightKnee
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightKneeJoint/rightLeg2
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightLeg
+        weight: 1
+      - path: bomb
+        weight: 1
+      - path: curve1
+        weight: 1
+      - path: leftFoot
+        weight: 1
+      - path: rightFoot
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: SynthBomberWalking
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: bodyJoint
+        weight: 1
+      - path: bodyJoint/body
+        weight: 1
+      - path: bodyJoint/bombJoint
+        weight: 1
+      - path: bodyJoint/bombJoint/joint1
+        weight: 1
+      - path: bodyJoint/bombJoint/joint1/joint2
+        weight: 1
+      - path: bodyJoint/leftLegJoint
+        weight: 1
+      - path: bodyJoint/leftLegJoint/leftLeg
+        weight: 1
+      - path: bodyJoint/leftLegJoint/legKneeJoint
+        weight: 1
+      - path: bodyJoint/leftLegJoint/legKneeJoint/leftAnkleJoint
+        weight: 1
+      - path: bodyJoint/leftLegJoint/legKneeJoint/leftAnkleJoint/leftFootJoint
+        weight: 1
+      - path: bodyJoint/leftLegJoint/legKneeJoint/leftAnkleJoint/leftFootJoint/leftToeJoint
+        weight: 1
+      - path: bodyJoint/leftLegJoint/legKneeJoint/leftAnkleJoint/leftKnee1
+        weight: 1
+      - path: bodyJoint/leftLegJoint/legKneeJoint/leftKnee
+        weight: 1
+      - path: bodyJoint/leftLegJoint/legKneeJoint/leftLeg2
+        weight: 1
+      - path: bodyJoint/neckJoint
+        weight: 1
+      - path: bodyJoint/neckJoint/neck
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint 1
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckGear2
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckGear3
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckJoint3
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckJoint3/headJoint
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckJoint3/headJoint/faceJoint
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckJoint3/headJoint/head
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckJoint3/headJoint/leftEye
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckJoint3/headJoint/leftEye1
+        weight: 1
+      - path: bodyJoint/neckJoint/neckJoint2/neckJoint3/neckJoint1
+        weight: 1
+      - path: bodyJoint/rightLegJoint1
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightKneeJoint
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightKneeJoint/rightAnkleJoint
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightKneeJoint/rightAnkleJoint/rightAnkle
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightKneeJoint/rightAnkleJoint/rightFootJoint
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightKneeJoint/rightAnkleJoint/rightFootJoint/rightToeJoint
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightKneeJoint/rightKnee
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightKneeJoint/rightLeg2
+        weight: 1
+      - path: bodyJoint/rightLegJoint1/rightLeg
+        weight: 1
+      - path: bomb
+        weight: 1
+      - path: curve1
+        weight: 1
+      - path: leftFoot
+        weight: 1
+      - path: rightFoot
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 2
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
