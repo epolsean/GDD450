@@ -24,14 +24,17 @@ public class OnTurnActions : MonoBehaviour
     public GameObject CurrentTile;
     public GameObject SelectedPiece;
     public GameObject PieceStatPanel;
-    public GameObject HealthPanel;
-    public GameObject DamagePanel;
-    public GameObject SpeedPanel;
-    public GameObject TileStatPanel;
-    public GameObject TileFactionPan;
-    public GameObject TileLvlPan;
-    public GameObject TileBoostPan;
-    public GameObject TileBoostText;
+    public GameObject NameText; 
+    public GameObject PowerSlider;
+    public GameObject PowerText;
+    public GameObject SpeedSlider;
+    public GameObject SpeedText;
+    public GameObject FactionText;
+    public GameObject SpecialText;
+    public GameObject BoostSlider;
+    public GameObject BoostText;
+    public GameObject LvlSlider;
+    public GameObject LvlText; 
     public GameObject PieceSpawnController; 
     public bool hasSelectedPiece = false;
     public bool CanClick = true;
@@ -58,10 +61,6 @@ public class OnTurnActions : MonoBehaviour
         if(PieceStatPanel != null)
         {
             PieceStatPanel.SetActive(false);
-        }
-        if(TileStatPanel != null)
-        {
-            TileStatPanel.SetActive(false);
         }
         if(GameObject.Find("UISoundController") != null)
         {
@@ -188,21 +187,9 @@ public class OnTurnActions : MonoBehaviour
         if(OnHoverTile != null)
         {
             UpdateStatPan();
-            if(OnHoverTile.GetComponent<OnTileActions>().PieceOnTile != null)
+            if (PieceStatPanel != null)
             {
-                if(PieceStatPanel != null)
-                {
-                    TileStatPanel.SetActive(false);
-                    PieceStatPanel.SetActive(true);
-                }
-            }
-            else
-            {
-                if(TileStatPanel != null)
-                {
-                    PieceStatPanel.SetActive(false);
-                    TileStatPanel.SetActive(true);
-                }
+                PieceStatPanel.SetActive(true);
             }
         }
         else
@@ -210,10 +197,6 @@ public class OnTurnActions : MonoBehaviour
             if (PieceStatPanel != null)
             {
                 PieceStatPanel.SetActive(false);
-            }
-            if (TileStatPanel != null)
-            {
-                TileStatPanel.SetActive(false);
             }
         }
     }
@@ -402,25 +385,72 @@ public class OnTurnActions : MonoBehaviour
         {
             if (OnHoverTile.GetComponent<OnTileActions>().PieceOnTile != null)//displaying PieceStatPanel
             {
-                if(SpeedPanel != null)
+                if (PowerSlider != null)
                 {
-                    SpeedPanel.GetComponent<Slider>().value = OnHoverPiece.GetComponent<PiecePropScript>().Movement;
+                    PowerSlider.GetComponent<Slider>().value = OnHoverPiece.GetComponent<PiecePropScript>().PowerLevel;
+                    if (PowerSlider != null)
+                    {
+                        PowerText.GetComponent<Text>().text = OnHoverPiece.GetComponent<PiecePropScript>().PowerLevel.ToString();
+                    }
+                }
+                
+                if(SpeedSlider != null)
+                {
+                    SpeedSlider.GetComponent<Slider>().value = OnHoverPiece.GetComponent<PiecePropScript>().Movement;
+                    if(SpeedSlider != null)
+                    {
+                        SpeedText.GetComponent<Text>().text = OnHoverPiece.GetComponent<PiecePropScript>().Movement.ToString(); 
+                    }
+                }
+                if(NameText != null)
+                {
+                    NameText.GetComponent<Text>().text = OnHoverPiece.GetComponent<PiecePropScript>().PieceName + "Stats";
                 }
             }
-            else//displaying TileStatPanel
+            else
             {
-                if(TileFactionPan != null)
+                //set unused Piece Stats to 0/null/N/A
+                if (PowerSlider != null)
                 {
-                    TileFactionPan.GetComponent<Text>().text = "Tile Faction: " + OnHoverTile.GetComponent<OnTileActions>().TileState.ToString();
+                    PowerSlider.GetComponent<Slider>().value = 0;
+                    if (PowerSlider != null)
+                    {
+                        PowerText.GetComponent<Text>().text = "N/A";
+                    }
                 }
-                if(TileLvlPan != null)
+
+                if (SpeedSlider != null)
                 {
-                    TileLvlPan.GetComponent<Slider>().value = OnHoverTile.GetComponent<OnTileActions>().TilePowerLevel;
+                    SpeedSlider.GetComponent<Slider>().value = 0;
+                    if (SpeedSlider != null)
+                    {
+                        SpeedText.GetComponent<Text>().text = "N/A";
+                    }
                 }
-                if(TileBoostPan != null && TileBoostText != null)
+                if (NameText != null)
                 {
-                    TileBoostPan.GetComponent<Slider>().value = OnHoverTile.GetComponent<OnTileActions>().TilePowerLevel * 25;
-                    TileBoostText.GetComponent<Text>().text = TileBoostPan.GetComponent<Slider>().value.ToString();
+                    NameText.GetComponent<Text>().text = "Tile Stats";
+                }
+            }
+            //Just Tile Properties:
+            if (FactionText != null)
+            {
+                FactionText.GetComponent<Text>().text = OnHoverTile.GetComponent<OnTileActions>().TileFaction;
+            }
+            if (BoostSlider != null)
+            {
+                BoostSlider.GetComponent<Slider>().value = OnHoverTile.GetComponent<OnTileActions>().TilePowerLevel * 25;
+                if (BoostSlider != null)
+                {
+                    BoostText.GetComponent<Text>().text = (OnHoverTile.GetComponent<OnTileActions>().TilePowerLevel * 25).ToString();
+                }
+            }
+            if (LvlSlider != null)
+            {
+                LvlSlider.GetComponent<Slider>().value = OnHoverTile.GetComponent<OnTileActions>().TilePowerLevel;
+                if (LvlSlider != null)
+                {
+                    LvlText.GetComponent<Text>().text = OnHoverTile.GetComponent<OnTileActions>().TilePowerLevel.ToString();
                 }
             }
 

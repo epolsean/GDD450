@@ -12,7 +12,8 @@ public class OnTileActions : MonoBehaviour {
     public Texture NuturalTexture = null; 
     public int TilePowerLevel = 0;
     public enum TileType { Alien, Synth, Nutural };
-    public TileType TileState; 
+    public TileType TileState;
+    public string TileFaction; 
     public bool IsNutural = false;
     public bool isSelected = false;
     public int RandomRotation; 
@@ -59,14 +60,18 @@ public class OnTileActions : MonoBehaviour {
         if(TileState == TileType.Alien)
         {
             this.renderer.material.mainTexture = AlienTexture;
+            TileFaction = "Organics";
         }
         else if( TileState == TileType.Synth)
         {
             this.renderer.material.mainTexture = SynthTexture;
+            TileFaction = "Synthetics";
         }
         else
         {
             this.renderer.material.mainTexture = NuturalTexture;
+            TileFaction = "Neutral";
+            TilePowerLevel = 0;
         }
 
         if(IsNutural)

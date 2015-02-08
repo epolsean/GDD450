@@ -12,16 +12,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TestScenes/ChooseSide.unity
   - enabled: 1
-    path: Assets/TestScenes/TestingHexTiles.unity
-  - enabled: 1
-    path: Assets/TestScenes/TutorialTestGrid.unity
-  - enabled: 1
-    path: Assets/TestScenes/LargeTileBoard.unity
-  - enabled: 1
-    path: Assets/TestScenes/LargeTileBoard02.unity
-  - enabled: 1
-    path: Assets/TestScenes/MediumHexBoard02.unity
-  - enabled: 1
     path: Assets/TestScenes/EndPlaceHolderScene.unity
   - enabled: 1
     path: Assets/TestScenes/SyntheticVictory.unity

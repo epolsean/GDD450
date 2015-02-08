@@ -317,7 +317,7 @@ public class TileProperties : MonoBehaviour {
             {
                 UnitMoveController.GetComponent<PawnMove>().StatPan.SetActive(true);
             }
-            if (GameObject.Find("HealthSlider") != null)
+            /*if (GameObject.Find("HealthSlider") != null)
             {
                 GameObject.Find("HealthSlider").GetComponent<Slider>().maxValue = this.UnitOnTile.GetComponent<PiecePropScript>().MaxHealth;
                 GameObject.Find("HealthSlider").GetComponent<Slider>().value = this.UnitOnTile.GetComponent<PiecePropScript>().Health;
@@ -333,7 +333,7 @@ public class TileProperties : MonoBehaviour {
             if (GameObject.Find("SpeedSlider") != null)
             {
                 GameObject.Find("SpeedSlider").GetComponent<Slider>().value = this.UnitOnTile.GetComponent<PiecePropScript>().Movement;
-            }
+            }*/
         }
         if (UnitMoveController.GetComponent<PawnMove>().isMoving == false)
         {
