@@ -22,8 +22,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TestScenes/TestingTileMovement_Ryan.unity
   - enabled: 1
-    path: Assets/TestScenes/TileBoardScene01.unity
-  - enabled: 1
     path: Assets/TestScenes/TutorialGridScene01.unity
   - enabled: 1
     path: Assets/TestScenes/TileBoard_V2_Erik.unity
+  - enabled: 1
+    path: Assets/TestScenes/TileBoardScene01.unity
