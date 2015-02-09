@@ -226,6 +226,7 @@ MonoBehaviour:
   LvlSlider: {fileID: 388332528}
   LvlText: {fileID: 302136868}
   PieceSpawnController: {fileID: 952641981}
+  TutorialController: {fileID: 0}
   hasSelectedPiece: 0
   CanClick: 1
   seeker: {fileID: 0}
@@ -11981,7 +11982,7 @@ MonoBehaviour:
   BlackTank: {fileID: 100000, guid: def383d6525ba544bb134c5312278b78, type: 2}
   BlackGrunt: {fileID: 100004, guid: 23a21d2d3e1cdfd45813e773769dacff, type: 2}
   BlackRunner: {fileID: 100008, guid: eb4b247c75f48db4793e42fdaa00fee5, type: 2}
-  BlackScout: {fileID: 100006, guid: 418f5e91e219624458b77459047b0132, type: 2}
+  BlackScout: {fileID: 170060, guid: 3151ace9113375c4ca6600fa0383824c, type: 2}
   BlackBomber: {fileID: 168708, guid: 95f0fc7a36b89b84db5c3812560e8eeb, type: 2}
   BTank01Tile: {fileID: 292822522}
   WTank01Tile: {fileID: 452542060}
@@ -12047,6 +12048,7 @@ MonoBehaviour:
   RobotScout2StartTile: {fileID: 0}
   RobotRunner1StartTile: {fileID: 0}
   RobotRunner2StartTile: {fileID: 0}
+  TutorialController: {fileID: 0}
 --- !u!4 &952641984
 Transform:
   m_ObjectHideFlags: 0
@@ -19000,6 +19002,7 @@ MonoBehaviour:
   LvlSlider: {fileID: 0}
   LvlText: {fileID: 0}
   PieceSpawnController: {fileID: 0}
+  TutorialController: {fileID: 0}
   hasSelectedPiece: 0
   CanClick: 1
   seeker: {fileID: 0}
@@ -19509,6 +19512,10 @@ Prefab:
       propertyPath: WBomber02Tile
       value: 
       objectReference: {fileID: 1768671438}
+    - target: {fileID: 11400000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
+      propertyPath: BlackScout
+      value: 
+      objectReference: {fileID: 170060, guid: 3151ace9113375c4ca6600fa0383824c, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbbf5d209ec292f46b4246000e11e200, type: 2}
   m_RootGameObject: {fileID: 952641981}
