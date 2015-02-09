@@ -11462,6 +11462,10 @@ MonoBehaviour:
   P1Pieces: {fileID: 1882417821}
   P2Pieces: {fileID: 590001841}
   PlayerTurn: {fileID: 1588444541}
+  Slider1: {fileID: 0}
+  Slider2: {fileID: 0}
+  Slider3: {fileID: 0}
+  Canvas: {fileID: 0}
 --- !u!114 &1308497034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16917,8 +16921,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minZoomLevel: 10
   maxZoomLevel: 10
-  piecePanel1: {fileID: 0}
-  piecePanel2: {fileID: 0}
+  piecePanel1: {fileID: 1882417821}
+  piecePanel2: {fileID: 590001841}
   whoseTurn: {fileID: 0}
 --- !u!114 &1943087345
 MonoBehaviour:

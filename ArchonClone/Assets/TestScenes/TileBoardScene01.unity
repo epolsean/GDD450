@@ -132,6 +132,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &6076095
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -266,6 +267,7 @@ MonoBehaviour:
   LvlSlider: {fileID: 1083459862}
   LvlText: {fileID: 1304539077}
   PieceSpawnController: {fileID: 952641981}
+  TutorialController: {fileID: 0}
   hasSelectedPiece: 0
   CanClick: 1
   seeker: {fileID: 0}
@@ -386,6 +388,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &26916026
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -569,6 +572,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &36754683
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -670,6 +674,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &37554023
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -812,6 +817,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &53605659
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -954,6 +960,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &65966127
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1219,6 +1226,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &93429182
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1466,6 +1474,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &110667118
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1608,6 +1617,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &116432829
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1709,6 +1719,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &117723047
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1851,6 +1862,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &119723444
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1952,6 +1964,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &127350749
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2217,6 +2230,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &156977932
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2318,6 +2332,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &157528839
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2485,6 +2500,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &159645266
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2627,6 +2643,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &160209484
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2728,6 +2745,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &163335462
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2911,6 +2929,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &186254756
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3012,6 +3031,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &188853614
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3223,6 +3243,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &208733532
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3324,6 +3345,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &210116480
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3740,6 +3762,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &236126923
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3841,6 +3864,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &239725032
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4024,6 +4048,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &254070850
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4198,6 +4223,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &255804940
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4381,6 +4407,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &263942650
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4482,6 +4509,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &267441168
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4624,6 +4652,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &274039494
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4876,6 +4905,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &294456092
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4977,6 +5007,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &296009461
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5271,6 +5302,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &306445522
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5413,6 +5445,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &309991829
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5514,6 +5547,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &313301576
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5697,6 +5731,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &322556772
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5953,6 +5988,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &334525233
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6054,6 +6090,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &336066182
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6196,6 +6233,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &338902979
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6381,6 +6419,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &342034530
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6738,6 +6777,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &353290857
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -6962,6 +7002,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &380873974
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7063,6 +7104,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &384734565
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7164,6 +7206,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &390121676
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7374,6 +7417,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &409277200
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7475,6 +7519,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &412356665
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7576,6 +7621,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &413196309
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7884,6 +7930,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &441186328
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7985,6 +8032,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &442528407
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8086,6 +8134,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &449617778
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8228,6 +8277,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &451372278
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8329,6 +8379,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &451758946
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8645,6 +8696,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &473118375
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8746,6 +8798,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &474254258
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8847,6 +8900,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &479201063
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9053,6 +9107,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &490423065
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9195,6 +9250,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &498477946
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9296,6 +9352,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &503322868
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9397,6 +9454,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &509029933
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9498,6 +9556,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &513051848
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9681,6 +9740,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &525042598
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9782,6 +9842,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &530052321
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9883,6 +9944,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &532245047
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10025,6 +10087,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &555726399
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10446,6 +10509,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &582752053
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10560,6 +10624,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &584653593
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10800,6 +10865,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &591179284
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11111,6 +11177,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &626041926
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11363,6 +11430,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &647764890
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11464,6 +11532,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &649160203
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11705,6 +11774,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &653271440
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11929,6 +11999,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &678973960
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12071,6 +12142,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &682646468
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12213,6 +12285,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &685341243
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12355,6 +12428,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &689510170
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12456,6 +12530,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &689602288
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12557,6 +12632,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &689855615
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12722,6 +12798,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &696232290
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12864,6 +12941,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &699010501
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12965,6 +13043,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &701273921
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13304,6 +13383,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &728048097
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13446,6 +13526,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &734537025
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13670,6 +13751,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &755920925
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13771,6 +13853,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &759748284
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13913,6 +13996,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &762501105
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14055,6 +14139,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &774896966
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14197,6 +14282,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &777800621
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14339,6 +14425,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &791621375
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14440,6 +14527,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &800471898
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14582,6 +14670,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &812411368
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14724,6 +14813,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &814901157
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14825,6 +14915,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &815438413
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16059,6 +16150,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &820707579
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16201,6 +16293,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &821656603
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16302,6 +16395,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &833175382
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16403,6 +16497,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &836707328
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16691,6 +16786,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &864264999
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16833,6 +16929,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &866562769
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -16975,6 +17072,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &879734789
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17076,6 +17174,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &884095463
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17218,6 +17317,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &887137307
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17401,6 +17501,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &894571880
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17653,6 +17754,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &916243629
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -17795,6 +17897,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &921859425
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18019,6 +18122,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &926348954
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18120,6 +18224,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &927174573
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18351,6 +18456,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &932296960
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18452,6 +18558,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &940634015
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18594,6 +18701,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &946321016
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18736,6 +18844,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &948554571
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -18881,7 +18990,7 @@ MonoBehaviour:
   BlackTank: {fileID: 100000, guid: def383d6525ba544bb134c5312278b78, type: 2}
   BlackGrunt: {fileID: 100004, guid: 23a21d2d3e1cdfd45813e773769dacff, type: 2}
   BlackRunner: {fileID: 100008, guid: eb4b247c75f48db4793e42fdaa00fee5, type: 2}
-  BlackScout: {fileID: 100006, guid: 418f5e91e219624458b77459047b0132, type: 2}
+  BlackScout: {fileID: 170060, guid: 3151ace9113375c4ca6600fa0383824c, type: 2}
   BlackBomber: {fileID: 168708, guid: 95f0fc7a36b89b84db5c3812560e8eeb, type: 2}
   BTank01Tile: {fileID: 1142585338}
   WTank01Tile: {fileID: 1786245911}
@@ -18947,6 +19056,7 @@ MonoBehaviour:
   RobotScout2StartTile: {fileID: 0}
   RobotRunner1StartTile: {fileID: 0}
   RobotRunner2StartTile: {fileID: 0}
+  TutorialController: {fileID: 0}
 --- !u!4 &952641984
 Transform:
   m_ObjectHideFlags: 0
@@ -19029,6 +19139,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &953500638
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19171,6 +19282,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &960568090
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19667,6 +19779,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &976991693
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19768,6 +19881,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &980138526
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -19933,6 +20047,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &988930158
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20116,6 +20231,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1003673032
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20299,6 +20415,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1019880326
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20400,6 +20517,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1021510532
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20570,6 +20688,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1027328287
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20808,6 +20927,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1040936476
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -20909,6 +21029,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1041593862
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21010,6 +21131,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1041648232
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21111,6 +21233,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1041785438
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21281,6 +21404,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1044349043
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21382,6 +21506,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1045206547
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21524,6 +21649,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1053587927
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21799,6 +21925,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1074513890
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -21941,6 +22068,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1078278962
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22042,6 +22170,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1079892941
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22368,6 +22497,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1084131763
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22510,6 +22640,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1092703373
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22611,6 +22742,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1093427579
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22712,6 +22844,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1108202268
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22923,6 +23056,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1137509579
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23011,6 +23145,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1142585340
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23125,6 +23260,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1148625286
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23267,6 +23403,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1157828190
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23368,6 +23505,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1160252149
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23469,6 +23607,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1161729976
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23767,6 +23906,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1175480770
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -23973,6 +24113,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1184044319
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24074,6 +24215,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1185360561
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24175,6 +24317,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1187026761
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24317,6 +24460,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1194343406
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24683,6 +24827,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1223828833
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24907,6 +25052,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1243597158
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25008,6 +25154,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1244233176
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25434,6 +25581,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1267691611
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25791,6 +25939,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1271997445
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -25892,6 +26041,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1272752457
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26116,6 +26266,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1292284387
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26299,6 +26450,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1299273060
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26562,6 +26714,9 @@ MonoBehaviour:
   attackerIcon: {fileID: 964821618}
   defenderIcon: {fileID: 986470135}
   vsText: {fileID: 0}
+  piecePanel1: {fileID: 0}
+  piecePanel2: {fileID: 0}
+  whoseTurn: {fileID: 0}
 --- !u!1 &1309956698
 GameObject:
   m_ObjectHideFlags: 0
@@ -26620,6 +26775,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1309956701
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26721,6 +26877,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1315103342
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26863,6 +27020,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1321064648
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -26999,6 +27157,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1327218398
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27394,6 +27553,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1375545346
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27495,6 +27655,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1379719190
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27678,6 +27839,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1391611989
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27779,6 +27941,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1393316940
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27880,6 +28043,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1394644008
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27981,6 +28145,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1398358367
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -28123,6 +28288,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1402635809
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -28457,6 +28623,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1415192872
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -28558,6 +28725,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1415381478
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -28659,6 +28827,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1420519241
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -28824,6 +28993,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1440181253
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -28925,6 +29095,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1440925576
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -29026,6 +29197,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1441709615
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -29298,6 +29470,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1465396334
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -29465,6 +29638,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1467642217
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -29607,6 +29781,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1476598732
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -29708,6 +29883,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1478233188
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -29809,6 +29985,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1480619731
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -29897,6 +30074,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1480807637
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -30011,6 +30189,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1484338202
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -30296,6 +30475,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1505235852
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -30397,6 +30577,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1516046335
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -30498,6 +30679,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1524212476
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -30599,6 +30781,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1525883876
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -30823,6 +31006,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1549949776
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -30924,6 +31108,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1559599184
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31066,6 +31251,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1571257366
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31207,6 +31393,7 @@ MonoBehaviour:
   LvlSlider: {fileID: 0}
   LvlText: {fileID: 0}
   PieceSpawnController: {fileID: 0}
+  TutorialController: {fileID: 0}
   hasSelectedPiece: 0
   CanClick: 1
   seeker: {fileID: 0}
@@ -31274,6 +31461,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1575414156
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31375,6 +31563,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1577882570
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31517,6 +31706,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1584429250
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31725,6 +31915,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1589668315
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -31867,6 +32058,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1609611203
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -32196,6 +32388,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1643707392
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -32621,6 +32814,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1689394836
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -32722,6 +32916,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1704438868
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33028,6 +33223,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1721826946
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33387,6 +33583,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1758489740
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33488,6 +33685,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1758666649
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33589,6 +33787,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1765218464
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33731,6 +33930,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1786245914
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -33914,6 +34114,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1795682712
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34079,6 +34280,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1803878175
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34262,6 +34464,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1819468329
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34404,6 +34607,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1832242279
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34505,6 +34709,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1832533471
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34675,6 +34880,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1840106639
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -34776,6 +34982,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1843859062
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35183,6 +35390,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1873119099
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35399,6 +35607,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1875869998
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35500,6 +35709,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1878729671
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35601,6 +35811,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1879506917
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36110,6 +36321,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1903882374
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36444,6 +36656,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1916142107
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36545,6 +36758,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1920880553
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36687,6 +36901,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1921297300
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36788,6 +37003,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1931351986
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -36996,6 +37212,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minZoomLevel: 10
   maxZoomLevel: 10
+  piecePanel1: {fileID: 0}
+  piecePanel2: {fileID: 0}
+  whoseTurn: {fileID: 0}
 --- !u!114 &1943087345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37190,6 +37409,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1967473825
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -37291,6 +37511,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1968276830
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -37556,6 +37777,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1977822567
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -37780,6 +38002,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &1998643206
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -37881,6 +38104,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &2003107134
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -38130,6 +38354,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &2024818707
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -38272,6 +38497,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &2042640617
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -38455,6 +38681,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &2049498175
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -38737,6 +38964,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &2059087225
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -38961,6 +39189,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &2067202452
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39144,6 +39373,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &2069963571
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39245,6 +39475,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &2071749299
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39443,6 +39674,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &2075047604
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39544,6 +39776,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &2076601661
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39645,6 +39878,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &2078971636
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39787,6 +40021,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &2091439192
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39888,6 +40123,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &2092471193
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -40153,6 +40389,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &2140081148
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -40254,6 +40491,7 @@ MonoBehaviour:
   isSelected: 0
   isHovered: 0
   RandomRotation: 0
+  PauseMenu: {fileID: 0}
 --- !u!64 &2146513046
 MeshCollider:
   m_ObjectHideFlags: 0

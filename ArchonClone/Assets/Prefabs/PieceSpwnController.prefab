@@ -59,7 +59,7 @@ MonoBehaviour:
   BlackTank: {fileID: 100000, guid: def383d6525ba544bb134c5312278b78, type: 2}
   BlackGrunt: {fileID: 100004, guid: 23a21d2d3e1cdfd45813e773769dacff, type: 2}
   BlackRunner: {fileID: 100008, guid: eb4b247c75f48db4793e42fdaa00fee5, type: 2}
-  BlackScout: {fileID: 100006, guid: 418f5e91e219624458b77459047b0132, type: 2}
+  BlackScout: {fileID: 170060, guid: 3151ace9113375c4ca6600fa0383824c, type: 2}
   BlackBomber: {fileID: 168708, guid: 95f0fc7a36b89b84db5c3812560e8eeb, type: 2}
   BTank01Tile: {fileID: 0}
   WTank01Tile: {fileID: 0}
@@ -125,6 +125,7 @@ MonoBehaviour:
   RobotScout2StartTile: {fileID: 0}
   RobotRunner1StartTile: {fileID: 0}
   RobotRunner2StartTile: {fileID: 0}
+  TutorialController: {fileID: 0}
 --- !u!114 &11449972
 MonoBehaviour:
   m_ObjectHideFlags: 1
