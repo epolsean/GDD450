@@ -34433,7 +34433,7 @@ GameObject:
   - 222: {fileID: 1588444544}
   - 114: {fileID: 1588444543}
   m_Layer: 5
-  m_Name: whosTurnIsItAnyway
+  m_Name: WhoseTurnIsItAnyway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42315,9 +42315,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minZoomLevel: 10
   maxZoomLevel: 10
-  piecePanel1: {fileID: 0}
-  piecePanel2: {fileID: 0}
-  whoseTurn: {fileID: 0}
+  piecePanel1: {fileID: 1882417821}
+  piecePanel2: {fileID: 590001841}
+  whoseTurn: {fileID: 1588444541}
 --- !u!114 &1943087345
 MonoBehaviour:
   m_ObjectHideFlags: 0
