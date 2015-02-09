@@ -279,8 +279,9 @@ public class OnTurnActions : MonoBehaviour
             MaxPathNodes = 0;
             hasSelectedPiece = false;
             resetAllTiles();
+            Camera.main.GetComponent<CameraZoomController>().ResetTransform();
         }
-        Camera.main.GetComponent<CameraZoomController>().ResetTransform();
+        
         if (BattleStats.currentGameType == BattleStats.GameType.Domination)
         {
             GameObject.Find("Canvas").GetComponent<DominationController>().UpdatePercentUI();

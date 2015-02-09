@@ -13,6 +13,10 @@ public class CameraZoomController : MonoBehaviour
     public int maxZoomLevel = 10; //How far the camera can zoom in
 
     GameObject targetTile;
+    public GameObject piecePanel1;
+    public GameObject piecePanel2;
+    public GameObject whoseTurn;
+
     // Use this for initialization
     void Start()
     {
@@ -67,7 +71,7 @@ public class CameraZoomController : MonoBehaviour
     //Zooms in on target before the target starts to move
     void ZoomToTarget()
     {
-        if (Vector3.Distance(transform.position, targetTile.transform.position) < 10)
+        if (Vector3.Distance(transform.position, targetTile.transform.position) < 15)
         {
             following = true;
             zooming = false;
@@ -90,6 +94,9 @@ public class CameraZoomController : MonoBehaviour
         transform.rotation = startRotation;
         //transform.forward = Vector3.Normalize(target.transform.position - transform.position);
         transform.SetParent(target.transform);
+        piecePanel1.SetActive(false);
+        piecePanel2.SetActive(false);
+        whoseTurn.SetActive(false);
     }
 
     // Method to reset the camera transform after movement/interaction is done
@@ -99,6 +106,9 @@ public class CameraZoomController : MonoBehaviour
         zooming = false;
         transform.SetParent(null);
         resetting = true;
+        piecePanel1.SetActive(true);
+        piecePanel2.SetActive(true);
+        whoseTurn.SetActive(true);
     }
 
     void ResettingCamera()

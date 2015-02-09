@@ -6,11 +6,18 @@ public class DominationController : MonoBehaviour
 {
     public GameObject alienPercent;
     public GameObject robotPercent;
+    public GameObject neutralPercent;
 
 	// Use this for initialization
 	void Start () 
     {
-	
+        if (BattleStats.currentGameType != BattleStats.GameType.Domination)
+        {
+            alienPercent.SetActive(false);
+            robotPercent.SetActive(false);
+            neutralPercent.SetActive(false);
+            enabled = false;
+        }
 	}
 	
 	// Update is called once per frame
@@ -46,11 +53,15 @@ public class DominationController : MonoBehaviour
         robotPercent.GetComponent<Slider>().value = (float)robotTiles / TotalTiles;
         if (alienPercent.GetComponent<Slider>().value >= 0.85f)
         {
-            BattleStats.winner = "Aliens";
+            EndControllerScript.SynthVic = false;
+            EndControllerScript.OrgVic = true;
+            EndControllerScript.isEnd = true;
         }
         else if (robotPercent.GetComponent<Slider>().value >= 0.85f)
         {
-            BattleStats.winner = "Robots";
+            EndControllerScript.SynthVic = true;
+            EndControllerScript.OrgVic = false;
+            EndControllerScript.isEnd = true;
         }
     }
 }

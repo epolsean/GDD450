@@ -161,12 +161,12 @@ public class SpawnBasicUnits : MonoBehaviour {
         ARtext.GetComponent<Text>().text = AlienRunnerCount.ToString();
         ABtext.GetComponent<Text>().text = AlienBomberCount.ToString();
 
-        if(BlackPieceCount <= 0 && (Time.time - startTime) > 2)
+        if (BlackPieceCount <= 0 && (Time.time - startTime) > 2 && BattleStats.currentGameType == BattleStats.GameType.Elimination)
         {
             EndControllerScript.SynthVic = true; 
             EndControllerScript.isEnd = true; 
         }
-        else if (WhitePieceCount <= 0 && (Time.time - startTime) > 2)
+        else if (WhitePieceCount <= 0 && (Time.time - startTime) > 2 && BattleStats.currentGameType == BattleStats.GameType.Elimination)
         {
             EndControllerScript.OrgVic = true;
             EndControllerScript.isEnd = true; 

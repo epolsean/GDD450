@@ -8,6 +8,10 @@ public class BattleController : MonoBehaviour {
     public GameObject defenderIcon;
     public GameObject vsText;
 
+    public GameObject piecePanel1;
+    public GameObject piecePanel2;
+    public GameObject whoseTurn;
+
     GameObject attackerTile;
     GameObject defenderTile;
 
@@ -26,6 +30,72 @@ public class BattleController : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
+        switch (attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PieceName)
+        {
+            case "Organic Grunt":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_OGrunt");
+                break;
+            case "Organic Runner":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_ORunner");
+                break;
+            case "Organic Tank":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_OTank");
+                break;
+            case "Organic Scout":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_OScout");
+                break;
+            case "Organic Bomber":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SBlank");
+                break;
+            case "Synthetic Grunt":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SGrunt");
+                break;
+            case "Synthetic Runner":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SRunner");
+                break;
+            case "Synthetic Tank":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_STank");
+                break;
+            case "Synthetic Scout":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SScout");
+                break;
+            case "Synthetic Bomber":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SBlank");
+                break;
+        }
+        switch (defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PieceName)
+        {
+            case "Organic Grunt":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_OGrunt");
+                break;
+            case "Organic Runner":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_ORunner");
+                break;
+            case "Organic Tank":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_OTank");
+                break;
+            case "Organic Scout":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_OScout");
+                break;
+            case "Organic Bomber":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SBlank");
+                break;
+            case "Synthetic Grunt":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SGrunt");
+                break;
+            case "Synthetic Runner":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SRunner");
+                break;
+            case "Synthetic Tank":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_STank");
+                break;
+            case "Synthetic Scout":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SScout");
+                break;
+            case "Synthetic Bomber":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SBlank");
+                break;
+        }
         attackerIcon.SetActive(true);
         defenderIcon.SetActive(true);
         //vsText.SetActive(true);
@@ -40,6 +110,72 @@ public class BattleController : MonoBehaviour {
 
     void OnEnable()
     {
+        switch (attackerTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PieceName)
+        {
+            case "Organic Grunt":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_OGrunt");
+                break;
+            case "Organic Runner":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_ORunner");
+                break;
+            case "Organic Tank":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_OTank");
+                break;
+            case "Organic Scout":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_OScout");
+                break;
+            case "Organic Bomber":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SBlank");
+                break;
+            case "Synthetic Grunt":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SGrunt");
+                break;
+            case "Synthetic Runner":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SRunner");
+                break;
+            case "Synthetic Tank":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_STank");
+                break;
+            case "Synthetic Scout":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SScout");
+                break;
+            case "Synthetic Bomber":
+                attackerIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SBlank");
+                break;
+        }
+        switch (defenderTile.GetComponent<OnTileActions>().PieceOnTile.GetComponent<PiecePropScript>().PieceName)
+        {
+            case "Organic Grunt":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_OGrunt");
+                break;
+            case "Organic Runner":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_ORunner");
+                break;
+            case "Organic Tank":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_OTank");
+                break;
+            case "Organic Scout":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_OScout");
+                break;
+            case "Organic Bomber":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SBlank");
+                break;
+            case "Synthetic Grunt":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SGrunt");
+                break;
+            case "Synthetic Runner":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SRunner");
+                break;
+            case "Synthetic Tank":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_STank");
+                break;
+            case "Synthetic Scout":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SScout");
+                break;
+            case "Synthetic Bomber":
+                defenderIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("UnitIcon_SBlank");
+                break;
+        }
         attackerIcon.SetActive(true);
         defenderIcon.SetActive(true);
         //vsText.SetActive(true);
@@ -70,9 +206,9 @@ public class BattleController : MonoBehaviour {
                     starting++;
                 }
             }
-            else if(starting == 2)
+            else if(starting == 4)
             {
-                if (Vector2.Distance(attackerIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(attackerIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)-GetComponent<RectTransform>().sizeDelta.y )) > 10)
+                /*if (Vector2.Distance(attackerIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(attackerIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)-GetComponent<RectTransform>().sizeDelta.y )) > 10)
                 {
                     defenderIcon.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(defenderIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(defenderIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)GetComponent<RectTransform>().sizeDelta.y ), Time.deltaTime);
                     attackerIcon.GetComponent<RectTransform>().anchoredPosition = Vector2.Lerp(attackerIcon.GetComponent<RectTransform>().anchoredPosition, new Vector2(attackerIcon.GetComponent<RectTransform>().anchoredPosition.x, (int)-GetComponent<RectTransform>().sizeDelta.y ), Time.deltaTime);
@@ -80,12 +216,12 @@ public class BattleController : MonoBehaviour {
                 else
                 {
                     starting++;
-                }
+                }*/
             }
-            else
+            else if(starting == 2)
             {
-                attackerIcon.SetActive(false);
-                defenderIcon.SetActive(false);
+                //attackerIcon.SetActive(false);
+                //defenderIcon.SetActive(false);
                 //vsText.SetActive(false);
                 partOfBattle = BattleState.Battle;
             }
@@ -118,6 +254,11 @@ public class BattleController : MonoBehaviour {
                 defenderTile.GetComponent<OnTileActions>().PieceOnTile = null;
             }
             this.enabled = false;
+            attackerIcon.SetActive(false);
+            defenderIcon.SetActive(false);
+            piecePanel1.SetActive(true);
+            piecePanel2.SetActive(true);
+            whoseTurn.SetActive(true);
             GameObject.Find("TurnController").GetComponent<OnTurnActions>().isFighting = false;
             GameObject.Find("TurnController").GetComponent<OnTurnActions>().EndOfBattle();
             GameObject.Find("TurnController").GetComponent<OnTurnActions>().ResetController();

@@ -16,7 +16,7 @@ public class EndControllerScript : MonoBehaviour {
 	void Update () {
 	    if(isEnd)
         {
-            Invoke("LoadEndScene", 3);
+            Invoke("LoadEndScene", 4);
         }
 	}
 

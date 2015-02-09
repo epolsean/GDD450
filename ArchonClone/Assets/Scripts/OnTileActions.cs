@@ -86,69 +86,138 @@ public class OnTileActions : MonoBehaviour {
     /*called when you hover over a tile, it will assign the tile 
      * to the TurnController's OnHoverTile and OnHoverPiece variables
      * as well as change the color of the entire GameObject to cyan/blue
-     */ 
+     */
     void OnMouseOver()
     {
-        if (PauseMenu.activeInHierarchy == false)
+        if (PauseMenu.activeInHierarchy == false && GameObject.Find("TurnController").GetComponent<OnTurnActions>().isFighting == false)
         {
-            isHovered = true;
-            TileNode.SetActive(true);
-            GridManager.rescan = true;
-            TurnController.GetComponent<OnTurnActions>().OnHoverTile = this.gameObject;
-            TurnController.GetComponent<OnTurnActions>().OnHoverPiece = this.PieceOnTile;
-            if (isSelected == false)
+            if (GameObject.Find("TurnController").GetComponent<OnTurnActions>().SelectedPiece != null)
             {
-                if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece == false)
+                if (GameObject.Find("TurnController").GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().isMoving == false)
                 {
-                    this.renderer.material.color = Color.cyan;
-                }
-
-                if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
-                {
-
-                    if (TurnController.GetComponent<OnTurnActions>().isGenPath == false)
+                    isHovered = true;
+                    TileNode.SetActive(true);
+                    GridManager.rescan = true;
+                    TurnController.GetComponent<OnTurnActions>().OnHoverTile = this.gameObject;
+                    TurnController.GetComponent<OnTurnActions>().OnHoverPiece = this.PieceOnTile;
+                    if (isSelected == false)
                     {
-                        Invoke("GenHoverPath", 1 / 100);
-
-                    }
-                    else
-                    {
-                        TurnController.GetComponent<OnTurnActions>().drawnPath = false;
-                        if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path != null)
+                        if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece == false)
                         {
-                            if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes)
+                            this.renderer.material.color = Color.cyan;
+                        }
+
+                        if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
+                        {
+
+                            if (TurnController.GetComponent<OnTurnActions>().isGenPath == false)
                             {
-                                /*float dist = Vector3.Distance(TurnController.GetComponent<OnTurnActions>().CurrentTile.transform.position, this.transform.position);
-                                print("Distance: " + dist);
-                                if(dist <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxMove)
-                                {
-                                    //this.renderer.material.color = Color.green;
-                                }
-                                else
-                                {
-                                    //this.renderer.material.color = Color.red; 
-                                }*/
+                                Invoke("GenHoverPath", 1 / 100);
+
                             }
                             else
                             {
-                                this.renderer.material.color = Color.red;
+                                TurnController.GetComponent<OnTurnActions>().drawnPath = false;
+                                if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path != null)
+                                {
+                                    if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes)
+                                    {
+                                        /*float dist = Vector3.Distance(TurnController.GetComponent<OnTurnActions>().CurrentTile.transform.position, this.transform.position);
+                                        print("Distance: " + dist);
+                                        if(dist <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxMove)
+                                        {
+                                            //this.renderer.material.color = Color.green;
+                                        }
+                                        else
+                                        {
+                                            //this.renderer.material.color = Color.red; 
+                                        }*/
+                                    }
+                                    else
+                                    {
+                                        this.renderer.material.color = Color.red;
+                                    }
+                                }
                             }
+
                         }
                     }
+                    else
+                    {
+                        if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
+                        {
 
+                            if (TurnController.GetComponent<OnTurnActions>().isGenPath == false)
+                            {
+                                Invoke("GenHoverPath", 1 / 100);
+
+                            }
+                            this.renderer.material.color = Color.yellow;
+                        }
+                    }
                 }
             }
             else
             {
-                if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
+                isHovered = true;
+                TileNode.SetActive(true);
+                GridManager.rescan = true;
+                TurnController.GetComponent<OnTurnActions>().OnHoverTile = this.gameObject;
+                TurnController.GetComponent<OnTurnActions>().OnHoverPiece = this.PieceOnTile;
+                if (isSelected == false)
                 {
-
-                    if (TurnController.GetComponent<OnTurnActions>().isGenPath == false)
+                    if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece == false)
                     {
-                        Invoke("GenHoverPath", 1 / 100);
+                        this.renderer.material.color = Color.cyan;
+                    }
+
+                    if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
+                    {
+
+                        if (TurnController.GetComponent<OnTurnActions>().isGenPath == false)
+                        {
+                            Invoke("GenHoverPath", 1 / 100);
+
+                        }
+                        else
+                        {
+                            TurnController.GetComponent<OnTurnActions>().drawnPath = false;
+                            if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path != null)
+                            {
+                                if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes)
+                                {
+                                    /*float dist = Vector3.Distance(TurnController.GetComponent<OnTurnActions>().CurrentTile.transform.position, this.transform.position);
+                                    print("Distance: " + dist);
+                                    if(dist <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxMove)
+                                    {
+                                        //this.renderer.material.color = Color.green;
+                                    }
+                                    else
+                                    {
+                                        //this.renderer.material.color = Color.red; 
+                                    }*/
+                                }
+                                else
+                                {
+                                    this.renderer.material.color = Color.red;
+                                }
+                            }
+                        }
 
                     }
-                    this.renderer.material.color = Color.yellow;
+                }
+                else
+                {
+                    if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
+                    {
+
+                        if (TurnController.GetComponent<OnTurnActions>().isGenPath == false)
+                        {
+                            Invoke("GenHoverPath", 1 / 100);
+
+                        }
+                        this.renderer.material.color = Color.yellow;
+                    }
                 }
             }
         }
