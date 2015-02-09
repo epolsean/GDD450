@@ -121,6 +121,8 @@ public class SpawnBasicUnits : MonoBehaviour {
 
     float startTime;
 
+    public GameObject TutorialController; 
+
 	// Use this for initialization
 	void Start () {
         startTime = Time.time;
@@ -392,7 +394,7 @@ public class SpawnBasicUnits : MonoBehaviour {
 
     public void SpawnWhitePiece(GameObject piece, GameObject tile)
     {
-
+        
         if (!Network.isServer && !Network.isClient)
         {
             tile.GetComponent<OnTileActions>().PieceOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 90, 0)) as GameObject;
@@ -422,6 +424,8 @@ public class SpawnBasicUnits : MonoBehaviour {
 
     public void SpawnBlackPiece(GameObject piece, GameObject tile)
     {
+        
+        
         if (!Network.isServer && !Network.isClient)
         {
             tile.GetComponent<OnTileActions>().PieceOnTile = Instantiate(piece, tile.transform.position, Quaternion.Euler(0, 270, 0)) as GameObject;
@@ -431,6 +435,13 @@ public class SpawnBasicUnits : MonoBehaviour {
             print("Tile Type Set");
             //tile.GetComponent<TileProperties>().Occupied = true;
             BlackPieceCount++;
+            if (piece.name == "BlackRunner")
+            {
+                if (TutorialController != null)
+                {
+                    TutorialController.GetComponent<TutorialControllerScript>().EnemyPiece = tile.GetComponent<OnTileActions>().PieceOnTile;
+                }
+            }
         }
         else if (Network.isServer)
         {

@@ -169,6 +169,10 @@ public class pieceMovementScript : MonoBehaviour {
                         TurnStateMachine.state = TurnStateMachine.State.playerTurn;
                     }
                 }*/
+                if(MoveController.GetComponent<OnTurnActions>().TutorialController != null)
+                {
+                    MoveController.GetComponent<OnTurnActions>().TutorialController.GetComponent<TutorialControllerScript>().TutorialStepCout++;
+                }
                 transform.position = targetPosition;
                 Debug.Log("Setting piece transform to target transform!");
                 //MoveController.GetComponent<OnTurnActions>().NextTurn(); 

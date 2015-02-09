@@ -588,6 +588,10 @@ public class BattleController : MonoBehaviour {
                 }
             }
             partOfBattle = BattleState.PostBattle;
+            if(GameObject.Find("TutorialController"))
+            {
+                GameObject.Find("TutorialController").GetComponent<TutorialControllerScript>().TutorialStepCout++;
+            }
         }
     }
 
