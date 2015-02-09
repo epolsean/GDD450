@@ -1,0 +1,28 @@
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon HD 7570M (ID=0x6841)
+    Vendor:   ATI
+    VRAM:     1007 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\Pathfinding.Ionic.Zip.Reduced.dll (this message is harmless)
+Loading D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\Pathfinding.Ionic.Zip.Reduced.dll into Unity Child Domain
+Platform assembly: D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\Pathfinding.JsonFx.dll (this message is harmless)
+Loading D:\Student Data\Documents\GitHub\GDD450\ArchonClone\StrategiX_Data\Managed\Pathfinding.JsonFx.dll into Unity Child Domain
+- Completed reload, in  0.131 seconds
+desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.

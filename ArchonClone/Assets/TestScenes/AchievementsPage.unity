@@ -1147,7 +1147,7 @@ MonoBehaviour:
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
+    m_MinSize: 8
     m_MaxSize: 40
     m_Alignment: 1
     m_RichText: 1
@@ -2953,17 +2953,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   es: {fileID: 0}
   MainMenuPanel: {fileID: 0}
-  OptionsPanel: {fileID: 0}
   SelectModePanel: {fileID: 0}
   CreditsPanel: {fileID: 0}
-  ControlsPanel: {fileID: 0}
-  BackToOptionsButton: {fileID: 0}
-  SettingsPanel: {fileID: 0}
   GameTypePanel: {fileID: 0}
   AchievementButton: {fileID: 0}
   firstButtonStartPage: {fileID: 0}
   firstButtonCreditsPage: {fileID: 0}
-  firstButtonOptionsPage: {fileID: 0}
   firstButtonSelectModePage: {fileID: 0}
   firstButtonGameTypePage: {fileID: 0}
 --- !u!1 &1832884519
