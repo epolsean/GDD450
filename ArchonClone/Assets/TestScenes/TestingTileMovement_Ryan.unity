@@ -221,6 +221,7 @@ MonoBehaviour:
   LvlSlider: {fileID: 388332528}
   LvlText: {fileID: 302136868}
   PieceSpawnController: {fileID: 952641981}
+  TutorialController: {fileID: 0}
   hasSelectedPiece: 0
   CanClick: 1
   seeker: {fileID: 0}
@@ -8477,6 +8478,7 @@ MonoBehaviour:
   RobotScout2StartTile: {fileID: 0}
   RobotRunner1StartTile: {fileID: 0}
   RobotRunner2StartTile: {fileID: 0}
+  TutorialController: {fileID: 0}
 --- !u!4 &952641984
 Transform:
   m_ObjectHideFlags: 0
@@ -13671,6 +13673,7 @@ MonoBehaviour:
   LvlSlider: {fileID: 0}
   LvlText: {fileID: 0}
   PieceSpawnController: {fileID: 0}
+  TutorialController: {fileID: 0}
   hasSelectedPiece: 0
   CanClick: 1
   seeker: {fileID: 0}

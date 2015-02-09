@@ -329,7 +329,7 @@ public class OnTurnActions : MonoBehaviour
             MaxPathNodes = 0;
             hasSelectedPiece = false;
             resetAllTiles();
-            if(TutorialController == null && TutorialController.GetComponent<TutorialControllerScript>().TutorialStepCout<10)
+            if(TutorialController == null)
             {
                 Camera.main.GetComponent<CameraZoomController>().ResetTransform();
             }
@@ -411,7 +411,7 @@ public class OnTurnActions : MonoBehaviour
         {
             SoundController.GetComponent<UISoundsScript>().playMovePiece();
         }
-        if (TutorialController == null && TutorialController.GetComponent<TutorialControllerScript>().TutorialStepCout < 10)
+        if (TutorialController == null)
         {
             Camera.main.GetComponent<CameraZoomController>().SetTarget(SelectedPiece);
         }
