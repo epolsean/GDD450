@@ -54,16 +54,19 @@ public class GoTo : MonoBehaviour {
 
 	public void Local() 
     {
-        /*float sceneSelect = Random.Range(0f, 1000f);
-        if (sceneSelect < 500)
+        float sceneSelect = Random.Range(0f, 1000f);
+        if (sceneSelect < 333)
         {
             Application.LoadLevel("TileBoardScene_01");
         }
-        else
+        else if (sceneSelect < 666)
         {
             Application.LoadLevel("TestingTileMovement_Ryan");
-        }*/
-        Application.LoadLevel("TestingTileMovement_Ryan");
+        }
+        else
+        {
+            Application.LoadLevel("TileBoard_V2_Erik");
+        }
         BattleStats.singlePlayer = false;
 	}
 

@@ -113,8 +113,8 @@ public class CameraZoomController : MonoBehaviour
 
     void ResettingCamera()
     {
-        transform.position = Vector3.Lerp(transform.position, startPosition,Time.deltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, startRotation, Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, startPosition,Time.deltaTime*2);
+        transform.rotation = Quaternion.Lerp(transform.rotation, startRotation, Time.deltaTime*2);
 
         if (Vector3.Distance(transform.position, startPosition) < 1)
         {
