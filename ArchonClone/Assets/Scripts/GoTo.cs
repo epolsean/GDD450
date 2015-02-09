@@ -14,6 +14,7 @@ public class GoTo : MonoBehaviour {
     public GameObject BackToOptionsButton;
     public GameObject SettingsPanel;
     public GameObject GameTypePanel;
+    public GameObject AchievementButton;
 
     public GameObject firstButtonStartPage;
     public GameObject firstButtonCreditsPage;
@@ -25,8 +26,9 @@ public class GoTo : MonoBehaviour {
     {
         if(MainMenuPanel != null)
         {
-            es.SetSelectedGameObject(firstButtonStartPage);
+            //es.SetSelectedGameObject(firstButtonStartPage);
             MainMenuPanel.SetActive(true);
+            AchievementButton.SetActive(true);
             OptionsPanel.SetActive(false);
             SelectModePanel.SetActive(false);
             CreditsPanel.SetActive(false);
@@ -88,8 +90,9 @@ public class GoTo : MonoBehaviour {
 
     public void StartScreen()
     {
-        es.SetSelectedGameObject(firstButtonStartPage);
+        //es.SetSelectedGameObject(firstButtonStartPage);
         MainMenuPanel.SetActive(true);
+        AchievementButton.SetActive(true);
         OptionsPanel.SetActive(false);
         SelectModePanel.SetActive(false);
         CreditsPanel.SetActive(false);
@@ -106,8 +109,9 @@ public class GoTo : MonoBehaviour {
 
     public void Credits()
     {
-        es.SetSelectedGameObject(firstButtonCreditsPage);
+        //es.SetSelectedGameObject(firstButtonCreditsPage);
         MainMenuPanel.SetActive(false);
+        AchievementButton.SetActive(false);
         OptionsPanel.SetActive(false);
         SelectModePanel.SetActive(false);
         CreditsPanel.SetActive(true);
@@ -119,8 +123,9 @@ public class GoTo : MonoBehaviour {
 
     public void Settings()
     {
-        es.SetSelectedGameObject(firstButtonOptionsPage);
+        //es.SetSelectedGameObject(firstButtonOptionsPage);
         MainMenuPanel.SetActive(false);
+        AchievementButton.SetActive(false);
         OptionsPanel.SetActive(true);
         SelectModePanel.SetActive(false);
         CreditsPanel.SetActive(false);
@@ -132,8 +137,9 @@ public class GoTo : MonoBehaviour {
 
     public void MultiplayerMode()
     {
-        es.SetSelectedGameObject(firstButtonSelectModePage);
+        //es.SetSelectedGameObject(firstButtonSelectModePage);
         MainMenuPanel.SetActive(false);
+        AchievementButton.SetActive(false);
         OptionsPanel.SetActive(false);
         SelectModePanel.SetActive(true);
         CreditsPanel.SetActive(false);
@@ -145,8 +151,9 @@ public class GoTo : MonoBehaviour {
 
     public void GameType()
     {
-        es.SetSelectedGameObject(firstButtonGameTypePage);
+        //es.SetSelectedGameObject(firstButtonGameTypePage);
         MainMenuPanel.SetActive(false);
+        AchievementButton.SetActive(false);
         OptionsPanel.SetActive(false);
         SelectModePanel.SetActive(false);
         CreditsPanel.SetActive(false);
