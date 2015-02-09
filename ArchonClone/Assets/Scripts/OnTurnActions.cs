@@ -35,7 +35,8 @@ public class OnTurnActions : MonoBehaviour
     public GameObject BoostText;
     public GameObject LvlSlider;
     public GameObject LvlText; 
-    public GameObject PieceSpawnController; 
+    public GameObject PieceSpawnController;
+    public GameObject TutorialController; 
     public bool hasSelectedPiece = false;
     public bool CanClick = true;
     public static bool EndingTurn = false; 
@@ -130,7 +131,30 @@ public class OnTurnActions : MonoBehaviour
                         {
                             if (TurnStateMachine.state == TurnStateMachine.State.playerTurn && OnHoverTile.GetComponent<OnTileActions>().PieceOnTile.tag == "White")
                             {
-                                SelectPiece(OnHoverPiece);
+                                if(TutorialController != null)
+                                {
+                                    if (OnHoverPiece.GetComponent<PiecePropScript>().PieceName == "Synthetic Grunt" && TutorialController.GetComponent<TutorialControllerScript>().TutorialStepCout == 5)
+                                    {
+                                        SelectPiece(OnHoverPiece);
+                                        TutorialController.GetComponent<TutorialControllerScript>().TutorialStepCout=6;
+                                        CanClick = false; 
+                                    }
+                                    else if (OnHoverPiece.GetComponent<PiecePropScript>().PieceName == "Synthetic Tank" && TutorialController.GetComponent<TutorialControllerScript>().TutorialStepCout == 8)
+                                    {
+                                        SelectPiece(OnHoverPiece);
+                                        TutorialController.GetComponent<TutorialControllerScript>().TutorialStepCout=9;
+                                        CanClick = false; 
+                                    }
+                                    else
+                                    {
+                                        SoundController.GetComponent<UISoundsScript>().playError();
+                                    }
+                                }
+                                else
+                                {
+                                    SelectPiece(OnHoverPiece);
+                                }
+                                
                             }
                             else if (TurnStateMachine.state == TurnStateMachine.State.otherTurn && OnHoverTile.GetComponent<OnTileActions>().PieceOnTile.tag == "Black")
                             {
@@ -165,7 +189,14 @@ public class OnTurnActions : MonoBehaviour
                                 {
                                     if(OnHoverTile.renderer.material.color == Color.green)
                                     {
-                                        SetTarget(OnHoverTile);
+                                        if(TutorialController == null)
+                                        {
+                                            SetTarget(OnHoverTile);
+                                        }
+                                        else
+                                        {
+                                            SoundController.GetComponent<UISoundsScript>().playError();
+                                        }
                                     }
                                     else
                                     {
@@ -176,11 +207,30 @@ public class OnTurnActions : MonoBehaviour
                                 {
                                     if (OnHoverTile.GetComponent<OnTileActions>().PieceOnTile.tag != SelectedPiece.tag)//this check initiates combat
                                     {
-                                        SoundController.GetComponent<UISoundsScript>().playFight();
-                                        isFighting = true;
-                                        //OnHoverTile.GetComponent<OnTileActions>().AtkPiece = SelectedPiece;
-                                        StartCombat(OnHoverTile, CurrentTile);
-                                        SetTarget(OnHoverTile);
+                                        if(TutorialController != null)
+                                        {
+                                            if (OnHoverPiece.GetComponent<PiecePropScript>().PieceName == "Organic Runner" && TutorialController.GetComponent<TutorialControllerScript>().TutorialStepCout == 11)
+                                            {
+                                                TutorialController.GetComponent<TutorialControllerScript>().TutorialStepCout=12;
+                                                SoundController.GetComponent<UISoundsScript>().playFight();
+                                                isFighting = true;
+                                                //OnHoverTile.GetComponent<OnTileActions>().AtkPiece = SelectedPiece;
+                                                StartCombat(OnHoverTile, CurrentTile);
+                                                SetTarget(OnHoverTile);
+                                            }
+                                            else
+                                            {
+                                                SoundController.GetComponent<UISoundsScript>().playError();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            SoundController.GetComponent<UISoundsScript>().playFight();
+                                            isFighting = true;
+                                            //OnHoverTile.GetComponent<OnTileActions>().AtkPiece = SelectedPiece;
+                                            StartCombat(OnHoverTile, CurrentTile);
+                                            SetTarget(OnHoverTile);
+                                        }
                                     }
                                 }
 
@@ -221,7 +271,7 @@ public class OnTurnActions : MonoBehaviour
      * it assigns the selectedPiece, MaxMove, CurrentTile, 
      * MaxPathNodes
      */
-    void SelectPiece(GameObject Piece)
+    public void SelectPiece(GameObject Piece)
     {
         //print("SelectPiece Called");
         hasSelectedPiece = true;
@@ -279,7 +329,10 @@ public class OnTurnActions : MonoBehaviour
             MaxPathNodes = 0;
             hasSelectedPiece = false;
             resetAllTiles();
-            Camera.main.GetComponent<CameraZoomController>().ResetTransform();
+            if(TutorialController == null && TutorialController.GetComponent<TutorialControllerScript>().TutorialStepCout<10)
+            {
+                Camera.main.GetComponent<CameraZoomController>().ResetTransform();
+            }
         }
         
         if (BattleStats.currentGameType == BattleStats.GameType.Domination)
@@ -296,13 +349,16 @@ public class OnTurnActions : MonoBehaviour
      */ 
     public void EndOfTurn()//this will set the selectedPiece to the target tile only when you are not initiating combat
     {
-        if (isFighting == false)
+        if(TutorialController == null)
         {
-            CurrentTile.GetComponent<OnTileActions>().PieceOnTile = null;
-            MoveToTile.GetComponent<OnTileActions>().PieceOnTile = SelectedPiece;
-            MoveToTile.GetComponent<OnTileActions>().isSelected = false;
-            CanClick = true; 
-            NextTurn();
+            if (isFighting == false)
+            {
+                CurrentTile.GetComponent<OnTileActions>().PieceOnTile = null;
+                MoveToTile.GetComponent<OnTileActions>().PieceOnTile = SelectedPiece;
+                MoveToTile.GetComponent<OnTileActions>().isSelected = false;
+                CanClick = true;
+                NextTurn();
+            }
         }
     }
 
@@ -336,14 +392,17 @@ public class OnTurnActions : MonoBehaviour
         }
     }
 
-    void SetTarget(GameObject targetTile)//called when you select a tile to move to
+    public void SetTarget(GameObject targetTile)//called when you select a tile to move to
     {
         //SelectedPiece.GetComponent<pieceMovementScript>().isMoving = true;
         //SelectedPiece.GetComponent<pieceMovementScript>().startMove = true;
         CanClick = false; 
         targetTile.GetComponent<OnTileActions>().isSelected = true;
         MoveToTile = targetTile;
-        OnHoverTile.renderer.material.color = Color.green;
+        if(TutorialController == null && OnHoverTile != null)
+        {
+            OnHoverTile.renderer.material.color = Color.green;
+        }
         hasSelectedPiece = false;
         SelectedPiece.transform.position = new Vector3(SelectedPiece.transform.position.x, 0.5f, SelectedPiece.transform.position.z);//this is a quick fix for a weird bug where pice was being clocked from movng
         targetTile.GetComponent<OnTileActions>().TileNode.SetActive(false);
@@ -352,7 +411,10 @@ public class OnTurnActions : MonoBehaviour
         {
             SoundController.GetComponent<UISoundsScript>().playMovePiece();
         }
-        Camera.main.GetComponent<CameraZoomController>().SetTarget(SelectedPiece);
+        if (TutorialController == null && TutorialController.GetComponent<TutorialControllerScript>().TutorialStepCout < 10)
+        {
+            Camera.main.GetComponent<CameraZoomController>().SetTarget(SelectedPiece);
+        }
         
         
     }

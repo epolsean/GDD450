@@ -69,7 +69,7 @@ public class GoTo : MonoBehaviour {
 
     public void Tutorial()
     {
-        Application.LoadLevel("TutorialTestGrid");
+        Application.LoadLevel("TutorialGridScene01");
         BattleStats.singlePlayer = false;
     }
 

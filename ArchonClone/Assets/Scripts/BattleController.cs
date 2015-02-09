@@ -232,6 +232,9 @@ public class BattleController : MonoBehaviour {
         }
         else if (partOfBattle == BattleState.PostBattle)
         {
+            GameObject.Find("TurnController").GetComponent<OnTurnActions>().isFighting = false;
+            GameObject.Find("TurnController").GetComponent<OnTurnActions>().EndOfBattle();
+            GameObject.Find("TurnController").GetComponent<OnTurnActions>().ResetController();
             if (Loser == "attacker")
             {
                 Debug.Log("attacker lost the fight");
@@ -259,9 +262,6 @@ public class BattleController : MonoBehaviour {
             piecePanel1.SetActive(true);
             piecePanel2.SetActive(true);
             whoseTurn.SetActive(true);
-            GameObject.Find("TurnController").GetComponent<OnTurnActions>().isFighting = false;
-            GameObject.Find("TurnController").GetComponent<OnTurnActions>().EndOfBattle();
-            GameObject.Find("TurnController").GetComponent<OnTurnActions>().ResetController();
         }
     }
 
@@ -588,6 +588,10 @@ public class BattleController : MonoBehaviour {
                 }
             }
             partOfBattle = BattleState.PostBattle;
+            if(GameObject.Find("TutorialController"))
+            {
+                GameObject.Find("TutorialController").GetComponent<TutorialControllerScript>().TutorialStepCout++;
+            }
         }
     }
 
