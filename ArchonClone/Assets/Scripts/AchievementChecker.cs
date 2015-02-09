@@ -17,6 +17,8 @@ public class AchievementChecker : MonoBehaviour
     public GameObject KillsWithRobotScout;
     public GameObject KillsWithRobotBomber;
 
+    public GameObject TutorialComplete;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -30,6 +32,8 @@ public class AchievementChecker : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("KillsWithAlienGrunt") >= 10)
                 KillsWithAlienGrunt.GetComponent<Image>().color = new Color(255, 255, 255, 1);
+            else
+                KillsWithAlienGrunt.GetComponent<Image>().color = new Color(255, 255, 255, 0.39f);
         }
 
         //Check for Alien tank kills
@@ -37,6 +41,8 @@ public class AchievementChecker : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("KillsWithAlienTank") >= 10)
                 KillsWithAlienTank.GetComponent<Image>().color = new Color(255, 255, 255, 1);
+            else
+                KillsWithAlienTank.GetComponent<Image>().color = new Color(255, 255, 255, 0.39f);
         }
 
         //Check for Alien runner kills
@@ -44,6 +50,8 @@ public class AchievementChecker : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("KillsWithAlienRunner") >= 10)
                 KillsWithAlienRunner.GetComponent<Image>().color = new Color(255, 255, 255, 1);
+            else
+                KillsWithAlienRunner.GetComponent<Image>().color = new Color(255, 255, 255, 0.39f);
         }
 
         //Check for Alien scout kills
@@ -51,6 +59,8 @@ public class AchievementChecker : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("KillsWithAlienScout") >= 10)
                 KillsWithAlienScout.GetComponent<Image>().color = new Color(255, 255, 255, 1);
+            else
+                KillsWithAlienScout.GetComponent<Image>().color = new Color(255, 255, 255, 0.39f);
         }
 
         //Check for Alien bomber kills
@@ -58,6 +68,8 @@ public class AchievementChecker : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("KillsWithAlienBomber") >= 10)
                 KillsWithAlienBomber.GetComponent<Image>().color = new Color(255, 255, 255, 1);
+            else
+                KillsWithAlienBomber.GetComponent<Image>().color = new Color(255, 255, 255, 0.39f);
         }
 
         //Check for Robot grunt kills
@@ -65,6 +77,8 @@ public class AchievementChecker : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("KillsWithRobotGrunt") >= 10)
                 KillsWithRobotGrunt.GetComponent<Image>().color = new Color(255, 255, 255, 1);
+            else
+                KillsWithRobotGrunt.GetComponent<Image>().color = new Color(255, 255, 255, 0.39f);
         }
 
         //Check for Robot tank kills
@@ -72,6 +86,8 @@ public class AchievementChecker : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("KillsWithRobotTank") >= 10)
                 KillsWithRobotTank.GetComponent<Image>().color = new Color(255, 255, 255, 1);
+            else
+                KillsWithRobotTank.GetComponent<Image>().color = new Color(255, 255, 255, 0.39f);
         }
 
         //Check for Robot runner kills
@@ -79,6 +95,8 @@ public class AchievementChecker : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("KillsWithRobotRunner") >= 10)
                 KillsWithRobotRunner.GetComponent<Image>().color = new Color(255, 255, 255, 1);
+            else
+                KillsWithRobotRunner.GetComponent<Image>().color = new Color(255, 255, 255, 0.39f);
         }
 
         //Check for Robot scout kills
@@ -86,6 +104,8 @@ public class AchievementChecker : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("KillsWithRobotScout") >= 10)
                 KillsWithRobotScout.GetComponent<Image>().color = new Color(255, 255, 255, 1);
+            else
+                KillsWithRobotScout.GetComponent<Image>().color = new Color(255, 255, 255, 0.39f);
         }
 
         //Check for Robot bomber kills
@@ -93,11 +113,16 @@ public class AchievementChecker : MonoBehaviour
         {
             if (PlayerPrefs.GetInt("KillsWithRobotBomber") >= 10)
                 KillsWithRobotBomber.GetComponent<Image>().color = new Color(255, 255, 255, 1);
+            else
+                KillsWithRobotBomber.GetComponent<Image>().color = new Color(255, 255, 255, 0.39f);
         }
 
         if (PlayerPrefs.HasKey("TutorialComplete"))
         {
-            
+            if (PlayerPrefs.GetInt("TutorialComplete") == 1)
+                TutorialComplete.GetComponent<Image>().color = new Color(255, 255, 255, 1);
+            else
+                TutorialComplete.GetComponent<Image>().color = new Color(255, 255, 255, 0.39f);
         }
     }
 }
