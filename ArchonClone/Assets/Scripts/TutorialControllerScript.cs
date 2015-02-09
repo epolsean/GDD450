@@ -111,7 +111,7 @@ public class TutorialControllerScript : MonoBehaviour {
                 OutPutTextPanel.SetActive(false);
                 Invoke("TurnOnClick", 1 / 10);
             }
-            else if(TutorialStepCout == 13)
+            else if(TutorialStepCout >= 13)
             {
                 Application.LoadLevel("StartScreen");
             }
