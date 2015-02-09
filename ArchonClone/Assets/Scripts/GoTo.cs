@@ -57,7 +57,7 @@ public class GoTo : MonoBehaviour {
         float sceneSelect = Random.Range(0f, 1000f);
         if (sceneSelect < 333)
         {
-            Application.LoadLevel("TileBoardScene_01");
+            Application.LoadLevel("TileBoardScene01");
         }
         else if (sceneSelect < 666)
         {

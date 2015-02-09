@@ -281,7 +281,7 @@ public class BattleController : MonoBehaviour {
         //Add code to simulate battle and determine winner
         if (Random.Range(0, (int)(attackerLevel)) < (int)attackerLevel*ratio) //This will be if the player who is attacking the tile wins on the attack
         {
-            if (Random.Range(0, (int)(defenderLevel)) < (int)defenderLevel*ratio/2) //This will be if the player who is defending the tile wins on the attack
+            if (Random.Range(0, (int)(defenderLevel)) < (int)defenderLevel*ratio/4) //This will be if the player who is defending the tile wins on the attack
             {
                 Loser = "both";
                 SpawnBasicUnits.BlackPieceCount--;
@@ -437,7 +437,7 @@ public class BattleController : MonoBehaviour {
         }
         else if (Random.Range(0, (int)(defenderLevel)) < (int)defenderLevel*ratio) //This will be if the player who is defending the tile wins on the attack
         {
-            if (Random.Range(0, (int)(attackerLevel)) < (int)attackerLevel*ratio/2) //This will be if the player who is attcking the tile wins on the attack
+            if (Random.Range(0, (int)(attackerLevel)) < (int)attackerLevel*ratio/4) //This will be if the player who is attcking the tile wins on the attack
             {
                 Loser = "both";
                 SpawnBasicUnits.BlackPieceCount--;
