@@ -17,10 +17,13 @@ public class OnTileActions : MonoBehaviour {
     public bool IsNutural = false;
     public bool isSelected = false;
     public bool isHovered = false; 
-    public int RandomRotation; 
+    public int RandomRotation;
+
+    public GameObject PauseMenu;
     
     // Use this for initialization
 	void Start () {
+        PauseMenu = GameObject.Find("PausePanel");
         RandomRotation = Random.Range(1, 4);
         TilePowerLevel = 1; 
         if(RandomRotation == 1)
@@ -86,64 +89,67 @@ public class OnTileActions : MonoBehaviour {
      */ 
     void OnMouseOver()
     {
-        isHovered = true; 
-        TileNode.SetActive(true);
-        GridManager.rescan = true;
-        TurnController.GetComponent<OnTurnActions>().OnHoverTile = this.gameObject;
-        TurnController.GetComponent<OnTurnActions>().OnHoverPiece = this.PieceOnTile;
-        if (isSelected == false)
+        if (PauseMenu.activeInHierarchy == false)
         {
-            if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece == false)
+            isHovered = true;
+            TileNode.SetActive(true);
+            GridManager.rescan = true;
+            TurnController.GetComponent<OnTurnActions>().OnHoverTile = this.gameObject;
+            TurnController.GetComponent<OnTurnActions>().OnHoverPiece = this.PieceOnTile;
+            if (isSelected == false)
             {
-                this.renderer.material.color = Color.cyan;
-            }
-
-            if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
-            {
-
-                if (TurnController.GetComponent<OnTurnActions>().isGenPath == false)
+                if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece == false)
                 {
-                    Invoke("GenHoverPath", 1 / 100);
-
+                    this.renderer.material.color = Color.cyan;
                 }
-                else
+
+                if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
                 {
-                    TurnController.GetComponent<OnTurnActions>().drawnPath = false;
-                    if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path != null)
+
+                    if (TurnController.GetComponent<OnTurnActions>().isGenPath == false)
                     {
-                        if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes)
+                        Invoke("GenHoverPath", 1 / 100);
+
+                    }
+                    else
+                    {
+                        TurnController.GetComponent<OnTurnActions>().drawnPath = false;
+                        if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path != null)
                         {
-                            /*float dist = Vector3.Distance(TurnController.GetComponent<OnTurnActions>().CurrentTile.transform.position, this.transform.position);
-                            print("Distance: " + dist);
-                            if(dist <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxMove)
+                            if (TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().path.vectorPath.Count <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxPathNodes)
                             {
-                                //this.renderer.material.color = Color.green;
+                                /*float dist = Vector3.Distance(TurnController.GetComponent<OnTurnActions>().CurrentTile.transform.position, this.transform.position);
+                                print("Distance: " + dist);
+                                if(dist <= TurnController.GetComponent<OnTurnActions>().SelectedPiece.GetComponent<pieceMovementScript>().MaxMove)
+                                {
+                                    //this.renderer.material.color = Color.green;
+                                }
+                                else
+                                {
+                                    //this.renderer.material.color = Color.red; 
+                                }*/
                             }
                             else
                             {
-                                //this.renderer.material.color = Color.red; 
-                            }*/
-                        }
-                        else
-                        {
-                            this.renderer.material.color = Color.red;
+                                this.renderer.material.color = Color.red;
+                            }
                         }
                     }
-                }
 
+                }
             }
-        }
-        else
-        {
-            if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
+            else
             {
-
-                if (TurnController.GetComponent<OnTurnActions>().isGenPath == false)
+                if (TurnController.GetComponent<OnTurnActions>().hasSelectedPiece)
                 {
-                    Invoke("GenHoverPath", 1 / 100);
 
+                    if (TurnController.GetComponent<OnTurnActions>().isGenPath == false)
+                    {
+                        Invoke("GenHoverPath", 1 / 100);
+
+                    }
+                    this.renderer.material.color = Color.yellow;
                 }
-                this.renderer.material.color = Color.yellow; 
             }
         }
     }

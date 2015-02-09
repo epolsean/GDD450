@@ -7,18 +7,13 @@ public class GoTo : MonoBehaviour {
 
     public EventSystem es; 
     public GameObject MainMenuPanel;
-    public GameObject OptionsPanel;
     public GameObject SelectModePanel;
     public GameObject CreditsPanel;
-    public GameObject ControlsPanel;
-    public GameObject BackToOptionsButton;
-    public GameObject SettingsPanel;
     public GameObject GameTypePanel;
     public GameObject AchievementButton;
 
     public GameObject firstButtonStartPage;
     public GameObject firstButtonCreditsPage;
-    public GameObject firstButtonOptionsPage;
     public GameObject firstButtonSelectModePage;
     public GameObject firstButtonGameTypePage;
 
@@ -29,12 +24,8 @@ public class GoTo : MonoBehaviour {
             //es.SetSelectedGameObject(firstButtonStartPage);
             MainMenuPanel.SetActive(true);
             AchievementButton.SetActive(true);
-            OptionsPanel.SetActive(false);
             SelectModePanel.SetActive(false);
             CreditsPanel.SetActive(false);
-            ControlsPanel.SetActive(false);
-            BackToOptionsButton.SetActive(false);
-            SettingsPanel.SetActive(false);
             GameTypePanel.SetActive(false);
         }
     }
@@ -93,18 +84,15 @@ public class GoTo : MonoBehaviour {
         //es.SetSelectedGameObject(firstButtonStartPage);
         MainMenuPanel.SetActive(true);
         AchievementButton.SetActive(true);
-        OptionsPanel.SetActive(false);
         SelectModePanel.SetActive(false);
         CreditsPanel.SetActive(false);
-        ControlsPanel.SetActive(false);
-        BackToOptionsButton.SetActive(false);
-        SettingsPanel.SetActive(false);
         GameTypePanel.SetActive(false);
     }
 
     public void MainMenu()
     {
         Application.LoadLevel("StartScreen");
+        Time.timeScale = 1;
     }
 
     public void Credits()
@@ -112,12 +100,8 @@ public class GoTo : MonoBehaviour {
         //es.SetSelectedGameObject(firstButtonCreditsPage);
         MainMenuPanel.SetActive(false);
         AchievementButton.SetActive(false);
-        OptionsPanel.SetActive(false);
         SelectModePanel.SetActive(false);
         CreditsPanel.SetActive(true);
-        ControlsPanel.SetActive(false);
-        BackToOptionsButton.SetActive(false);
-        SettingsPanel.SetActive(false);
         GameTypePanel.SetActive(false);
     }
 
@@ -126,12 +110,8 @@ public class GoTo : MonoBehaviour {
         //es.SetSelectedGameObject(firstButtonOptionsPage);
         MainMenuPanel.SetActive(false);
         AchievementButton.SetActive(false);
-        OptionsPanel.SetActive(true);
         SelectModePanel.SetActive(false);
         CreditsPanel.SetActive(false);
-        ControlsPanel.SetActive(false);
-        BackToOptionsButton.SetActive(false);
-        SettingsPanel.SetActive(false);
         GameTypePanel.SetActive(false);
     }
 
@@ -140,12 +120,8 @@ public class GoTo : MonoBehaviour {
         //es.SetSelectedGameObject(firstButtonSelectModePage);
         MainMenuPanel.SetActive(false);
         AchievementButton.SetActive(false);
-        OptionsPanel.SetActive(false);
         SelectModePanel.SetActive(true);
         CreditsPanel.SetActive(false);
-        ControlsPanel.SetActive(false);
-        BackToOptionsButton.SetActive(false);
-        SettingsPanel.SetActive(false);
         GameTypePanel.SetActive(false);
     }
 
@@ -154,12 +130,8 @@ public class GoTo : MonoBehaviour {
         //es.SetSelectedGameObject(firstButtonGameTypePage);
         MainMenuPanel.SetActive(false);
         AchievementButton.SetActive(false);
-        OptionsPanel.SetActive(false);
         SelectModePanel.SetActive(false);
         CreditsPanel.SetActive(false);
-        ControlsPanel.SetActive(false);
-        BackToOptionsButton.SetActive(false);
-        SettingsPanel.SetActive(false);
         GameTypePanel.SetActive(true);
     }
 
