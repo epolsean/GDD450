@@ -7,9 +7,14 @@ public class PauseScript : MonoBehaviour {
     public GameObject P1Pieces;
     public GameObject P2Pieces;
     public GameObject PlayerTurn;
+    public GameObject Slider1;
+    public GameObject Slider2;
+    public GameObject Slider3;
+    public GameObject Canvas;
 
     float startTime;
     bool startedUp;
+    bool Dom;
 
 	// Use this for initialization
 	void Start () {
@@ -18,10 +23,14 @@ public class PauseScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (startTime + .05 < Time.time && startedUp == false)
+        if (startTime + .01 < Time.time && startedUp == false)
         {
             PausePanel.SetActive(false);
             startedUp = true;
+            if(Canvas.GetComponent<DominationController>().enabled == true)
+            {
+                Dom = true;
+            }
         }
         if (Input.GetKeyUp(KeyCode.Escape))
         {
@@ -31,6 +40,12 @@ public class PauseScript : MonoBehaviour {
                 P1Pieces.SetActive(true);
                 P2Pieces.SetActive(true);
                 PlayerTurn.SetActive(true);
+                if (Dom == true)
+                {
+                    Slider1.SetActive(true);
+                    Slider2.SetActive(true);
+                    Slider3.SetActive(true);
+                }
                 Time.timeScale = 1;
             }
             else
@@ -39,6 +54,12 @@ public class PauseScript : MonoBehaviour {
                 P1Pieces.SetActive(false);
                 P2Pieces.SetActive(false);
                 PlayerTurn.SetActive(false);
+                if (Dom == true)
+                {
+                    Slider1.SetActive(false);
+                    Slider2.SetActive(false);
+                    Slider3.SetActive(false);
+                }
                 Time.timeScale = 0;
             }
         }
@@ -50,6 +71,12 @@ public class PauseScript : MonoBehaviour {
         P1Pieces.SetActive(true);
         P2Pieces.SetActive(true);
         PlayerTurn.SetActive(true);
+        if (Dom == true)
+        {
+            Slider1.SetActive(true);
+            Slider2.SetActive(true);
+            Slider3.SetActive(true);
+        }
         Time.timeScale = 1;
     }
 }
