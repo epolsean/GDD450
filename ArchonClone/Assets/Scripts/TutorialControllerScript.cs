@@ -17,7 +17,7 @@ public class TutorialControllerScript : MonoBehaviour {
     public string tutorialText02 = "Now it is your turn! You can hover over tiles and pieces to view their respective stats. Click the piece you wish to move with your left mouse button to select it. Select your synthetic Grunt piece Now!";
     public string tutorialText03 = "Very good soldier! when you have selected a piece you can now hover over tiles to select a tile to move to or an enemy to attack. You may also deselect your current selected piece by left clicking on it a second time. Deselect your synthetic Grunt now and select your Synthetic Tank piece NOW!";
     public string tutorialText04 = "Now is the time to go on the offensive! But be careful! Tiles give the faction pieces they belong to an additional boost of power when fighting on that tile. You may capture atile by moving your piece onto an enemy or neutral tile! Now Attack your opponents organic Runner piece!";
-    public string tutorialText05 = "Congradulations Recruit! You now have the knowledge you'll need to venture forth and take control of more zones of this planet! Good Luck recruit!";
+    public string tutorialText05 = "Congratulations Recruit! You now have the knowledge you'll need to venture forth and take control of more zones of this planet! Good Luck recruit!";
 
     // Use this for initialization
 	void Start () {
@@ -113,6 +113,7 @@ public class TutorialControllerScript : MonoBehaviour {
             }
             else if(TutorialStepCout >= 13)
             {
+                PlayerPrefs.SetInt("TutorialComplete", 1);
                 Application.LoadLevel("StartScreen");
             }
         }
