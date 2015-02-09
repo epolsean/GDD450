@@ -12,7 +12,6 @@ public class BattleController : MonoBehaviour {
     GameObject defenderTile;
 
     string Loser;
-    bool BattleOver = false;
     //Vector2 attackerIconStarPos;
     //Vector2 defenderIconStarPos;
     enum BattleState {PreBattle,Battle,PostBattle};
@@ -127,10 +126,21 @@ public class BattleController : MonoBehaviour {
 
     void SimulateBattle()
     {
-        //Add code to simulate battle and determine winner
-        if (Random.Range(0, (int)(10000/attackerLevel)) < attackerLevel) //This will be if the player who is attacking the tile wins on the attack
+        Debug.Log("attacker level  : " + attackerLevel);
+        Debug.Log("defender level  : " + defenderLevel);
+        double ratio = 0;
+        if (defenderLevel > attackerLevel)
         {
-            if (Random.Range(0, (int)(10000 / defenderLevel)) < defenderLevel/2) //This will be if the player who is defending the tile wins on the attack
+            ratio = attackerLevel / defenderLevel;
+        }
+        else
+        {
+            ratio = defenderLevel / attackerLevel;
+        }
+        //Add code to simulate battle and determine winner
+        if (Random.Range(0, (int)(attackerLevel)) < (int)attackerLevel*ratio) //This will be if the player who is attacking the tile wins on the attack
+        {
+            if (Random.Range(0, (int)(defenderLevel)) < (int)defenderLevel*ratio/2) //This will be if the player who is defending the tile wins on the attack
             {
                 Loser = "both";
                 SpawnBasicUnits.BlackPieceCount--;
@@ -284,9 +294,9 @@ public class BattleController : MonoBehaviour {
             }
             partOfBattle = BattleState.PostBattle;
         }
-        else if (Random.Range(0, (int)(10000 / defenderLevel)) < defenderLevel) //This will be if the player who is defending the tile wins on the attack
+        else if (Random.Range(0, (int)(defenderLevel)) < (int)defenderLevel*ratio) //This will be if the player who is defending the tile wins on the attack
         {
-            if (Random.Range(0, (int)(10000/attackerLevel)) < attackerLevel/2) //This will be if the player who is attcking the tile wins on the attack
+            if (Random.Range(0, (int)(attackerLevel)) < (int)attackerLevel*ratio/2) //This will be if the player who is attcking the tile wins on the attack
             {
                 Loser = "both";
                 SpawnBasicUnits.BlackPieceCount--;
